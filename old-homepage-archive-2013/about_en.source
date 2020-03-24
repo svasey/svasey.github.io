@@ -1,0 +1,78 @@
+.. default-role:: literal
+
+
+About Sebastien Vasey
+=====================
+
+    I wonder if I've been changed in the night? Let me think: was I the same
+    when I got up this morning? I almost think I can remember feeling a little
+    different. But if I'm not the same, the next question is, Who in the world
+    am I? Ah, *that's* the great puzzle! [1]_
+
+
+Who am I ?
+----------
+
+I am a student. I enjoy studying everything that gravitates around Science. I am
+especially interested in Mathematics, Computer Science and Communication. I am
+registered as a master student in `Communication Systems`_ at EPFL_ (and I have
+a bachelor in the same field, at the same school). Starting from August 2011, I
+will be an exchange student at CMU_.
+
+I am also a programmer, and enjoy the *fun* of writing software. I use this web
+site to publish `some of my work`_. My programs are available as `free
+software`_.
+
+.. _Communication Systems: http://ic.epfl.ch/communication-systems
+.. _EPFL: http://epfl.ch/home-list-en.html
+.. _CMU: http://www.cmu.edu/index.shtml
+.. _some of my work: projects/index_en.html
+.. _free software: http://www.gnu.org/philosophy/free-sw.html
+
+Contact information
+-------------------
+    
+Email
+#####
+
+My email address is::
+
+    sebastien dot vasey at gmail dot com
+
+Of course, you should remove the spaces, and replace the "dot" and "at" parts by
+their respective symbol on the keyboard. This is just a clumsy attempt to fool
+spambots.
+
+Feel free to send me any comments, questions, rants, thanks or other words of
+wisdom you might have.
+
+Privacy Now !
+#############
+
+Because I highly value my privacy, and fully agree with the arguments put
+forward in `Why I wrote PGP`_, or this `Non-Technical PGP FAQ`_, I have been
+using PGP (actually the free implementation GnuPG_) since 2007.
+
+You can get my `PGP key`_ (``4D5ADB32``) here, or from a key server like
+``subkeys.pgp.net``. The fingerprint is::
+
+    C88F 230E 4053 D94A 64C8  2D53 FB58 40DD 4D5A DB32
+
+I always sign my outgoing messages, and encourage you to do the same, as well as
+encrypt them. 
+
+I also sign all the software releases for download from that site. Please warn
+me if you find an unsigned one.
+
+**Note:** the key id and fingerprint were updated on February 7th, 2010 (the
+text above was changed accordingly): see my `key transition statement`_.
+
+.. _Why I wrote PGP: http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html
+.. _Non-Technical PGP FAQ: http://www.andrebacard.com/pgp.html
+.. _GnuPG: http://gnupg.org/
+.. _PGP key: http://certs.svasey.org/gpg-svasey-pubkey.asc
+.. _cryptography page: projects/crypto_en.html
+.. _key transition statement: http://certs.svasey.org/key-transition.txt
+
+.. [1] Quoted from `"Alice's Adventures in Wonderland"`_.
+.. _"Alice's Adventures in Wonderland": http://www.gutenberg.org/ebooks/11

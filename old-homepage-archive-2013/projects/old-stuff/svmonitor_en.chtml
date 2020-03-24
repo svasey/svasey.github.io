@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Svmonitor</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="svmonitor">
+<h2>Svmonitor</h2>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#what-is-svmonitor" id="id1">What is svmonitor ?</a></li>
+<li><a class="reference internal" href="#download" id="id2">Download</a></li>
+<li><a class="reference internal" href="#the-big-picture" id="id3">The big picture</a></li>
+<li><a class="reference internal" href="#the-configuration-file" id="id4">The configuration file</a><ul>
+<li><a class="reference internal" href="#an-example-configuration" id="id5">An example configuration</a></li>
+<li><a class="reference internal" href="#actions" id="id6">Actions</a></li>
+<li><a class="reference internal" href="#tests" id="id7">Tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage" id="id8">Usage</a></li>
+<li><a class="reference internal" href="#the-test-directory" id="id9">The test directory</a></li>
+<li><a class="reference internal" href="#implemented-actions" id="id10">Implemented actions</a><ul>
+<li><a class="reference internal" href="#testaction-sendmail" id="id11">testaction-sendmail</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implemented-tests" id="id12">Implemented tests</a><ul>
+<li><a class="reference internal" href="#diskspace-check" id="id13">diskspace-check</a><ul>
+<li><a class="reference internal" href="#minimum-percentage" id="id14">Minimum percentage</a></li>
+<li><a class="reference internal" href="#minimum-percentage-with-minimum-size" id="id15">Minimum percentage with minimum size</a></li>
+<li><a class="reference internal" href="#custom-method" id="id16">Custom method</a></li>
+<li><a class="reference internal" href="#options" id="id17">Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#webpage-check" id="id18">webpage-check</a></li>
+<li><a class="reference internal" href="#daemon-check" id="id19">daemon-check</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-svmonitor">
+<h3>What is svmonitor ?</h3>
+<p><tt class="docutils literal"><span class="pre">Svmonitor</span></tt> is simple helper that lets you run some tests on your systems and
+set up actions if they fail.</p>
+<p>For example, you could use it to check that some of your important programs are
+still running, or to regularly check that you haven't run out of disk space...</p>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>Svmonitor is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/svmonitor.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/svmonitor.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="the-big-picture">
+<h3>The big picture</h3>
+<p><tt class="docutils literal"><span class="pre">Svmonitor</span></tt> runs <em>tests</em>. Tests are just commands that can fail or succeed. Upon
+failure or success, the program takes <em>actions</em>, like sending email or shutting
+down your server.</p>
+<p>Tests and actions are setup in a global configuration file at
+<tt class="docutils literal"><span class="pre">/etc/svmonitor-config/svmonitor.conf</span></tt>. Each test and action gets referred to
+using a simple name.</p>
+<p>Suppose you have set up a test named <tt class="docutils literal"><span class="pre">check-disk-usage</span></tt> that checks if you have
+enough disk space. Then to run it you would just run:</p>
+<pre class="literal-block">
+$ runtest check-disk-usage
+</pre>
+<p>This will take care of running the actual commands and taking the configured
+actions in case of success or failure.</p>
+<p>Actions can be configured to run everytime the test fail, or e.g only once after
+the first failure.</p>
+<p>Note that <tt class="docutils literal"><span class="pre">svmonitor</span></tt> does <em>not</em> schedule the tests: this can be done using
+another tool such as <a class="reference external" href="http://fcron.free.fr/">fcron</a>.</p>
+</div>
+<div class="section" id="the-configuration-file">
+<h3>The configuration file</h3>
+<p>The configuration file is in <tt class="docutils literal"><span class="pre">/etc/svmonitor-config/svmonitor.conf</span></tt>. It
+describes two things: the <em>tests</em> and the <em>actions</em> mapped to those tests.</p>
+<p>The file's syntax is very simple (<a class="reference external" href="http://en.wikipedia.org/wiki/INI_file">INI</a> like). Sections, whose names are between
+brackets, contain variables, each of which is given line by line using the
+<tt class="docutils literal"><span class="pre">varname</span> <span class="pre">=</span> <span class="pre">value</span></tt> format. Any line beginning with a <tt class="docutils literal"><span class="pre">#</span></tt> is considered a comment
+and isn't parsed.</p>
+<div class="section" id="an-example-configuration">
+<h4>An example configuration</h4>
+<p>Here is an example file:</p>
+<pre class="literal-block">
+[action_mail]
+
+action_command = testaction-sendmail root&#64;localhost
+
+[test_fail]
+
+test_command = false
+failure_actions = mail
+
+[test_fail-once]
+
+test_command = false
+failure_actions_once = mail
+
+[test_fail-once-2]
+
+test_command = cat /home/sebastien/tmp/svmonitor.test
+failure_actions_once = mail
+
+[test_fail-only-once]
+
+test_command = false
+failure_actions_once_only = mail
+
+[test_success]
+
+test_command = true
+success_actions = mail
+</pre>
+<p>This file defines five tests, named <tt class="docutils literal"><span class="pre">fail</span></tt>, <tt class="docutils literal"><span class="pre">fail-once</span></tt>, <tt class="docutils literal"><span class="pre">fail-once-2</span></tt>,
+<tt class="docutils literal"><span class="pre">fail-only-once</span></tt> and <tt class="docutils literal"><span class="pre">success</span></tt>, and one action, named <tt class="docutils literal"><span class="pre">mail</span></tt>.</p>
+<p>Formally, the file can describe any number of actions and tests, each of which
+in its own section.</p>
+</div>
+<div class="section" id="actions">
+<h4>Actions</h4>
+<p>Each action should be in its own section. If the action's name is <tt class="docutils literal"><span class="pre">$name</span></tt>, it
+should be in a section named <tt class="docutils literal"><span class="pre">action_$name</span></tt>.</p>
+<p>An action can be seen as a command taking three arguments: the error code
+returned by the test, the test's name, and a path to a file providing more
+details on the test's result. This command is specified by the <tt class="docutils literal"><span class="pre">action_command</span></tt>
+variable.</p>
+<p>The <tt class="docutils literal"><span class="pre">testaction-sendmail</span></tt> command from the example is provided by the
+<tt class="docutils literal"><span class="pre">svmonitor</span></tt> package for convenience. Such actions are documented in
+<a class="reference internal" href="#implemented-actions">Implemented actions</a>.</p>
+</div>
+<div class="section" id="tests">
+<h4>Tests</h4>
+<p>Each test should be in its own section. If the test's name is <tt class="docutils literal"><span class="pre">$name</span></tt>, it should
+be in a section named <tt class="docutils literal"><span class="pre">test_$name</span></tt>.</p>
+<p>Each test is described by seven variables:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">test_command</span></tt>: The command to run to execute the test. If the command returns
+0, the test is considered as successfull, otherwise as failed. This variable
+<em>must</em> be given for each test.</li>
+<li><tt class="docutils literal"><span class="pre">failure_actions</span></tt>: Names of actions to take in case of failure, separated by
+spaces. The actions will be executed in the order in which they are given. If
+this variable is not given, nothing will be done.</li>
+<li><tt class="docutils literal"><span class="pre">failure_actions_once</span></tt>: Actions to take in case of failure <em>just after a
+success</em>. Those actions will be run only when the test failed, and succeeded
+the last time. For example, assume your test pings your server and you run the
+test every 5 minutes. You only want a mail the first time the server is
+noticed to be down, not every 5 minutes afterward !</li>
+<li><tt class="docutils literal"><span class="pre">failure_actions_once_only</span></tt>: This is even more restrictive than
+<tt class="docutils literal"><span class="pre">failure_actions_once</span></tt>: those actions are run the first time the test fails,
+and <em>are never run again</em>, except after you use a special <tt class="docutils literal"><span class="pre">--reset</span></tt> option.</li>
+<li><tt class="docutils literal"><span class="pre">success_actions</span></tt>, <tt class="docutils literal"><span class="pre">success_actions_once</span></tt>, <tt class="docutils literal"><span class="pre">success_actions_once_only</span></tt>: Like
+<tt class="docutils literal"><span class="pre">failure_actions</span></tt>, but in case the test succeeeds.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="usage">
+<h3>Usage</h3>
+<p>To run a test, simply call <tt class="docutils literal"><span class="pre">runtest</span> <span class="pre">$testname</span></tt>, where <tt class="docutils literal"><span class="pre">$testname</span></tt> is the name of
+your test. Two other modes of operation are possible:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">runtest</span> <span class="pre">--info</span> <span class="pre">[$testname]</span></tt>: Print information on the last result of the test
+and whether it is &quot;reset&quot;, i.e whether the <tt class="docutils literal"><span class="pre">once_only</span></tt> actions will run. If no
+test name is given, this is done for all tests.</li>
+<li><tt class="docutils literal"><span class="pre">runtest</span> <span class="pre">--reset</span> <span class="pre">[$testname]</span></tt>: Reset the test, so that <tt class="docutils literal"><span class="pre">once_only</span></tt> action can
+run again. If no test name is given, this is done for all tests.</li>
+</ul>
+</div>
+<div class="section" id="the-test-directory">
+<h3>The test directory</h3>
+<p><tt class="docutils literal"><span class="pre">svmonitor</span></tt> must keep track of e.g the previous results of the tests it
+ran. Those results are stored in <tt class="docutils literal"><span class="pre">/var/lib/svmonitor</span></tt>. This directory should be
+owned by <tt class="docutils literal"><span class="pre">root:svmonitor</span></tt>, and its permission bits should be <tt class="docutils literal"><span class="pre">1770</span></tt>. Users that
+want to use <tt class="docutils literal"><span class="pre">svmonitor</span></tt> must be members of the <tt class="docutils literal"><span class="pre">svmonitor</span></tt> group.</p>
+</div>
+<div class="section" id="implemented-actions">
+<h3>Implemented actions</h3>
+<p>For convenience, some common actions commands are implemented in the <tt class="docutils literal"><span class="pre">svmonitor</span></tt>
+package. They are documented below.</p>
+<div class="section" id="testaction-sendmail">
+<h4>testaction-sendmail</h4>
+<p>This sends a mail to the email addresses given as first argument,
+comma-separated.</p>
+</div>
+</div>
+<div class="section" id="implemented-tests">
+<h3>Implemented tests</h3>
+<p>For convenience, some common test commands are implemented in the <tt class="docutils literal"><span class="pre">svmonitor</span></tt>
+package. They are documented below.</p>
+<div class="section" id="diskspace-check">
+<h4>diskspace-check</h4>
+<p>This can be used to check that enough disk space is available. The command exits
+with 0 status if and only if all partitions have enough disk space.</p>
+<p>The definition of enough disk space must be provided by the user. Three methods
+can be used:</p>
+<div class="section" id="minimum-percentage">
+<h5>Minimum percentage</h5>
+<p>This is the simplest one: <tt class="docutils literal"><span class="pre">diskspace-check</span></tt> exits with an error if the
+percentage of available disk space (with respect to the total space) is lower
+than some threshold. To use that method, just do:</p>
+<pre class="literal-block">
+$ diskspace-check $minpercent
+</pre>
+<p>for example, for a threshold of 5%, you will run <tt class="docutils literal"><span class="pre">diskspace-check</span> <span class="pre">5</span></tt>.</p>
+</div>
+<div class="section" id="minimum-percentage-with-minimum-size">
+<h5>Minimum percentage with minimum size</h5>
+<p>This is less restrictive than &quot;pure&quot; minimum percentage: the program will exit
+with an error if the minimum percentage criteria is satisfied <em>and</em> the
+available space is lower than some threshold. This is useful when working with
+large drives, e.g assume you have a 1TB drive: if it is 95% full, there is still
+50GB available, which is a lot.</p>
+<p>To use that method, run:</p>
+<pre class="literal-block">
+$ diskspace-check $minpercent $minsize
+</pre>
+<p>The size is assumed to be in bytes by default, but you can use all the standard
+multipliers, e.g 1KB is 1000 <em>bytes</em>, 1Kb is 1000 <em>bits</em> and 1KiB is 1024 bytes.</p>
+</div>
+<div class="section" id="custom-method">
+<h5>Custom method</h5>
+<p>You can also specify your own program to do the tests: the program should take
+as argument the used space and total space, in <em>bits</em> and return with 0 status
+if and only if enough disk space is available. To use that method, run:</p>
+<pre class="literal-block">
+$ diskspace-check $progpath
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">$progpath</span></tt> is the path to your program.</p>
+</div>
+<div class="section" id="options">
+<h5>Options</h5>
+<p>Some partitions can of course be excluded from the tests. There are two useful
+options to do that:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--exclude-dev=regexp</span></tt>: if the device path (first column in <tt class="docutils literal"><span class="pre">df</span></tt> output)
+matches the given <a class="reference external" href="http://docs.python.org/library/re.html#regular-expression-syntax">regular expression</a>, the device is excluded from the
+tests. Note that invalid device paths (like &quot;none&quot;) are also excluded by
+default.</li>
+<li><tt class="docutils literal"><span class="pre">--exclude-mount=regexp</span></tt>: if the device mountpoint (last column in <tt class="docutils literal"><span class="pre">df</span></tt>
+output) matches the given regular expression, the device is excluded from the
+tests.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="webpage-check">
+<h4>webpage-check</h4>
+<p>This can be used to check that a given webpage is responding correctly, and
+hasn't changed. The script uses <a class="reference external" href="http://www.gnu.org/software/wget/">wget</a> for downloading the page. It takes two
+arguments:</p>
+<ul class="simple">
+<li>The URL to download</li>
+<li>A local version of the content: if the downloaded file is not exactly the same
+as the local version, this is an error. This argument is optionnal.</li>
+</ul>
+<p>In addition, one option, <tt class="docutils literal"><span class="pre">--wget-opts</span></tt>, can be used to specify additionnal
+space-separated options to pass to <tt class="docutils literal"><span class="pre">wget</span></tt>.</p>
+</div>
+<div class="section" id="daemon-check">
+<h4>daemon-check</h4>
+<p>This is used to check that some programs are running on your system. The script
+takes as arguments the name of the programs that should be running, and compare
+each of them to the last column of a <tt class="docutils literal"><span class="pre">ps</span> <span class="pre">-ef</span></tt> output. If the two begin the same
+way, the program is considered as running, otherwise the test exits with an
+error.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

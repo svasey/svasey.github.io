@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Old Stuff</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="old-stuff">
+<h2>Old Stuff</h2>
+<div class="section" id="software">
+<h3>Software</h3>
+<ul class="simple">
+<li>Some scripts working together to <a class="reference external" href="wakeup_en.html">make your computer play some music when it
+boots</a>.</li>
+<li><a class="reference external" href="autonet_en.html">Autonet</a> is a simple, quick and dirty network manager.</li>
+<li><a class="reference external" href="simplewp_en.html">Simplewp</a> compiles a full static website from simple <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> files.</li>
+<li><a class="reference external" href="python-svlib_en.html">python-svlib</a>: Some utility functions a lot of my programs use</li>
+<li><a class="reference external" href="svbluetooth_en.html">svbluetooth</a>: Scripts to do some bluetooth file transfer with my mobile phone</li>
+<li><a class="reference external" href="svrst_en.html">svrst</a>: Customized <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> builders to be able to write math
+equations in Latex.</li>
+<li><a class="reference external" href="svmonitor_en.html">svmonitor</a>: Manage and run some tests on your system</li>
+<li><a class="reference external" href="s3archive_en.html">s3archive</a>: Backup the files you store on Amazon S3.</li>
+<li><a class="reference external" href="with-tsocks_en.html">with-tsocks</a>: Wrapper script to &quot;socksify&quot; and make its network traffic go
+through an SSH tunnel.</li>
+<li><a class="reference external" href="openconnect-helpers_en.html">Openconnect helpers</a>: Wrapper script around <a class="reference external" href="http://www.infradead.org/openconnect/">openconnect</a> to easily connect to a VPN
+Network.</li>
+<li><a class="reference external" href="list2pkg/index_en.html">List2pkg</a> is a simple script to create Slackware packages from lists of
+files (useful mainly in conjunction with <a class="reference external" href="../urpkg/index_en.html">Urpkg</a>).</li>
+</ul>
+</div>
+<div class="section" id="technical-articles">
+<h3>Technical Articles</h3>
+<ul class="simple">
+<li><a class="reference external" href="crypto_en.html">Cryptography and Privacy</a>: Why you need to use cryptography to
+communicate on the Internet.</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

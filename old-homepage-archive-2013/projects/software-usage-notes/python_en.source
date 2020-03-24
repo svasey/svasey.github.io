@@ -1,0 +1,103 @@
+.. default-role:: literal
+
+
+Python documentation
+====================
+
+Documents some Python_ tips and tricks
+
+.. contents:: Contents
+   :local:
+
+.. _Python: http://python.org/
+
+How to process command line arguments
+-------------------------------------
+
+Use the optparse_ standard module. 
+
+To disable interspersed arguments (i.e to stop option processing at the first
+non-option), call `disable_interspersed_args` on your parser.
+
+.. _optparse: http://docs.python.org/library/optparse.html
+
+Return value of enumerate
+-------------------------
+
+::
+
+    for (index, value) in enumerate (sequence):
+        # ...
+
+Enumerate in reverse
+--------------------
+
+Christophe Simonis `suggests using the itertools library`_ , but I prefer
+the non-optimized version (simpler)::
+
+    for (index,value) in reversed(list (enumerate (sequence))):
+        doStuff ()
+
+
+.. _suggests using the itertools library: http://christophe-simonis-at-tiny.blogspot.com/2008/08/python-reverse-enumerate.html
+
+Convert a string to an integer
+------------------------------
+
+Use the built-in function ``int (string, [base])``.
+
+If you know that your string is going to be in a base lower than 11, you can use
+the `str.isdigit` function to check that your string indeed contains a number.
+
+
+Convert an integer to a string
+------------------------------
+
+Use the built-in function ``format``::
+
+    format (number, 'd') # For base 10
+    format (number, 'x') # For base 16
+    format (number, 'o') # For base 8
+    format (number, 'b') # For base 2
+
+See the `specifications`_ for more on ``format``
+
+.. _specifications: http://docs.python.org/library/string.html#formatspec
+
+Launch an external process
+--------------------------
+
+In general, the subprocess_ standard module is to be used to manage external
+processes. However, I have coded two helper functions for common tasks.
+
+.. _subprocess: http://docs.python.org/library/subprocess.html
+
+If you are just interested in the return status
+###############################################
+
+Use ``svlib.servicerunner.Runner.callCmd (['your_cmd', 'your_arg1', ...])`` .
+It throws an ``UnexpectedStatusError`` if the return status is not zero (or the
+one expected, see code for more)
+
+If you want the output too
+##########################
+
+Use ``svlib.servicerunner.Runner.callCmdGetOutput(['your_cmd', 'your_arg1',...])``.
+
+The usage is similar to callCmd, but it returns a tuple ``(returncode,
+stdoutString, stderrString)``. See code for more.
+
+Change the current directory
+----------------------------
+
+Use ``os.chdir(path)``
+
+Correctly reading a shell command
+---------------------------------
+
+Often, I want to transform a shell command given as a string, such as `cat
+/etc/foo.txt "file with space"` into a list of arguments to pass to e.g
+`callCmd`. 
+
+Of course `str.split` is not enough here, since it will just ignore quoted
+arguments. The solution is to use `shlex.split`.

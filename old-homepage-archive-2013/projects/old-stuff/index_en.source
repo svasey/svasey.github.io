@@ -1,0 +1,49 @@
+.. default-role:: literal
+
+
+Old Stuff
+=========
+
+Software
+--------
+
+* Some scripts working together to `make your computer play some music when it
+  boots`_.
+* `Autonet`_ is a simple, quick and dirty network manager.
+* Simplewp_ compiles a full static website from simple reStructuredText_ files.
+* `python-svlib`_: Some utility functions a lot of my programs use
+* svbluetooth_: Scripts to do some bluetooth file transfer with my mobile phone
+* svrst_: Customized reStructuredText_ builders to be able to write math
+  equations in Latex.
+* svmonitor_: Manage and run some tests on your system
+* s3archive_: Backup the files you store on Amazon S3.
+* with-tsocks_: Wrapper script to "socksify" and make its network traffic go
+  through an SSH tunnel.
+* `Openconnect helpers`_: Wrapper script around openconnect_ to easily connect to a VPN
+  Network.
+* List2pkg_ is a simple script to create Slackware packages from lists of
+  files (useful mainly in conjunction with Urpkg_).
+
+.. _List2pkg: list2pkg/index_en.html
+.. _Urpkg: ../urpkg/index_en.html
+.. _Autonet: autonet_en.html
+.. _Simplewp: simplewp_en.html
+.. _reStructuredText: http://docutils.sourceforge.net/rst.html
+.. _make your computer play some music when it boots: wakeup_en.html
+.. _python-svlib: python-svlib_en.html
+.. _svbluetooth:  svbluetooth_en.html
+.. _svrst: svrst_en.html
+.. _svmonitor: svmonitor_en.html
+.. _s3archive: s3archive_en.html
+.. _with-tsocks: with-tsocks_en.html
+.. _Openconnect helpers: openconnect-helpers_en.html
+.. _openconnect: http://www.infradead.org/openconnect/
+
+Technical Articles
+------------------
+
+* `Cryptography and Privacy`_: Why you need to use cryptography to
+  communicate on the Internet.
+
+.. _Cryptography and Privacy: crypto_en.html
+

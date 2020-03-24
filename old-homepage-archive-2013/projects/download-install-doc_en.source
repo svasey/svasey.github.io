@@ -1,0 +1,141 @@
+.. default-role:: literal
+
+
+Generic Download and Install Instructions
+=========================================
+
+.. contents:: Contents
+   :local:
+
+**Note, added Feb. 2013: The pacman method will not work anymore**
+
+This documents how to get and install most of my software. Several methods are
+covered, depending on the tools you have available. In the rest of this
+document, I assume you want to download and install a package named `$pkgname`.
+
+There are basically two methods, depending on whether you use `Arch Linux`_
+(more precisely, its package manager, Pacman_) or not.
+
+.. _Arch Linux: http://www.archlinux.org/
+.. _Pacman: https://wiki.archlinux.org/index.php/Pacman
+
+If you use Pacman
+-----------------
+
+Most of my publicly-available software have been packaged for `x86_64` and can
+be directly downloaded and installed from my public arch repository.
+
+You first have to add my repository to Pacman. Append::
+
+    [svasey-public]
+    Server = http://public-repo.svasey.org/os/x86_64
+
+to `/etc/pacman.conf`.
+
+Then to download and install the latest version of `$pkgname`::
+
+    $ pacman -Sy $pkgname
+
+That should do it ! Pay attention to any message that is printed at installation
+time. 
+
+Security
+########
+
+At present (version 3.3.3), Pacman does not implement package signing, which
+makes this method potentially vulnerable to `Man-in-the-middle attacks`_, and
+could also lead to problems if my server is compromised.
+
+However, all my packages are signed with `my GPG key`_, so one workaround for
+you would be to manually download the package file and verify the signature, and
+then install it with Pacman. To do that, browse
+`http://public-repo.svasey.org/os/x86_64/` and download your package and its
+`.sig` file. Then call::
+
+    $ gpg --verify $sigfile
+
+Where `$sigfile` is the signature file. If the signature has been verified
+correctly, you can then install the package::
+
+    $ pacman -U $pkgfile 
+
+See the `without Pacman method`_ for more on signature verification.
+
+.. _Man-in-the-middle attacks: http://en.wikipedia.org/wiki/Man-in-the-middle_attack
+.. _my GPG key: http://certs.svasey.org/gpg-svasey-pubkey.asc
+.. _without Pacman method: #if-you-don-t-use-pacman
+
+If you don't use Pacman
+-----------------------
+
+You should be aware that those instructions are not well-tested. Do not hesitate
+to `send me feedback`_ if something goes wrong.
+
+.. _send me feedback: http://svasey.org/about_en.html#contact-information
+
+Downloading the source tarball
+##############################
+
+Download the source tarball::
+
+    $ wget http://public-repo.svasey.org/src/${pkgname}.tar.gz
+
+Checking the signature
+**********************
+    
+I then advise you to check its `digital signature`_. If you do not care, feel
+free to skip that section.
+
+First, import `my GPG key`_, and make sure you trust it. There is a lot of
+documentation on how to do this on the web.
+
+Then, download the signature::
+
+    $ wget http://public-repo.svasey.org/src/${pkgname}.tar.gz.sig
+
+And verify it::
+
+    $ gpg --verify ${pkgname}.tar.gz.sig
+
+.. _digital signature: http://en.wikipedia.org/wiki/Digital_signature
+.. _my GPG key: http://certs.svasey.org/gpg-svasey-pubkey.asc
+
+Installing from source
+######################
+
+Extract the tarball and cd to the resulting directory::
+
+    $ tar -xf ${pkgname}.tar.gz
+    $ cd $pkgname
+
+After doing an `ls`, you should see several documentation files, like e.g
+`README`, `INSTALL` and `COPYING`. Read the `INSTALL` file, install the
+dependencies, and see if it contains something unusual or if it just points to
+those instructions. Most of the time it will just point here. If it doesn't,
+follow the instructions from `INSTALL` instead of those.
+
+There should also be an `install` file. To install the package, run (as root)::
+
+    $ ./install $DESTDIR $PREFIX
+
+Where `$DESTDIR` and `$PREFIX` can be omitted, especially if you do not know
+what they are (good default values will be chosen). `$DESTDIR` is the file
+system root where the package should be installed and defaults to `/`. `$PREFIX`
+is the prefix where most of the program files will be installed. It defaults to
+`/usr/local`.
+
+If there is a file `install.post`, you can have a look at `INSTALL` and read
+what it tells you to do with that file, then run::
+
+    $ ./install.post $DESTDIR $PREFIX
+
+
+Getting the development history
+-------------------------------
+
+Most of my projects have a git_ repository. If you are a developer you can also
+get the source from there. To clone it, run::
+
+    $ git clone git://git.svasey.org/${pkgname}.git
+
+.. _git: http://git-scm.com/

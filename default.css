@@ -1,0 +1,231 @@
+/*
+Stylesheet for most of the site's pages. 
+Shared by: 
+
+- svasey.org
+- documentation.svasey.org
+- sv-documentation.secure.svasey.org
+
+*/
+
+/* @import url("docutils-html4css1.css"); */
+
+.sv-pict
+{
+    float: right;
+}
+
+.galois
+{
+    height: 200px;
+    float: right;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+h1 {
+  text-align: center
+}
+
+#small-footnote
+{
+   font-size: 0.8em;
+}
+
+
+body
+{
+    font-family: sans-serif;
+}
+
+/* Everything above the content */
+/* #header */
+/* { */
+
+/*     font-family: serif; */
+/*     font-size:0.8em; */
+/* } */
+
+/* /\* Site title and menu *\/ */
+/* #title-and-menu */
+/* { */
+/*     margin: auto; */
+/*     text-align: center; */
+/* } */
+
+/* /\* Title of the site *\/ */
+/* #site-title */
+/* { */
+/*     font-variant: small-caps; */
+/*     letter-spacing: 0.1em; */
+/*     font-size: 2em; */
+/*     height: 1.5em; */
+/*     text-align: center; */
+/*     clear: both; */
+/*     margin: auto; */
+/* } */
+
+/* /\* Collection of links to index, projects etc... *\/ */
+/* #menu */
+/* { */
+/*     font-variant: small-caps; */
+/*     font-size: 1.3em; */
+/* } */
+
+/* /\* The 'you are here' menu *\/ */
+/* #site-tree */
+/* { */
+/*     /\* width: 100%; *\/ */
+/*     padding-left: 2%; */
+/*     float: left; */
+/* } */
+
+/* /\* The "You are here" part of the site tree *\/ */
+/* .you-are-here */
+/* { */
+/*     font-variant: small-caps; */
+/*     font-weight: bold; */
+/* } */
+
+/* /\* The path part of the site tree *\/ */
+/* .site-tree-text */
+/* { */
+/*     font-family: monospace; */
+/* } */
+
+/* /\* Links to translated version of the page *\/ */
+/* #translation-menu */
+/* { */
+/*     text-align: left; */
+/*     padding-left: 2%; */
+/*     width: 25%; */
+/*     font-variant: small-caps; */
+/*     /\* font-size: 0.8em; *\/ */
+/*     float: left; */
+/* } */
+
+/* /\* Menu proposing alternative format for the content (printable, text...) *\/ */
+/* #alternative-versions */
+/* { */
+/*     text-align: right; */
+/*     padding-right:2%; */
+/*     float: right; */
+/*     font-variant: small-caps; */
+/* } */
+
+/* /\* Content: between the header and the footer *\/ */
+/* #content */
+/* { */
+/*     clear: both; */
+/*     font-family: sans-serif; */
+/*     margin-left: 0; */
+/* } */
+
+/* #table-of-contents */
+/* { */
+/*     margin-left: 0 */
+/* } */
+
+/* h2 */
+/* { */
+/*      font-size:1.6em; */
+/*      text-align:center; */
+/* } */
+/* h3 */
+/* { */
+/*     font-size: 1.2em; */
+/* } */
+
+/* h4 */
+/* { */
+/*     font-size:0.9em; */
+/* } */
+
+/* h5 */
+/* { */
+/*     font-size: 0.9em; */
+/*     font-style: italic; */
+/* } */
+
+/* h6 */
+/* { */
+/*     font-size: 0.8em; */
+/*     font-style: italic; */
+/* } */
+
+/* img */
+/* { */
+/*     border-width: 0; */
+/* } */
+
+/* /\* Inline math, without any image *\/ */
+/* .inlinemath */
+/* { */
+/*     font-style: italic; */
+/* } */
+
+/* /\* Formula alone on its line with an image *\/ */
+/* .formulaimg */
+/* { */
+/*     display: block; */
+/*     margin-left: 5%; */
+/* } */
+
+/* /\* CG4 copyright notice in italic and small *\/ */
+/* .cg4-copyright */
+/* { */
+/*     text-align: center; */
+/*     font-style: italic; */
+/*     font-size: 0.5em; */
+/* } */
+
+/* /\* Work around docutils stupid a and sup link encapsulation  *\/ */
+/* a.footnote-reference */
+/* { */
+/*     text-decoration: none; */
+/* } */
+/* a.footnote-reference sup */
+/* { */
+/*     text-decoration: underline; */
+/* } */
+
+/* /\* Set the citation and footnote text smaller *\/ */
+/* table.citation, table.footnote */
+/* { */
+/*     font-size: 0.8em; */
+/*     border-left: none; */
+/* } */
+
+/* #footer */
+/* { */
+/*     border-top: thin dotted; */
+/*     text-align:center; */
+/*     font-family: sans-serif; */
+/* } */
+
+/* /\* The various logos *\/ */
+/* #footer-img */
+/* { */
+/*     width: 25%; */
+/*     margin: auto; */
+/* } */
+
+/* /\* The contact me link  *\/ */
+/* #footer-contact */
+/* { */
+/*     padding-right: 2%; */
+/*     text-align: right; */
+/*     font-size: 0.8em; */
+/*     font-variant: small-caps; */
+/*     float: right; */
+/*     width: 25%; */
+/* } */
+
+/* /\* The public domain note *\/ */
+/* #footer-notes */
+/* { */
+/*     font-size: 0.7em; */
+/* } */
+

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Installation groups and file permissions</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch03.html" title="Chapter 3. How urpkg works" /><link rel="prev" href="ch03s02.html" title="Package user and package name" /><link rel="next" href="ch03s04.html" title="Package directories" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Installation groups and file permissions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><th width="60%" align="center">Chapter 3. How urpkg works</th><td width="20%" align="right"> <a accesskey="n" href="ch03s04.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Installation groups and file permissions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="group-perm"></a>Installation groups and file permissions</h2></div></div></div><div class="sect2" title="The sticky bit"><div class="titlepage"><div><div><h3 class="title"><a id="id422878"></a>The sticky bit</h3></div></div></div><p>
+    Now that we have created a user for the package, we still have to decide
+    where it has permission to write. This is done, as seen previously, using
+    the <code class="option">--gen</code> option. Ideally, we would like the package not to
+    be able to overwrite other package files in the install directories, nor
+    remove them. There is a permission bit on UNIX systems that achieve just
+    that: the sticky bit.
+  </p><p>
+    The sticky bit prevents unprivileged user (i.e the package user in our
+    case) from changing or removing a file that they don't own. It is typically
+    used in directories like <code class="filename">/tmp</code>, where everyone has write
+    access.
+  </p><p>
+    The idea is that you are going to give write access in the install directory
+    to all package users, but since the sticky bit is on, they won't be able to
+    damage files from other packages.
+  </p></div><div class="sect2" title="Package user groups"><div class="titlepage"><div><div><h3 class="title"><a id="package-groups"></a>Package user groups</h3></div></div></div><p>
+    How do we give write access to all package users ? In short, we put every
+    package user in a given group, called the install group, as they are
+    created. When <code class="option">--gen</code> is invoked, all urpkg do is to change
+    the directory's group to this install group, enable write access for this
+    group and turn on the sticky bit.
+  </p><p>
+    Something similar happens for shared files, although we don't need the
+    sticky bit here, and a different group is used: the shared group.
+  </p><p>
+    The install group is <span class="quote">“<span class="quote">urpkgrp-install</span>”</span> and the shared group
+    is <span class="quote">“<span class="quote">urpkgrp-group</span>”</span>. Every package user is a member of those
+    groups once it is created. This means it is possible
+    for <span class="emphasis"><em>any</em></span> package to write to a shared file or put files
+    in an installation directory. Keep this in mind when you make a file shared
+    for example.
+  </p></div><div class="sect2" title="Owner and group of a package's file"><div class="titlepage"><div><div><h3 class="title"><a id="id423396"></a>Owner and group of a package's file</h3></div></div></div><p>
+    As we have already seen, all files created by a package user have by default
+    its name as owner and its group as group. Why do we need to have both ? In
+    fact we don't, <span class="emphasis"><em>for simple cases</em></span>.  As a matter of fact,
+    urpkg will consider any file that has the package user as its
+    owner <span class="emphasis"><em>or</em></span> as its group. The nice thing about this is
+    that you can easily change the owner or group of any file of the package.
+  </p><p>
+    For example, suppose you are installing the 
+    <a class="ulink" href="http://www.gratisoft.us/sudo/" target="_top">sudo</a> program. It
+    obviously needs to be suid root by the very nature of the task it
+    performs. In that case, you can just change its owner to root and set the
+    suid bit as usual. The file will still be detected as belonging to the sudo
+    package since its group still has the package user name of sudo.
+  </p><p>
+    Sometimes it may happen that both the group and the owner have to be
+    changed. This is the case for some daemon that uses both the suid and the
+    sgid bit. <a class="ulink" href="http://fcron.free.fr/" target="_top">Fcron</a> is an example of
+    this. In that case, you can still force the file to belong to the package
+    using <code class="option">--add</code> <span class="emphasis"><em>without</em></span>
+    any <code class="option">--change-owner</code> or <code class="option">--change-group</code>
+    option. The file name will then be added to a text file containing a list of
+    supplementary files belonging to fcron. The disadvantage here is that you
+    cannot move or remove the file without having urpkg complaining, so don't do
+    it unless you really have to. More details are given in
+    <a class="xref" href="ch03s06.html" title="Owned and added files">the section called “Owned and added files”</a>
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Package user and package name </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Package directories</td></tr></table></div></body></html>

@@ -1,0 +1,59 @@
+.. default-role:: literal
+
+
+Simplewp
+========
+
+:Note: This is just a bunch of hackish scripts that happen to work for me. I am
+       not interested in this particular project anymore.
+
+Description
+-----------
+
+Simplewp is a suite of tools that can be used to build entire static websitess
+from "almost plain text" files in the `reStructuredText format`_. This makes it
+very easy to focus on the content rather than on a language syntax. The same
+content can be compiled into different formats (html, pdf, plain text). This
+web site was built entirely using simplewp. 
+
+.. _reStructuredText format: http://docutils.sourceforge.net/rst.html
+
+Features
+--------
+
+* Can build an entire static website
+* Can generate PDF, html or plain text files, and make the web page link to
+  the alternative versions
+* Support math equations using the latex syntax
+* Support translations
+* Released in the Public Domain
+
+News
+----
+
+February 4th 2010: version 20100204
+###################################
+
+Initial release.
+
+Download
+--------
+
+Simplewp is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/simplewp.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/simplewp.tar.gz.sig
+
+Documentation
+-------------
+
+See the `simplewp documentation page`_.
+
+.. _simplewp documentation page: simplewp-doc_en.html

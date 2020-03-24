@@ -1,0 +1,60 @@
+.. default-role:: literal
+
+
+Nokia 6600 slide documentation
+==============================
+
+This page documents my experience with the `Nokia 6600 slide`_
+
+.. _Nokia 6600 slide: http://en.wikipedia.org/wiki/Nokia_6600_slide
+
+How to get system information
+-----------------------------
+
+Enter the following cheat code: ``*#0000#``
+
+Other cheat codes can be found on `the relevant wikihow page`_
+
+.. _the relevant wikihow page: http://www.wikihow.com/Get-Detailed-Information-on-Your-Nokia-Phone
+
+Sending contact information
+---------------------------
+
+You want to send contact information to e.g your PC or another phone via
+bluetooth: read on. 
+
+Internally, the phone uses the `vCard format`_, so each contact will be
+sent as a `vCard` file.
+
+.. _vCard format: http://en.wikipedia.org/wiki/Vcard
+
+Sending a single vcard
+######################
+
+Go into the contact menu. Select the name contact you want to send, click on it,
+then go to `Options -> Send business card -> Via Bluetooth`. The `Send business
+card` item is hidden down the long list of options.
+
+Sending several vcards
+######################
+
+If, say, you want to send *all* your contact information to your PC, then you are
+out of luck: I haven't found how to do it in an automated way. 
+
+That means you will have to send each contact using `the single vcard method`_.
+
+The lack of such an important feature is one of the reasons **I wouldn't
+recommend buying this phone**.
+
+.. _the single vcard method: `Sending a single vcard`_
+
+Setting the volume
+------------------
+
+To raise the volume during a phone call, move up the stick. To lower it move the
+stick down.
+
+The lack of volume buttons on the side makes the above procedure annoying, and
+is another reason why this phone sucks.
+
+

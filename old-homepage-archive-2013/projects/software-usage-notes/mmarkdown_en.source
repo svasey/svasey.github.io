@@ -1,0 +1,20 @@
+.. default-role:: literal
+
+
+MultiMarkdown documentation
+===========================
+
+I used to be a MultiMarkdown_ user. Here is a very small and incomplete cheat
+sheet for things I could not find immediately.
+
+.. _MultiMarkdown: http://fletcherpenney.net/multimarkdown/
+
+Some mathematical symbols
+-------------------------
+
+* Big Oh notation: Just use ``O(g(n))``
+* Big Theta notation: ``f in \Theta(g(n))``
+* Big omega notation: ``f in \Omega(g(n))``
+* Ceiling (upper value): ``\lceil(n/2)\rceil``
+* Floor (lower value): ``\lfloor(n/2)\rfloor``
+

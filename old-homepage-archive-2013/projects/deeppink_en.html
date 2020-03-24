@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Deep Pink</title>
+    <link rel="stylesheet" type="text/css" href="../css/default.css" />
+    <link rel="shortcut icon" href="../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="deeppink_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="deeppink_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="deeppink_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="deep-pink">
+<h2>Deep Pink</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>Deep Pink is a <a class="reference external" href="http://en.wikipedia.org/wiki/Gomoku">connect 5 (Gomoku)</a> program, written in C++. Deep Pink was
+originally written for playing a connect 5 tournament, which it won.</p>
+<p>Deep Pink finds its moves by calculating simple heuristics, and does not do any
+kind of backtracking. It generally runs very quickly (e.g it takes it less than
+0.1 seconds to finish a game against itself on my computer).</p>
+<p>Deep Pink reads its moves from standard input, and outputs them to standard
+output. It is therefore very easy to make it play against another engine or a
+human. There is no graphical interface, though.</p>
+<p>Deep Pink should work on any UNIX-like system, and is free software distributed
+under the MIT License.</p>
+</div>
+<div class="section" id="rules">
+<h3>Rules</h3>
+<p>Deep Pink plays a variant of the classical connect 5 rules described on
+Wikipedia. The game is played on a board of 20 by 20 squares. If the board
+ends-up full with no five stones aligned, the player with the highest number of
+four stones lines wins. If they are still equal, check the lines of three
+stones, etc... If by any chance there is a total equality, the win is awarded to
+the second player.</p>
+</div>
+<div class="section" id="authors">
+<h3>Authors</h3>
+<p>Deep Pink was written by <a class="reference external" href="../about_en.html">Sebastien Vasey</a> and Yann Schoenenberger (<tt class="docutils literal"><span class="pre">yann</span> <span class="pre">dot</span>
+<span class="pre">sch</span> <span class="pre">at</span> <span class="pre">gmail</span> <span class="pre">dot</span> <span class="pre">com</span></tt>).</p>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>Deep Pink is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../public-repo.svasey.org/src/deeppink.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../public-repo.svasey.org/src/deeppink.tar.gz.sig">PGP signature</a></li>
+<li>Old release: <a class="reference external" href="../download.svasey.org/deeppink/deeppink-1_1.tar.gz">Deep Pink 1.1</a></li>
+</ul>
+</div>
+<div class="section" id="notes">
+<h3>Notes</h3>
+<p>The source tarball contains some documentation on how the program works, but it
+is really hard to read: do not even try ! This may get fixed some day...</p>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../index_en.html" class="site-tree-link">home</a> / <a href="index_en.html" class="site-tree-link">projects</a> / <span class="site-tree-nolink" >deeppink</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

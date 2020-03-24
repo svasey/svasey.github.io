@@ -1,0 +1,69 @@
+.. default-role:: literal
+
+
+SSH forward tunnel with tsocks
+==============================
+
+It is sometimes useful to open a tunnel to a given server, and make sure some
+programs access the network through that tunnel. For example, this could be used
+to `avoid sniffing while browsing`_. Another example: only after connecting to
+`the EPFL "tremplin" server`_ can we access the school's private network.
+
+The `with-tsocks` script is used to establish such SSH tunnel with SOCKS_, and
+route a given command through it. 
+
+Download
+--------
+
+with-tsocks is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/with-tsocks.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/with-tsocks.tar.gz.sig
+
+
+Usage
+-----
+
+First of all, you should edit `/etc/tsocks.conf` and set a forwarding port there
+(using the `server_port` variable). Pick a value larger than 10000. I use
+port 19999. The file should look like this::
+
+    server = 127.0.0.1
+    server_port = 19999
+    server_type = 5
+
+`with-tsocks` can be configured either through command line options or
+environment variables. Command line options take precedence over environment
+variable. The environment variables, and their respective command line options,
+are:
+
+* `WITH_TSOCKS_SERVER`: contains the server argument given to ssh, with the
+  username. It is of the form `username@example.com`. The equivalent command
+  line option is `--server=SERVER`. This parameter is *required*.
+* `WITH_TSOCKS_SSHOPTS`: space-separated additionnal options to pass to ssh. The
+  equivalent command line option is `--sshopts=OPTS`
+* `WITH_TSOCKS_NOPASS`: whether `with-tsocks` should ask for a password when
+  connecting to the SSH server. If 1, do not ask, otherwise ask. The equivalent
+  command line option is `--nopass`
+* `WITH_TSOCKS_FORWARD_PORT`: the port number to use for local forwarding. The
+  equivalent command line option is `--forward-port=PORT`. This parameter is
+  *required*.
+
+`with-tsocks` takes as argument the program to run through the tunnel. For
+example, to run mutt_ through an ssh tunnel at `example.com`, you would do
+something like::
+
+    $ with-tsocks --server=luser@example.com --forward-port=19999 mutt
+
+.. .. _avoid sniffing while browsing: http://sysnet1.cs.williams.edu/danny/wp/?p=271
+.. _avoid sniffing while browsing: http://www.spencerstirling.com/computergeek/sshtunnel.html
+.. _the EPFL "tremplin" server: http://tremplin.epfl.ch/ssh.html
+.. _SOCKS: http://en.wikipedia.org/wiki/SOCKS
+.. _mutt: http://www.mutt.org/

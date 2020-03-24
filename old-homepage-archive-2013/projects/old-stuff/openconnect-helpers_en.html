@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Openconnect helpers</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="openconnect-helpers_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="openconnect-helpers_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="openconnect-helpers_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="openconnect-helpers">
+<h2>Openconnect helpers</h2>
+<p>I wrote an <a class="reference external" href="http://www.infradead.org/openconnect/">openconnect</a> wrapper to help setup a vpn connection to the <a class="reference external" href="http://www.epfl.ch/index.en.html">EPFL</a>
+network. It can of course also be used to connect to another
+network. The script setups routing tables and update DNS information on the
+client.</p>
+<div class="section" id="download">
+<h3>Download</h3>
+<p><tt class="docutils literal"><span class="pre">openconnect-helpers</span></tt> is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<p>There is also an <a class="reference external" href="https://launchpad.net/~odyx/+archive/openconnect-helpers">Ubuntu package</a>, thanks to Didier Raboud.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/openconnect-helpers.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/openconnect-helpers.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h3>Usage</h3>
+<p>There are two scripts: <tt class="docutils literal"><span class="pre">vpn-connect</span></tt> and <tt class="docutils literal"><span class="pre">vpn-disconnect</span></tt>. <tt class="docutils literal"><span class="pre">vpn-connect</span></tt> takes
+as argument the configuration file you want to use, or it will use
+<tt class="docutils literal"><span class="pre">/etc/openconnect-helpers/default.conf</span></tt> if no argument is given. Once connected,
+you can call <tt class="docutils literal"><span class="pre">vpn-disconnect</span></tt> to close the connection and revert the routing
+table to what it was before.</p>
+<p>The configuration file is a simple key-value file. For example:</p>
+<pre class="literal-block">
+# VPN server to connect to. This is a mandatory option
+VPN_SERVER=&quot;vpn.epfl.ch&quot;
+# vpnc script program to use. You can either use the one from vpnc, or use the
+# ones from http://git.infradead.org/users/dwmw2/vpnc-scripts.git
+SCRIPT_PROGRAM=&quot;/etc/vpnc/vpnc-script&quot;
+# Username to use when connecting. Leave blank if you want to input it
+# interactively everytime or if it isn't relevant
+USERNAME=&quot;&quot;
+# If you do not want to type in your password everytime, this gives a file where
+# your password is stored.
+#PASSWORD_FILE=&quot;/etc/epfl-vpn.pass&quot;
+PASSWORD_FILE=&quot;&quot;
+# SHA1 SSL fingerprint of the your vpn server
+SERVER_SHA1=&quot;&quot;
+# Path to SSL certificate of server (or CA having signed the server's
+# certificate)
+SERVER_CERT=&quot;/etc/ssl/certs/QuoVadis_Root_CA.pem&quot;
+# Additional options that are directly passed to openconnect
+ADDITIONAL_OPTS=&quot;&quot;
+</pre>
+<p>The variables are:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">VPN_SERVER</span></tt>: gives the address of the server you want to connect
+to. Mandatory.</li>
+<li><tt class="docutils literal"><span class="pre">SCRIPT_PROGRAM</span></tt>: script to use to setup DNS and routing table, by default use
+the one at <tt class="docutils literal"><span class="pre">/etc/vpnc/vpnc-script</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">USERNAME</span></tt>: The username to connect as.</li>
+<li><tt class="docutils literal"><span class="pre">PASSWORD_FILE</span></tt>: Path to a file containing your password, followed by a new
+line. This must be specified if you do not want to input your password
+interactively everytime.</li>
+<li><tt class="docutils literal"><span class="pre">SERVER_SHA1</span></tt>: The fingerprint of your vpn server's SSL certificate</li>
+<li><tt class="docutils literal"><span class="pre">SERVER_CERT</span></tt>: The path to your vpn server's SSL certificate</li>
+<li><tt class="docutils literal"><span class="pre">ADDITIONAL_OPTS</span></tt>: Additionnal options that are directly passed to
+openconnect.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">old-stuff</a> / <span class="site-tree-nolink" >openconnect-helpers</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

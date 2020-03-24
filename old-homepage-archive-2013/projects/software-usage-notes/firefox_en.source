@@ -1,0 +1,47 @@
+.. default-role:: literal
+
+
+Firefox tips and tricks
+=======================
+
+This page documents how to do some non-obvious things with Firefox_.
+
+Unless noted otherwise, the instructions apply to Firefox 3.5 .
+
+.. _Firefox: https://www.mozilla.org/en-US/firefox/new/
+
+Clearing your private data
+--------------------------
+
+If you want to clear your history and your `HTTP-authenticated`_ sessions,
+follow those steps:
+
+1. Click `Menu -> Edit -> Preference`
+2. Go to `Privacy -> Clear all current history`
+3. Select your time range and click on `Clear now`
+
+.. _HTTP-authenticated: http://en.wikipedia.org/wiki/HTTP_Authentication
+
+Getting a warning on quit
+-------------------------
+
+Since you can easily quit firefox by mistake, e.g by typing `Ctrl-q instead of
+Ctrl-w`_, getting a warning asking whether we are sure is nice. Unfortunately `a
+bug in firefox 3.5`_ disables this behavior under some circumstances
+
+I haven't found a fix that worked for me: even installing `Tab Mix Plus`_ could
+not do anything when I did a Ctrl-q.
+
+.. _Ctrl-q instead of Ctrl-w: http://blog.perceptus.ca/2009/01/19/disable-ctrl-q-in-firefox/
+.. _a bug in firefox 3.5: https://bugzilla.mozilla.org/show_bug.cgi?id=419009
+.. _Tab Mix Plus: https://addons.mozilla.org/en-US/firefox/addon/tab-mix-plus/
+
+Backing up your configuration
+-----------------------------
+
+To backup my firefox configuration and extensions, I use an extension called
+FEBE_ . 
+
+.. _FEBE: https://addons.mozilla.org/en-US/firefox/addon/febe/
+
+

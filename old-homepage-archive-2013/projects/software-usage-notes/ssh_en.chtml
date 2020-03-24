@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>SSH Tips</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="ssh-tips">
+<h2>SSH Tips</h2>
+<p>This page contains some helps on how to do some (simple) actions with <a class="reference external" href="http://www.openssh.com/">OpenSSH</a></p>
+<div class="section" id="getting-a-key-s-fingerprints">
+<h3>Getting a key's fingerprints</h3>
+<p>To get the fingerprints of the public key <tt class="docutils literal"><span class="pre">$key</span></tt>, do:</p>
+<pre class="literal-block">
+ssh-keygen -lf $key
+</pre>
+</div>
+<div class="section" id="what-key-does-sshd-use">
+<h3>What key does sshd use ?</h3>
+<p>Host keys should be indicated in the sshd_config file (<tt class="docutils literal"><span class="pre">/etc/sshd_config</span></tt>) by the variable <tt class="docutils literal"><span class="pre">HostKey</span></tt>.</p>
+<p>If they are not, the defaults are <tt class="docutils literal"><span class="pre">/etc/ssh/ssh_host_rsa_key</span></tt> and
+<tt class="docutils literal"><span class="pre">/etc/ssh/ssh_host_dsa_key</span></tt> (whether we use dsa or rsa key depends on what the
+client wants)</p>
+</div>
+<div class="section" id="ssh-reverse-tunnel">
+<h3>SSH Reverse Tunnel</h3>
+<div class="section" id="introduction">
+<h4>Introduction</h4>
+<p>This describes how I had setup SSH reverse tunneling on my machines. This
+service is not implemented anymore.</p>
+<p>Reverse SSH tunnels should be used to access computers behind a NAT from the
+outside.  They should only be used if it is useful to have access to the
+machine.</p>
+<p>I will call the machine behind the NAT the client and the tunneling server the
+server.</p>
+<div class="section" id="tools">
+<h5>Tools</h5>
+<p>I use <a class="reference external" href="http://www.openssh.com/">openssh</a>, with <a class="reference external" href="http://www.harding.motd.ca/autossh/">autossh</a> on the client to maintain the connection
+permantently.</p>
+</div>
+<div class="section" id="how-the-tunnel-is-established">
+<h5>How the tunnel is established</h5>
+<p>The client launches sshd (configured to disallow root login, as usual), and runs
+autossh with</p>
+<ul class="simple">
+<li>A monitor port (-M) of 20000 + <span class="inlinemath">k</span> The -N and -R options to ssh,</li>
+<li>establishing the tunnel on port 20000 + <span class="inlinemath">k</span> + 2, where <span class="inlinemath">k</span> depends
+on the client and is documented here.</li>
+</ul>
+<p>The server hostname is always <tt class="docutils literal"><span class="pre">sshtunnel.svasey.org</span></tt> and the username to connect
+as is always sshtunnel. The authentication is made by public key.</p>
+<p>Every ssh configuration files (<tt class="docutils literal"><span class="pre">known_hosts</span></tt>, <tt class="docutils literal"><span class="pre">id_rsa*</span></tt>, <tt class="docutils literal"><span class="pre">ssh_config</span></tt>)
+should be in <tt class="docutils literal"><span class="pre">/etc/sshtunnel</span></tt>. The <tt class="docutils literal"><span class="pre">ssh_config</span></tt> file should look like this:</p>
+<pre class="literal-block">
+HostName sshtunnel.svasey.org
+Port 6002
+User sshtunnel
+BatchMode yes
+GlobalKnownHostsFile /etc/sshtunnel/known_hosts
+ConnectionAttempts 3
+IdentityFile /etc/sshtunnel/id_rsa
+PasswordAuthentication no
+PubKeyAuthentication yes
+</pre>
+<p>The command establishing the ssh tunnel is:</p>
+<pre class="literal-block">
+autossh -f -M 20000 -N -R 20002:127.0.0.1:6002 -F /etc/sshtunnel/ssh_config remote
+</pre>
+</div>
+<div class="section" id="port-repartition">
+<h5>Port repartition</h5>
+<p>Since we cannot use the same ports for more than one tunnel, we have to assign
+ports arbitrarily. The convention is that for client number 1, ports 20000 and
+20001 are used for monitoring and 20002 for tunneling. For client number 2,
+ports 20003 and 20004 are used for monitoring and 20005 for tunneling and so on.</p>
+</div>
+<div class="section" id="how-to-transfer-a-file-from-client-to-client">
+<h5>How to transfer a file from client to client</h5>
+<p>Let's say you have ssh access to a server (named <tt class="docutils literal"><span class="pre">$server</span></tt>) and would like to download
+a file from a client tunneled behind it (named <tt class="docutils literal"><span class="pre">$client</span></tt>).</p>
+<p>One solution is to download the file from <tt class="docutils literal"><span class="pre">$client</span></tt> to <tt class="docutils literal"><span class="pre">$server</span></tt> using sftp and
+then from <tt class="docutils literal"><span class="pre">$server</span></tt> to you, but it takes twice as much time. The other solution is to
+use <a class="reference external" href="http://fuse.sourceforge.net/sshfs.html">sshfs</a> (fifos-based solutions have been tried and do not work well).</p>
+<p>First (on <tt class="docutils literal"><span class="pre">$server</span></tt>), install sshfs and load up the fuse module:</p>
+<pre class="literal-block">
+yaourt sshfs
+modprobe fuse
+</pre>
+<p>Then mount <tt class="docutils literal"><span class="pre">$client</span></tt> 's filesystem remotely:</p>
+<pre class="literal-block">
+mkdir ~/tmp/mnt
+sshfs john&#64;127.0.0.1:multimedia ~/tmp/mnt -p 20002
+</pre>
+<p>WARNING: try to mount only the directory you need to restrict privilleges</p>
+<p>Then, download the file you want from your machine:</p>
+<pre class="literal-block">
+scp -P 6002 john&#64;${server}:tmp/mnt/file/you/want .
+</pre>
+<p>When you are done, do not forget to umount the directory (on <tt class="docutils literal"><span class="pre">$server</span></tt>):</p>
+<pre class="literal-block">
+fusermount -u ~/tmp/mnt
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Generic Download and Install Instructions</title>
+<link rel="stylesheet" href="../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="generic-download-and-install-instructions">
+<h2>Generic Download and Install Instructions</h2>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#if-you-use-pacman" id="id2">If you use Pacman</a><ul>
+<li><a class="reference internal" href="#security" id="id3">Security</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#if-you-don-t-use-pacman" id="id4">If you don't use Pacman</a><ul>
+<li><a class="reference internal" href="#downloading-the-source-tarball" id="id5">Downloading the source tarball</a><ul>
+<li><a class="reference internal" href="#checking-the-signature" id="id6">Checking the signature</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-from-source" id="id7">Installing from source</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-the-development-history" id="id8">Getting the development history</a></li>
+</ul>
+</div>
+<p><strong>Note, added Feb. 2013: The pacman method will not work anymore</strong></p>
+<p>This documents how to get and install most of my software. Several methods are
+covered, depending on the tools you have available. In the rest of this
+document, I assume you want to download and install a package named <tt class="docutils literal"><span class="pre">$pkgname</span></tt>.</p>
+<p>There are basically two methods, depending on whether you use <a class="reference external" href="http://www.archlinux.org/">Arch Linux</a>
+(more precisely, its package manager, <a class="reference external" href="https://wiki.archlinux.org/index.php/Pacman">Pacman</a>) or not.</p>
+<div class="section" id="if-you-use-pacman">
+<h3>If you use Pacman</h3>
+<p>Most of my publicly-available software have been packaged for <tt class="docutils literal"><span class="pre">x86_64</span></tt> and can
+be directly downloaded and installed from my public arch repository.</p>
+<p>You first have to add my repository to Pacman. Append:</p>
+<pre class="literal-block">
+[svasey-public]
+Server = http://public-repo.svasey.org/os/x86_64
+</pre>
+<p>to <tt class="docutils literal"><span class="pre">/etc/pacman.conf</span></tt>.</p>
+<p>Then to download and install the latest version of <tt class="docutils literal"><span class="pre">$pkgname</span></tt>:</p>
+<pre class="literal-block">
+$ pacman -Sy $pkgname
+</pre>
+<p>That should do it ! Pay attention to any message that is printed at installation
+time.</p>
+<div class="section" id="security">
+<h4>Security</h4>
+<p>At present (version 3.3.3), Pacman does not implement package signing, which
+makes this method potentially vulnerable to <a class="reference external" href="http://en.wikipedia.org/wiki/Man-in-the-middle_attack">Man-in-the-middle attacks</a>, and
+could also lead to problems if my server is compromised.</p>
+<p>However, all my packages are signed with <a class="reference external" href="http://certs.svasey.org/gpg-svasey-pubkey.asc">my GPG key</a>, so one workaround for
+you would be to manually download the package file and verify the signature, and
+then install it with Pacman. To do that, browse
+<tt class="docutils literal"><span class="pre">http://public-repo.svasey.org/os/x86_64/</span></tt> and download your package and its
+<tt class="docutils literal"><span class="pre">.sig</span></tt> file. Then call:</p>
+<pre class="literal-block">
+$ gpg --verify $sigfile
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">$sigfile</span></tt> is the signature file. If the signature has been verified
+correctly, you can then install the package:</p>
+<pre class="literal-block">
+$ pacman -U $pkgfile
+</pre>
+<p>See the <a class="reference external" href="#if-you-don-t-use-pacman">without Pacman method</a> for more on signature verification.</p>
+</div>
+</div>
+<div class="section" id="if-you-don-t-use-pacman">
+<h3>If you don't use Pacman</h3>
+<p>You should be aware that those instructions are not well-tested. Do not hesitate
+to <a class="reference external" href="http://svasey.org/about_en.html#contact-information">send me feedback</a> if something goes wrong.</p>
+<div class="section" id="downloading-the-source-tarball">
+<h4>Downloading the source tarball</h4>
+<p>Download the source tarball:</p>
+<pre class="literal-block">
+$ wget http://public-repo.svasey.org/src/${pkgname}.tar.gz
+</pre>
+<div class="section" id="checking-the-signature">
+<h5>Checking the signature</h5>
+<p>I then advise you to check its <a class="reference external" href="http://en.wikipedia.org/wiki/Digital_signature">digital signature</a>. If you do not care, feel
+free to skip that section.</p>
+<p>First, import <a class="reference external" href="http://certs.svasey.org/gpg-svasey-pubkey.asc">my GPG key</a>, and make sure you trust it. There is a lot of
+documentation on how to do this on the web.</p>
+<p>Then, download the signature:</p>
+<pre class="literal-block">
+$ wget http://public-repo.svasey.org/src/${pkgname}.tar.gz.sig
+</pre>
+<p>And verify it:</p>
+<pre class="literal-block">
+$ gpg --verify ${pkgname}.tar.gz.sig
+</pre>
+</div>
+</div>
+<div class="section" id="installing-from-source">
+<h4>Installing from source</h4>
+<p>Extract the tarball and cd to the resulting directory:</p>
+<pre class="literal-block">
+$ tar -xf ${pkgname}.tar.gz
+$ cd $pkgname
+</pre>
+<p>After doing an <tt class="docutils literal"><span class="pre">ls</span></tt>, you should see several documentation files, like e.g
+<tt class="docutils literal"><span class="pre">README</span></tt>, <tt class="docutils literal"><span class="pre">INSTALL</span></tt> and <tt class="docutils literal"><span class="pre">COPYING</span></tt>. Read the <tt class="docutils literal"><span class="pre">INSTALL</span></tt> file, install the
+dependencies, and see if it contains something unusual or if it just points to
+those instructions. Most of the time it will just point here. If it doesn't,
+follow the instructions from <tt class="docutils literal"><span class="pre">INSTALL</span></tt> instead of those.</p>
+<p>There should also be an <tt class="docutils literal"><span class="pre">install</span></tt> file. To install the package, run (as root):</p>
+<pre class="literal-block">
+$ ./install $DESTDIR $PREFIX
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">$DESTDIR</span></tt> and <tt class="docutils literal"><span class="pre">$PREFIX</span></tt> can be omitted, especially if you do not know
+what they are (good default values will be chosen). <tt class="docutils literal"><span class="pre">$DESTDIR</span></tt> is the file
+system root where the package should be installed and defaults to <tt class="docutils literal"><span class="pre">/</span></tt>. <tt class="docutils literal"><span class="pre">$PREFIX</span></tt>
+is the prefix where most of the program files will be installed. It defaults to
+<tt class="docutils literal"><span class="pre">/usr/local</span></tt>.</p>
+<p>If there is a file <tt class="docutils literal"><span class="pre">install.post</span></tt>, you can have a look at <tt class="docutils literal"><span class="pre">INSTALL</span></tt> and read
+what it tells you to do with that file, then run:</p>
+<pre class="literal-block">
+$ ./install.post $DESTDIR $PREFIX
+</pre>
+</div>
+</div>
+<div class="section" id="getting-the-development-history">
+<h3>Getting the development history</h3>
+<p>Most of my projects have a <a class="reference external" href="http://git-scm.com/">git</a> repository. If you are a developer you can also
+get the source from there. To clone it, run:</p>
+<pre class="literal-block">
+$ git clone git://git.svasey.org/${pkgname}.git
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

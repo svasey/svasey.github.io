@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>PDF tips and tricks</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="pdf_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="pdf_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="pdf_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="pdf-tips-and-tricks">
+<h2>PDF tips and tricks</h2>
+<p>Tips and tricks when working with the <a class="reference external" href="http://en.wikipedia.org/wiki/PDF">PDF</a> file format</p>
+<div class="section" id="decrypting-a-file">
+<h3>Decrypting a file</h3>
+<p>When your PDF file is password-protected, you can use <a class="reference external" href="http://www.foolabs.com/xpdf/">xpdf</a> to open it. Still it
+will not save it without the password which is annoying.</p>
+<p>To do this, the solution I have found is to convert the file to <a class="reference external" href="http://en.wikipedia.org/wiki/PostScript">postscript</a> and
+then back to pdf. Note however that you may loose some information in the
+process.</p>
+<p>You will need <a class="reference external" href="http://poppler.freedesktop.org/">poppler</a> (for <tt class="docutils literal"><span class="pre">pdftops</span></tt>) and <a class="reference external" href="http://pages.cs.wisc.edu/~ghost/">ghostscript</a> (<tt class="docutils literal"><span class="pre">ps2pdf</span></tt>) for this to
+work. Assume you want to decrypt the file <tt class="docutils literal"><span class="pre">secret.pdf</span></tt> which has the password
+<tt class="docutils literal"><span class="pre">foobar</span></tt>, then run:</p>
+<pre class="literal-block">
+$ pdftops -opw foobar secret.pdf
+$ ps2pdf secret.ps &amp;&amp; rm secret.ps
+</pre>
+</div>
+<div class="section" id="merging-several-files">
+<h3>Merging several files</h3>
+<p>To concatenate several files into just one, just run:</p>
+<pre class="literal-block">
+$ gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=out.pdf -dBATCH $file1 $file2 ...
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">gs</span></tt> is provided by <a class="reference external" href="http://pages.cs.wisc.edu/~ghost/">ghostscript</a>.</p>
+</div>
+<div class="section" id="extracting-only-some-pages">
+<h3>Extracting only some pages</h3>
+<p>To extract only from page <tt class="docutils literal"><span class="pre">$start</span></tt> to page <tt class="docutils literal"><span class="pre">$end</span></tt>, of your document <tt class="docutils literal"><span class="pre">$input</span></tt>,
+and create a new pdf <tt class="docutils literal"><span class="pre">$output</span></tt> with those pages, run:</p>
+<pre class="literal-block">
+$ gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+     -dFirstPage=$start -dLastPage=$end \
+ -sOutputFile=$output $input
+</pre>
+<p>My source for this trick is <a class="reference external" href="http://www.linuxjournal.com/content/tech-tip-extract-pages-pdf">this tech tip article from Linux Journal</a>.</p>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >pdf</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

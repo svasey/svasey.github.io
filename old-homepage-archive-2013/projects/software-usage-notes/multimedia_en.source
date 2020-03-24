@@ -1,0 +1,195 @@
+.. default-role:: literal
+
+
+Multimedia documentation
+========================
+
+Documents how to do some multimedia tasks
+
+.. contents:: Contents
+   :local:
+
+Convert wma to ogg
+------------------
+
+You need to dump the ``wma`` file into an uncompressed format (``wav``)::
+
+	$ mplayer -ao pcm:file=/tmp/out.wav $wma_file
+
+Then encode it into ``ogg``::	
+
+	$ oggenc -o ${wma_file%.wma}.ogg /tmp/out.wav
+
+Convert ogg to mp3
+------------------
+
+Same as previous section for the dumping part, but use::
+
+         $ lame /tmp/out.wav ${ogg_file%.ogg}.mp3
+
+for the encoding part.
+
+Ripping a DVD
+-------------
+
+Download Handbrake_ (command line tool should be enough), and dvdbackup_
+
+Rip the dvd into a temporary directory (here the current directory)::
+
+    dvdbackup -i /dev/dvd -o . -M 
+
+Then list the titles::
+
+    handbrake -i ~/tmp/where_was_ripped -t 0
+
+Do the rip::
+
+    handbrake -i ~/tmp/where_was_ripped -t 1 -o $outfile.mkv  \
+        --size 700 --two-pass --audio 1
+
+.. _Handbrake: http://handbrake.fr/
+.. _dvdbackup: http://dvdbackup.sourceforge.net/usage.html
+
+Ripping an audio CD
+-------------------
+
+There is a script called `abcde`_ that will do this very well. Download and
+install it and insert the CD you want to rip. The configuration is made using a
+configuration file: `$HOME/.abcde.conf`. Mine just contains::
+
+    OUTPUTTYPE="flac"
+
+Since I wanted to use FLAC_ instead of the default, `Ogg Vorbis`_. The manpage
+documents all the configuration file options.
+
+Once you are done configuring `abcde`, just cd to the directory where you want
+to rip and run::
+
+    $ abcde
+
+The script will automatically download the disc's metadata (artist, album and
+song names, genre...), ask you to confirm them and then rip and encode the
+music.
+
+.. _abcde: http://code.google.com/p/abcde/
+.. _FLAC: http://flac.sourceforge.net/
+.. _Ogg Vorbis: http://www.vorbis.com/
+
+Merging two avi files
+---------------------
+
+To merge two avi file *that have the same format* (because e.g they are
+splitted into two CDs)::
+
+    mencoder -oac copy -ovc copy file1.avi file2.avi -o output.avi
+
+If `mencoder` tells you the two files do not have the same format, then the
+simplest method I have seen is to use `avimerge`, from transcode_::
+
+    avimerge -o output.avi -i file1.avi file2.avi
+
+If you see messages like::
+
+    No audiodata left for track 0->0 (6078000.00=6078000.00) 
+
+And you see that audio is out of sync, you could use the `-c` flag. See the
+manpage for more information.
+
+.. _transcode: http://www.transcoding.org/transcode
+
+Merging two mkv files
+---------------------
+
+To merge two mkv files, you should use mkvmerge from MKVToolnix_::
+
+     $ mkvmerge --append-mode track -o full.mkv file1.mkv '+file2.mkv'
+
+.. _MKVToolnix: http://www.bunkus.org/videotools/mkvtoolnix/
+
+Playing with subtitles
+----------------------
+
+If you want to edit the subtitles or re-time them, the one utility I found
+useful is Subtitles_, and its associated command line utility `subs` . As an
+example, to shift the times in a `.srt` file 60 seconds later, one can just do::
+
+    $ subs -b 60 file.srt
+
+.. _Subtitles: http://karasik.eu.org/software/
+
+Sound settings in mplayer
+-------------------------
+
+Use 0 and 9 to respectively increase or decrease the volume while mplayer is
+playing. You can use ``-softvol-max`` to adjust the maximum volume. The
+argument that is taken is the maximum amplification level (in percent). For
+example::
+
+    $ mplayer -softvol-max 2000 somefile.avi
+
+will allow an amplification of 20 times, at the cost of some lost quality and
+granularity.
+
+Extract the audio content of a video file
+-----------------------------------------
+
+To get only the audio track of a video file, use mplayer's `-dumpaudio`::
+
+    $ mplayer -dumpaudio $videofile -dumpfile $audiofile
+
+Since this is not always very stable, here is an alternative method using
+ffmpeg_::
+
+    $ ffmpeg -i $videofile $audiofile
+
+Where `$audiofile` should have the extension you want, e.g mp3.
+
+.. _ffmpeg: http://ffmpeg.org
+
+Extract images from a video file
+--------------------------------
+
+To extract images from a video file, use mplayer's `-vo` option::
+
+    $ mplayer -ss $interval -vo $format -frames $nframes -nosound $file
+
+Where:
+
+* `$interval` is the number of seconds to wait between two frames. Can be a
+  decimal number, like 0.01.
+* `$format` is the picture format to use. Can be for example `jpeg`, `png`,
+  `gif`... 
+* `$nframes` is the number of frames to take
+* `$file` is the path to your file.
+
+Example::
+
+    $mplayer -ss 0.01 -vo jpeg -frames 5 -nosound mvi_1234.avi
+
+will dump the first five frames of the movie `mvi_1234.avi` encoding them in the
+`JPEG`_ format, waiting 0.01 seconds between each frame.
+
+.. _JPEG: http://en.wikipedia.org/wiki/JPEG
+
+Renaming an audio file based on ID3 tags
+----------------------------------------
+
+You can use the id3_ tool to edit / read and rename file according to their ID3
+tags. One command I often use to rename all files to a `$track-$title.mp3`
+format is::
+
+    $ id3 -f '%#n-%t.mp3' *.mp3
+
+.. _id3: http://home.wanadoo.nl/squell/id3.html
+
+References
+##########
+
+* The `extracting image from a movie`_ post on mplayer's mailing list.
+
+.. Disappeared...
+.. * The `Subtitle manipulation tools`_ article on `Linux.com`.
+.. .. _Subtitle manipulation tools: http://www.linux.com/archive/feature/125978
+
+.. _extracting image from a movie: http://lists.mplayerhq.hu/pipermail/mplayer-users/2004-August/047452.html
+

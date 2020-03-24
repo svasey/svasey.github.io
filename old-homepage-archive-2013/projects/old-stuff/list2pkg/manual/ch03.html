@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 3. Using list2pkg</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="list2pkg User Manual" /><link rel="up" href="index.html" title="list2pkg User Manual" /><link rel="prev" href="ch02s02.html" title="Creating your first package" /><link rel="next" href="ch03s02.html" title="The perfect package" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 3. Using list2pkg</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch03s02.html">Next</a></td></tr></table><hr /></div><div class="chapter" title="Chapter 3. Using list2pkg"><div class="titlepage"><div><div><h2 class="title"><a id="using-list2pkg"></a>Chapter 3. Using list2pkg</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="ch03.html#customizing-package">Customizing your package</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch03.html#id397602">Changing makepkg's behavior</a></span></dt><dt><span class="sect2"><a href="ch03.html#id397967">Changing the content of the <code class="filename">install/</code>
+  directory</a></span></dt><dt><span class="sect2"><a href="ch03.html#id398055">Changing the package tree's content</a></span></dt><dt><span class="sect2"><a href="ch03.html#users-groups-handling">Users and groups handling</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch03s02.html">The perfect package</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch03s02.html#id397909">The package's file name</a></span></dt><dt><span class="sect2"><a href="ch03s02.html#id397927">Install locations</a></span></dt><dt><span class="sect2"><a href="ch03s02.html#id398544">Permissions and Ownership</a></span></dt><dt><span class="sect2"><a href="ch03s02.html#id398557">Slack-desc</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch03s03.html">Tricky cases</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch03s03.html#id398287">Directories</a></span></dt><dt><span class="sect2"><a href="ch03s03.html#id398314">Symbolic links</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch03s04.html">Manpages</a></span></dt><dt><span class="sect1"><a href="ch03s05.html">Bugs</a></span></dt><dt><span class="sect1"><a href="ch03s06.html">Todo</a></span></dt><dt><span class="sect1"><a href="ch03s07.html">FAQ</a></span></dt></dl></div><div class="sect1" title="Customizing your package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="customizing-package"></a>Customizing your package</h2></div></div></div><p>
+  Sometimes, you might want to change the default way list2pkg acts, or do
+  something special that list2pkg could not do for you on your package. This
+  section gives some example of things you can do using list2pkg's options.
+</p><div class="sect2" title="Changing makepkg's behavior"><div class="titlepage"><div><div><h3 class="title"><a id="id397602"></a>Changing makepkg's behavior</h3></div></div></div><p>
+    As mentioned previously, the last step of list2pkg's creation of a package
+    is to call <span class="command"><strong>makepkg</strong></span>
+    . The <code class="option">--linkadd</code>, <code class="option">--prepend</code>
+    and <code class="option">--chown</code> options will be passed to it as is.  
+  </p></div><div class="sect2" title="Changing the content of the install/ directory"><div class="titlepage"><div><div><h3 class="title"><a id="id397967"></a>Changing the content of the <code class="filename">install/</code>
+  directory</h3></div></div></div><p>
+    The <code class="filename">install/</code> directory contains special files the
+    slackware package management tools use to know how to install the
+    package. The only file that must exist is
+    the <code class="filename">slack-desc</code> file which gives a plain text
+    description of the package. The <code class="filename">slack-desc</code> file which
+    list2pkg creates is not especially good in that respect, so you might want
+    to add your own <code class="filename">slack-desc</code>. To do that, you can use the
+    <code class="option">--slack-desc</code> option.
+  </p><p>
+    Another important file is the <code class="filename">doinst.sh</code> script, which gets
+    executed after an installation. You can give your own
+    custom <code class="filename">doinst.sh</code> script using
+    the <code class="option">--doinst</code> option. List2pkg will then append its own
+    commands to it.
+  </p><p>
+    There are other files which can be in <code class="filename">install/</code> that
+    list2pkg does not support. Among them are files
+    like <code class="filename">slack-required</code>
+    or <code class="filename">slack-conflicts</code>. You can specify a directory with
+    other files to copy to <code class="filename">install</code> using
+    the <code class="option">--install-files</code> option.
+  </p></div><div class="sect2" title="Changing the package tree's content"><div class="titlepage"><div><div><h3 class="title"><a id="id398055"></a>Changing the package tree's content</h3></div></div></div><p>
+    Once the package tree has been created, you might want to change a few
+    details. For example, you might want to move all files
+    in <code class="filename">/usr/local</code> to <code class="filename">/usr</code> in order to
+    create a more <span class="quote">“<span class="quote">standard-compliant</span>”</span> package. List2pkg cannot do
+    that directly, but it lets you run any script you want once the package tree
+    directory has been created. The script will be invoked with the tree's path
+    as first argument. The option to use is <code class="option">--changetree</code> .
+  </p></div><div class="sect2" title="Users and groups handling"><div class="titlepage"><div><div><h3 class="title"><a id="users-groups-handling"></a>Users and groups handling</h3></div></div></div><p>
+    List2pkg handles file owners and groups in a peculiar way. For each of the
+    package's file, it will check if its owner or group
+    is <span class="quote">“<span class="quote">special</span>”</span>. A special owner or group name is not standard and
+    matters enough for it to be re-created explicitly on any system the package
+    is installed on. 
+  </p><p>
+    If, for example you are creating a package for the cron daemon, you will
+    want the cron user to be created on the target system, since some of the
+    package's file will likely be set user id. On the other hand, the user root
+    is generally not special, since it exists on virtually all UNIX-like
+    systems.
+  </p><p>
+    Note that by default, all files in the package will have root as owner and
+    group, meaning that files with non-special owners or groups will lose them
+    and be installed with root owner and group on the target system. You can use
+    the <code class="option">--no-root-ownership</code> to prevent list2pkg from resetting 
+    the owner and group of every file to root.
+  </p><p>
+    By default, all user and group names are special except <span class="quote">“<span class="quote">root</span>”</span>
+    . Any user or group beginning with <span class="quote">“<span class="quote">urpkg-</span>”</span>
+    or <span class="quote">“<span class="quote">urpkgrp-</span>”</span> is also considered non-special, for reasons that
+    will become obvious to you if you use
+    <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">urpkg</a> . If you don't
+    you shouldn't have any user or group name formatted that way.
+  </p><div class="sect3" title="The exclude rules configuration file"><div class="titlepage"><div><div><h4 class="title"><a id="id398137"></a>The exclude rules configuration file</h4></div></div></div><p>
+      Those default rules can be changed. In fact, they are read from a
+      configuration file in <code class="filename">${SYSCONFDIR}/list2pkg.conf</code> (by
+      default <code class="filename">/usr/local/etc/list2pkg.conf</code>). You can either
+      modify that file or override it when calling list2pkg using
+      the <code class="option">--exclude-ownership</code> option.
+    </p><p>
+      The format of the file is simple. Each line contains a regular expression
+      that will be matched against each owner or group name. Assuming the line's
+      content is held in the variable <code class="varname">EXPR</code> , the matching
+      Perl code will be the following.
+    </p><code class="code">
+      $NAME =~ /^$EXPR$/
+    </code><p>
+      If the expression matches, the name will be considered as non-special,
+      otherwise it will be considered special.
+    </p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch03s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Creating your first package </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> The perfect package</td></tr></table></div></body></html>

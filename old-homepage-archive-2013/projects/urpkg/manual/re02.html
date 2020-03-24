@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>urpkgize</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch04.html#manpages" title="Manpages" /><link rel="prev" href="re01.html" title="urpkg" /><link rel="next" href="ch04s02.html" title="Common problems" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">urpkgize</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="re01.html">Prev</a> </td><th width="60%" align="center">Manpages</th><td width="20%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr></table><hr /></div><div class="refentry" title="urpkgize"><a id="urpkgize.1"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>urpkgize — 
+    Add a bunch of file to an existing urpkg package
+  </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">urpkgize</code>  [<em class="replaceable"><code>OPTIONS</code></em>] {<em class="replaceable"><code>PKGNAME</code></em>} {<em class="replaceable"><code>FILES</code></em>}</p></div></div><div class="refsect1" title="Description"><a id="id427855"></a><h2>Description</h2><p>
+    Urpkgize is a small script to add files to an existing urpkg package. For
+    each file, it tries to invoke urpkg with the correct options so that the
+    file is added cleanly. It is especially useful when you have a lot of files
+    to add and don't want to figure out the options for each one.
+  </p></div><div class="refsect1" title="How it works"><a id="id427867"></a><h2>How it works</h2><p>
+    There are three ways urpkg can add a file to a package. It can change the
+    file's owner to the package username, it can change the file's group to the
+    package username or it can add the file to a list of all files belonging to
+    the package. It is usually better to change the file's owner or group
+    (often, both are changed), since the information is then embedded in the
+    file itself. However, this is not always possible as sometimes the file's
+    owner matters (e.g because the file is set user id). Urpkgize tries to keep
+    it simple and adopts the following rules concerning how a file is added to a
+    package.
+  </p><p>
+    First of all, if the file is set user id or set group id, urpkgize will not
+    change respectively the owner or the group of the file. Otherwise, urpkgize
+    will consider its list of "neutral" user and group name. A neutral
+    name is one that can be overwritten without problem. By default, only root
+    is in this list, since most system-wide files have the root owner. You can
+    use the <code class="option">--neutral</code> family of options to add other user/group
+    names to that list, or the <code class="option">--no-neutral-root</code> option to
+    remove root from the neutral list.
+  </p><p>
+    If a file owner or group name is considered neutral, then it will be changed
+    to the package username to add the file to the package. Otherwise, urpkgize
+    will not modify it. In the end, if neither the owner, nor the group of a
+    file can be changed, then the file will be added to the list of all files
+    belonging to the given package.
+  </p></div><div class="refsect1" title="Options"><a id="id427908"></a><h2>Options</h2><p>
+    Note that each option can be abbreviated and will be recognized if
+    unambiguous.
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="option">--help</code></span></dt><dd><p>
+	  Print a short description of each option and exit.
+	</p></dd><dt><span class="term"><code class="option">--neutral=<em class="parameter"><code>NAMES</code></em></code></span></dt><dd><p>
+	  Specify group and owner names that are not considered important and
+	  that can be replaced by the package user name (except if the file is
+	  set user id or set group id). Each value should be comma-separated. By
+	  default, only root is in this list.
+	</p></dd><dt><span class="term"><code class="option">--neutral-owners=<em class="parameter"><code>NAMES</code></em></code>
+      </span></dt><dd><p>
+	  Same as <code class="option">--neutral</code> but concerns only owner names.
+	</p></dd><dt><span class="term"><code class="option">--neutral-groups=<em class="parameter"><code>NAMES</code></em></code>
+      </span></dt><dd><p>
+	  Same as <code class="option">--neutral</code> but concerns only group names.
+	</p></dd><dt><span class="term"><code class="option">--no-neutral-root</code></span></dt><dd><p>
+	  If this is given, then root will not be in the list of neutral owner
+	  and group names anymore.
+	</p></dd></dl></div></div><div class="refsect1" title="See Also"><a id="man-seealso"></a><h2>See Also</h2><p>
+    urpkg(1)
+  </p></div><div class="refsect1" title="Contributing"><a id="man-contribute"></a><h2>Contributing</h2><p>
+    Please report bugs and other inconsistencies you find to the author (address
+    is below). If you have implemented a patch, please do send it there. Any
+    contribution is welcome. See also urpkg's website:
+    <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">http://svasey.org/projects/urpkg/</a>
+  </p></div><div class="refsect1" title="Unrestrictions"><a id="man-unrestrictions"></a><h2>Unrestrictions</h2><p>
+    Urpkgize is public-domain software. See the COPYING file for more
+    information.
+  </p></div><div class="refsect1" title="Author"><a id="man-authors"></a><h2>Author</h2><p>
+  The author is Sebastien Vasey (<code class="code">sebastien dot vasey at gmail dot com</code>)
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="re01.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html#manpages">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">urpkg </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Common problems</td></tr></table></div></body></html>

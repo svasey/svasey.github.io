@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Python svlib</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="python-svlib">
+<h2>Python svlib</h2>
+<div class="section" id="what-is-python-svlib">
+<h3>What is python-svlib ?</h3>
+<p><tt class="docutils literal"><span class="pre">svlib</span></tt> is a <a class="reference external" href="http://www.python.org/">python</a> library of utility code that is not
+application-specific. <tt class="docutils literal"><span class="pre">svlib</span></tt> contains code that a lot of my programs use.</p>
+<p>Most of the code re-uses existing UNIX or python standard library code, but
+makes it easier to use.</p>
+</div>
+<div class="section" id="features">
+<h3>Features</h3>
+<p>Some of the things implemented are:</p>
+<ul class="simple">
+<li>Abstraction of an &quot;atomic file&quot;, i.e a file whose content is either in one
+state or another, but never in between.</li>
+<li>Lock shared by every single running program</li>
+<li>Reading/writing various kind of special-purpose files, like<ul>
+<li>Files containing only a timestamp</li>
+<li>Files containing only a number</li>
+<li>Files containing a list of file system paths</li>
+<li>Files containing key/value pairs</li>
+</ul>
+</li>
+</ul>
+<p>It might be that other libraries do this in a much more efficient,
+straightforward, or just in the same way. Maybe I am not good at reading
+manuals or searching the web. You should really tell me if you think such or
+such piece of code is really duplicated and is much better elsewhere.</p>
+<p>But then sometimes it takes much more time to read a manual, download and
+install a library than to just implement a feature in 10 lines. Moreover, it can
+be a good programming exercise.</p>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>Python-svlib is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/python-svlib.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/python-svlib.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h3>Usage</h3>
+<p>You should really dive into the source. I have tried to document every
+function, and there are plenty of usage examples in my programs.</p>
+<p><tt class="docutils literal"><span class="pre">python-svlib</span></tt> also installs one very simple end-user program,
+<tt class="docutils literal"><span class="pre">switchlink</span></tt>. This atomically changes where a symbolic link points to. Its
+first argument is the symbolic link to change (or create), and the second is
+where it must point to.</p>
+<p>The program creates some temporary files during the operation, and removes them
+afterward. By default, those are created in the symlink's directory. The
+<tt class="docutils literal"><span class="pre">--tempdir=DIR</span></tt> option can be used in the rare case where you want to change
+this. Note that the temporary files must be created on the same filesystem
+(partition) as the symbolic link.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Tricky cases</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="list2pkg User Manual" /><link rel="up" href="ch03.html" title="Chapter 3. Using list2pkg" /><link rel="prev" href="ch03s02.html" title="The perfect package" /><link rel="next" href="ch03s04.html" title="Manpages" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Tricky cases</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Using list2pkg</th><td width="20%" align="right"> <a accesskey="n" href="ch03s04.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Tricky cases"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="tricky-cases"></a>Tricky cases</h2></div></div></div><p>
+  A package rarely contains only regular files. Most often, it contains oddities
+  like directories or even symbolic links . This section explains how list2pkg
+  deals with those when they are part of the file list.
+</p><div class="sect2" title="Directories"><div class="titlepage"><div><div><h3 class="title"><a id="id398287"></a>Directories</h3></div></div></div><p>
+    list2pkg tries to preserve a directory's permission and ownership. However,
+    as previously mentioned, it will not copy its content if it is not
+    explicitly given in the file list. For example, if the file list 
+    contains only <code class="filename">/home</code>, the package will only have an
+    empty <code class="filename">/home</code> directory in it.
+  </p></div><div class="sect2" title="Symbolic links"><div class="titlepage"><div><div><h3 class="title"><a id="id398314"></a>Symbolic links</h3></div></div></div><p>
+    A symbolic link can be in the file list in two ways: it can be explicitly
+    given, i.e as if it were a regular file, or it can be implicitly given, i.e
+    as if it was part of the file's path.
+  </p><p>
+    For example, if <code class="filename">/lib/libc.so.6</code> is a symbolic link
+    to <code class="filename">libc-2.7.so</code> ,
+    and <code class="filename">/lib/libc.so.6</code> is given on the file list, then it
+    is considered an explicit symlink. However,
+    if <code class="filename">/usr/share/man</code> is a symlink
+    to <code class="filename">/usr/man</code>, and one file which is in the file list is
+    <code class="filename">/usr/share/man/man1/ld.1</code> , then it is considered an
+    implicit symlink.
+  </p><p>
+    Explicit symlinks are copied as is to the package tree directory. Regardless
+    of whether they are absolute or relative symlinks, they should be recreated
+    on the target system.
+  </p><p>
+    On the other hand, path involving implicit symlinks are not created as they
+    are given on the file list. Instead, all symbolic links are first resolved
+    before the file's copy. Therefore, if we take
+    our <code class="filename">/usr/share/man/man1/ld.1</code> example, it will be
+    created as <code class="filename">/usr/man/man1/ld.1</code> in the package.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The perfect package </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Manpages</td></tr></table></div></body></html>

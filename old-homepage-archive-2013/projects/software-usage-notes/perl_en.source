@@ -1,0 +1,30 @@
+.. default-role:: literal
+
+
+Perl documentation
+==================
+
+This page gives some Perl_ tricks
+
+.. _Perl: http://www.perl.org/
+
+Install perl module dependencies
+--------------------------------
+
+Run::
+
+    $ cpan -i $module
+
+i.e::
+
+    $ cpan -i Gtk2
+
+One might need to force the installation (i.e some tests did not pass). To do
+this, do::
+
+    $ cpan
+
+Then type::
+
+    force install $module
+

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>urpkg</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch04.html#manpages" title="Manpages" /><link rel="prev" href="ch04.html" title="Chapter 4. Using urpkg" /><link rel="next" href="re02.html" title="urpkgize" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">urpkg</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch04.html">Prev</a> </td><th width="60%" align="center">Manpages</th><td width="20%" align="right"> <a accesskey="n" href="re02.html">Next</a></td></tr></table><hr /></div><div class="refentry" title="urpkg"><a id="urpkg.1"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>urpkg — 
+    Install programs in a safe and undoable way
+  </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">urpkg</code>  {<em class="replaceable"><code>ACTION</code></em>} [<em class="replaceable"><code>OPTIONS</code></em>] [<em class="replaceable"><code>ARGUMENTS</code></em>]</p></div></div><div class="refsect1" title="Description"><a id="id425606"></a><h2>Description</h2><p>
+    Urpkg is a software to install programs so that we can easily uninstall them
+    afterward. It does so by creating a new user for each package that gets
+    installed on the system. The package is then installed with this user's
+    privileges instead of root's. This guarantees a much better security during 
+    installation.
+  </p><p>
+    Note that this manpage is only a short reference. You should read the user
+    manual (published on urpkg's homepage) if you want to know more about urpkg.
+  </p><p>
+    When invoking urpkg, you must always specify <span class="emphasis"><em>exactly
+    one</em></span> action <span class="emphasis"><em>first</em></span>. You can then give options
+    and arguments if required.
+  </p></div><div class="refsect1" title="Actions"><a id="actions-options"></a><h2>Actions</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-h</code>, </span><span class="term"><code class="option">--help</code></span></dt><dd><p>
+	  Print a short description of each option and exit.
+	</p></dd><dt><span class="term"><code class="option">-v</code>, </span><span class="term"><code class="option">--version</code></span></dt><dd><p>
+	  Output information about the program's version and exit.
+	</p></dd><dt><span class="term"><code class="option">-I</code>, </span><span class="term"><code class="option">--info</code></span></dt><dd><p>
+	  Output some information on the settings urpkg was compiled with and
+	  exit.
+	</p></dd><dt><span class="term"><code class="option">-i</code>, </span><span class="term"><code class="option">--install</code></span></dt><dd><p>
+	  Install a package by running the command given as argument.	    
+	</p></dd><dt><span class="term"><code class="option">-u</code>, </span><span class="term"><code class="option">--uninstall</code></span></dt><dd><p>
+	  Uninstall the package(s) whose name(s) are given as argument.
+	</p></dd><dt><span class="term"><code class="option">-l</code>, </span><span class="term"><code class="option">--list</code></span></dt><dd><p>
+	  Without argument, list all installed packages on the
+	  system. Otherwise, list all files part of the package(s) that are
+	  given.
+	</p></dd><dt><span class="term"><code class="option">-W</code>, </span><span class="term"><code class="option">--list-instdir</code></span></dt><dd><p>
+	  List all the installation directories that are in the path(s)
+	  specified as argument. If no path is given, <code class="filename">/</code> is
+	  assumed.
+	</p></dd><dt><span class="term"><code class="option">-L</code>, </span><span class="term"><code class="option">--list-shared</code></span></dt><dd><p>
+	  Same as <code class="option">--list-instdir</code> but for shared directories.
+	</p></dd><dt><span class="term"><code class="option">-a</code>, </span><span class="term"><code class="option">--add-files</code></span></dt><dd><p>
+	  Add some files to a package, without changing their owner or group
+	  unless the <code class="option">--change-owner</code>
+	  and/or <code class="option">--change-group</code> options are given. The package
+	  name must be the first argument, then the files should follow
+	</p></dd><dt><span class="term"><code class="option">-T</code>, </span><span class="term"><code class="option">--free-files</code></span></dt><dd><p>
+	  Remove some files from a given package i.e urpkg will not remove those
+	  files if we remove the package. The files are of course not removed
+	  from the filesystem. 
+	</p></dd><dt><span class="term"><code class="option">-g</code>, </span><span class="term"><code class="option">--gen</code></span></dt><dd><p>
+	  Make the given directories to install directories (i.e place where
+	    package can install files).
+	</p></dd><dt><span class="term"><code class="option">-w</code>, </span><span class="term"><code class="option">--ungen</code></span></dt><dd><p>
+	  Make the given install directories normal directories again.
+	</p></dd><dt><span class="term"><code class="option">-s</code>, </span><span class="term"><code class="option">--share</code></span></dt><dd><p>
+	  Make the given files shared files (i.e files packages can write to)
+	</p></dd><dt><span class="term"><code class="option">-S</code>, </span><span class="term"><code class="option">--unshare</code></span></dt><dd><p>
+	  Make the given shared files ordinary file again.
+	</p></dd><dt><span class="term"><code class="option">-f</code>, </span><span class="term"><code class="option">--find</code></span></dt><dd><p>
+	  Find which package the given files belong to.
+	</p></dd></dl></div></div><div class="refsect1" title="Global Options"><a id="id425942"></a><h2>Global Options</h2><p>
+    Global options can be used with any action
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="option">-D</code>, </span><span class="term"><code class="option">--debug</code></span></dt><dd><p>
+	  Print debugging information to
+	  stderr. Implies <code class="option">--verbose</code>
+	</p></dd><dt><span class="term"><code class="option">-V</code>, </span><span class="term"><code class="option">--verbose</code></span></dt><dd><p>
+	  Print more details on what urpkg is doing to stdout.
+	</p></dd><dt><span class="term"><code class="option">-q</code>, </span><span class="term"><code class="option">--quiet</code></span></dt><dd><p>
+	  Only print warnings, errors, and what the user asks for.
+	</p></dd></dl></div></div><div class="refsect1" title="Install Options"><a id="install-options"></a><h2>Install Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-p</code>, </span><span class="term"><code class="option">--pretend</code></span></dt><dd><p>
+	  Print what would have been done but do not install the package.
+	</p></dd><dt><span class="term"><code class="option">-P</code>, </span><span class="term"><code class="option">--no-preinst</code></span></dt><dd><p>
+	  Don't run the preinstall script.
+	</p></dd><dt><span class="term"><code class="option">-G</code>, </span><span class="term"><code class="option">--no-postinst</code></span></dt><dd><p>
+	  Don't run <span class="emphasis"><em>any</em></span> postinstall scripts
+	</p></dd><dt><span class="term"><code class="option">-e</code>, </span><span class="term"><code class="option">
+	  --exclude-script=<em class="parameter"><code>NAME</code></em>
+      </code></span></dt><dd><p>
+	  Do not run the postinstall script <em class="parameter"><code>NAME</code></em>,
+	  where <em class="parameter"><code>NAME</code></em> is the beginning of the script's
+	  name such that it can be recognized unambiguously.
+	</p></dd><dt><span class="term"><code class="option">
+	  --<em class="replaceable"><code>NAME</code></em>-arg=<em class="parameter"><code>A</code></em>
+      </code></span></dt><dd><p>
+	  Pass the argument <em class="parameter"><code>A</code></em> to the postinstall
+	  script <em class="parameter"><code>NAME</code></em>.
+	</p></dd><dt><span class="term"><code class="option">-H</code>, </span><span class="term"><code class="option">--pkg-dir=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Use <em class="parameter"><code>PATH/NAME</code></em> as the package's home directory,
+	  where <em class="parameter"><code>NAME</code></em> is the package's name (guessed or
+	  given explicitly using <code class="option">--pkg-name</code>).
+	</p></dd><dt><span class="term"><code class="option">-n</code>, </span><span class="term"><code class="option">--pkg-name=<em class="parameter"><code>NAME</code></em></code></span></dt><dd><p>
+	  Explicitly specify the package's name. Otherwise, urpkg will try to
+	  guess it from the current directory.
+	</p></dd><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd=<em class="parameter"><code>SCRIPT</code></em></code></span></dt><dd><p>
+	  Give a custom script to be used to find files part of a given
+	  package.
+	</p></dd></dl></div></div><div class="refsect1" title="Uninstall Options"><a id="uninstall-options"></a><h2>Uninstall Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-p</code>, </span><span class="term"><code class="option">--pretend</code></span></dt><dd><p>
+	  See <a class="xref" href="re01.html#install-options" title="Install Options">the section called “Install Options”</a>
+	</p></dd><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd=<em class="parameter"><code>SCRIPT</code></em></code></span></dt><dd><p>
+	  See <a class="xref" href="re01.html#install-options" title="Install Options">the section called “Install Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="List Options"><a id="list-options"></a><h2>List Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd</code></span></dt><dd><p>
+	  See <a class="xref" href="re01.html#uninstall-options" title="Uninstall Options">the section called “Uninstall Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="List-instdir Options"><a id="list-instdir-options"></a><h2>List-instdir Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd</code></span></dt><dd><p>
+	  See <a class="xref" href="re01.html#uninstall-options" title="Uninstall Options">the section called “Uninstall Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="List-instdir Options"><a id="list-shared-options"></a><h2>List-instdir Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd</code></span></dt><dd><p>
+	  See <a class="xref" href="re01.html#uninstall-options" title="Uninstall Options">the section called “Uninstall Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="Add-files Options"><a id="add-options"></a><h2>Add-files Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-U</code>, </span><span class="term"><code class="option">--change-owner</code></span></dt><dd><p>
+	  Change the file's owner (set it to the package user). By default, the
+	  file's owner is not changed.
+	</p></dd><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--change-group</code></span></dt><dd><p>
+	  Change the file's group (set it to the package user). By default, the
+	  file's group is not changed.
+	</p></dd></dl></div></div><div class="refsect1" title="Free-files Options"><a id="free-options"></a><h2>Free-files Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-U</code>, </span><span class="term"><code class="option">--change-owner=<em class="parameter"><code>USER</code></em></code></span></dt><dd><p>
+	  Restore the file's owner to <em class="parameter"><code>USER</code></em>. By default,
+	  the program will set it to root.
+	</p></dd><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--change-group=<em class="parameter"><code>GROUP</code></em></code></span></dt><dd><p>
+	  Restore the file's group to <em class="parameter"><code>GROUP</code></em>. By default,
+	  the program will set it to root.
+	</p></dd></dl></div></div><div class="refsect1" title="Ungen and Unshare Options"><a id="ungen-unshare-options"></a><h2>Ungen and Unshare Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--change-group=<em class="parameter"><code>GROUP</code></em></code></span></dt><dd><p>
+	  See <a class="xref" href="re01.html#free-options" title="Free-files Options">the section called “Free-files Options”</a>
+	</p></dd><dt><span class="term"><code class="option">-m</code>, </span><span class="term"><code class="option">--change-perm=<em class="parameter"><code>PERM</code></em></code></span></dt><dd><p>
+	  Change the files access permission to <em class="parameter"><code>PERM</code></em>
+	  (given in octal form). If not given, urpkg will try to set the
+	  permissions to a reasonable default.
+	</p></dd></dl></div></div><div class="refsect1" title="See Also"><a id="man-seealso"></a><h2>See Also</h2><p>
+    urpkgize(1)
+  </p></div><div class="refsect1" title="Contributing"><a id="man-contribute"></a><h2>Contributing</h2><p>
+    Please report bugs and other inconsistencies you find to the author (address
+    is below). If you have implemented a patch, please do send it there. Any
+    contribution is welcome. See also urpkg's website:
+    <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">http://svasey.org/projects/urpkg/</a>
+  </p></div><div class="refsect1" title="Unrestrictions"><a id="man-unrestrictions"></a><h2>Unrestrictions</h2><p>
+    Urpkg is public-domain software. See the COPYING file for more information.
+  </p></div><div class="refsect1" title="Author"><a id="man-authors"></a><h2>Author</h2><p>
+  The author is Sebastien Vasey (<code class="code">sebastien dot vasey at gmail dot com</code>)
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch04.html#manpages">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="re02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 4. Using urpkg </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> urpkgize</td></tr></table></div></body></html>

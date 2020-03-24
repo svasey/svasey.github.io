@@ -1,0 +1,64 @@
+.. default-role:: literal
+
+
+Sebastien Vasey's Projects
+==========================
+
+Here are some things I have worked (or am currently working) on.
+
+Projects done at EPFL
+---------------------
+
+* My bachelor thesis, `Synthesis for Rational Linear Arithmetic`_ investigates
+  synthesis of code fragments from specifications written in the language of
+  linear rational arithmetic.
+
+.. _Synthesis for Rational Linear Arithmetic: synthesis-rla/index_en.html
+
+System administration programs
+------------------------------
+
+I occasionally enjoy writing software to automate some non-trivial system
+administration tasks. These should work on any UNIX-like OS.
+
+* `Darwrap`_ is a backup program using `Dar`_, implementing differential backup,
+  automated restoration, cryptographic signing, encryption, and some other
+  things. This is what I use to backup all my data.
+* `Urpkg`_ lets you install programs directly from source in a safe and undoable way.
+
+.. _Urpkg: urpkg/index_en.html
+.. _Darwrap: darwrap_en.html
+.. _Dar: http://dar.linux.free.fr/
+
+Game programs
+-------------
+
+I like devising strategies for obscure board games, and then implement
+them. Here are two of my creations (joint work with Yann Schoenenberger) .
+
+* `Kinonk`_ is a `Pentominoes`_ engine written in C++.
+* `Deep Pink`_ is a Connect 5 (`Gomoku`_) engine written in C++.
+
+.. _Deep Pink: deeppink_en.html
+.. _Gomoku: http://en.wikipedia.org/wiki/Gomoku
+.. _Kinonk: http://kinonk.sourceforge.net
+.. _Pentominoes: http://en.wikipedia.org/wiki/Pentominoes
+
+Software usage notes
+--------------------
+
+* `How to do X with program Y`_: Notes to myself, most often giving the exact
+  command line invocation to do something special with a given software. Maybe
+  they can be useful to somebody else...
+
+.. _How to do X with program Y: software-usage-notes/index_en.html
+
+Various
+-------
+
+* `Old stuff`_: Things I have worked on, and published here at some point, but
+  now do not regard as especially interesting or inspiring.
+
+.. _Old stuff: old-stuff/index_en.html
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Playing with the program's files</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch02.html" title="Chapter 2. Getting started" /><link rel="prev" href="ch02s04.html" title="Installing a program" /><link rel="next" href="ch02s06.html" title="Pre and post install scripts" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Playing with the program's files</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s04.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Getting started</th><td width="20%" align="right"> <a accesskey="n" href="ch02s06.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Playing with the program's files"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="play-files"></a>Playing with the program's files</h2></div></div></div><p>
+  You can also use <code class="option">--list</code> with the package name
+  as an argument to list all files belonging to a given package.
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list foo
+</pre><p>
+  Notice that there is no need to give the package's full name. An unambiguous
+  name is enough (e.g if there were two versions of foo installed, say foo-1.1
+  and foo-1.2, then we would have had to be more precise).
+</p><p>
+  You should also see that there is only one file, <code class="filename">foo1</code>
+  that is listed. This is because <code class="filename">file2</code> is a shared
+  file. Now what if you want to add it to the package, so that it is removed if
+  we uninstall foo ?
+</p><p>
+  We first have to strip <code class="filename">file2</code> of its status of shared
+  file. Even though urpkg does not forbid shared files part of a package, it is
+  a bad habit to take. Then we simply use the <code class="option">--add-files</code>
+  action.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --unshare ../allowed/file2
+  <code class="prompt">$ </code>sudo urpkg --add-files --change-owner --change-group foo ../allowed/file2
+</pre><p>
+  The <code class="option">--change-owner</code> and <code class="option">--change-group</code>
+  deserve a more detailed explanation on what it exactly means to add a file
+  to a package. This is presented in <a class="xref" href="ch03s06.html" title="Owned and added files">the section called “Owned and added files”</a>. For the
+  moment, it is enough to say that unless it is necessary for the file to keep
+  its owner or group (e.g because it's a suid file), then those options should
+  be used.
+</p><p>
+  Another option since version 1.4 is to use the <span class="command"><strong>urpkgize</strong></span>
+  script. This script adds a bunch of files to a given package, trying to figure
+  out the correct options for each file on the way. For example, to perform the
+  same action as before you would do:
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkgize foo ../allowed/file2
+</pre><p>
+  In general, you should use <code class="option">--add-files</code>, and
+  take care of the options yourself. urpkgize only comes in
+  handy when you want to add a lot of files to a package. You can find more
+  information on urpkgize in <a class="xref" href="re02.html" title="urpkgize"><span class="refentrytitle">urpkgize</span>(1)</a>.
+</p><p>
+  Now let's check that the file has correctly been added
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list foo
+</pre><p>
+  What if you don't want <code class="filename">foo1</code> to be part of the package
+  anymore ? In that case, you should do
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --free-files --change-owner=OWNER --change-group=GROUP foo ../allowed/foo1
+</pre><p>
+  You should replace OWNER and GROUP by the owner and group you want the file to
+  have. If those options are not specified, they will both be set to root.
+</p><p>
+  What if you don't remember which package(s) the
+  file <code class="filename">file2</code> belongs to ? Then you can
+  use <code class="option">--find</code>
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --find ../allowed/file2
+</pre></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Installing a program </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Pre and post install scripts</td></tr></table></div></body></html>

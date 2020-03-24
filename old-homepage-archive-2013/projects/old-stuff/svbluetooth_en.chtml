@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>SVBluetooth</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="svbluetooth">
+<h2>SVBluetooth</h2>
+<div class="section" id="what-is-svbluetooth">
+<h3>What is svbluetooth ?</h3>
+<p><tt class="docutils literal"><span class="pre">svbluetooth</span></tt> is a <a class="reference external" href="http://python.org/">python</a> library with some helper scripts to do some common
+bluetooth task in an easy way. There is not much in it (yet). It mainly contains
+code to transfer files to my mobile phone.</p>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>svbluetooth is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/svbluetooth.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/svbluetooth.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="setting-the-adapter-discoverable-hidden">
+<h3>Setting the adapter discoverable/hidden</h3>
+<p>This can be done using the <tt class="docutils literal"><span class="pre">bt-discoverable</span></tt> script:</p>
+<pre class="literal-block">
+bt-discoverable [discoverable|hidden]
+</pre>
+<p>Calling the script without argument shows you what the current status is.</p>
+</div>
+<div class="section" id="sending-receiving-file-to-a-mobile-phone">
+<h3>Sending/receiving file to a mobile phone</h3>
+<p>You can use scripts from <tt class="docutils literal"><span class="pre">svbluetooth</span></tt>. I have only tested them on a nokia
+6600, but they should work with a lot of other phones as well. When receiving
+file, some phones might not work if you are not discoverable.</p>
+<p>To send files, do:</p>
+<pre class="literal-block">
+nokia6600-send file1 [file2 ...]
+</pre>
+<p>The file is sent to the bluetooth MAC address given in the
+<tt class="docutils literal"><span class="pre">$HOME/.nokia6600-addr</span></tt> file.</p>
+<p>To receive files, do:</p>
+<pre class="literal-block">
+nokia6600-receive [nfiles] [directory]
+</pre>
+<p>This waits until <span class="inlinemath">n</span> files are received in <tt class="docutils literal"><span class="pre">directory</span></tt> (or the current
+directory if this is not specified), and then quits. This does not work well
+when some transactions are aborted. Remember that you can always use ctrl-c to
+abort the program.</p>
+</div>
+<div class="section" id="synchronizing-contacts">
+<h3>Synchronizing contacts</h3>
+<p>I am too lazy to setup a serious system: here is how I do it using my nokia 6600
+that cannot send more than one contact in a single vcard. I have a repository
+named <tt class="docutils literal"><span class="pre">phonebook</span></tt> in which I collect all my vcards.</p>
+<p>There is one vcard for each contact, the vcards are named after the name of the
+contact in the file, e.g if I have a vcard describing the &quot;John&quot; contact, then
+the file will be named <tt class="docutils literal"><span class="pre">John.vcf</span></tt></p>
+<p>When I have a new contact on the phone, I send it to the computer and
+vice-versa. Sending a vcard from the phone to the computer can be eased up using
+the script which is in the phonebook repository:</p>
+<pre class="literal-block">
+./receive-vcards.py
+</pre>
+<p>And in another terminal:</p>
+<pre class="literal-block">
+nokia6600-receive 6000 .
+</pre>
+<p>Then just send the vcards with your mobile phone, they will be automatically
+renamed according to the format defined above. When done, Ctrl-c
+<tt class="docutils literal"><span class="pre">receive-vcards.py</span></tt> .</p>
+</div>
+</div>
+</div>
+</body>
+</html>

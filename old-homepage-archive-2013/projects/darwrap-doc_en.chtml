@@ -1,0 +1,690 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Darwrap documentation</title>
+<link rel="stylesheet" href="../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="darwrap-documentation">
+<h2>Darwrap documentation</h2>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#what-is-darwrap" id="id1">What is darwrap ?</a></li>
+<li><a class="reference internal" href="#creating-your-configuration-file" id="id2">Creating your configuration file</a><ul>
+<li><a class="reference internal" href="#a-typical-configuration-file" id="id3">A typical configuration file</a></li>
+<li><a class="reference internal" href="#global-variables" id="id4">Global variables</a><ul>
+<li><a class="reference internal" href="#spoolpath" id="id5">spoolpath</a></li>
+<li><a class="reference internal" href="#syspath" id="id6">syspath</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#profile-basic-structure" id="id7">Profile: basic structure</a></li>
+<li><a class="reference internal" href="#the-destination-section" id="id8">The destination section</a><ul>
+<li><a class="reference internal" href="#the-mountpoint-type" id="id9">The mountpoint type</a></li>
+<li><a class="reference internal" href="#the-s3-type" id="id10">The S3 type</a></li>
+<li><a class="reference internal" href="#the-rsync-type" id="id11">The rsync type</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-source-section" id="id12">The source section</a></li>
+<li><a class="reference internal" href="#the-rotation-scheme" id="id13">The rotation scheme</a><ul>
+<li><a class="reference internal" href="#what-is-a-backup-rotation-scheme" id="id14">What is a backup rotation scheme ?</a></li>
+<li><a class="reference internal" href="#the-tower-of-hanoi-rotation-scheme" id="id15">The Tower of Hanoi rotation scheme</a></li>
+<li><a class="reference internal" href="#how-to-choose-the-number-of-archives-and-the-full-level" id="id16">How to choose the number of archives and the full level ?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dar-options" id="id17">Dar options</a><ul>
+<li><a class="reference internal" href="#slice-size" id="id18">Slice size</a></li>
+<li><a class="reference internal" href="#excluded-file-list" id="id19">Excluded file list</a></li>
+<li><a class="reference internal" href="#additional-options" id="id20">Additional options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#cryptography-options" id="id21">Cryptography options</a><ul>
+<li><a class="reference internal" href="#general-options" id="id22">General options</a></li>
+<li><a class="reference internal" href="#signing-options" id="id23">Signing options</a></li>
+<li><a class="reference internal" href="#encryption-options" id="id24">Encryption options</a><ul>
+<li><a class="reference internal" href="#asymmetric-encryption" id="id25">Asymmetric encryption</a></li>
+<li><a class="reference internal" href="#symmetric-encryption" id="id26">Symmetric encryption</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parity-options" id="id27">Parity options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-darwrap" id="id28">Running darwrap</a><ul>
+<li><a class="reference internal" href="#creating-a-new-snapshot" id="id29">Creating a new snapshot</a></li>
+<li><a class="reference internal" href="#resuming-an-interrupted-backup" id="id30">Resuming an interrupted backup</a></li>
+<li><a class="reference internal" href="#resetting-a-backup-cycle" id="id31">Resetting a backup cycle</a></li>
+<li><a class="reference internal" href="#getting-darwrap-s-status" id="id32">Getting darwrap's status</a></li>
+<li><a class="reference internal" href="#preventing-a-backup-from-running" id="id33">Preventing a backup from running</a></li>
+<li><a class="reference internal" href="#killing-the-current-process" id="id34">Killing the current process</a></li>
+<li><a class="reference internal" href="#the-darwrap-continued-daemon" id="id35">The darwrap-continued daemon</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#restoring-your-backup" id="id36">Restoring your backup</a><ul>
+<li><a class="reference internal" href="#the-automatic-way" id="id37">The automatic way</a><ul>
+<li><a class="reference internal" href="#listing-the-archives" id="id38">Listing the archives</a></li>
+<li><a class="reference internal" href="#restoring-your-content" id="id39">Restoring your content</a></li>
+<li><a class="reference internal" href="#cleaning-up" id="id40">Cleaning up</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-manual-way" id="id41">The manual way</a><ul>
+<li><a class="reference internal" href="#restoring-a-few-files" id="id42">Restoring a few files</a></li>
+<li><a class="reference internal" href="#restoring-a-directory-tree" id="id43">Restoring a directory tree</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references" id="id44">References</a></li>
+</ul>
+</div>
+<div class="section" id="what-is-darwrap">
+<h3>What is darwrap ?</h3>
+<p>Darwrap is a program to automate your backups: given a backup description in an
+XML file, it will automatically call the archiver, name the backup files,
+encrypt and sign them, create parity information, and send them to their
+destination.</p>
+<p><a class="reference external" href="http://dar.linux.free.fr/">Dar</a> is used to create the original archive. Darwrap has been designed to use
+destinations that are always reachable, like hard disks or remote servers. It
+has not been designed to do backup on e.g a cd-rom or a tape, but it might be
+possible to implement it anyway.</p>
+<p>Darwrap also handles the rotation scheme of your backup. The tower of hanoi
+strategy is supported.</p>
+<p>If your backup crashes in the middle, darwrap can resume it where you left
+it. This can really be useful when you want to send your backup to a remote
+place with an unreliable network connection.</p>
+</div>
+<div class="section" id="creating-your-configuration-file">
+<h3>Creating your configuration file</h3>
+<p>The first thing to do once you have installed darwrap is to create a backup
+configuration: a <a class="reference external" href="http://en.wikipedia.org/wiki/XML">XML</a> file that describes how your backup should be done.</p>
+<p>Each backup configuration file contains several backup profiles, each describing
+a specific type of backup, and global variables, applying to all backup in the
+configuration file.</p>
+<div class="section" id="a-typical-configuration-file">
+<h4>A typical configuration file</h4>
+<p>To make it easier to follow, I will first show an example configuration file,
+and then explain the syntax and options as we go on.</p>
+<pre class="literal-block">
+&lt;darwrapConfig&gt;
+  &lt;global&gt;
+&lt;spoolpath&gt;/home/sebastien/tmp/backup.spool&lt;/spoolpath&gt;
+  &lt;/global&gt;
+  &lt;!-- This is a comment which should be ignored by the parser --&gt;
+  &lt;profile name=&quot;mount-passphrase-test&quot;&gt;
+&lt;destination type=&quot;mountpoint&quot;&gt;
+  &lt;mountpoint&gt;/media/disk/&lt;/mountpoint&gt;
+  &lt;path&gt;/media/disk/tmp/backup-test&lt;/path&gt;
+  &lt;doumount&gt;false&lt;/doumount&gt;
+&lt;/destination&gt;
+&lt;source&gt;
+  /home/sebastien/rep/darwrap
+&lt;/source&gt;
+&lt;darOptions&gt;
+  &lt;splitSize&gt;100M&lt;/splitSize&gt;
+  &lt;excludedFileList&gt;
+    &lt;file&gt;test&lt;/file&gt;
+    &lt;source&gt;/home/sebastien/rep/darwrap/test/backup.exclude&lt;/source&gt;
+  &lt;/excludedFileList&gt;
+&lt;/darOptions&gt;
+&lt;cryptoOptions&gt;
+  &lt;key&gt;
+    &lt;passphrase&gt;Hello World&lt;/passphrase&gt;
+  &lt;/key&gt;
+  &lt;gpgOpts&gt;--personal-digest-preferences SHA512&lt;/gpgOpts&gt;
+  &lt;secring&gt;/home/sebastien/rep/darwrap/test/test.secring&lt;/secring&gt;
+  &lt;signring&gt;/home/sebastien/rep/darwrap/test/test.keyring&lt;/signring&gt;
+  &lt;signKey&gt;5CB69F8D&lt;/signKey&gt;
+&lt;/cryptoOptions&gt;
+&lt;parityOptions&gt;
+  &lt;redundancy&gt;5&lt;/redundancy&gt;
+&lt;/parityOptions&gt;
+&lt;rotationScheme type=&quot;TowerOfHanoi&quot;&gt;
+  &lt;narchives&gt;10&lt;/narchives&gt;
+  &lt;fullLevel&gt;5&lt;/fullLevel&gt;
+&lt;/rotationScheme&gt;
+  &lt;/profile&gt;
+  &lt;profile name=&quot;s3-public-test&quot;&gt;
+&lt;destination type=&quot;s3&quot;&gt;
+  &lt;bucket&gt;john-smith&lt;/bucket&gt;
+  &lt;location&gt;backup&lt;/location&gt;
+  &lt;keyfile&gt;/home/sebastien/.awssecret&lt;/keyfile&gt;
+  &lt;optStr&gt;--insecure-aws --region=eu&lt;/optStr&gt;
+&lt;/destination&gt;
+&lt;source&gt;
+  /home/sebastien/rep/darwrap
+&lt;/source&gt;
+&lt;rotationScheme type=&quot;TowerOfHanoi&quot;&gt;
+  &lt;narchives&gt;5&lt;/narchives&gt;
+  &lt;fullLevel&gt;4&lt;/fullLevel&gt;
+&lt;/rotationScheme&gt;
+&lt;cryptoOptions&gt;
+  &lt;key&gt;
+    &lt;keyring&gt;/home/sebastien/rep/darwrap/test/test.keyring&lt;/keyring&gt;
+    &lt;keyId&gt;5CB69F8D&lt;/keyId&gt;
+  &lt;/key&gt;
+  &lt;gpgOpts&gt;--personal-digest-preferences SHA512&lt;/gpgOpts&gt;
+  &lt;secring&gt;/home/sebastien/rep/darwrap/test/test.secring&lt;/secring&gt;
+  &lt;signring&gt;/home/sebastien/rep/darwrap/test/test.keyring&lt;/signring&gt;
+  &lt;signKey&gt;5CB69F8D&lt;/signKey&gt;
+&lt;/cryptoOptions&gt;
+  &lt;/profile&gt;
+&lt;/darwrapConfig&gt;
+</pre>
+<p>As you can see, the content is enclosed into the <tt class="docutils literal"><span class="pre">darwrapConfig</span></tt> tag. Inside,
+you can find the global variable declaration between the <tt class="docutils literal"><span class="pre">global</span></tt> tags, and
+the description of one or more profile, enclosed in <tt class="docutils literal"><span class="pre">profile</span></tt> tags.</p>
+</div>
+<div class="section" id="global-variables">
+<h4>Global variables</h4>
+<p>Each variable is declared between a tag containing their name. There are two
+global variable, one of which <em>must</em> be declared.</p>
+<div class="section" id="spoolpath">
+<h5>spoolpath</h5>
+<p>Contains the <em>absolute</em> path to the backup spool path. The backup spool path is
+where all the temporary files of all your backups will go. It is used, among
+other things, to store index files keeping track of your backup's rotation, and
+also to store a copy of your backup files before they are transferred to their
+final destination. It is also used at restore time: this is where all the
+archives are downloaded.</p>
+<p>This variable <em>must</em> be specified.</p>
+</div>
+<div class="section" id="syspath">
+<h5>syspath</h5>
+<p>Contains the system path to use looking for executable. The syntax is the same
+as for the <tt class="docutils literal"><span class="pre">PATH</span></tt> bash variable.</p>
+<p>The default is <tt class="docutils literal"><span class="pre">/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin</span></tt></p>
+</div>
+</div>
+<div class="section" id="profile-basic-structure">
+<h4>Profile: basic structure</h4>
+<p>A profile describe a certain type of backup. Each profile <em>must</em> have a name,
+specified with the <tt class="docutils literal"><span class="pre">name</span></tt> attribute.</p>
+<p>Each profile must contain several section:</p>
+<ul class="simple">
+<li>A <a class="reference internal" href="#the-destination-section">destination</a> section, describing where to send the backup</li>
+<li>A <a class="reference internal" href="#the-source-section">source</a> section, describing what to backup</li>
+<li>A <a class="reference internal" href="#the-rotation-scheme">rotation scheme</a> section, describing how the backups should be rotated</li>
+</ul>
+<p>Additionnaly, other sections can be specified:</p>
+<ul class="simple">
+<li>A <a class="reference internal" href="#dar-options">dar options</a> section, describing options to pass to the dar command</li>
+<li>A <a class="reference internal" href="#cryptography-options">crypto options</a> section, describing how to encrypt and sign the backup</li>
+<li>A <a class="reference internal" href="#parity-options">parity options</a> section, describing how to encode parity information with
+the backup</li>
+</ul>
+</div>
+<div class="section" id="the-destination-section">
+<h4>The destination section</h4>
+<p>The destination section is enclosed in <tt class="docutils literal"><span class="pre">destination</span></tt> tags. It <em>must</em> have a
+type. Each type admits a different set of parameters.</p>
+<div class="section" id="the-mountpoint-type">
+<h5>The mountpoint type</h5>
+<p>If the destination type is &quot;mountpoint&quot;, the backup files will be copied to an
+external drive that will be mounted using the mount command.</p>
+<p>Inside the destination section, two variables are required: the mount point and
+the destination path. See the example configuration for how to specify these.</p>
+<p>An optionnal variable, <tt class="docutils literal"><span class="pre">doumount</span></tt> can also be used to specify whether the device
+is unmounted once the backup has been done. If not specified, the device is
+unconditionally unmounted.</p>
+</div>
+<div class="section" id="the-s3-type">
+<h5>The S3 type</h5>
+<p>Darwrap supports backup to <a class="reference external" href="http://aws.amazon.com/s3/">Amazon S3</a> . If the S3 type is specified, files
+will be copied to your S3 bucket, using tim kay's <a class="reference external" href="http://timkay.com/aws/">aws</a> program.</p>
+<p>Three variables are required:</p>
+<ul class="simple">
+<li>The name of the bucket you want to put the files in</li>
+<li>The location of your files inside the bucket: this is simply prefixed to your
+file's path, separated with a slash</li>
+<li>The file containing S3's secret key</li>
+</ul>
+<p>You can give additionnal option to <tt class="docutils literal"><span class="pre">aws</span></tt> using the optional <tt class="docutils literal"><span class="pre">optStr</span></tt>
+variable.</p>
+<p>Note that the bucket will be created if it does not exist.</p>
+</div>
+<div class="section" id="the-rsync-type">
+<h5>The rsync type</h5>
+<p>If this is specified, the backup files will be copied to a remote site using
+<a class="reference external" href="http://rsync.samba.org/">rsync</a> and the <a class="reference external" href="https://secure.wikimedia.org/wikipedia/en/wiki/Secure_Shell">SSH</a> protocol.</p>
+<p>Inside the destination section, four variables are required:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">host</span></tt>: The SSH server to send to, e.g <tt class="docutils literal"><span class="pre">foo.example.com</span></tt></li>
+<li><tt class="docutils literal"><span class="pre">sshUser</span></tt>: The SSH user to login as.</li>
+<li><tt class="docutils literal"><span class="pre">hostPath</span></tt>: The directory on the server that will hold the data, e.g
+<tt class="docutils literal"><span class="pre">/home/my-backup</span></tt>. This can be given either as an absolute path, or relative
+to the SSH user's home directory.</li>
+<li><tt class="docutils literal"><span class="pre">sshConfigFile</span></tt>: The absolute path to an SSH configuration file giving all the
+details on how to connect to the remote site. This must be in the format given
+by <tt class="docutils literal"><span class="pre">man</span> <span class="pre">ssh_config</span></tt>.</li>
+</ul>
+<p>Two variables can be used to give additional options:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">rsyncOpts</span></tt>: specifies space-separated options to pass to <tt class="docutils literal"><span class="pre">rsync</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">sshOpts</span></tt>: specifies space-separated options to pass to <tt class="docutils literal"><span class="pre">ssh</span></tt>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="the-source-section">
+<h4>The source section</h4>
+<p>The source section contains only the folder to be backed up. It will be backed
+up recursively. The files to exclude are to be specified in the <a class="reference internal" href="#dar-options">dar options</a>
+section.</p>
+</div>
+<div class="section" id="the-rotation-scheme">
+<h4>The rotation scheme</h4>
+<div class="section" id="what-is-a-backup-rotation-scheme">
+<h5>What is a backup rotation scheme ?</h5>
+<p>A very simple backup strategy is to copy all your data to some external storage
+every day, overwriting the copy of the previous day in the process.</p>
+<p>This has several shortcomings:</p>
+<ul class="simple">
+<li>If you have more space on your destination medium than the backup takes, you
+end up with unused capacity.</li>
+<li>While doing your copy, you are overwriting the data of the previous copy. If
+something happens during the backup, you have no complete copy to use to
+restore your backup.</li>
+<li>If a virus corrupts your data, so is your backup, which ends up being
+useless.</li>
+</ul>
+<p>A better backup strategy would be to copy all your data to some external storage
+every day, but without overwriting the previous copy. Whenever you run out of
+space, just buy another disk.</p>
+<p>While this corrects all the above problems, this has the obvious disadvantages
+of cost and storage space for all the disks you use.</p>
+<p>The strategy used by darwrap is to sometimes do a full copy, that can be
+used alone for restoration, and a differential copy, which only contains the
+files that have changed with respect to another previous backup. To restore a
+backup, first restore the full copy, then all the differential copies.</p>
+<p>Sometimes, you still need to remove some of the copies to make room for others
+(do you really care about a snapshot taken 101 days ago if you have one taken
+100 days ago ?).</p>
+<p>The strategy to decide the frequency of full and differential backup, as well as
+which are deleted to make room for others is called the rotation scheme.</p>
+</div>
+<div class="section" id="the-tower-of-hanoi-rotation-scheme">
+<h5>The Tower of Hanoi rotation scheme</h5>
+<p>At the moment, darwrap only supports the tower of hanoi rotation
+scheme. Although it would not be difficult to add support for another rotation
+scheme, you should really look into that one to see if it fits your needs first.</p>
+<p>The basic idea is to keep only the snapshots aged of e.g 32, 16, 8, 4, 2, 1
+days. This way, if you store <span class="inlinemath">n</span> snapshots, you can get back in time up to
+<img class="inlineformulaimg" alt="2^{n-1}" src="darwrap-doc_en.source-formula-png/81cb7e7baf1fd796924ea995e3466e01e6b88e7be804d93510412497-11-article.png" /> days.</p>
+<p>Each snapshot is assigned a level from 1 to <span class="inlinemath">n</span>. A snapshot at level
+<span class="inlinemath">m</span> is overwritten every <img class="inlineformulaimg" alt="2^{m - 1}" src="darwrap-doc_en.source-formula-png/c03af7d45ce1d4fdd9eab9ce81a3847fdd5b19021144ee04bde9010f-11-article.png" /> day. Snapshots of higher level
+take precedence, i.e on day 8, the snapshot at level 4 will be replaced rather
+than the one at level 3.</p>
+<p>Full backups are always made at a higher level than differential backup. The
+exact level at which they are made is set by the <tt class="docutils literal"><span class="pre">fullLevel</span></tt> parameter. Of
+course, at first some full backup will have to be made at lower
+levels. Differential backups are made with respect to the latest backup with a
+higher level.</p>
+<p>You should look at the code if you need more precision on the exact scheme used
+by darwrap.</p>
+<p>What you should remember is that a rotation scheme is described by its type and
+by two parameters:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">narchives</span></tt>: the number of snapshots to use</li>
+<li><tt class="docutils literal"><span class="pre">fullLevel</span></tt>: the level at which we do full backups, must be between 1 and
+<tt class="docutils literal"><span class="pre">narchives</span> <span class="pre">-</span> <span class="pre">1</span></tt>. In case <tt class="docutils literal"><span class="pre">narchives</span></tt> is 1, it can only be 1.</li>
+</ul>
+</div>
+<div class="section" id="how-to-choose-the-number-of-archives-and-the-full-level">
+<h5>How to choose the number of archives and the full level ?</h5>
+<p>The number of archives to choose depends on how much space you have available. I
+would <em>not</em> recommend setting it to 1, as it would break atomicity (see
+above). Any other value is reasonnable. You must know that wherever you set your
+full backup level, your destination can at some point contain a maximum of two
+full backups. You should experiment to know what the size of a full backup is
+for your system. Since archives are compressed, it will typically be less than
+the space you backup, but the exact percentage varies. Differential backups are
+much less expensive, but also depend on what you do with your system.</p>
+<p>The full backup level is to be set very high if you do not want to have a lot of
+full backups stored on your destination media. The problem is that it will
+increase the time it takes to restore your backup, as a lot of differential
+backups will need to be downloaded and restored. You should also keep in mind
+that doing a full backup might increase the load on your system for a long
+time. The higher the backup level, the less frequent the full backup will be.</p>
+</div>
+</div>
+<div class="section" id="dar-options">
+<h4>Dar options</h4>
+<div class="section" id="slice-size">
+<h5>Slice size</h5>
+<p>Darwrap can cut up the archive it creates into slices of a given size. They can
+be specified using the <tt class="docutils literal"><span class="pre">splitSize</span></tt> parameter. Cutting an archive into slices
+is especially useful if you want to transfer them over the network, or burn them
+to a CD or DVD.</p>
+</div>
+<div class="section" id="excluded-file-list">
+<h5>Excluded file list</h5>
+<p>The list of files to exclude can be specified in two ways: first directly in
+darwrap's configuration file, using the <tt class="docutils literal"><span class="pre">file</span></tt> tag (one file per tag), or
+through an external file, containing the absolute path to each file, one file
+per line, specified using the <tt class="docutils literal"><span class="pre">source</span></tt> tag.</p>
+<p>If a directory is specified, all its content will be excluded from the backup.</p>
+<p>If you specify wildcard characters (e.g <tt class="docutils literal"><span class="pre">*</span></tt> or <tt class="docutils literal"><span class="pre">?</span></tt>) in your filepath, they will
+be expanded.</p>
+</div>
+<div class="section" id="additional-options">
+<h5>Additional options</h5>
+<p>The <tt class="docutils literal"><span class="pre">optStr</span></tt> tag can be used to specify a list of additional options to pass
+to darwrap.</p>
+</div>
+</div>
+<div class="section" id="cryptography-options">
+<h4>Cryptography options</h4>
+<p>Darwrap offers you the opportunity to encrypt and sign your backups. I advise
+you to seriously consider that possibility. If you encrypt your backups, they
+will be protected if the medium containing them is stolen or compromised. If you
+sign them, you will be sure they haven't been altered while in transit, or while
+stored.</p>
+<div class="section" id="general-options">
+<h5>General options</h5>
+<p>The <tt class="docutils literal"><span class="pre">gpgOpts</span></tt> tag can be used to give additionnal, space-separated options to
+GPG. In the example, it is used to mandate the use of a strong digest algorithm
+for signing.</p>
+</div>
+<div class="section" id="signing-options">
+<h5>Signing options</h5>
+<p>If you want to sign your archives, you need to specify three parameters</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">secring</span></tt>: the path to the keyring containing the private key to use for
+signing. To make automation possible, this key <em>should not be protected by a
+passphrase</em></li>
+<li><tt class="docutils literal"><span class="pre">signring</span></tt>: the path to the keyring containing the public key to use for
+signing</li>
+<li><tt class="docutils literal"><span class="pre">signKey</span></tt>: ID of the key to use for signing</li>
+</ul>
+</div>
+<div class="section" id="encryption-options">
+<h5>Encryption options</h5>
+<p>All encryption-related options are given through the <tt class="docutils literal"><span class="pre">key</span></tt> tag. Both
+<a class="reference external" href="http://en.wikipedia.org/wiki/Asymmetric_encryption">asymmetric</a> and <a class="reference external" href="http://en.wikipedia.org/wiki/Symmetric-key_algorithm">symmetric</a> encryption are supported. In short, if you use
+asymmetric encryption, different keys are used to encrypt and decrypt your
+backup, whereas if you use symmetric encryption, the same key is used.</p>
+<p>I recommend you to use asymmetric encryption: this way you can backup an insecure
+machine using the public key, and keep the private key on a secure machine.</p>
+<p>Darwrap uses <a class="reference external" href="http://gnupg.org/">GnuPG</a> for all cryptography tasks.</p>
+<div class="section" id="asymmetric-encryption">
+<h6>Asymmetric encryption</h6>
+<p>The two following parameters are used:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">keyring</span></tt>: the path to the GPG keyring containing the public key</li>
+<li><tt class="docutils literal"><span class="pre">keyId</span></tt>: the ID of the public key to use</li>
+</ul>
+</div>
+<div class="section" id="symmetric-encryption">
+<h6>Symmetric encryption</h6>
+<p>A passphrase should be specified. It can either be given directly in the
+configuration file using the <tt class="docutils literal"><span class="pre">passphrase</span></tt> tag, or it can be read from a file
+specified with the <tt class="docutils literal"><span class="pre">passphraseFile</span></tt> tag.</p>
+</div>
+</div>
+</div>
+<div class="section" id="parity-options">
+<h4>Parity options</h4>
+<p>Darwrap lets you add some redundancy to your backup, using <a class="reference external" href="http://parchive.sourceforge.net/">parchive</a> . This can
+be useful if you are writing files to an unreliable medium, such as a CD, but it
+can also be used to check your file's integrity.</p>
+<p>You can specify the percentage of redundancy you want using the <tt class="docutils literal"><span class="pre">redundancy</span></tt>
+tag.</p>
+</div>
+</div>
+<div class="section" id="running-darwrap">
+<h3>Running darwrap</h3>
+<div class="section" id="creating-a-new-snapshot">
+<h4>Creating a new snapshot</h4>
+<p>Now to run one of the backup profile you just created, just do:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml new
+</pre>
+<p>You might want to run it with root privillege depending on what you want to
+backup. The first argument is the name of the profile, the second is the path to
+the configuration file.</p>
+<p>The command will take a backup snapshot in the <a class="reference internal" href="#spoolpath">spool path</a> you specified
+previously. Once finished, it will let a <tt class="docutils literal"><span class="pre">status.xml</span></tt> file behind, keeping
+track of the backup options that were used, and of the rotation status.</p>
+<p>If you re-run the same command, another backup snapshot will be taken, possibly
+overwriting a different snapshot depending on your rotation scheme setting.</p>
+<p>In short, you  only have to schedule the above command to run e.g every day in
+your <a class="reference external" href="http://en.wikipedia.org/wiki/Cron">crontab</a> and you are (almost) done.</p>
+<p>Note that if you change the destination or rotation scheme settings in your
+configuration file, darwrap will refuse to continue the same cycle and issue an
+error message: you will have to start everything from scratch. See below.</p>
+</div>
+<div class="section" id="resuming-an-interrupted-backup">
+<h4>Resuming an interrupted backup</h4>
+<p>If your network connection is unreliable and you are sending your backup to a
+remote filesystem, darwrap might fail to transfer your files. Still they are
+still there, simply waiting to be transferred, no need to start the backup all
+over again. To resume the backup, just use the following command:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml continue
+</pre>
+<p>This must be done once a backup started with a <tt class="docutils literal"><span class="pre">new</span></tt> command
+crashed. If you try to do a <tt class="docutils literal"><span class="pre">new</span></tt> on a backup that was already started, an
+error message will be issued. This is done so that the user is aware that
+something went wrong, and that his backup must be continued.</p>
+</div>
+<div class="section" id="resetting-a-backup-cycle">
+<h4>Resetting a backup cycle</h4>
+<p>If you have changed something in your configuration file, and darwrap does not
+want you to continue your backup cycle normally, or you simply want to start all
+over again, simply do:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml reset
+</pre>
+<p>This will set your status as if nothing ever happened, and you can start from
+scratch. Your old backup tapes will be removed once the new backup cycle has
+started.</p>
+<p>If you did this accidentally, you can remove the status file and then issue a
+<tt class="docutils literal"><span class="pre">new</span></tt> or <tt class="docutils literal"><span class="pre">continue</span></tt>. Your old status file will be fetched back from your
+destination media. In that case, darwrap may need your private key if you used
+asymmetric encryption. Specify its keyring using the <tt class="docutils literal"><span class="pre">--secring-path</span></tt> option.</p>
+</div>
+<div class="section" id="getting-darwrap-s-status">
+<h4>Getting darwrap's status</h4>
+<p>Once you have started a backup, you can get progression information by doing:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml status
+</pre>
+<p>This will tell you whether darwrap is doing a full or differential backup, and
+at what stage it is (creating the archive, crypting the files, sending the
+files...)</p>
+</div>
+<div class="section" id="preventing-a-backup-from-running">
+<h4>Preventing a backup from running</h4>
+<p>Running a backup can take a lot of system resources. If you are going to run some
+cpu-intensive process (like watching a movie) and do not want your backup to run
+during that time, you can use the <tt class="docutils literal"><span class="pre">block</span></tt> action. For example:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml block
+</pre>
+<p>Will prevent the <tt class="docutils literal"><span class="pre">s3-public-test</span></tt> profile from being run. If <tt class="docutils literal"><span class="pre">new</span></tt> or <tt class="docutils literal"><span class="pre">continue</span></tt>
+is now called with that profile, an error message will be printed. To enable the
+process to run again, use <tt class="docutils literal"><span class="pre">unblock</span></tt>, e.g:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml unblock
+</pre>
+<p>Note that you cannot block or unblock a profile while it is running.</p>
+</div>
+<div class="section" id="killing-the-current-process">
+<h4>Killing the current process</h4>
+<p>If a backup process is running and taking all your resources, you can simply
+stop it using the <tt class="docutils literal"><span class="pre">kill</span></tt> command. For example:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml kill
+</pre>
+<p>This will kill the process running the <tt class="docutils literal"><span class="pre">s3-public-test</span></tt> profile. You can then
+proceed to e.g <a class="reference external" href="#preventing-a-backup-from-running">block</a> the backup if you do not want it to run again for a while.</p>
+</div>
+<div class="section" id="the-darwrap-continued-daemon">
+<h4>The darwrap-continued daemon</h4>
+<p>To automatically continue your unfinished backup, you can use the
+<tt class="docutils literal"><span class="pre">darwrap-continued</span></tt> utility. It simply tries to resume your backup e.g every
+ten minutes. To start it, run:</p>
+<pre class="literal-block">
+$ darwrap-continued profilelist 10
+</pre>
+<p>The first argument is a configuration file, whose content looks like this:</p>
+<pre class="literal-block">
+mount-passphrase-test /home/sebastien/now/darwrap/test/config.xml
+neo-usb /home/sebastien/backup/config.xml
+</pre>
+<p>Each line contains a profile name, followed by a space and a path to the
+configuration file describing that profile.</p>
+<p>The second argument is the time (in minute) between each continuation try. If
+the backup has finished correctly, nothing will be done.</p>
+<p>Normally, only one profile is resumed at a time. If you want <tt class="docutils literal"><span class="pre">darwrap-continued</span></tt>
+to allow several resume processes at the same time, you can use the
+<tt class="docutils literal"><span class="pre">--multiple-resume</span></tt> switch.</p>
+</div>
+</div>
+<div class="section" id="restoring-your-backup">
+<h3>Restoring your backup</h3>
+<div class="section" id="the-automatic-way">
+<h4>The automatic way</h4>
+<p>Of course, darwrap can also restore your backups. Here is a quick reference on
+how to do it.</p>
+<p>First, make sure that you have darwrap, your darwrap configuration file, and
+your various keys (gpg secret key, aws secret key...) available at the path
+indicated in your configuration file. This is the only data that darwrap will
+need in order to restore your backup. Things like the status file or the backup
+spool are not necessary but will somehow speed the process up.</p>
+<p>Note that your configuration file has been saved on the backup destination. You
+can always download it from there if you have lost it.</p>
+<div class="section" id="listing-the-archives">
+<h5>Listing the archives</h5>
+<p>To see which archives are available (and at what time they have been created),
+use the <tt class="docutils literal"><span class="pre">list</span></tt> action, e.g:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml list
+</pre>
+<p>This will show you which archives you can restore from, whether it is a full or
+differential one, and the time at which each one has been created. This can help
+you choose from which date on you would like to restore.</p>
+</div>
+<div class="section" id="restoring-your-content">
+<h5>Restoring your content</h5>
+<p>To restore your content, use the <tt class="docutils literal"><span class="pre">restore</span></tt> action. You can use several command
+line options with it:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">--date=yyyy[MMddhhmm]</span></tt>: tell darwrap you want to restore the content at the
+state it was no later than the date given. If this is not given, the most
+recent possible state will be chosen. The date format is: the year's 4 digits,
+followed (optionally) by the month's number two digits (from 01 to 12)
+followed (optionally) by the day's number two digits (from 01 to 31) followed
+(optionally) by the hour's two digits (from 00 to 23), followed (optionally)
+by the minute's two digits (from 00 to 59).</li>
+<li><tt class="docutils literal"><span class="pre">--dest-root=RESTOREDEST</span></tt>: tell darwap where to restore your content. If
+this is not given, this will default to the source path in the configuration
+file.</li>
+<li><tt class="docutils literal"><span class="pre">--to-restore=RESTORESRC</span></tt>: tell darwrap what to restore. This must be a path
+relative to the root of what you saved. For example, if you have made a backup
+with source <tt class="docutils literal"><span class="pre">/home/john/</span></tt> and you only want to restore
+<tt class="docutils literal"><span class="pre">/home/john/.emacsrc</span></tt>, you should use <tt class="docutils literal"><span class="pre">--to-restore=.emacsrc</span></tt>.</li>
+<li><tt class="docutils literal"><span class="pre">--dar-opts=DAROPTS</span></tt>: specify additionnal options to pass to <tt class="docutils literal"><span class="pre">dar</span></tt>,
+separated by spaces. By default, no additionnal option is given. For example,
+if you do not want ownership to be restored (it cannot be done if you are not
+running as root), the <tt class="docutils literal"><span class="pre">-O</span></tt> option could come in handy.</li>
+<li><tt class="docutils literal"><span class="pre">--secring-path=SECPATH</span></tt>: if you use assymmetric encryption, you must give
+the path to your secret keyring containing your private key. Darwrap will ask
+you once for the passphrase and then remember it.</li>
+</ul>
+<p>As an example, let's say you have backed-up <tt class="docutils literal"><span class="pre">/home/john/</span></tt>, and you want to
+restore the directory <tt class="docutils literal"><span class="pre">/home/john/important/pictures</span></tt>. However, you do not
+want it to overwrite the existing one, so you want to restore it in
+<tt class="docutils literal"><span class="pre">/tmp/pict/</span></tt>. Since a virus corrupted your files on April 1st 2012, you want
+to restore files before that date. You should run the following command:</p>
+<pre class="literal-block">
+$ darwrap --date=20120331 --dest-root=/tmp/pict \
+   --to-restore=important/pictures s3-public-test /path/to/config.xml \
+   restore
+</pre>
+</div>
+<div class="section" id="cleaning-up">
+<h5>Cleaning up</h5>
+<p>You can run <tt class="docutils literal"><span class="pre">restore</span></tt> several times. Darwap will keep the archives it already
+downloaded to speed up further restore. Once you are sure you have restored
+everything you need, you can cleanup the backup spool directory. To do that,
+run:</p>
+<pre class="literal-block">
+$ darwrap s3-public-test /path/to/config.xml restore-clean
+</pre>
+</div>
+</div>
+<div class="section" id="the-manual-way">
+<h4>The manual way</h4>
+<p>If for some reason you do not trust darwrap, or you don't have darwrap installed
+and you cannot download it, you always have the possibility to restore the dar
+archives manually. Here is how.</p>
+<div class="section" id="restoring-a-few-files">
+<h5>Restoring a few files</h5>
+<p>If you only want to restore a few files, you probably don't need to fetch all
+your backup: you can use <tt class="docutils literal"><span class="pre">dar_manager</span></tt> along with an index file, and only
+download the archives that you need.</p>
+<p>First, fetch your backup index file from your media:</p>
+<pre class="literal-block">
+$ cp /removable/medium/index.profilename.path.date.dmd .
+</pre>
+<p>This file might have a <tt class="docutils literal"><span class="pre">gpg</span></tt> extension if you use encryption. In that case,
+decrypt it before carrying out the following steps. Also, check your archive's
+parity using <tt class="docutils literal"><span class="pre">par2verify</span></tt>.</p>
+<p>Then do something like:</p>
+<pre class="literal-block">
+$ dar_manager -B index.profilename.path.date.dmd -r relative/path/to/file
+</pre>
+<p>to restore /relative/path/to/file . If dar asks you for archives, fetch them
+from your backup medium. Do not forget to always fetch the first slice (the one
+whose name ends with <tt class="docutils literal"><span class="pre">.1.dar</span></tt>)</p>
+</div>
+<div class="section" id="restoring-a-directory-tree">
+<h5>Restoring a directory tree</h5>
+<p>If you want to restore a whole directory tree, you have no choice: you will need
+to download the full snapshot, and the relevant differential ones you made
+afterward.</p>
+<p>First download all the slices of the full backup closest to the date of the
+state you want to restore. The date is indicated in the file name (five first
+numbers: year, month, day, hour, minutes; separated by dots)</p>
+<p>Then download all the slices of the archive whose date is the closest to the
+state you want to restore. Note the level of that archive: the 6th number in the
+archive name.</p>
+<p>Finally download all the archives whose date is between that of of the full
+backup and that of the archive you previously downloaded, and <em>whose level is
+higher than the one you noted</em>.</p>
+<p>Then restore each archive, oldest first, using the following command:</p>
+<pre class="literal-block">
+$ dar -x \
+  profilename.path.year.month.day.hour.minute.type.level.cycleday.archive \
+  -R where/to/restore \
+  -r -g directory/tree/to/restore
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.alvechurchdata.co.uk/softhanoi.htm">Tower of Hanoi pattern for backup</a> is a good starting point on this rotation
+scheme. An algorithm is given for choosing the next tape that is used in
+darwrap.</li>
+<li><a class="reference external" href="http://www.taobackup.com/">The Tao of Backup</a> gives a lot of very good backup advices in a humorous
+way.</li>
+<li><a class="reference external" href="http://www.halfgaar.net/backing-up-unix">Reliable Linux backups</a> is a serious reference on how to do a proper backup
+of a unix-like system. It describes the problems that are to be solved and the
+best software to use. Dar is considered very good by the author.</li>
+<li>The <a class="reference external" href="http://dar.linux.free.fr/doc/Tutorial.html">official dar tutorial</a> is a very complete tutorial on dar and
+dar_manager.</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

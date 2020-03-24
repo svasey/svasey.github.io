@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>list2pkg User Manual</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /></head><body><div xml:lang="en" class="book" title="list2pkg User Manual" lang="en"><div class="titlepage"><div><div><h1 class="title"><a id="id437519"></a>list2pkg User Manual</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Sebastien</span> <span class="surname">Vasey</span></h3></div></div></div><div><p class="releaseinfo">
+      list2pkg 1.3-4-g8b1920d-+
+    </p></div><div><div class="legalnotice" title="Legal Notice"><a id="id469320"></a><p>
+	I hereby release this software in the public domain.  This means that
+	you can use and distribute it in whatever way you see fit.  However, if
+	you want to re-publish it, I ask you to please put a link to its web
+	page, and mention my name. You are not forced to do it, but that would
+	be a way to say thanks ! See also:
+	<a class="ulink" href="http://svasey.org/copyright_en.html" target="_top">
+	  My copyright page
+	</a>
+      </p></div></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="chapter"><a href="#introduction">1. Introduction</a></span></dt><dd><dl><dt><span class="sect1"><a href="#whatis-list2pkg">What is list2pkg ?</a></span></dt></dl></dd><dt><span class="chapter"><a href="#getting-started">2. Getting started</a></span></dt><dd><dl><dt><span class="sect1"><a href="#install">Installing list2pkg</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id436712">Prerequisites</a></span></dt><dt><span class="sect2"><a href="#id483050">Extracting the tarball</a></span></dt><dt><span class="sect2"><a href="#id483086">Building the documentation</a></span></dt><dt><span class="sect2"><a href="#id483108">Running the installation script</a></span></dt></dl></dd><dt><span class="sect1"><a href="#first-package">Creating your first package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id482997">The file list</a></span></dt><dt><span class="sect2"><a href="#id483591">The package tree</a></span></dt><dt><span class="sect2"><a href="#id483641">The package file</a></span></dt><dt><span class="sect2"><a href="#id483668">Putting it all together</a></span></dt><dt><span class="sect2"><a href="#id483824">The package's content</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#using-list2pkg">3. Using list2pkg</a></span></dt><dd><dl><dt><span class="sect1"><a href="#customizing-package">Customizing your package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id484511">Changing makepkg's behavior</a></span></dt><dt><span class="sect2"><a href="#id484877">Changing the content of the <code class="filename">install/</code>
+  directory</a></span></dt><dt><span class="sect2"><a href="#id484964">Changing the package tree's content</a></span></dt><dt><span class="sect2"><a href="#users-groups-handling">Users and groups handling</a></span></dt></dl></dd><dt><span class="sect1"><a href="#perfect-package">The perfect package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id484818">The package's file name</a></span></dt><dt><span class="sect2"><a href="#id484837">Install locations</a></span></dt><dt><span class="sect2"><a href="#id485454">Permissions and Ownership</a></span></dt><dt><span class="sect2"><a href="#id485466">Slack-desc</a></span></dt></dl></dd><dt><span class="sect1"><a href="#tricky-cases">Tricky cases</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id485196">Directories</a></span></dt><dt><span class="sect2"><a href="#id485224">Symbolic links</a></span></dt></dl></dd><dt><span class="sect1"><a href="#manpages">Manpages</a></span></dt><dt><span class="sect1"><a href="#bugs">Bugs</a></span></dt><dt><span class="sect1"><a href="#todo">Todo</a></span></dt><dt><span class="sect1"><a href="#faq">FAQ</a></span></dt></dl></dd><dt><span class="chapter"><a href="#contributing">4. Contributing to list2pkg</a></span></dt></dl></div><div class="chapter" title="Chapter 1. Introduction"><div class="titlepage"><div><div><h2 class="title"><a id="introduction"></a>Chapter 1. Introduction</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#whatis-list2pkg">What is list2pkg ?</a></span></dt></dl></div><div class="sect1" title="What is list2pkg ?"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="whatis-list2pkg"></a>What is list2pkg ?</h2></div></div></div><p>
+  List2pkg is a program to create <a class="ulink" href="http://www.slackware.com/" target="_top">
+    Slackware</a> packages in a simple way. More precisely, given a list of
+    files, it will create a slackware package containing these files. A user
+    trying to install that package will see the same files installed at the same
+    locations they were on your system.
+</p><p>
+  List2pkg is especially useful if you have installed a program from source and,
+  knowing where all its files are, you want to create a slackware package to
+  ease another installation.
+</p><p>
+  List2pkg was originally created to create Slackware package using 
+  <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">urpkg</a> .
+</p><p>
+  List2pkg is public-domain software, written in Perl.
+</p></div></div><div class="chapter" title="Chapter 2. Getting started"><div class="titlepage"><div><div><h2 class="title"><a id="getting-started"></a>Chapter 2. Getting started</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#install">Installing list2pkg</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id436712">Prerequisites</a></span></dt><dt><span class="sect2"><a href="#id483050">Extracting the tarball</a></span></dt><dt><span class="sect2"><a href="#id483086">Building the documentation</a></span></dt><dt><span class="sect2"><a href="#id483108">Running the installation script</a></span></dt></dl></dd><dt><span class="sect1"><a href="#first-package">Creating your first package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id482997">The file list</a></span></dt><dt><span class="sect2"><a href="#id483591">The package tree</a></span></dt><dt><span class="sect2"><a href="#id483641">The package file</a></span></dt><dt><span class="sect2"><a href="#id483668">Putting it all together</a></span></dt><dt><span class="sect2"><a href="#id483824">The package's content</a></span></dt></dl></dd></dl></div><div class="sect1" title="Installing list2pkg"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="install"></a>Installing list2pkg</h2></div></div></div><div class="sect2" title="Prerequisites"><div class="titlepage"><div><div><h3 class="title"><a id="id436712"></a>Prerequisites</h3></div></div></div><p>
+    You need a UNIX-like system for list2pkg to work. I have tested it on
+    GNU/Linux, but other systems should work as well. You will also need root
+    access on that system, since otherwise some ownership information might not be
+    correctly preserved.
+  </p><div class="sect3" title="Dependencies"><div class="titlepage"><div><div><h4 class="title"><a id="id437108"></a>Dependencies</h4></div></div></div><p>
+      list2pkg relies on a few external tools to do its job properly. Most of
+      them should already be installed on your system. They are listed below.
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/bash/" target="_top">GNU bash</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.perl.com" target="_top">Perl</a>
+	</p></li><li class="listitem"><p>
+	  The Slackware pkgtools (actually, you only need makepkg) which you can
+	  download from
+	  any <a class="ulink" href="http://www.slackware.com/getslack/" target="_top">slackware
+	  mirror</a>
+	</p></li><li class="listitem"><p>
+	  The <a class="ulink" href="http://www.gnu.org/software/coreutils/" target="_top">
+	    GNU Coreutils</a> to do the installation
+	</p></li></ul></div></div></div><div class="sect2" title="Extracting the tarball"><div class="titlepage"><div><div><h3 class="title"><a id="id483050"></a>Extracting the tarball</h3></div></div></div><p>
+    First, extract the list2pkg tarball and cd to it.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>tar -xf <em class="parameter"><code>&lt;Your .tar.gz file&gt;</code></em>
+    <code class="prompt">$ </code>cd <em class="parameter"><code>&lt;filename without .tar.gz&gt;</code></em>
+  </pre></div><div class="sect2" title="Building the documentation"><div class="titlepage"><div><div><h3 class="title"><a id="id483086"></a>Building the documentation</h3></div></div></div><p>
+    If you have downloaded a release tarball, you should skip this step, since
+    the html and man documentation has already been compiled for you. Otherwise,
+    you can build the documentation by doing the following.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>./helpers/build-doc.sh .
+  </pre></div><div class="sect2" title="Running the installation script"><div class="titlepage"><div><div><h3 class="title"><a id="id483108"></a>Running the installation script</h3></div></div></div><p>
+    Installing list2pkg is very simple: you just have to invoke
+    the <code class="filename">install.sh</code> script. First, you must choose where you
+    want list2pkg installed. There are several variables you can give to the
+    installation script to change that.
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	<code class="varname">PREFIX</code>: The installation prefix, defaulting
+	to <code class="filename">/usr/local</code>. All list2pkg files will be installed
+	there.
+      </p></li><li class="listitem"><p>
+	<code class="varname">SYSCONFDIR</code>: The system configuration directory,
+	defaulting to <code class="filename">${PREFIX}/etc</code>. The list2pkg
+	configuration file will be installed there.
+      </p></li><li class="listitem"><p>
+	<code class="varname">DOCDIR</code>: Where list2pkg's documentation will be
+	installed. It defaults to <code class="filename">${PREFIX}/share/doc</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">MANDIR</code>: Where list2pkg's manpages will be
+	installed. It defaults to <code class="filename">${PREFIX}/share/man</code>
+      </p></li></ul></div><p>
+    For example, to install list2pkg in a <code class="filename">/usr</code> prefix and
+    the configuration file in <code class="filename">/etc</code>, you can do
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo PREFIX=/usr SYSCONFDIR=/etc ./install.sh
+  </pre></div></div><div class="sect1" title="Creating your first package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="first-package"></a>Creating your first package</h2></div></div></div><p>
+  In order to test what list2pkg can do, we are going to create a test
+  package. A <code class="filename">testing</code> directory is included with list2pkg .
+  Among other things, it contains some dummy files that can be used to create a
+  package. First, cd to it.
+</p><pre class="screen">
+  <code class="prompt">$ </code>cd testing
+</pre><div class="sect2" title="The file list"><div class="titlepage"><div><div><h3 class="title"><a id="id482997"></a>The file list</h3></div></div></div><p>
+    list2pkg takes two arguments: a list of the files that will belong to the
+    package, and the package file we will create. List2pkg can also read a
+    file list from standard input.
+  </p><p>
+    The format of a list is very simple: each line must contains the path to a
+    file. This path can either be absolute (recommended) or relative to the
+    directory from which list2pkg is invoked.
+  </p><p>
+    For this first example, we are going to use the list of files
+    in <code class="filename">filelist</code>, which contains files
+    in <code class="filename">src</code>. Feel free to look around.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>cat filelist
+    <code class="prompt">$ </code>ls -lR src
+  </pre><p>
+    Note an important detail: if directories are given in the file
+    list, <span class="emphasis"><em>they will not be copied recursively</em></span>. This means that if
+    the file <code class="filename">/home</code> is in your list, the package will not
+    contain all files from all home directories, but only an
+    empty <code class="filename">/home</code> directory.
+  </p></div><div class="sect2" title="The package tree"><div class="titlepage"><div><div><h3 class="title"><a id="id483591"></a>The package tree</h3></div></div></div><p>
+    list2pkg does not create the slackware package directly using the files that
+    are given in the list. Instead, it copies those files to a temporary
+    directory, do some adjustments there, and then
+    call <span class="command"><strong>makepkg</strong></span>, which is Slackware's standard tool for
+    package creation. This temporary directory is called the <span class="emphasis"><em>package tree
+    directory</em></span> by list2pkg .
+  </p><p>
+    If the user does not specify one, list2pkg creates a temporary directory in
+    e.g <code class="filename">/var/tmp</code>, do its stuff and then remove the
+    directory. If a package tree directory is given on the command line, the
+    package structure is created inside instead, and it is <span class="emphasis"><em>not</em></span>
+    deleted at the end of the process.
+  </p><p>
+    Since you want to have a clue what is going on, we are going to use our own
+    package tree directory.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>mkdir treedir
+  </pre></div><div class="sect2" title="The package file"><div class="titlepage"><div><div><h3 class="title"><a id="id483641"></a>The package file</h3></div></div></div><p>
+    Following Slackware package's convention, the file name must have several
+    information in it: the program's name, the version, the machine it was
+    compiled for, and the creator's name along with the build version. Each of
+    these fields must be separated by a dash. After this, the file extension,
+    .tgz must follow. For more information on Slackware package naming, see
+    <a class="ulink" href="http://www.linuxpackages.net/howto.php?page=perfect-package" target="_top">
+      The Perfect Package</a>
+  </p><p>
+    As an example, we will use <code class="filename">test-0.1-noarch-2usr.tgz</code> as
+    a package name.
+  </p></div><div class="sect2" title="Putting it all together"><div class="titlepage"><div><div><h3 class="title"><a id="id483668"></a>Putting it all together</h3></div></div></div><p>
+    It's now time to run the package-creating command
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo list2pkg --treedir=treedir --verbose filelist \
+    test-0.1-noarch-2usr.tgz
+  </pre><p>
+    The command should finish without errors, and
+    a <code class="filename">test-0.1-noarch-2usr.tgz</code> file should have been
+    created. Note that you need root privilege, because otherwise some owner and
+    groups information might not be saved correctly. You can check that all
+    files in the file list have been packed correctly (there are subtleties
+    related to symlinks that are explained in <a class="xref" href="#tricky-cases" title="Tricky cases">the section called “Tricky cases”</a>)
+  </p><pre class="screen">
+    <code class="prompt">$ </code>tar --list --verbose -f test-0.1-noarch-2usr.tgz
+    <code class="prompt">$ </code>ls -lR treedir
+  </pre></div><div class="sect2" title="The package's content"><div class="titlepage"><div><div><h3 class="title"><a id="id483824"></a>The package's content</h3></div></div></div><p>
+    Notice that an <code class="filename">install/</code> directory with the necessary
+    files has been created automatically. A
+    minimalist <code class="filename">install/slack-desc</code> file was created, along
+    with a <code class="filename">doinst.sh</code> script. This file deserves special
+    attention. You should see some special commands between the <code class="code">#BEGIN:
+    AUTO_LIST2PKG</code> and <code class="code">#END: AUTO_LIST2PKG</code> comments. Here is
+    what mine looks like.
+  </p><pre class="screen">
+    #BEGIN: AUTO_LIST2PKG
+    groupadd john || (if test $? -ne 9; then exit 1; fi)
+    useradd john || (if test $? -ne 9; then exit 1; fi)
+    chown -v john home/john || exit 1
+    chgrp -v john home/john || exit 1
+    chmod -v 755 home/john || exit 1
+    chown -v john home/john/rep || exit 1
+    chgrp -v john home/john/rep || exit 1
+    chmod -v 775 home/john/rep || exit 1
+    chown -v john home/john/rep/list2pkg || exit 1
+    chgrp -v john home/john/rep/list2pkg || exit 1
+    chmod -v 775 home/john/rep/list2pkg || exit 1
+    chown -v john home/john/rep/list2pkg/testing || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir2 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir2 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir2 || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir1 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir1 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir1 || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir3 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir3 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir3 || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir3/dir4 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir3/dir4 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir3/dir4 || exit 1
+    #END: AUTO_LIST2PKG
+  </pre><p>
+    (yes, my username is john). This script actually tries to recreate the
+    owners and groups of the package's file, in case they do not exist on the
+    target system. If you don't like this, you can use
+    the <code class="filename">list2pkg.conf</code> file. See 
+    <a class="xref" href="#users-groups-handling" title="Users and groups handling">the section called “Users and groups handling”</a> for more information.
+  </p></div></div></div><div class="chapter" title="Chapter 3. Using list2pkg"><div class="titlepage"><div><div><h2 class="title"><a id="using-list2pkg"></a>Chapter 3. Using list2pkg</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#customizing-package">Customizing your package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id484511">Changing makepkg's behavior</a></span></dt><dt><span class="sect2"><a href="#id484877">Changing the content of the <code class="filename">install/</code>
+  directory</a></span></dt><dt><span class="sect2"><a href="#id484964">Changing the package tree's content</a></span></dt><dt><span class="sect2"><a href="#users-groups-handling">Users and groups handling</a></span></dt></dl></dd><dt><span class="sect1"><a href="#perfect-package">The perfect package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id484818">The package's file name</a></span></dt><dt><span class="sect2"><a href="#id484837">Install locations</a></span></dt><dt><span class="sect2"><a href="#id485454">Permissions and Ownership</a></span></dt><dt><span class="sect2"><a href="#id485466">Slack-desc</a></span></dt></dl></dd><dt><span class="sect1"><a href="#tricky-cases">Tricky cases</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id485196">Directories</a></span></dt><dt><span class="sect2"><a href="#id485224">Symbolic links</a></span></dt></dl></dd><dt><span class="sect1"><a href="#manpages">Manpages</a></span></dt><dt><span class="sect1"><a href="#bugs">Bugs</a></span></dt><dt><span class="sect1"><a href="#todo">Todo</a></span></dt><dt><span class="sect1"><a href="#faq">FAQ</a></span></dt></dl></div><div class="sect1" title="Customizing your package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="customizing-package"></a>Customizing your package</h2></div></div></div><p>
+  Sometimes, you might want to change the default way list2pkg acts, or do
+  something special that list2pkg could not do for you on your package. This
+  section gives some example of things you can do using list2pkg's options.
+</p><div class="sect2" title="Changing makepkg's behavior"><div class="titlepage"><div><div><h3 class="title"><a id="id484511"></a>Changing makepkg's behavior</h3></div></div></div><p>
+    As mentioned previously, the last step of list2pkg's creation of a package
+    is to call <span class="command"><strong>makepkg</strong></span>
+    . The <code class="option">--linkadd</code>, <code class="option">--prepend</code>
+    and <code class="option">--chown</code> options will be passed to it as is.  
+  </p></div><div class="sect2" title="Changing the content of the install/ directory"><div class="titlepage"><div><div><h3 class="title"><a id="id484877"></a>Changing the content of the <code class="filename">install/</code>
+  directory</h3></div></div></div><p>
+    The <code class="filename">install/</code> directory contains special files the
+    slackware package management tools use to know how to install the
+    package. The only file that must exist is
+    the <code class="filename">slack-desc</code> file which gives a plain text
+    description of the package. The <code class="filename">slack-desc</code> file which
+    list2pkg creates is not especially good in that respect, so you might want
+    to add your own <code class="filename">slack-desc</code>. To do that, you can use the
+    <code class="option">--slack-desc</code> option.
+  </p><p>
+    Another important file is the <code class="filename">doinst.sh</code> script, which gets
+    executed after an installation. You can give your own
+    custom <code class="filename">doinst.sh</code> script using
+    the <code class="option">--doinst</code> option. List2pkg will then append its own
+    commands to it.
+  </p><p>
+    There are other files which can be in <code class="filename">install/</code> that
+    list2pkg does not support. Among them are files
+    like <code class="filename">slack-required</code>
+    or <code class="filename">slack-conflicts</code>. You can specify a directory with
+    other files to copy to <code class="filename">install</code> using
+    the <code class="option">--install-files</code> option.
+  </p></div><div class="sect2" title="Changing the package tree's content"><div class="titlepage"><div><div><h3 class="title"><a id="id484964"></a>Changing the package tree's content</h3></div></div></div><p>
+    Once the package tree has been created, you might want to change a few
+    details. For example, you might want to move all files
+    in <code class="filename">/usr/local</code> to <code class="filename">/usr</code> in order to
+    create a more <span class="quote">“<span class="quote">standard-compliant</span>”</span> package. List2pkg cannot do
+    that directly, but it lets you run any script you want once the package tree
+    directory has been created. The script will be invoked with the tree's path
+    as first argument. The option to use is <code class="option">--changetree</code> .
+  </p></div><div class="sect2" title="Users and groups handling"><div class="titlepage"><div><div><h3 class="title"><a id="users-groups-handling"></a>Users and groups handling</h3></div></div></div><p>
+    List2pkg handles file owners and groups in a peculiar way. For each of the
+    package's file, it will check if its owner or group
+    is <span class="quote">“<span class="quote">special</span>”</span>. A special owner or group name is not standard and
+    matters enough for it to be re-created explicitly on any system the package
+    is installed on. 
+  </p><p>
+    If, for example you are creating a package for the cron daemon, you will
+    want the cron user to be created on the target system, since some of the
+    package's file will likely be set user id. On the other hand, the user root
+    is generally not special, since it exists on virtually all UNIX-like
+    systems.
+  </p><p>
+    Note that by default, all files in the package will have root as owner and
+    group, meaning that files with non-special owners or groups will lose them
+    and be installed with root owner and group on the target system. You can use
+    the <code class="option">--no-root-ownership</code> to prevent list2pkg from resetting 
+    the owner and group of every file to root.
+  </p><p>
+    By default, all user and group names are special except <span class="quote">“<span class="quote">root</span>”</span>
+    . Any user or group beginning with <span class="quote">“<span class="quote">urpkg-</span>”</span>
+    or <span class="quote">“<span class="quote">urpkgrp-</span>”</span> is also considered non-special, for reasons that
+    will become obvious to you if you use
+    <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">urpkg</a> . If you don't
+    you shouldn't have any user or group name formatted that way.
+  </p><div class="sect3" title="The exclude rules configuration file"><div class="titlepage"><div><div><h4 class="title"><a id="id485046"></a>The exclude rules configuration file</h4></div></div></div><p>
+      Those default rules can be changed. In fact, they are read from a
+      configuration file in <code class="filename">${SYSCONFDIR}/list2pkg.conf</code> (by
+      default <code class="filename">/usr/local/etc/list2pkg.conf</code>). You can either
+      modify that file or override it when calling list2pkg using
+      the <code class="option">--exclude-ownership</code> option.
+    </p><p>
+      The format of the file is simple. Each line contains a regular expression
+      that will be matched against each owner or group name. Assuming the line's
+      content is held in the variable <code class="varname">EXPR</code> , the matching
+      Perl code will be the following.
+    </p><code class="code">
+      $NAME =~ /^$EXPR$/
+    </code><p>
+      If the expression matches, the name will be considered as non-special,
+      otherwise it will be considered special.
+    </p></div></div></div><div class="sect1" title="The perfect package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="perfect-package"></a>The perfect package</h2></div></div></div><p>
+  The reference document I used on the format of a Slackware package is
+  LinuxPackages's
+  <a class="ulink" href="http://www.linuxpackages.net/howto.php?page=perfect-package" target="_top">
+    The Perfect Package (TPP)</a> . In this section, I will try to sum-up this
+    document and explain how list2pkg support each important item.
+</p><div class="sect2" title="The package's file name"><div class="titlepage"><div><div><h3 class="title"><a id="id484818"></a>The package's file name</h3></div></div></div><p>
+    According to TPP, the package's file name should be formatted in a very
+    strict way. It should be made of several fields, including the program
+    name, version number and architecture, all separated by dashes. List2pkg
+    does not directly enforce this rule, because <span class="command"><strong>makepkg</strong></span>
+    should output a warning if the name is not standard.
+  </p></div><div class="sect2" title="Install locations"><div class="titlepage"><div><div><h3 class="title"><a id="id484837"></a>Install locations</h3></div></div></div><p>
+    A good Slackware packages has its files
+    in <a class="ulink" href="http://www.linuxfoundation.org/collaborate/workgroups/lsb" target="_top">
+      LSB</a> standard locations. For example, no files should be
+    in <code class="filename">/usr/local</code> because this is reserved for files that
+    do not come from a package.
+  </p><p>
+    List2pkg does not do anything to enforce this for the moment. However, the
+    script which can be given using the <code class="option">--changetree</code> option can
+    do it. Maybe in the future there will be standard scripts that list2pkg will
+    run by default, and which will take care of fixing install locations inside
+    the package tree. If you wrote a script you think could be included as a
+    default script, please send it to me (see <a class="xref" href="#contributing" title="Chapter 4. Contributing to list2pkg">Chapter 4, <em>Contributing to list2pkg</em></a>).
+  </p><p>
+    Similarly, you can also write scripts to strip executable or gzip manpages.
+  </p></div><div class="sect2" title="Permissions and Ownership"><div class="titlepage"><div><div><h3 class="title"><a id="id485454"></a>Permissions and Ownership</h3></div></div></div><p>
+    I have tried hard to make list2pkg keep all permissions of all files and
+    directories given in the file list. This way if the permissions are
+    correctly set on your system, then those in the package should also be
+    correct. If you think permissions are mishandled in some way by list2pkg,
+    it's worth reporting the bug to me.
+  </p></div><div class="sect2" title="Slack-desc"><div class="titlepage"><div><div><h3 class="title"><a id="id485466"></a>Slack-desc</h3></div></div></div><p>
+    list2pkg automatically creates a standard slack-desc file. However, it is
+    unable to put useful content in it, so you might want to create your own and
+    add it using the <code class="option">--slack-desc</code> option.
+  </p></div></div><div class="sect1" title="Tricky cases"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="tricky-cases"></a>Tricky cases</h2></div></div></div><p>
+  A package rarely contains only regular files. Most often, it contains oddities
+  like directories or even symbolic links . This section explains how list2pkg
+  deals with those when they are part of the file list.
+</p><div class="sect2" title="Directories"><div class="titlepage"><div><div><h3 class="title"><a id="id485196"></a>Directories</h3></div></div></div><p>
+    list2pkg tries to preserve a directory's permission and ownership. However,
+    as previously mentioned, it will not copy its content if it is not
+    explicitly given in the file list. For example, if the file list 
+    contains only <code class="filename">/home</code>, the package will only have an
+    empty <code class="filename">/home</code> directory in it.
+  </p></div><div class="sect2" title="Symbolic links"><div class="titlepage"><div><div><h3 class="title"><a id="id485224"></a>Symbolic links</h3></div></div></div><p>
+    A symbolic link can be in the file list in two ways: it can be explicitly
+    given, i.e as if it were a regular file, or it can be implicitly given, i.e
+    as if it was part of the file's path.
+  </p><p>
+    For example, if <code class="filename">/lib/libc.so.6</code> is a symbolic link
+    to <code class="filename">libc-2.7.so</code> ,
+    and <code class="filename">/lib/libc.so.6</code> is given on the file list, then it
+    is considered an explicit symlink. However,
+    if <code class="filename">/usr/share/man</code> is a symlink
+    to <code class="filename">/usr/man</code>, and one file which is in the file list is
+    <code class="filename">/usr/share/man/man1/ld.1</code> , then it is considered an
+    implicit symlink.
+  </p><p>
+    Explicit symlinks are copied as is to the package tree directory. Regardless
+    of whether they are absolute or relative symlinks, they should be recreated
+    on the target system.
+  </p><p>
+    On the other hand, path involving implicit symlinks are not created as they
+    are given on the file list. Instead, all symbolic links are first resolved
+    before the file's copy. Therefore, if we take
+    our <code class="filename">/usr/share/man/man1/ld.1</code> example, it will be
+    created as <code class="filename">/usr/man/man1/ld.1</code> in the package.
+  </p></div></div><div class="sect1" title="Manpages"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manpages"></a>Manpages</h2></div></div></div><p>
+  This section contains the manpages of the commands part of list2pkg.
+</p><div class="refentry" title="list2pkg"><a id="list2pkg.1"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>list2pkg — 
+    Create Slackware packages from file lists
+  </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">list2pkg</code>  [<em class="replaceable"><code>OPTIONS</code></em>] [<em class="replaceable"><code>LIST</code></em>] {<em class="replaceable"><code>PACKAGE</code></em>}</p></div></div><div class="refsect1" title="Description"><a id="id486271"></a><h2>Description</h2><p>
+    List2pkg is a program to create Slackware packages in a simple way. More
+    precisely, given a list of files, it will create a slackware package
+    containing these files. A user trying to install that package will see the
+    same files installed at the same locations they were on your system.
+  </p><p>
+    List2pkg takes two arguments: a file list and the path to the package file
+    which will be created. If the file list argument is omitted
+    or <span class="quote">“<span class="quote">-</span>”</span>, the list will be read from standard input.
+  </p></div><div class="refsect1" title="Options"><a id="id486291"></a><h2>Options</h2><p>
+    Note that each option can be abbreviated and will be recognized if
+    unambiguous.
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="option">--help</code></span></dt><dd><p>
+	  Print a short description of each option and exit.
+	</p></dd><dt><span class="term"><code class="option">--version</code></span></dt><dd><p>
+	  Output version information and exit.
+	</p></dd><dt><span class="term"><code class="option">--verbose</code></span></dt><dd><p>
+	  Print more information on what the program does to stdout
+	</p></dd><dt><span class="term"><code class="option">--quiet</code></span></dt><dd><p>
+	  Print only warnings and error messages
+	</p></dd><dt><span class="term"><code class="option">--treedir=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Copy the files to that directory before creating the package. By
+	  default, a temporary directory is created in <code class="filename">/var/tmp
+	  </code> and deleted afterward.
+	</p></dd><dt><span class="term"><code class="option">--changetree=<em class="parameter"><code>PROG</code></em></code></span></dt><dd><p>
+	  Once the package directory tree has been created, that script will be
+	  run with the tree's path as first argument, so that you can do your
+	  own custom changes to the tree.
+	</p></dd><dt><span class="term"><code class="option">--doinst=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Give the path to a custom doinst.sh script to be copied to the
+	  package's
+	  <code class="filename">install/</code> directory.
+	</p></dd><dt><span class="term"><code class="option">--slack-desc=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Give the path to a custom slack-desc file to be copied to the
+	  package's <code class="filename">install/</code> directory.
+	</p></dd><dt><span class="term"><code class="option">--install-files=<em class="parameter"><code>DIR</code></em></code></span></dt><dd><p>
+	  Give the path to a directory where other files that will be copied to
+	  the <code class="filename">install/</code> directory are.
+	</p></dd><dt><span class="term"><code class="option">--no-root-ownership</code></span></dt><dd><p>
+	  If this is given, the files in the package will not have their owner
+	  and group reset to root before being packed.
+	</p></dd><dt><span class="term"><code class="option">--exclude-ownership=<em class="parameter"><code>FILE</code></em></code>
+      </span></dt><dd><p>
+	  Give a custom file specifying rules concerning what group and user are
+	  created on the target system by the doinst.sh script. The default file
+	  is in <code class="filename">${SYSCONFDIR}/list2pkg.conf</code>. See the FILES
+	  section for more information on the file's syntax.
+	</p></dd><dt><span class="term"><code class="option">--linkadd=<em class="parameter"><code>y|n</code></em></code></span></dt><dd><p>
+	  This option is passed as is to makepkg. The default is 'y'
+	</p></dd><dt><span class="term"><code class="option">--prepend</code></span></dt><dd><p>
+	  If specified, this is passed to makepkg. By default, this is not.
+	</p></dd><dt><span class="term"><code class="option">--chown=<em class="parameter"><code>y|n</code></em></code></span></dt><dd><p>
+	  This option is passed as is to makepkg. The default is 'n'
+	</p></dd></dl></div></div><div class="refsect1" title="Files"><a id="id486571"></a><h2>Files</h2><p>
+    List2pkg uses the <code class="filename">${SYSCONFDIR}/list2pkg.conf</code>
+    configuration file to know which owner or group name to consider as worth
+    re-creating on the target system. All names which do not match the
+    regular expressions in that file and are owner or group of one of the files
+    in the package tree will be re-created on the target system.
+  </p><p>
+    The file syntax is as follows. Each line is matched as a perl regular
+    expression the following way (consider <code class="varname">EXPR</code> is whatever
+    is written on the line)
+  </p><p>
+    <code class="code">
+      $NAME =~ /^$EXPR$/
+    </code>
+  </p><p>
+    If this matches, then the user or group name will not be created on the
+    target system.
+  </p></div><div class="refsect1" title="See Also"><a id="id486606"></a><h2>See Also</h2><p>
+    urpkg(1), makepkg(1)
+  </p></div><div class="refsect1" title="Contributing"><a id="man-contribute"></a><h2>Contributing</h2><p>
+    Please report bugs and other inconsistencies you find to the author (address
+    is below). If you have implemented a patch, please do send it there. Any
+    contribution is welcome. See also list2pkg's website:
+    <a class="ulink" href="http://svasey.org/projects/old-stuff/list2pkg/" target="_top">
+      http://svasey.org/projects/old-stuff/list2pkg/</a>
+  </p></div><div class="refsect1" title="Unrestrictions"><a id="man-unrestrictions"></a><h2>Unrestrictions</h2><p>
+    list2pkg is public-domain software. See the COPYING file for more information.  </p></div><div class="refsect1" title="Author"><a id="man-authors"></a><h2>Author</h2><p>
+  The author is Sebastien Vasey (<code class="code">sebastien dot vasey at gmail dot com</code>)
+</p></div></div></div><div class="sect1" title="Bugs"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="bugs"></a>Bugs</h2></div></div></div><p>
+  List2pkg is far from perfect. Here is a list of bugs that are known and should
+  be fixed in a subsequent release. If you want to help, see
+  <a class="xref" href="#contributing" title="Chapter 4. Contributing to list2pkg">Chapter 4, <em>Contributing to list2pkg</em></a>
+</p><p>
+  No bugs known so far. I would be very pleased if you found one :-) .
+</p></div><div class="sect1" title="Todo"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="todo"></a>Todo</h2></div></div></div><p>
+  This section lists some tasks that haven't been done and might show up in a
+  future release. They are only at the stage of random ideas. If you want to
+  implement one of them, please see <a class="xref" href="#contributing" title="Chapter 4. Contributing to list2pkg">Chapter 4, <em>Contributing to list2pkg</em></a>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+      Write some standard scripts that enforces standard location, stripping of
+      executable, gzipping of manpages...
+    </p></li><li class="listitem"><p>
+      Avoid the need for root privilege when creating the package
+    </p></li></ul></div></div><div class="sect1" title="FAQ"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="faq"></a>FAQ</h2></div></div></div><p>
+  Don't hesitate to ask questions. See <a class="xref" href="#contributing" title="Chapter 4. Contributing to list2pkg">Chapter 4, <em>Contributing to list2pkg</em></a>
+</p></div></div><div class="chapter" title="Chapter 4. Contributing to list2pkg"><div class="titlepage"><div><div><h2 class="title"><a id="contributing"></a>Chapter 4. Contributing to list2pkg</h2></div></div></div><p>
+  There are several ways you can contribute to list2pkg. One way is to report
+  bugs, another way is to help writing documentation (or correct the existing
+  one. I think there is already a fair number of English mistakes in that
+  document :-) ). You could also try writing patches implementing the features
+  you want that are not yet in list2pkg. Also, simply asking questions (that
+  are <span class="emphasis"><em>not</em></span> answered within this manual) is a great way to
+  participate.
+</p><p>
+  Whatever you decide to do, please send the content to <code class="code">sebastien dot
+  vasey at gmail dot com</code>
+  
+
+
+</p><p>
+  List2pkg also has a
+  webpage. See <a class="ulink" href="http://svasey.org/projects/old-stuff/list2pkg/" target="_top">the list2pkg
+  webpage</a> for the most up to date information.
+</p><div class="sect2" title="Reporting bugs"><div class="titlepage"><div><div><h3 class="title"><a id="id488310"></a>Reporting bugs</h3></div></div></div><p>
+    So you have found a bug ? Great ! Please report it to me. But
+    before doing that, ensure that...
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	The bug still exists in the latest version of list2pkg
+      </p></li><li class="listitem"><p>
+	You are able to reproduce the bug.
+      </p></li></ul></div><p>
+    When you report a bug, you should always, if possible
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	Include information on how to reproduce the bug
+      </p></li><li class="listitem"><p>
+	Include as verbose as possible output from your program. This means
+	running list2pkg with the <code class="option">--verbose</code> switch if possible.
+      </p></li><li class="listitem"><p>
+	Include the versions of list2pkg on which the bug applies
+	(use <code class="option">--version</code>).
+      </p></li></ul></div></div></div></div></body></html>

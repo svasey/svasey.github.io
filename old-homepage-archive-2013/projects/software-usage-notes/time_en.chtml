@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Time documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="time-documentation">
+<h2>Time documentation</h2>
+<p>Documentation about the time settings and how it is set</p>
+<div class="section" id="changing-the-timezone">
+<h3>Changing the timezone</h3>
+<p>This has been tested on <a class="reference external" href="http://www.archlinux.org/">Arch Linux</a>.</p>
+<p>Find the timezone file you want in <tt class="docutils literal"><span class="pre">/usr/share/zoneinfo</span></tt>. Then copy it to
+<tt class="docutils literal"><span class="pre">/etc/localtime</span></tt>.</p>
+<p>To make the change permanent, change the timezone path in <tt class="docutils literal"><span class="pre">/etc/rc.conf</span></tt></p>
+</div>
+</div>
+</div>
+</body>
+</html>

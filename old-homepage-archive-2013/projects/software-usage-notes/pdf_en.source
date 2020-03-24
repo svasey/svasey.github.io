@@ -1,0 +1,57 @@
+.. default-role:: literal
+
+
+PDF tips and tricks
+===================
+
+Tips and tricks when working with the PDF_ file format
+
+.. _PDF: http://en.wikipedia.org/wiki/PDF
+
+Decrypting a file
+-----------------
+
+When your PDF file is password-protected, you can use xpdf_ to open it. Still it
+will not save it without the password which is annoying.
+
+To do this, the solution I have found is to convert the file to postscript_ and
+then back to pdf. Note however that you may loose some information in the
+process.
+
+You will need poppler_ (for `pdftops`) and ghostscript_ (`ps2pdf`) for this to
+work. Assume you want to decrypt the file `secret.pdf` which has the password
+`foobar`, then run::
+
+    $ pdftops -opw foobar secret.pdf
+    $ ps2pdf secret.ps && rm secret.ps
+
+.. _xpdf: http://www.foolabs.com/xpdf/
+.. _postscript: http://en.wikipedia.org/wiki/PostScript
+.. _poppler: http://poppler.freedesktop.org/
+.. _ghostscript: http://pages.cs.wisc.edu/~ghost/
+
+Merging several files
+---------------------
+
+To concatenate several files into just one, just run::
+
+    $ gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=out.pdf -dBATCH $file1 $file2 ...
+
+Where `gs` is provided by ghostscript_.
+
+.. _ghostscript: http://pages.cs.wisc.edu/~ghost/
+
+Extracting only some pages
+--------------------------
+
+To extract only from page `$start` to page `$end`, of your document `$input`,
+and create a new pdf `$output` with those pages, run::
+
+    $ gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+         -dFirstPage=$start -dLastPage=$end \
+	 -sOutputFile=$output $input
+
+My source for this trick is `this tech tip article from Linux Journal`_.
+
+.. _this tech tip article from Linux Journal: http://www.linuxjournal.com/content/tech-tip-extract-pages-pdf
+

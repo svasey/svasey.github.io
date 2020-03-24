@@ -1,0 +1,17 @@
+/* 
+Stylesheet for the 'printable version' 
+Shared by:
+
+- svasey.org
+- documentation.svasey.org
+- sv-documentation.secure.svasey.org
+
+*/
+
+@import url("default.css");
+
+body
+{
+    /* Serif reads better when printed */
+    font-family: serif;
+}

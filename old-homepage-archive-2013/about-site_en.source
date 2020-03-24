@@ -1,0 +1,94 @@
+.. default-role:: literal
+
+
+About this site
+===============
+
+This page contains notes on how my website was designed and is managed, as well
+as information on copyright_, `standards`_ and the site's `design
+philosophy`_.
+
+.. contents:: Contents
+   :local:
+
+.. _standards: #web-standards
+
+Authenticated and encrypted access
+----------------------------------
+
+The site can be accessed over TLS_, but you will have to manually fetch my
+certificate. Have a look at the site's `TLS documentation`_.
+
+.. _TLS: https://secure.wikimedia.org/wikipedia/en/wiki/Transport_Layer_Security
+.. _TLS documentation: tls-user_en.html
+
+Web standards
+-------------
+
+I try to follow `web standards`_ as well as I can. All my pages should be valid
+XHTML 1.0 transitional, meaning that any standard-abiding browser should be
+able to display them so that they look "reasonably well".
+
+If you think some of my pages are broken with your browser, or if you have a
+suggestion on standards or accessibility, by all means `contact me`_.
+
+.. _web standards: http://www.w3.org/
+.. _contact me: about_en.html#contact-information
+
+Design Philosophy
+-----------------
+
+Navigation
+##########
+
+I have tried to make navigation on this site as simple as possible: at the
+bottom of the page, there is a small "You are here" text that gives the page's
+hierarchical position.
+
+There is also a "contact" button that one can use to send me feedback.
+
+Content types
+#############
+
+Most pages are available in HTML, printable HTML, plain text, or PDF. 
+
+Printable HTML
+++++++++++++++
+
+The printable HTML version is the same as the HTML one, but without fancy
+footers and headers, and optimized for printing.
+
+Plain text
+++++++++++
+
+The plain text version was used to generate the HTML one. It can be useful if
+you want to see the source or if your browser cannot render the page correctly.
+
+PDF
++++
+
+The PDF version is useful if you want to print and read the webpage's content
+offline. It is generated using LateX_
+
+.. _LateX: http://www.latex-project.org/
+
+Look and feel
+#############
+
+The site's design is intentionally minimalistic. Black text on a white
+background without any fancy design elements is the rule.
+
+I consider my webpage as a mean to convey information, not entertainement. It
+seems to me text is one of the best way to transfer information, whereas images
+and other multimedia content should be used sparsely and only as illustration.
+
+The minimalistic design has another advantage: it makes the pages weight very
+little and hence load very fast !
+
+Copyright
+---------
+
+Most of the content of my website is in the public domain. Have a look at `the
+copyright page`_ for the details and exceptions. 
+
+.. _the copyright page: copyright_en.html

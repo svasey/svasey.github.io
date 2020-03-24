@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>list2pkg</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="list2pkg User Manual" /><link rel="up" href="ch03s04.html" title="Manpages" /><link rel="prev" href="ch03s04.html" title="Manpages" /><link rel="next" href="ch03s05.html" title="Bugs" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">list2pkg</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s04.html">Prev</a> </td><th width="60%" align="center">Manpages</th><td width="20%" align="right"> <a accesskey="n" href="ch03s05.html">Next</a></td></tr></table><hr /></div><div class="refentry" title="list2pkg"><a id="list2pkg.1"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>list2pkg — 
+    Create Slackware packages from file lists
+  </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">list2pkg</code>  [<em class="replaceable"><code>OPTIONS</code></em>] [<em class="replaceable"><code>LIST</code></em>] {<em class="replaceable"><code>PACKAGE</code></em>}</p></div></div><div class="refsect1" title="Description"><a id="id399361"></a><h2>Description</h2><p>
+    List2pkg is a program to create Slackware packages in a simple way. More
+    precisely, given a list of files, it will create a slackware package
+    containing these files. A user trying to install that package will see the
+    same files installed at the same locations they were on your system.
+  </p><p>
+    List2pkg takes two arguments: a file list and the path to the package file
+    which will be created. If the file list argument is omitted
+    or <span class="quote">“<span class="quote">-</span>”</span>, the list will be read from standard input.
+  </p></div><div class="refsect1" title="Options"><a id="id399381"></a><h2>Options</h2><p>
+    Note that each option can be abbreviated and will be recognized if
+    unambiguous.
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="option">--help</code></span></dt><dd><p>
+	  Print a short description of each option and exit.
+	</p></dd><dt><span class="term"><code class="option">--version</code></span></dt><dd><p>
+	  Output version information and exit.
+	</p></dd><dt><span class="term"><code class="option">--verbose</code></span></dt><dd><p>
+	  Print more information on what the program does to stdout
+	</p></dd><dt><span class="term"><code class="option">--quiet</code></span></dt><dd><p>
+	  Print only warnings and error messages
+	</p></dd><dt><span class="term"><code class="option">--treedir=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Copy the files to that directory before creating the package. By
+	  default, a temporary directory is created in <code class="filename">/var/tmp
+	  </code> and deleted afterward.
+	</p></dd><dt><span class="term"><code class="option">--changetree=<em class="parameter"><code>PROG</code></em></code></span></dt><dd><p>
+	  Once the package directory tree has been created, that script will be
+	  run with the tree's path as first argument, so that you can do your
+	  own custom changes to the tree.
+	</p></dd><dt><span class="term"><code class="option">--doinst=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Give the path to a custom doinst.sh script to be copied to the
+	  package's
+	  <code class="filename">install/</code> directory.
+	</p></dd><dt><span class="term"><code class="option">--slack-desc=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Give the path to a custom slack-desc file to be copied to the
+	  package's <code class="filename">install/</code> directory.
+	</p></dd><dt><span class="term"><code class="option">--install-files=<em class="parameter"><code>DIR</code></em></code></span></dt><dd><p>
+	  Give the path to a directory where other files that will be copied to
+	  the <code class="filename">install/</code> directory are.
+	</p></dd><dt><span class="term"><code class="option">--no-root-ownership</code></span></dt><dd><p>
+	  If this is given, the files in the package will not have their owner
+	  and group reset to root before being packed.
+	</p></dd><dt><span class="term"><code class="option">--exclude-ownership=<em class="parameter"><code>FILE</code></em></code>
+      </span></dt><dd><p>
+	  Give a custom file specifying rules concerning what group and user are
+	  created on the target system by the doinst.sh script. The default file
+	  is in <code class="filename">${SYSCONFDIR}/list2pkg.conf</code>. See the FILES
+	  section for more information on the file's syntax.
+	</p></dd><dt><span class="term"><code class="option">--linkadd=<em class="parameter"><code>y|n</code></em></code></span></dt><dd><p>
+	  This option is passed as is to makepkg. The default is 'y'
+	</p></dd><dt><span class="term"><code class="option">--prepend</code></span></dt><dd><p>
+	  If specified, this is passed to makepkg. By default, this is not.
+	</p></dd><dt><span class="term"><code class="option">--chown=<em class="parameter"><code>y|n</code></em></code></span></dt><dd><p>
+	  This option is passed as is to makepkg. The default is 'n'
+	</p></dd></dl></div></div><div class="refsect1" title="Files"><a id="id399661"></a><h2>Files</h2><p>
+    List2pkg uses the <code class="filename">${SYSCONFDIR}/list2pkg.conf</code>
+    configuration file to know which owner or group name to consider as worth
+    re-creating on the target system. All names which do not match the
+    regular expressions in that file and are owner or group of one of the files
+    in the package tree will be re-created on the target system.
+  </p><p>
+    The file syntax is as follows. Each line is matched as a perl regular
+    expression the following way (consider <code class="varname">EXPR</code> is whatever
+    is written on the line)
+  </p><p>
+    <code class="code">
+      $NAME =~ /^$EXPR$/
+    </code>
+  </p><p>
+    If this matches, then the user or group name will not be created on the
+    target system.
+  </p></div><div class="refsect1" title="See Also"><a id="id399697"></a><h2>See Also</h2><p>
+    urpkg(1), makepkg(1)
+  </p></div><div class="refsect1" title="Contributing"><a id="man-contribute"></a><h2>Contributing</h2><p>
+    Please report bugs and other inconsistencies you find to the author (address
+    is below). If you have implemented a patch, please do send it there. Any
+    contribution is welcome. See also list2pkg's website:
+    <a class="ulink" href="http://svasey.org/projects/old-stuff/list2pkg/" target="_top">
+      http://svasey.org/projects/old-stuff/list2pkg/</a>
+  </p></div><div class="refsect1" title="Unrestrictions"><a id="man-unrestrictions"></a><h2>Unrestrictions</h2><p>
+    list2pkg is public-domain software. See the COPYING file for more information.  </p></div><div class="refsect1" title="Author"><a id="man-authors"></a><h2>Author</h2><p>
+  The author is Sebastien Vasey (<code class="code">sebastien dot vasey at gmail dot com</code>)
+</p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03s04.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Manpages </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Bugs</td></tr></table></div></body></html>

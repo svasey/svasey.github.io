@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Git tips and tricks</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="git-tips-and-tricks">
+<h2>Git tips and tricks</h2>
+<p>Documents how to do some simple things with <a class="reference external" href="http://git-scm.com/">git</a></p>
+<div class="section" id="import-svn-repository">
+<h3>Import svn repository</h3>
+<p>To import a svn repository, create your repository, and init git svn:</p>
+<pre class="literal-block">
+mkdir mygitrepo &amp;&amp; git svn init http://my.repo.google.com/trunk
+</pre>
+<p>It's better to get only the trunk and not the branches and the tags: this
+creates several problems with git-svn</p>
+<p>To create an initial copy, or update your content, use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">svn</span> <span class="pre">fetch</span></tt></p>
+<p>To update your change, you moreover have to do <tt class="docutils literal"><span class="pre">git</span> <span class="pre">svn</span> <span class="pre">rebase</span></tt></p>
+<p>To commit your changes to the svn repo, use <tt class="docutils literal"><span class="pre">git</span> <span class="pre">svn</span> <span class="pre">dcommit</span></tt></p>
+<p>If you cloned the project, you have to add the svn remote branch manually. Add
+to <tt class="docutils literal"><span class="pre">.gitconfig</span></tt>, e.g:</p>
+<pre class="literal-block">
+[svn-remote &quot;svn&quot;]
+url = https://svn.epfl.ch/svn/itp-team-lambda/trunk
+fetch = :refs/remotes/git-svn
+</pre>
+</div>
+<div class="section" id="merge-two-git-projects">
+<h3>Merge two git projects</h3>
+<p>To merge one git repository (in $repopath) into another (e.g in subdirectory
+$dir), do:</p>
+<pre class="literal-block">
+git remote add -f Bproject $repopath
+git merge -s ours --no-commit Bproject/master
+git read-tree --prefix=${dir}/ -u Bproject/master
+git commit -m &quot;Merge B project as our subdirectory&quot;
+</pre>
+<!-- Somehow disappeared... -->
+<!-- See the `using merge subtree howto`_ for more information. -->
+<!-- .. _using merge subtree howto: http://www.kernel.org/pub/software/scm/git/docs/howto/using-merge-subtree.html -->
+</div>
+<div class="section" id="revert-a-change-to-a-file">
+<h3>Revert a change to a file</h3>
+<p>To revert a file to a previous state, do:</p>
+<pre class="literal-block">
+git checkout $commit -- $filename
+</pre>
+<p>and commit the result.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.. default-role:: literal
+
+
+Wget documentation
+==================
+
+This documents how to do some simple things with wget_.
+
+.. _wget: http://www.gnu.org/software/wget/
+
+Using a proxy server
+--------------------
+
+To set a proxy server, you need to use the `http_proxy` environment variable::
+
+    $ export http_proxy="http://localhost:8118"
+    $ wget http://example.com
+

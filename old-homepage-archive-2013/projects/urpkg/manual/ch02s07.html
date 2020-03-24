@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Creating a Slackware package</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch02.html" title="Chapter 2. Getting started" /><link rel="prev" href="ch02s06.html" title="Pre and post install scripts" /><link rel="next" href="ch02s08.html" title="Uninstalling a program" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Creating a Slackware package</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s06.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Getting started</th><td width="20%" align="right"> <a accesskey="n" href="ch02s08.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Creating a Slackware package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="slackpkg"></a>Creating a Slackware package</h2></div></div></div><p>
+  Since version 1.4, it is possible to create a slackware package of whatever
+  program we installed with urpkg. In this section, we are going to create a
+  Slackware package of foo, the test package we are using. To do that, you will
+  need to download and install another of my utilities:
+  <a class="ulink" href="http://svasey.org/projects/old-stuff/list2pkg/index_en.html" target="_top">list2pkg</a> . This is a
+  tool which converts a list of files to a Slackware package. The idea is to use
+  urpkg's <code class="option">--list</code> action to create a file list to be used by
+  list2pkg.
+</p><p>
+  Note that you should first read list2pkg's user manual before using it to
+  create <span class="quote">“<span class="quote">serious</span>”</span> packages. The content of this section is just
+  meant as an overview of list2pkg's possibilities.
+</p><div class="sect2" title="Listing the package's file"><div class="titlepage"><div><div><h3 class="title"><a id="id420310"></a>Listing the package's file</h3></div></div></div><p>
+    We already know we can use the <code class="option">--list</code> action to list all
+    files which are part of foo. However, what is outputted does not only
+    contain files, as list2pkg require. We must add the <code class="option">--quiet</code>
+    option for a <span class="quote">“<span class="quote">pure</span>”</span> list of files to be generated.
+  </p></div><div class="sect2" title="Creating the package"><div class="titlepage"><div><div><h3 class="title"><a id="id420333"></a>Creating the package</h3></div></div></div><p>
+    That's all we need. We now only have to use the file listing command, and
+    pipe its output to list2pkg.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>urpkg --list --quiet foo | sudo list2pkg foo-0.1-noarch-1usr.tgz
+  </pre><p>
+    Note that we absolutely need to invoke list2pkg with root privilege, in
+    order for all metadata to be preserved.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s06.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s08.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Pre and post install scripts </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Uninstalling a program</td></tr></table></div></body></html>

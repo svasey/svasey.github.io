@@ -1,0 +1,28 @@
+.. default-role:: literal
+
+
+Matlab tips and tricks
+======================
+
+This page documents how to do some non-obvious things with Matlab_.
+
+The instructions below have been tested with Matlab 7.5 .
+
+.. _Matlab: http://www.mathworks.com/
+
+Setting axis graduation and name
+--------------------------------
+
+When drawing a graph, to set your axis graduation, draw your graph and
+run::
+
+    set (gca, 'XTick', [-2:2])
+
+replacing `[-2:2]` by the values you want on your X-axis.
+
+To set your axis name, run::
+
+    xlabel ('x')
+
+replacing `'x'` with your X-axis name.
+

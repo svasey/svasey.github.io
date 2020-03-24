@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Python documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="python_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="python_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="python_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="python-documentation">
+<h2>Python documentation</h2>
+<p>Documents some <a class="reference external" href="http://python.org/">Python</a> tips and tricks</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#how-to-process-command-line-arguments" id="id1">How to process command line arguments</a></li>
+<li><a class="reference internal" href="#return-value-of-enumerate" id="id2">Return value of enumerate</a></li>
+<li><a class="reference internal" href="#enumerate-in-reverse" id="id3">Enumerate in reverse</a></li>
+<li><a class="reference internal" href="#convert-a-string-to-an-integer" id="id4">Convert a string to an integer</a></li>
+<li><a class="reference internal" href="#convert-an-integer-to-a-string" id="id5">Convert an integer to a string</a></li>
+<li><a class="reference internal" href="#launch-an-external-process" id="id6">Launch an external process</a><ul>
+<li><a class="reference internal" href="#if-you-are-just-interested-in-the-return-status" id="id7">If you are just interested in the return status</a></li>
+<li><a class="reference internal" href="#if-you-want-the-output-too" id="id8">If you want the output too</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#change-the-current-directory" id="id9">Change the current directory</a></li>
+<li><a class="reference internal" href="#correctly-reading-a-shell-command" id="id10">Correctly reading a shell command</a></li>
+</ul>
+</div>
+<div class="section" id="how-to-process-command-line-arguments">
+<h3>How to process command line arguments</h3>
+<p>Use the <a class="reference external" href="http://docs.python.org/library/optparse.html">optparse</a> standard module.</p>
+<p>To disable interspersed arguments (i.e to stop option processing at the first
+non-option), call <tt class="docutils literal"><span class="pre">disable_interspersed_args</span></tt> on your parser.</p>
+</div>
+<div class="section" id="return-value-of-enumerate">
+<h3>Return value of enumerate</h3>
+<pre class="literal-block">
+for (index, value) in enumerate (sequence):
+    # ...
+</pre>
+</div>
+<div class="section" id="enumerate-in-reverse">
+<h3>Enumerate in reverse</h3>
+<p>Christophe Simonis <a class="reference external" href="http://christophe-simonis-at-tiny.blogspot.com/2008/08/python-reverse-enumerate.html">suggests using the itertools library</a> , but I prefer
+the non-optimized version (simpler):</p>
+<pre class="literal-block">
+for (index,value) in reversed(list (enumerate (sequence))):
+    doStuff ()
+</pre>
+</div>
+<div class="section" id="convert-a-string-to-an-integer">
+<h3>Convert a string to an integer</h3>
+<p>Use the built-in function <tt class="docutils literal"><span class="pre">int</span> <span class="pre">(string,</span> <span class="pre">[base])</span></tt>.</p>
+<p>If you know that your string is going to be in a base lower than 11, you can use
+the <tt class="docutils literal"><span class="pre">str.isdigit</span></tt> function to check that your string indeed contains a number.</p>
+</div>
+<div class="section" id="convert-an-integer-to-a-string">
+<h3>Convert an integer to a string</h3>
+<p>Use the built-in function <tt class="docutils literal"><span class="pre">format</span></tt>:</p>
+<pre class="literal-block">
+format (number, 'd') # For base 10
+format (number, 'x') # For base 16
+format (number, 'o') # For base 8
+format (number, 'b') # For base 2
+</pre>
+<p>See the <a class="reference external" href="http://docs.python.org/library/string.html#formatspec">specifications</a> for more on <tt class="docutils literal"><span class="pre">format</span></tt></p>
+</div>
+<div class="section" id="launch-an-external-process">
+<h3>Launch an external process</h3>
+<p>In general, the <a class="reference external" href="http://docs.python.org/library/subprocess.html">subprocess</a> standard module is to be used to manage external
+processes. However, I have coded two helper functions for common tasks.</p>
+<div class="section" id="if-you-are-just-interested-in-the-return-status">
+<h4>If you are just interested in the return status</h4>
+<p>Use <tt class="docutils literal"><span class="pre">svlib.servicerunner.Runner.callCmd</span> <span class="pre">(['your_cmd',</span> <span class="pre">'your_arg1',</span> <span class="pre">...])</span></tt> .
+It throws an <tt class="docutils literal"><span class="pre">UnexpectedStatusError</span></tt> if the return status is not zero (or the
+one expected, see code for more)</p>
+</div>
+<div class="section" id="if-you-want-the-output-too">
+<h4>If you want the output too</h4>
+<p>Use <tt class="docutils literal"><span class="pre">svlib.servicerunner.Runner.callCmdGetOutput(['your_cmd',</span> <span class="pre">'your_arg1',...])</span></tt>.</p>
+<p>The usage is similar to callCmd, but it returns a tuple <tt class="docutils literal"><span class="pre">(returncode,</span>
+<span class="pre">stdoutString,</span> <span class="pre">stderrString)</span></tt>. See code for more.</p>
+</div>
+</div>
+<div class="section" id="change-the-current-directory">
+<h3>Change the current directory</h3>
+<p>Use <tt class="docutils literal"><span class="pre">os.chdir(path)</span></tt></p>
+</div>
+<div class="section" id="correctly-reading-a-shell-command">
+<h3>Correctly reading a shell command</h3>
+<p>Often, I want to transform a shell command given as a string, such as <tt class="docutils literal"><span class="pre">cat</span>
+<span class="pre">/etc/foo.txt</span> <span class="pre">&quot;file</span> <span class="pre">with</span> <span class="pre">space&quot;</span></tt> into a list of arguments to pass to e.g
+<tt class="docutils literal"><span class="pre">callCmd</span></tt>.</p>
+<p>Of course <tt class="docutils literal"><span class="pre">str.split</span></tt> is not enough here, since it will just ignore quoted
+arguments. The solution is to use <tt class="docutils literal"><span class="pre">shlex.split</span></tt>.</p>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >python</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

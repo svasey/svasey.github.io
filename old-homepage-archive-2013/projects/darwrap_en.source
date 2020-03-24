@@ -1,0 +1,81 @@
+.. default-role:: literal
+
+
+Darwrap
+=======
+
+Description
+-----------
+
+Darwrap is a backup program using Dar_. It can be used to automate your backup
+to a local hard drive, a remote filesystem (using rsync_), or even `Amazon
+S3`_. Differential backup, cryptographic signing and encryption are supported.
+
+.. _Dar: http://dar.linux.free.fr/
+.. _Amazon S3: http://aws.amazon.com/s3/
+.. _rsync: http://rsync.samba.org/
+
+Features
+--------
+
+* Supports archive encryption and signing
+* Can add redundancy using `parchive`_
+* Supports differential backups using the tower of Hanoi rotation scheme
+* The backup process can easily be interrupted and resumed
+* Completely automated restoration
+* Released in the Public Domain
+
+.. _parchive: http://parchive.sourceforge.net/
+
+News
+----
+
+January 3rd 2012
+################
+
+Fixed a bug in the `rsync` destination type that would occur with large backups.
+
+July 1st 2011
+#############
+
+Added the `rsync` destination type to allow remote backups with rsync and SSH.
+
+April 6th 2010
+##############
+
+* The user can now prevent a backup process from running.
+* The user can now kill a backup process.
+* Faster process management code.
+
+February 8th 2010
+#################
+
+* Added support for cryptographic signing of backup archives.
+* Can now pass options to `gpg` from the configuration file.
+
+February 4th 2010
+#################
+
+Initial release.
+
+Download
+--------
+
+Darwrap is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: download-install-doc_en.html
+.. _Latest source tarball: ../public-repo.svasey.org/src/darwrap.tar.gz
+.. _PGP signature: ../public-repo.svasey.org/src/darwrap.tar.gz.sig
+
+Documentation
+-------------
+
+See the `darwrap documentation page`_.
+
+.. _darwrap documentation page: darwrap-doc_en.html

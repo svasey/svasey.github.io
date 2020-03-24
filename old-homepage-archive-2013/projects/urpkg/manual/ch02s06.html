@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Pre and post install scripts</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch02.html" title="Chapter 2. Getting started" /><link rel="prev" href="ch02s05.html" title="Playing with the program's files" /><link rel="next" href="ch02s07.html" title="Creating a Slackware package" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Pre and post install scripts</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s05.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Getting started</th><td width="20%" align="right"> <a accesskey="n" href="ch02s07.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Pre and post install scripts"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="pre-post"></a>Pre and post install scripts</h2></div></div></div><p>
+  You might have remarked by looking at the output of
+  the <code class="option">--install</code> command that some commands are run after the
+  installation, like ldconfig for example. In fact, it is very easy to add
+  scripts to be automatically executed before or after a package's installation.
+</p><div class="sect2" title="The preinstall script"><div class="titlepage"><div><div><h3 class="title"><a id="id419911"></a>The preinstall script</h3></div></div></div><p>
+  The preinstall script should be
+  in <code class="filename">${CONFIGDIR}/preinst</code>, by default
+  <code class="filename">/usr/local/etc/urpkg/preinst</code>. The default script that
+  comes with the urpkg tarball does not run any command. It is up to you to
+  change it if you want certain command to be run before any package is
+  installed. Pay attention though, because this script will be invoked with the
+  same privileges you had when you invoked urpkg. They
+  will <span class="emphasis"><em>not</em></span> be run as the package user. If you want to
+  exclude the preinstall script from being run, you have to use the 
+  <code class="option">--no-preinst</code> option.
+  </p></div><div class="sect2" title="The postinstall scripts"><div class="titlepage"><div><div><h3 class="title"><a id="id419813"></a>The postinstall scripts</h3></div></div></div><p>
+    Every postinstall script should be put in 
+    <code class="filename">${CONFIGDIR}/postinst/</code>, by
+    default <code class="filename">/usr/local/etc/urpkg/postinst/</code>. Every script
+    here is run after the installation. The scripts are run in an
+    <span class="emphasis"><em>undefined</em></span> order. By default, ldconfig and a
+    script installing the program's source are run.
+  </p><p>
+    The source script is run only if it is passed the source files as an
+    argument. To pass an argument to a postinstall script,
+    use <code class="option">--SCRIPT-arg</code>. For example, if the sources of foo are in
+    a foo.tar.gz file, you would do
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo urpkg --install --source-arg=foo.tar.gz make install
+  </pre><p>
+    The sources are installed in the package directory,
+    in <code class="filename">src/</code>. For a package named foo-1.1 that would be
+    <code class="filename">${PKGDIR}/foo-1.1/src</code>
+  </p><p>
+    You can use the <code class="option">--no-postinst</code> option to  not
+    run <span class="emphasis"><em>any</em></span> postinstall script
+    or <code class="option">--exclude-script</code> to exclude a particular one.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s07.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Playing with the program's files </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Creating a Slackware package</td></tr></table></div></body></html>

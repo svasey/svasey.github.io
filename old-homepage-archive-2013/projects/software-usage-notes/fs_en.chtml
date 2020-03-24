@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>File system documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="file-system-documentation">
+<h2>File system documentation</h2>
+<p>How to do low level operations on the file system</p>
+<div class="section" id="create-and-mount-a-fat32-partition">
+<h3>Create and mount a FAT32 partition</h3>
+<p>Using fdisk, set the system id to b (W95 FAT32)</p>
+<p>Download and install <a class="reference external" href="http://www.daniel-baumann.ch/software/dosfstools/">dosfstools</a></p>
+<p>Run (as root):</p>
+<pre class="literal-block">
+$ mkfs.vfat $yourpartition
+</pre>
+<p>In <tt class="docutils literal"><span class="pre">/etc/fstab</span></tt>, use the following options:</p>
+<pre class="literal-block">
+/dev/$yourdev /$mountpoint vfat rw,sohrtname=mixed,utf8 0 0
+</pre>
+</div>
+<div class="section" id="how-to-resize-a-partition">
+<h3>How to resize a partition</h3>
+<p>First edit the partition table so that your partition has the size you want (i.e
+delete other partitions around, and so on). Run this as root:</p>
+<pre class="literal-block">
+$ fdisk $yourdev
+</pre>
+<p>Then use <tt class="docutils literal"><span class="pre">resize2fs</span></tt> to resize your partition (as root):</p>
+<pre class="literal-block">
+resize2fs /dev/sda7 [$size]
+</pre>
+<p>where <tt class="docutils literal"><span class="pre">$size</span></tt> is optionnal (normally grows the partition to its dimensions
+given with <tt class="docutils literal"><span class="pre">fdisk</span></tt>)</p>
+</div>
+<div class="section" id="use-uuid-to-recognize-your-devices">
+<h3>Use uuid to recognize your devices</h3>
+<p>When a partition is created, a lot of different filesystems add a universally
+unique identifier (UUID) to the volume. This can be used to recognize a disk
+unambiguously. To get a partition's uuid:</p>
+<pre class="literal-block">
+$ vol_id $devname
+</pre>
+<p>The uuid is given by the <tt class="docutils literal"><span class="pre">ID_FS_UUID</span></tt> line in the output.</p>
+<p>On Arch Linux, <tt class="docutils literal"><span class="pre">vol_id</span></tt> can be found in <tt class="docutils literal"><span class="pre">lib/initcpio/udev/vol_id</span></tt>.</p>
+<p>You can then add a line like this in your <tt class="docutils literal"><span class="pre">fstab</span></tt>:</p>
+<pre class="literal-block">
+UUID=1234-5678-9101-abcde $mountpoint $fstype $opts 0 0
+</pre>
+<!-- Somehow disappeared -->
+<!-- The article named `What UUID can do for you`_ provides much more information. -->
+<!-- .. _What UUID can do for you: http://www.linux.com/archive/feature/146951 -->
+</div>
+</div>
+</div>
+</body>
+</html>

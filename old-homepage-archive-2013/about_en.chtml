@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>About Sebastien Vasey</title>
+<link rel="stylesheet" href="css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="about-sebastien-vasey">
+<h2>About Sebastien Vasey</h2>
+<blockquote>
+I wonder if I've been changed in the night? Let me think: was I the same
+when I got up this morning? I almost think I can remember feeling a little
+different. But if I'm not the same, the next question is, Who in the world
+am I? Ah, <em>that's</em> the great puzzle!<a class="footnote-reference" href="#id2" id="id1"><sup>1</sup></a></blockquote>
+<div class="section" id="who-am-i">
+<h3>Who am I ?</h3>
+<p>I am a student. I enjoy studying everything that gravitates around Science. I am
+especially interested in Mathematics, Computer Science and Communication. I am
+registered as a master student in <a class="reference external" href="http://ic.epfl.ch/communication-systems">Communication Systems</a> at <a class="reference external" href="http://epfl.ch/home-list-en.html">EPFL</a> (and I have
+a bachelor in the same field, at the same school). Starting from August 2011, I
+will be an exchange student at <a class="reference external" href="http://www.cmu.edu/index.shtml">CMU</a>.</p>
+<p>I am also a programmer, and enjoy the <em>fun</em> of writing software. I use this web
+site to publish <a class="reference external" href="projects/index_en.html">some of my work</a>. My programs are available as <a class="reference external" href="http://www.gnu.org/philosophy/free-sw.html">free
+software</a>.</p>
+</div>
+<div class="section" id="contact-information">
+<h3>Contact information</h3>
+<div class="section" id="email">
+<h4>Email</h4>
+<p>My email address is:</p>
+<pre class="literal-block">
+sebastien dot vasey at gmail dot com
+</pre>
+<p>Of course, you should remove the spaces, and replace the &quot;dot&quot; and &quot;at&quot; parts by
+their respective symbol on the keyboard. This is just a clumsy attempt to fool
+spambots.</p>
+<p>Feel free to send me any comments, questions, rants, thanks or other words of
+wisdom you might have.</p>
+</div>
+<div class="section" id="privacy-now">
+<h4>Privacy Now !</h4>
+<p>Because I highly value my privacy, and fully agree with the arguments put
+forward in <a class="reference external" href="http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html">Why I wrote PGP</a>, or this <a class="reference external" href="http://www.andrebacard.com/pgp.html">Non-Technical PGP FAQ</a>, I have been
+using PGP (actually the free implementation <a class="reference external" href="http://gnupg.org/">GnuPG</a>) since 2007.</p>
+<p>You can get my <a class="reference external" href="http://certs.svasey.org/gpg-svasey-pubkey.asc">PGP key</a> (<tt class="docutils literal"><span class="pre">4D5ADB32</span></tt>) here, or from a key server like
+<tt class="docutils literal"><span class="pre">subkeys.pgp.net</span></tt>. The fingerprint is:</p>
+<pre class="literal-block">
+C88F 230E 4053 D94A 64C8  2D53 FB58 40DD 4D5A DB32
+</pre>
+<p>I always sign my outgoing messages, and encourage you to do the same, as well as
+encrypt them.</p>
+<p>I also sign all the software releases for download from that site. Please warn
+me if you find an unsigned one.</p>
+<p><strong>Note:</strong> the key id and fingerprint were updated on February 7th, 2010 (the
+text above was changed accordingly): see my <a class="reference external" href="http://certs.svasey.org/key-transition.txt">key transition statement</a>.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Quoted from <a class="reference external" href="http://www.gutenberg.org/ebooks/11">&quot;Alice's Adventures in Wonderland&quot;</a>.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

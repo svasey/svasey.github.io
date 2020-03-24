@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>How to use your computer as an alarm clock</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="how-to-use-your-computer-as-an-alarm-clock">
+<h2>How to use your computer as an alarm clock</h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Note:</th><td class="field-body">This article is now completely outdated: do not use it for anything serious.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="introduction">
+<h3>Introduction</h3>
+<p>For a long time, I had been using that crappy FM radio clock which can only wake
+you up by connecting to some of the lame stations there are in the deserted area
+you live in. Why go through such pain while you have your computer two meters
+away, with your 10 000 songs collection and a connection to your favorite web
+radio ? I decided it was enough. The next steps I took are detailed in this
+mini-howto.</p>
+<p><strong>Important</strong>: This howto only details the procedure if you actually want your
+computer to boot and wake you up. There are far more convenient solutions if you
+use hibernation, or if your computer is on all the time (I personally use cron
+jobs, but there are also dedicated programs like <a class="reference external" href="http://www.astrojar.org.uk/kalarm/">KAlarm</a> ).  Actually, those
+solutions may even apply to the case this howto covers but I haven't managed to
+get anything else working. If you have, please <a class="reference external" href="../../about_en.html#contact-information">let me know</a>.</p>
+</div>
+<div class="section" id="pre-requisites">
+<h3>Pre-requisites</h3>
+<p>I detail the procedure for a UNIX-like system with KDE 3.5 installed. If you
+have another system, you will have to do some googling to find the corresponding
+features.</p>
+<p>You will also need a music player easily controllable from the command line (e.g
+AmaroK does not do the trick, as it can only be controlled via DCOP, and the
+DCOP server is not started until after you login). I use mplayer. One of my
+script is written in <a class="reference external" href="http://www.perl.com">Perl</a>, so you will need it as well. Also, you will need some
+X-window interface generator, such as Xdialog (the one I use). It will be used
+to generate an interface you will use to stop the music once it has started.</p>
+<p>Finally, do not expect all this to work for you on the first place, as every
+installation is different. You will probably have to change some small things
+here and there in my scripts.</p>
+</div>
+<div class="section" id="overview">
+<h3>Overview</h3>
+<p>You will need your computer to automatically boot at the time you want to wake
+up. To do that, the first step is to go into your BIOS and configure it to power
+on your PC at some given time. If you have more specific needs, you can also try
+<a class="reference external" href="http://en.wikipedia.org/wiki/Wake-on-LAN">wake-on-LAN</a>. I have never done it myself so I cannot give you any advice.</p>
+<p>Now the problem is as follows: you need the music to play immediately after you
+PC starts. You do not want to login to do that. One simple solution is the
+auto-login feature provided by KDE and GNOME. You will simply be logged in
+without having to supply a password, and can then put my scripts in the
+Autostart directory and it will be that simple. It is not secure though, because
+anyone and not only you can login using that feature.</p>
+<p>Another solution is to add a new RC script. This way the music will start but
+you will not be able to stop it until after you log in...</p>
+<p>So starting everything before or after the login does not seem very
+convenient. There is only one possibity left: start it at the same time as the
+login manager. If you use a graphical login manager, you will then be able to
+stop the music by just clicking on a popup and then proceed to login normally.</p>
+</div>
+<div class="section" id="launching-the-script-with-the-login-manager">
+<h3>Launching the script with the login manager</h3>
+<p><strong>Warning</strong>: changing the login manager configuration carelessly can compromise
+the security of your system. Be sure to read the fine manual before attempting
+any change and never, never take my words for granted ;-)</p>
+<p>I assume you are using kdm as a login manager. It keeps its configuration files
+<tt class="docutils literal"><span class="pre">/usr/kde/3.5/share/config/kdm</span></tt> on my system. The file which interests us is
+<tt class="docutils literal"><span class="pre">Xsetup</span></tt>. It is a script run just before the login dialog appears. Here is
+what I have in mine:</p>
+<pre class="literal-block">
+#! /bin/sh
+# Xsetup - run as root before the login dialog appears
+
+/usr/local/sbin/startup.pl
+
+exit $?
+</pre>
+<p><tt class="docutils literal"><span class="pre">/usr/local/sbin/startup.pl</span></tt> is to be replaced by the path where you will
+install my <tt class="docutils literal"><span class="pre">startup.pl</span></tt> script. As it is going to be run as root, you'd better
+<strong>put it in a place where it cannot be modified by ordinary users</strong>.</p>
+</div>
+<div class="section" id="installing-and-customizing-the-script">
+<h3>Installing and customizing the script</h3>
+<p>Here is the <a class="reference external" href="../../download.svasey.org/wakeup/wakeup-1_0.tar.gz">tarball containing the two scripts you will need</a>.</p>
+<div class="section" id="customizing-startup-pl">
+<h4>Customizing <tt class="docutils literal"><span class="pre">startup.pl</span></tt></h4>
+<p>The <tt class="docutils literal"><span class="pre">startup.pl</span></tt> script is the one you will have to customize most often. It
+checks if the current time corresponds to the time it should wake you up, and
+launch the music (calling the <tt class="docutils literal"><span class="pre">startup-mplayer.sh</span></tt> script). Afterward, it
+generates a popup using <tt class="docutils literal"><span class="pre">Xdialog</span></tt> and wait for you to close that popup or for
+it to timeout. Once that is done, the music will be stopped.</p>
+<p><tt class="docutils literal"><span class="pre">startup.pl</span></tt> uses the <tt class="docutils literal"><span class="pre">Proc::Simple</span></tt> module. Just copy the <tt class="docutils literal"><span class="pre">Proc</span></tt>
+directory into your perl library path.</p>
+<p>Then open <tt class="docutils literal"><span class="pre">startup.pl</span></tt> and edit the <tt class="docutils literal"><span class="pre">XDIALOG</span></tt> and <tt class="docutils literal"><span class="pre">MPLAYERSTART</span></tt> according
+to your system. You can then edit the <tt class="docutils literal"><span class="pre">PLAYLISTS</span></tt> variable. The first playlist
+appearing will be played first. You can also change the <tt class="docutils literal"><span class="pre">TIME</span></tt> variable if you
+are not satisfied with the default.</p>
+<p>Now comes the interesting part. Since you will not want the music to be played
+every time you boot your computer, but only at some specific time and days, you
+should take care of the following variables: <tt class="docutils literal"><span class="pre">REGTIME</span></tt>, <tt class="docutils literal"><span class="pre">EXCLUDETIME</span></tt> and
+<tt class="docutils literal"><span class="pre">OTHERTIME</span></tt>.</p>
+<p>Each of those three objects is described by the comments above it. For each
+object, there are five keys (day, month, min, hour, wday) you should take care
+of. Their value is a two-elements array, describing an interval between which
+the music will (or won't, depending on the object) be played. I believe I
+explained enough about that file. Go ahead, do your changes and <strong>test
+them</strong>. If you have any more questions look at the code or <a class="reference external" href="../../about_en.html#contact-information">send me a mail</a>.</p>
+</div>
+<div class="section" id="customizing-startup-mplayer-sh">
+<h4>Customizing <tt class="docutils literal"><span class="pre">startup-mplayer.sh</span></tt></h4>
+<p>It should not be too difficult to understand that script. Change the <tt class="docutils literal"><span class="pre">MPLAYER</span></tt>
+variable to the path to your music player executable. If you change it, you
+should also change the command line options it is given.</p>
+<p>The script also temporarily changes the volume. I assume you are using alsa. If
+you are not, you will have to change that part as well. In any case, be sure to
+adapt the volume to your needs.</p>
+<p>The only things <tt class="docutils literal"><span class="pre">startup.pl</span></tt> expects concerning that script is that it takes
+some path to playlists as arguments, and correctly traps <tt class="docutils literal"><span class="pre">SIGINT</span></tt> and
+<tt class="docutils literal"><span class="pre">SIGTERM</span></tt> (i.e <tt class="docutils literal"><span class="pre">startup-mplayer.sh</span></tt> will stop the media player if it is
+killed)</p>
+</div>
+</div>
+<div class="section" id="last-words">
+<h3>Last words</h3>
+<p>Now that you have set everything up, there is only one thing to do: <em>test, test
+and test</em>. Do not forget that <strong>this will be run as root</strong> so you'd better be
+careful.</p>
+<p>If you managed to get it working, I'd like to <a class="reference external" href="../../about_en.html#contact-information">hear from you</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

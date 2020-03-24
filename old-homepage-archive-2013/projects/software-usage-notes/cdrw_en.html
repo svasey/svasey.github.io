@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>CD / DVD: reading, ripping, burning</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="cdrw_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="cdrw_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="cdrw_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="cd-dvd-reading-ripping-burning">
+<h2>CD / DVD: reading, ripping, burning</h2>
+<div class="section" id="burning-a-file-to-a-cd-r-basic">
+<h3>Burning a file to a CD-R (basic)</h3>
+<p>This documents how to do this from the command line. I assume your CD burner is
+mapped to the device file <tt class="docutils literal"><span class="pre">/dev/sr1</span></tt>.</p>
+<p>First, make an iso of the directory you want to burn:</p>
+<pre class="literal-block">
+mkisofs -r -R -J -l your-directory &gt; your-iso.iso
+</pre>
+<p>Then burn the iso (check that root has write access to <tt class="docutils literal"><span class="pre">/dev/sr1</span></tt>):</p>
+<pre class="literal-block">
+sudo cdrecord -v dev=/dev/sr1 your-iso.iso
+</pre>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<p>I basically copied-down the instructions from <a class="reference external" href="http://www.yolinux.com/TUTORIALS/LinuxTutorialCDBurn.html">a YoLinux tutorial</a></p>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >cdrw</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

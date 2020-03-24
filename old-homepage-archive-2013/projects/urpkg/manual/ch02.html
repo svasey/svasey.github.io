@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Chapter 2. Getting started</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="index.html" title="Urpkg User Manual" /><link rel="prev" href="ch01s02.html" title="How can urpkg be useful ?" /><link rel="next" href="ch02s02.html" title="Creating a test package" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter 2. Getting started</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><th width="60%" align="center"> </th><td width="20%" align="right"> <a accesskey="n" href="ch02s02.html">Next</a></td></tr></table><hr /></div><div class="chapter" title="Chapter 2. Getting started"><div class="titlepage"><div><div><h2 class="title"><a id="getting-started"></a>Chapter 2. Getting started</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="ch02.html#compile-install">Compiling and installing urpkg</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch02.html#id370568">Prerequisites</a></span></dt><dt><span class="sect2"><a href="ch02.html#id417549">Extracting the tarball</a></span></dt><dt><span class="sect2"><a href="ch02.html#configuring-build">Configuring the build</a></span></dt><dt><span class="sect2"><a href="ch02.html#id417886">Compiling urpkg</a></span></dt><dt><span class="sect2"><a href="ch02.html#id417922">Installing urpkg</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch02s02.html">Creating a test package</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch02s02.html#id418777">Creating the destination directories</a></span></dt><dt><span class="sect2"><a href="ch02s02.html#id419214">Creating the source files</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch02s03.html">Adding installation directories and shared files</a></span></dt><dt><span class="sect1"><a href="ch02s04.html">Installing a program</a></span></dt><dt><span class="sect1"><a href="ch02s05.html">Playing with the program's files</a></span></dt><dt><span class="sect1"><a href="ch02s06.html">Pre and post install scripts</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch02s06.html#id419911">The preinstall script</a></span></dt><dt><span class="sect2"><a href="ch02s06.html#id419813">The postinstall scripts</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch02s07.html">Creating a Slackware package</a></span></dt><dd><dl><dt><span class="sect2"><a href="ch02s07.html#id420310">Listing the package's file</a></span></dt><dt><span class="sect2"><a href="ch02s07.html#id420333">Creating the package</a></span></dt></dl></dd><dt><span class="sect1"><a href="ch02s08.html">Uninstalling a program</a></span></dt></dl></div><div class="sect1" title="Compiling and installing urpkg"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="compile-install"></a>Compiling and installing urpkg</h2></div></div></div><p>
+  This section details how to compile and install urpkg from source on your
+  machine.
+</p><div class="sect2" title="Prerequisites"><div class="titlepage"><div><div><h3 class="title"><a id="id370568"></a>Prerequisites</h3></div></div></div><p>
+    You need a UNIX-like system for urpkg to work. I have tested it on GNU/Linux
+    (LFS and Slackware 12.1), but other systems should work as well. You will
+    also need root access on that system. By design, urpkg is useless if you
+    cannot get root access, since it needs to be able to create new users to
+    install a package. Some scripts assume that your user list is in
+    <code class="filename">/etc/passwd</code> and your group list in 
+    <code class="filename">/etc/group</code>. If that is not the case, you should
+    change them accordingly.
+  </p><div class="sect3" title="Build time dependencies"><div class="titlepage"><div><div><h4 class="title"><a id="id370596"></a>Build time dependencies</h4></div></div></div><p>
+      urpkg uses <a class="ulink" href="http://www.cmake.org" target="_top">CMake</a> as build
+      system, so you will need to download and install it. You will also need
+      the standard make and gcc tools.
+    </p><p>
+      If you want to build the documentation yourself (this should not be
+      necessary if you are installing a release tarball), you should have the
+      necessary tools to build docbook documentation, that is
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	  <a class="ulink" href="https://fedorahosted.org/xmlto/" target="_top">xmlto</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://lynx.browser.org/" target="_top">Lynx</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://xmlsoft.org/XSLT/xsltproc2.html" target="_top">xsltproc</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://wiki.docbook.org/DocBookXslStylesheets" target="_top">The
+	  docbook XSL stylesheets</a>
+	</p></li></ul></div><p>
+      You must also have
+      the <span class="command"><strong>useradd</strong></span>, <span class="command"><strong>usermod</strong></span>, etc. programs
+      available, because urpkg looks for them before compiling the software. Any
+      standard linux distribution has these tools.
+    </p></div><div class="sect3" title="Run time dependencies"><div class="titlepage"><div><div><h4 class="title"><a id="id417446"></a>Run time dependencies</h4></div></div></div><p>
+      urpkg relies on some external shell scripts using standard tools that
+      should be available on your system. Those are:
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/bash/" target="_top">GNU bash</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/grep/" target="_top">GNU grep</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/sed/" target="_top">GNU sed</a>
+	</p></li><li class="listitem"><a class="ulink" href="http://www.gnu.org/software/findutils/" target="_top">GNU find</a></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.xs4all.nl/~carlo17/which/" target="_top">which</a>
+	</p></li><li class="listitem"><p>
+	  Several utilities from the 
+	  <a class="ulink" href="http://www.gnu.org/software/coreutils/" target="_top">
+	    GNU Coreutils</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.perl.com" target="_top">Perl</a> (only if you want to use
+	  the <a class="link" href="re02.html" title="urpkgize">urpkgize</a> script).
+	</p></li></ul></div><p>
+      Most of those software should already be on your system, so urpkg is
+      indeed very light on dependencies.
+    </p></div></div><div class="sect2" title="Extracting the tarball"><div class="titlepage"><div><div><h3 class="title"><a id="id417549"></a>Extracting the tarball</h3></div></div></div><p>
+    First, extract the urpkg tarball and cd to it.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>tar -xf <em class="parameter"><code>&lt;Your .tar.gz file&gt;</code></em>
+    <code class="prompt">$ </code>cd <em class="parameter"><code>&lt;filename without .tar.gz&gt;</code></em>
+  </pre><p>
+    Then, you should create a build directory
+  </p><pre class="screen">
+    <code class="prompt">$ </code> mkdir build
+    <code class="prompt">$ </code> cd build
+  </pre></div><div class="sect2" title="Configuring the build"><div class="titlepage"><div><div><h3 class="title"><a id="configuring-build"></a>Configuring the build</h3></div></div></div><p>
+    Now it is time to configure your build. The command is of the form
+  </p><code class="code">
+    cmake -D<em class="parameter"><code>BuildVariable1=Content1</code></em> ... 
+    -D<em class="parameter"><code>BuildVariablen=Contentn</code></em> ..
+  </code><p>
+    In general, you should not need to set a lot of variables. A simple 
+  </p><pre class="screen">
+    <code class="prompt">$ </code>cmake ..
+  </pre><p>
+    should be enough. The possible variables and their default values are listed
+    below.
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	<code class="varname">CMAKE_BUILD_TYPE</code>: specify what kind of build you
+	want to do. It is either "release" or "debug". The default is
+	"release".
+      </p></li><li class="listitem"><p>
+	<code class="varname">DEBUG</code>: If this variable is 1, the program will act in
+	debug mode, e.g it will coredump if something is wrong. The default is 0
+	if <code class="varname">CMAKE_BUILD_TYPE</code> is release, 1 otherwise.
+      </p></li><li class="listitem"><code class="varname">DESTDIR</code>: The destination directory, defaulting
+      to <code class="filename">/</code>. This is the root directory where everything
+      will be copied. This can be useful if for example you want to install
+      urpkg on some other filesystem, and then mount it as the root
+      filesystem.
+    </li><li class="listitem"><code class="varname">CMAKE_INSTALL_PREFIX</code>: The installation prefix,
+      defaulting to <code class="filename">/usr/local</code>. All urpkg files will be
+      installed there.
+    </li><li class="listitem"><code class="varname">DOCDIR</code>: Where all the documentation will be
+      installed. It defaults to 
+      <code class="filename">${CMAKE_INSTALL_PREFIX}/share/doc</code></li><li class="listitem"><code class="varname">MANDIR</code>: Where the manpage are on the system. Default to
+      <code class="filename">${CMAKE_INSTALL_PREFIX}/share/man</code></li><li class="listitem"><code class="varname">PKGDIR</code>: Path to the package directories,
+      where all package user will have their home directory. See 
+      <a class="xref" href="ch03s04.html" title="Package directories">the section called “Package directories”</a> for more information. The default is 
+      <code class="filename">${CMAKE_INSTALL_PREFIX}/urpkg/</code></li><li class="listitem"><p>
+	<code class="varname">CONFIGDIR</code>: Path to the configuration directory,
+	where urpkg keeps its scripts and some information about what is
+	installed (see <a class="xref" href="ch03s05.html" title="The configuration directory">the section called “The configuration directory”</a>). The default is 
+	<code class="filename">${CMAKE_INSTALL_PREFIX}/etc/urpkg/</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">INST_LOG</code>: Where error outputted by the installation
+	script will be logged. By default, 
+	<code class="filename">/var/tmp/install.log</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">FINDCMD</code>: The script urpkg uses to find the files
+	belonging to a given package. See also 
+	<a class="xref" href="ch03s05.html#find-cmd" title="The find script">the section called “The find script”</a>. You should not change that variable
+	unless you know what you are doing. It defaults
+	to <code class="filename">${CONFIGDIR}/find</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">PREINST</code>: The script urpkg runs before any
+	installation. See also <a class="xref" href="ch02s06.html" title="Pre and post install scripts">the section called “Pre and post install scripts”</a>. You should not
+	change that variable unless you know what you are doing. It defaults
+	to <code class="filename">${CONFIGDIR}/preinst</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">POSTINST_DIR</code>: Directory where all the scripts urpkg
+	runs after an installation should be. See also 
+	<a class="xref" href="ch02s06.html" title="Pre and post install scripts">the section called “Pre and post install scripts”</a>. You should not change that variable
+	unless you know what you are doing. 
+	It defaults to <code class="filename">${CONFIGDIR}/postinst/</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">UADD_PATH</code>, <code class="varname">UMOD_PATH</code>,
+	<code class="varname">UDEL_PATH</code>, <code class="varname">GADD_PATH</code>,
+	<code class="varname">GDEL_PATH</code>: Specify the path for respectively
+	<span class="command"><strong>useradd</strong></span>, <span class="command"><strong>usermod</strong></span>, 
+	<span class="command"><strong>userdel</strong></span>, <span class="command"><strong>groupadd</strong></span> and
+	<span class="command"><strong>groupdel</strong></span>. You need to change those only if cmake
+	cannot find them automatically.
+      </p></li></ul></div></div><div class="sect2" title="Compiling urpkg"><div class="titlepage"><div><div><h3 class="title"><a id="id417886"></a>Compiling urpkg</h3></div></div></div><p>
+    Now everything should be ready. Compile the program.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>make
+  </pre><p>
+    If you want to compile the documentation as well (if you downloaded a
+    release tarball that should not be necessary, as it has already been
+    compiled to most format for you), run
+  </p><pre class="screen">
+    <code class="prompt">$ </code>make doc
+  </pre></div><div class="sect2" title="Installing urpkg"><div class="titlepage"><div><div><h3 class="title"><a id="id417922"></a>Installing urpkg</h3></div></div></div><p>
+    To install urpkg, you have two choices: the first is to directly run
+  </p><pre class="screen">
+    <code class="prompt">$ </code>make install
+  </pre><p>
+    with root privileges if necessary. However, if you have read all I said in
+    <a class="xref" href="ch01s02.html" title="How can urpkg be useful ?">the section called “How can urpkg be useful ?”</a> about installation programs changing file
+    permissions behind your back, you may not even want to trust the
+    installation commands generated by cmake.
+  </p><p>
+    This is perfectly fine. Since you have compiled urpkg, you can use it
+    to <span class="emphasis"><em>install itself</em></span> in a secure way. The following
+    section lists the necessary steps. I recommend this
+    method <span class="emphasis"><em>only</em></span> to users already familiar with how urpkg
+    works. If you are doing this often, you should write yourself a script that
+    automates this action. One such script is in
+    <code class="filename">helpers/bootstrap.sh</code> in the top level directory of
+    urpkg's source.
+  </p><div class="sect3" title="Bootstrapping urpkg"><div class="titlepage"><div><div><h4 class="title"><a id="id417970"></a>Bootstrapping urpkg</h4></div></div></div><p>
+      In these instructions, I assume you are at urpkg's top level directory and
+      you have already build the software in <code class="filename">build/</code>. The
+      shell variable <code class="varname">VERSION</code> is assumed to contain urpkg's
+      version number. You can replace it with whatever you like.
+    </p><p>
+      First, cd to the build directory.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>cd build/
+    </pre><p>
+      For various reasons, you should create the package directory
+      first, as root. Replace <code class="varname">PKGDIR</code> in the
+      following instructions with whatever you configured the program
+      with in <a class="xref" href="ch02.html#configuring-build" title="Configuring the build">the section called “Configuring the build”</a>
+    </p><pre class="screen">
+      <code class="prompt">$ </code>mkdir ${PKGDIR}
+    </pre><p>
+      You should not forget to create the install and shared group,
+      and then mark places where you want urpkg to be installed as
+      install directories.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>groupadd urpkgrp-install
+      <code class="prompt">$ </code>groupadd urpkgrp-shared
+      <code class="prompt">$ </code>src/urpkg --gen ${CMAKE_INSTALL_PREFIX}/bin
+      <code class="prompt">$ </code>src/urpkg --gen $DOCDIR
+      <code class="prompt">$ </code>src/urpkg --gen ${MANDIR}/man*
+      <code class="prompt">$ </code>src/urpkg --gen $(dirname $CONFIGDIR)
+    </pre><p>
+      Then, you have to create a temporary package directory where urpkg will
+      put all files of the urpkg package. You will then copy this temporary
+      package directory to the real package directory (which is created during
+      urpkg's installation).
+    </p><pre class="screen">
+      <code class="prompt">$ </code>PKGDIR="$(mktemp -d /var/tmp/urpkg.XXXXXXX)"
+    </pre><p>
+      To avoid any permission problem when the install script tries to create
+      files in the build directory, change its access permissions.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>chmod -Rv o+xrw .
+    </pre><p>
+      You are now ready to run urpkg. Be aware though that no find command, no
+      postinstall script and no preinstall script are available so you have to
+      either specify the path explicitly or disable them when you invoke urpkg.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>src/urpkg --install --pkg-name=urpkg-$VERSION \
+      --findcmd=../scripts/find --pkg-dir=$PKGDIR --no-preinst --no-postinst \
+      make install
+    </pre><p>
+      Normally, everything should go fine and urpkg should be installed. Check
+      it by running
+    </p><pre class="screen">
+      <code class="prompt">$ </code>urpkg --info
+    </pre><p>
+      You still have to copy the temporary package directory to the real package
+      directory. You can know its location by looking at the output
+      of <code class="code">urpkg --info</code>. I will refer to it
+      as <code class="varname">TRUE_PKGDIR</code>
+    </p><pre class="screen">
+      <code class="prompt">$ </code>cp -rav ${PKGDIR}/urpkg-$VERSION $TRUE_PKGDIR
+    </pre><p>
+      That's not completely finished. The package user has been created with
+      the temporary package directory as its home directory. To change that, you
+      need to know what the package user is. You can find it using
+    </p><pre class="screen">
+      <code class="prompt">$ </code>USERNAME="$(stat --format=%U ${TRUE_PKGDIR}/urpkg-$VERSION)"
+    </pre><p>
+      Finally, change the package user's home directory and remove the temporary
+      package directory
+    </p><pre class="screen">
+      <code class="prompt">$ </code>usermod --home ${TRUE_PKGDIR}/urpkg-$VERSION $USERNAME
+      <code class="prompt">$ </code>rm -rv $PKGDIR
+    </pre><p>
+      I leave up to you whether you want the package to own the package
+      directory. I like to keep the package directory owned by root,
+      because even if you remove urpkg from your system, you might
+      want to keep some files from various package directories.
+    </p></div></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a> </td><td width="20%" align="center"> </td><td width="40%" align="right"> <a accesskey="n" href="ch02s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">How can urpkg be useful ? </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Creating a test package</td></tr></table></div></body></html>

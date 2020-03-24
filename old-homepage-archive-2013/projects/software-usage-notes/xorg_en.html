@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Xorg documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="xorg_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="xorg_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="xorg_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="xorg-documentation">
+<h2>Xorg documentation</h2>
+<p>This contains some documentation about what I know on <a class="reference external" href="http://en.wikipedia.org/wiki/Xorg">Xorg</a>.</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#disabling-ctrl-alt-backspace-and-other-annoying-key-sequences" id="id1">Disabling ctrl-alt-backspace and other annoying key sequences</a></li>
+<li><a class="reference internal" href="#taking-a-screenshot" id="id2">Taking a screenshot</a></li>
+<li><a class="reference internal" href="#xscreensaver-configuration" id="id3">Xscreensaver configuration</a></li>
+<li><a class="reference internal" href="#x-over-ssh-with-xnest" id="id4">X over SSH with Xnest</a></li>
+</ul>
+</div>
+<div class="section" id="disabling-ctrl-alt-backspace-and-other-annoying-key-sequences">
+<h3>Disabling ctrl-alt-backspace and other annoying key sequences</h3>
+<p><tt class="docutils literal"><span class="pre">Ctrl-alt-backspace</span></tt> is supposed to kill the X server. This can be annoying,
+especially when the display is supposed to be locked :-)</p>
+<p><tt class="docutils literal"><span class="pre">Ctrl-alt-f1</span></tt> is supposed to switch to virtual terminal 1. There is no real
+reason one would ever want to do this when using an X server.</p>
+<p>To disable those bindings, modify the &quot;ServerFlags&quot; section in
+<tt class="docutils literal"><span class="pre">/etc/X11/xorg.conf</span></tt> as follows:</p>
+<pre class="literal-block">
+Section &quot;ServerFlags&quot;
+    Option  &quot;DontZap&quot;  &quot;true&quot;
+    Option &quot;DontVTSwitch&quot;  &quot;true&quot;
+    # ...
+EndSection
+</pre>
+</div>
+<div class="section" id="taking-a-screenshot">
+<h3>Taking a screenshot</h3>
+<p>To take a screenshot, use <tt class="docutils literal"><span class="pre">import</span></tt> from <a class="reference external" href="http://www.imagemagick.org/script/index.php">ImageMagick</a>. The program takes the
+name of the output file as argument. To take a snapshot in ten seconds, run:</p>
+<pre class="literal-block">
+$ sleep 10 &amp;&amp; import myscreen.png
+</pre>
+<p>then drag the mouse over the region of the screen you want in the
+screenshot.</p>
+<p>Those instructions come from <a class="reference external" href="http://tips.webdesign10.com/how-to-take-a-screenshot-on-ubuntu-linux">this linux screenshot howto</a></p>
+</div>
+<div class="section" id="xscreensaver-configuration">
+<h3>Xscreensaver configuration</h3>
+<p><a class="reference external" href="http://www.jwz.org/xscreensaver/">xscreensaver</a> is the &quot;standard&quot; Linux screensaving utility. This is how I
+configured it on my laptop.</p>
+<p>I had to add something like <tt class="docutils literal"><span class="pre">xscreensaver</span> <span class="pre">&amp;</span></tt> in my <tt class="docutils literal"><span class="pre">.xinitrc</span></tt> so that it is
+launched with the X server. To configure it, just run <tt class="docutils literal"><span class="pre">xscreensaver-demo</span></tt> . To
+do some special action,  use <tt class="docutils literal"><span class="pre">xscreensaver-command</span></tt>, e.g
+<tt class="docutils literal"><span class="pre">xscreensaver-command</span> <span class="pre">-lock</span></tt> locks the screen.</p>
+</div>
+<div class="section" id="x-over-ssh-with-xnest">
+<h3>X over SSH with Xnest</h3>
+<p>Assume you want to run <a class="reference external" href="http://www.gnome.org/">GNOME</a> remotely, but you want to continue working on your
+window manager at the same time. The solution is to run it in a separate window
+using <tt class="docutils literal"><span class="pre">Xnest</span></tt>. To do that, first start <tt class="docutils literal"><span class="pre">Xnest</span></tt> on display <tt class="docutils literal"><span class="pre">:1</span></tt>:</p>
+<pre class="literal-block">
+$ Xnest -ac -geometry 1024x550 :1
+</pre>
+<p>Then set your display, ssh to the remote host and launch gnome:</p>
+<pre class="literal-block">
+$ DISPLAY=:1 ssh -X luser&#64;example.com gnome-session
+</pre>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >xorg</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

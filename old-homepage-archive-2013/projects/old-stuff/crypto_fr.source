@@ -1,0 +1,226 @@
+.. default-role:: literal
+
+
+Cryptographie et Protection de la Vie Privée
+============================================
+
+.. contents:: Contents
+   :local:
+
+:Note: Ce texte a été écrit en début 2008, et n'a pas été mis à jour depuis. Je
+       ne pense plus aujourd'hui que son contenu soit particulièrement utile, il
+       vaut mieux consulter directement les Références_.
+
+Introduction
+------------
+
+Cette page est encore une autre tentative pour expliquer ce qu'est la
+cryptographie, et pourquoi elle est utile. Beaucoup de pages comme celle là
+existent déjà (voire les références_), mais il me semble qu'ajouter un peu de
+bruit peut aider.
+
+Qu'est-ce que la cryptographie ?
+--------------------------------
+
+De `l'article Wikipedia`_: 
+
+   La cryptographie est une des disciplines de la cryptologie s'attachant à
+   protéger des messages (assurant confidentialité, authenticité et intégrité)
+   en s'aidant souvent de secrets ou clés.
+
+"Cacher" l'information (en l'encryptant) est l'un des buts bien connus de la
+cryptographie, mais *l'authenticité* à l'aide des `signatures numériques`_ est
+un autre qui n'est pas moins important: pourquoi envoyer des informations
+encryptées si l'on est pas sûr qu'on les envoient à la bonne personne ?
+
+Vous utilisez la cryptographie quand vous vous connectez à votre site
+d'e-banking, ou quand vous donnez votre numéro de carte de crédit à un site
+d'achat. Cela empêche que quelqu'un lise votre numéro de carte de crédit
+pendant qu'il est transmit sur le réseau.
+
+Bien sûr, SSH_ utilise aussi la cryptographie pour éviter l'interception de mot
+de passe. Beaucoup de programmes, libre ou pas, utilisent la cryptographie.
+
+.. _l'article Wikipedia: http://fr.wikipedia.org/wiki/Cryptographie
+.. _signatures numériques: http://fr.wikipedia.org/wiki/Signature_numérique
+.. _SSH: http://www.openssh.org/
+
+En quoi est-ce utile ?
+----------------------
+
+La cryptographie est utile pour communiquer de façon sécurisée à travers un
+cannal non-sécurisé comme l'Internet. En bref: si A et B communiquent en
+uttilisant des protocoles cryptographiques sécurisés, ils sont sûrs qu'ils
+communiquent avec la bonne personne, et personne ne peut comprendre ce qu'ils se
+racontent.
+
+Certaines personnes sont sceptiques sur les usages pratiques d'une telle
+réalisation. Voici les réactions les plus communes.
+
+L'encryption est uniquement pour les militaires
+###############################################
+
+Bien sûr que non: des applications civiles ont déjà été données en exemple
+çi-dessus. L'armée n'est pas la seule entitée qui a besoin de secret: les
+entreprises gardent des secrets, et les gens égalemment. Lorsque ces secrets ont
+besoin d'être transmit à travers un cannal non sécurisé, l'encryption est un
+must.
+
+L'encryption est utilisée par les criminels
+###########################################
+
+Bien sûr, et alors ? Les criminels utilisent aussi des voitures et des cartes de
+crédit pour commettre leurs méfaits, et nous utilisons égalemment ces objets !
+Ce n'est pas parce que les criminels utilisent `x` que `x` devrait être
+interdit. Voici une citation intéressante:
+
+    Crime? If you are not a politician, research scientist, investor, CEO,
+    lawyer, celebrity, libertarian in a repressive society, investor, or person
+    having too much fun, and you do not send e-mail about your private sex life,
+    financial/political/legal/scientific plans, or gossip then maybe you don't
+    need PGP, but at least realize that privacy has nothing to do with crime and
+    is in fact what keeps the world from falling apart. Besides, PGP is FUN. You
+    never had a secret decoder ring? Boo!
+	 
+    --Xenon `<an48138 at anon.penet.fi>` (Copyright 1993, Xenon)
+
+Mais je n'ai rien à cacher !
+############################
+
+C'est l'argument le plus commun. La première réponse serait: même si vous n'avez
+rien à cacher, vous avez quand même besoin d'utiliser la cryptographie *pour
+l'authenticité*. Il est trivial, par exemple, `d'envoyer un email en se faisant
+passer pour vous`_ (en anglais). Les signatures numériques peuvent résoudre ce
+problème.
+
+La deuxième réponse est que même si vous n'avez rien fait d'illégal, vous avez
+quand même des choses à cacher: autoriseriez-vous quelqu'un à s'asseoir juste
+derrière vous et à regarder votre moniteur toute la journée ? La protection de
+la vie privée est un droit fondamental, et c'est ce que l'encryption protège.
+
+Une fois que l'on admet que l'on envoie parfois des informations privées,
+tout encrypter est une bonne idée: si vous n'encryptez que les informations
+réellement privées, les gens sauront que vous envoyez du contenu sensitif et
+pourraient essayer de casser votre chiffrage ou de vous empêcher d'utiliser
+l'encryption. Cependant si vous encryptez absolument tout ce que vous envoyez,
+personne ne peut savoir si ou quand vous avez envoyez des informations secrètes.
+
+Phil Zimmermann, l'auteur de PGP_, explique tout cela bien mieux que moi dans
+`Pourquoi j'ai écrit PGP`_
+
+.. _d'envoyer un email en se faisant passer pour vous: http://en.wikipedia.org/wiki/E-mail_spoofing
+.. _PGP: http://fr.wikipedia.org/wiki/PGP
+.. _Pourquoi j'ai écrit PGP: http://biblioweb.samizdat.net/article4.html
+
+Personne ne lit / se soucie des données de toute facon
+######################################################
+
+Peut-être, mais alors seriez vous prêt à écrire votre message sur votre page
+web, ou l'envoyer sur une carte postale ?
+
+De plus, on ne parle pas seulement d'humains: des systèmes complétement
+automatisés existent qui peuvent intercepter des communications et faire une
+analyse du contenu basée sur des mots clés. Même si ils ne trouvent rien, votre
+communication sera peut-être archivée pour un examen plus approfondi.
+
+En bref, vous ne savez jamais qui pourrait écouter: utiliser la crypto est un
+faible prix à payer pour être sûr que vos communications restent privées.  
+
+Le réseau de confiance
+----------------------
+
+Une fois que vous avez accepté que vous devez utiliser la cryptographie, tout
+n'est pas magiquement résolu: l'encryption est relativement facile à réaliser,
+mais pour garantir l'authenticité, on a besoin d'utiliser la confiance. Ce qui
+suite est une version simplifiée de ce dont on a besoin, et les manières de le
+réaliser. Si vous voulez rentrer dans les détails techniques, vous pouvez
+commencer par lire l'article Wikipedia sur `la cryptographie assymétrique`_.
+
+En gros, si vous êtes A et que vous voulez être sûr que B est vraiment celui
+qu'il dit qu'il est, vous avez besoin de faire confiance à quelqu'un qui fait
+confiance à quelqu'un qui fait confiance à quelqu'un... Qui connaît B et peut
+certifier qu'il est vraiment celui qu'il prétend être !
+
+Il y a de nombreuses manières de réaliser ceci: le système populaire sur le web
+en ce moment est centralisé: vous payez certaines grosses compagnies "de
+confiance" pour qu'ils disent aux autres que vous êtes celui que vous dites
+être. La faille dans ce système est évidente: il faut faire confiance à ces
+grosses compagnies !
+
+Un autre système populaire est le réseau de confiance, implémenté par GPG_. En
+gros, vous vérifier manuellement l'identité de certaines personnes (par exemple,
+vous les rencontrez dans la vraie vie), et vous pouvez ensuite leur faire
+confiance.  Si votre réseau de confiance est suffisament grand, vous pourriez
+trouver quelqu'un auquel vous faites confiance qui fait confiance à quelqu'un
+qui ... Qui fait confiance à B.
+
+Bien sûr, c'est trop simplifié: la confiance n'est pas quelque chose de
+complétement transitif: si vous faites confiance à B, et que B fait confiance à
+C, vous pourriez bien ne pas faire complétement confiance à C. Plus la chaine
+devient longue, plus la confiance en est diminuée. C'est pour cela que GPG
+impose par exemple une longueur de chaine maximale.
+
+Comme ce réseau de confiance me semblait être une meilleure idée que le système
+centralisée opérant sur le web, j'ai décidé d'essayer d'utiliser activement GPG
+pour mes communications.
+
+.. _la cryptographie assymétrique: http://fr.wikipedia.org/wiki/Cl%C3%A9_publique
+.. _GPG: http://www.gnupg.org/
+
+Comment j'utilise GPG
+#####################
+
+Signature des releases
+**********************
+
+Comme vous l'avez peut-être remarqué, je signe toutes mes releases sur
+`svasey.org` avec `ma clé GPG`_. Si vous avez trouvé une tarball non-signée sur
+mon site, je ne l'ai pas crée ! (ou j'ai peut-être juste oublié de la
+signer...). `Signalez le moi`_.
+
+Signer une release est utile pour éviter qu'elles soient modifiées durant leur
+transfert: un attaquant pourrait la remplacer avec un malware, et le pauvre
+utilisateur l'installerait sans prendre garde, car il croirait qu'il est en
+train d'installer un innocent programe de `svasey.org`. Des problèmes pourraient
+égalemment survenir si mon serveur est compromis: encore une fois, l'attaquant
+pourrait remplacer les tarballs avec des malware.
+
+.. _ma clé GPG: http://certs.svasey.org/gpg-svasey-pubkey.asc
+.. _Signalez le moi: ../../about_en.html#contact
+
+Signature des emails
+********************
+
+Je signe tous mes emails sortant. Si vous recevez un mail non-signé, il ne vient
+pas de moi !
+
+Encryption des emails
+*********************
+
+Malheureusement, pas tout le monde à qui j'envoie des mails a une clé
+GPG. Cependant, j'encrypte systématiquement tous les mails vers mon réseau de
+confiance. Si quelqu'un d'autre a une clé GPG et me demande de lui envoyer des
+informations de manière cryptée, je le ferai: cela ne peut pas abaisser le
+niveau de sécurité !
+
+TLS
+***
+
+Il est toujours possible d'utiliser TLS_ avec mes sites web. Mon certificat est
+signé en utilisant GPG. Voir ma `documentation TLS pour svasey.org`_ pour plus
+d'information.  
+
+.. _TLS: http://fr.wikipedia.org/wiki/Transport_Layer_Security
+.. _documentation TLS pour svasey.org: ../../tls-user_en.html
+
+Références
+----------
+
+* `The comp.security.pgp FAQ`_ (EN) est un bon point de départ sur PGP
+* `André Bacard's "Non-Technical PGP FAQ"`_ (EN) répond à "je n'ai rien à
+  cacher et à d'autres argumeents contre la crypto
+* `Pourquoi j'ai écrit PGP`_ est un excellent article par l'auteur de PGP
+
+.. _André Bacard's "Non-Technical PGP FAQ": http://www.andrebacard.com/pgp.html
+.. _The comp.security.pgp FAQ: http://www.cam.ac.uk.pgp.net/pgpnet/pgp-faq/
+.. _Pourquoi j'ai écrit PGP: http://biblioweb.samizdat.net/article4.html
