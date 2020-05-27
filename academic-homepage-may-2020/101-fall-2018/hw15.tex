@@ -1,0 +1,64 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 15]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 15}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 9 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may (unless the instructions say otherwise) assume the axioms, facts, and theorems on the reference sheet on the axioms, facts, and theorems of the real lines. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+  \item Using only the axioms of real numbers (and $(F_0)$ from the reference sheet, which was proven in class), prove the following:
+
+  \begin{enumerate}
+  \item $(F_1)$: For all real numbers $x, y$, $-(xy) = (-x)y$.
+  \item $(F_4)$: For all real numbers $x, y$, if $x y = 0$, then $x = 0$ or $y = 0$.
+  \item $(-1)(-1) = 1$. \emph{Hint:} Show that $(-1)(-1) + (-1) = 0$.
+  \item $(F_{10})$: $0 < 1$.
+  \end{enumerate}
+
+\item Prove that:
+
+  \begin{enumerate}
+  \item For all non-negative real numbers $x$ and $y$, $\sqrt{xy} = \sqrt{x}\sqrt{y}$ (you may only use axioms, facts and theorems 1-10 in the reference sheet).
+  \item For all real numbers $x$, $|x| = \sqrt{x^2}$ (you may only use axioms, facts and theorems 1-12 in the reference sheet).
+  \end{enumerate}
+
+\item Prove the triangle inequality: for all real numbers $x$ and $y$, $|x + y| \le |x| + |y|$. You may only use axioms, facts, and theorems 1-13 in the reference sheet. You can also look at the sketch of the proof in Exercise 1.2.6 in Abbott.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

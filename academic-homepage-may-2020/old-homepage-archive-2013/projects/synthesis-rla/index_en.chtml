@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Synthesis for Rational Linear Arithmetic</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="synthesis-for-rational-linear-arithmetic">
+<h2>Synthesis for Rational Linear Arithmetic</h2>
+<p>This is the title of my bachelor thesis, done at <a class="reference external" href="http://www.epfl.ch/index.en.html">EPFL</a> in the <a class="reference external" href="http://lara.epfl.ch/web2010/">Laboratory for
+Automated Reasoning and Analysis</a>. It was supervised by <a class="reference external" href="http://lara.epfl.ch/~kuncak/">Viktor Kuncak</a>.</p>
+<p>The idea was to write a program that takes as input some specifications, like
+&quot;choose <span class="inlinemath">x</span> such that <span class="inlinemath">x &lt; a</span>, and <img class="inlineformulaimg" alt="x \le b" src="index_en.source-formula-png/8ab104fc5e69aafa741b3a064a68b63113ded8cd6a8eabf6aac8341c-11-article.png" />&quot;, for arbitrary
+parameters <span class="inlinemath">a</span> and <span class="inlinemath">b</span>. The program would then output code that
+given <span class="inlinemath">a</span> and <span class="inlinemath">b</span> returns <span class="inlinemath">x</span> satisfying the
+specifications. For the example above, this would be of the form (in
+pseudocode):</p>
+<pre class="literal-block">
+def f(a,b):
+    return min (a,b) - 1
+</pre>
+<p>If you are interested, read the <a class="reference external" href="rla-report.pdf">final report</a>, or have a look at the
+<a class="reference external" href="../../download.svasey.org/synthesis-rationals/synthesis-rationals.tar.gz">program's source code</a> (as always, you should verify its <a class="reference external" href="../../download.svasey.org/synthesis-rationals/synthesis-rationals.tar.gz.sig">PGP signature</a>).</p>
+</div>
+</div>
+</body>
+</html>

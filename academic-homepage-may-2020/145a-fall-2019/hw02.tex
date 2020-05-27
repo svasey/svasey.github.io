@@ -1,0 +1,113 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 2]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 2}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, September 17 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item The \emph{axiom of class choice} is the following statement:
+  \begin{itemize}
+  \item[] Suppose $P (x, Y)$ is a property involving a set $x$ and a class $Y$ so that for any set $a$ there is a class $B$ with $P (a, B)$. Then there exists a class sequence $\seq{B_a}{a \in \SET}$ such that $P (a, B_a)$ for all $a \in \Set$.
+  \end{itemize}
+
+  Prove that the axiom of class choice implies, modulo the other axioms, the axiom of choice (as stated in the notes).
+\item Let $A, B$ be classes with $A$ non-empty. Prove that if there is a class injection from $A$ to $B$, then there is a class surjection from $B$ to $A$.      
+\item A \emph{choice function} on a set $C$ is any function $f$ with domain $C$ so that $f (c) \in c$ for any non-empty $c \in C$. The \emph{axiom of local choice}\footnote{Many textbooks call this axiom the axiom of choice, and call the axiom of choice from the notes the axiom of global choice. It is known that the axiom of local choice does not imply the axiom of global choice, and the axiom of global choice does not imply the axiom of class choice.} says that for any set $C$, there is a choice function on $C$.
+
+  \begin{enumerate}
+  \item Prove that the axiom of choice (as stated in the notes) implies the axiom of local choice. Further prove that the axiom of local choice implies that for any non-empty set $A$, there is a choice function $F: \Ps (A) \to A$.
+  \item Let $R$ be a relation from a set $A$ to a set $B$. We call $R$ \emph{left total} if for any $a \in A$ there exists $b \in B$ so that $a R b$. A \emph{uniformization} of $R$ is a function $f: A \to B$ such that $a R f (a)$ for any $a \in A$. The \emph{axiom of uniformization} says that any left-total relation has a uniformization. Prove (without using the axiom of choice) that the following are equivalent:
+    
+  \begin{itemize}
+  \item The axiom of local choice.
+  \item The axiom of uniformization
+  \item For any sets $A$ and $B$, if $f: A \to B$ is a surjection, then there is an injection $g: B \to A$ such that $f \circ g = \id_B$.
+  \end{itemize}
+  \end{enumerate}
+
+
+
+\item Decide whether the following sets are countable or uncountable. Prove your claim each time. You may take it for granted that $\Rr$ is uncountable.
+
+  \begin{enumerate}
+  \item The set of all finite subsets of rationals numbers (you may take it for granted that each such set is of the form $\{a_0, a_1, \ldots, a_{n - 1}\}$ for some natural number $n$).
+  \item The set of irrational numbers.
+  \item The set $\fct{\Zz}{2}$ of all functions from $\Zz$ to $2 = \{0,1\}$.
+  \item The set $\fct{2}{\Zz}$ of all functions from $2 = \{0, 1\}$ to $\Zz$.
+  \item The set of algebraic real numbers (a real number is \emph{algebraic} if it is the root of a polynomial with rational coefficients).
+  \item The set of transcendental real numbers (a real number is \emph{transcendental} if it is not algebraic).
+  \end{enumerate}
+  
+\item A family\footnote{``Family'' (or ``Collection'') is just another name for a set, when we want to emphasize the members are sets themselves.} $F$ of sets is called \emph{pairwise disjoint} if $A \cap B = \emptyset$ whenever $A, B \in F$ are distinct. On the other hand, we call $F$ \emph{almost disjoint} if $A \cap B$ is finite whenever $A, B \in F$ are distinct.
+
+  \begin{enumerate}
+  \item Show that any pairwise disjoint family of subsets of $\Qq$ is countable.
+  \item Show that there exists an uncountable almost disjoint family of subsets of $\Qq$. You may take it for granted that if a set is of the form $\{a_k \mid k < n\}$ for $n \in \Nn$, then it is finite (this is not hard to prove but we have not done it yet). \emph{Hint: think about real numbers and sequences of rationals.}
+  \end{enumerate}
+  
+  
+\end{enumerate}
+
+
+
+
+\end{document}

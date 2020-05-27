@@ -1,0 +1,91 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+\newcommand{\Ff}{\mathbb{F}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ann}{\operatorname{Ann}}
+
+\title[Math 123, Spring 2020: assignment 6]{Math 123 - Algebra II - Spring 2020 \\ Assignment 6}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, March 24, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+Remember that in this class ``ring'' means ``ring with identity''. Everywhere below, $R$ denotes a ring.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Give the definition of the following: characteristic of a field, prime subfield, degree of a field extension, simple extension, $F (\alpha)$, minimal polynomial for an element over a field, algebraic, transcendental.
+\item Given an irreducible polynomial over a field, state and prove the existence and uniqueness of a simple extension with a root for that polynomial.
+\item (For exam review: recall the midterm will be held in class on 3/11).
+  \begin{enumerate}
+  \item Go through the practice and credit problems of the past assignment and make sure you have done and understood all of them.
+  \item Make a list of the main concepts seen in this class (or use the lists from the first practice problem in each assignment). Pick two concepts from that list and ask yourself how they are related. Does one imply the other? If yes, what was the proof? If not, what is a counterexample, and could you give additional conditions making the implication true?
+
+    \emph{Example: consider the concepts of prime and maximal ideals. In one direction, maximal always implies prime (give the proof!). In the other, prime need not imply maximal (give an example!). However it does imply it when the ideal is not zero and the ring is a PID (give the proof!).}
+  \item Solve the sample midterm on the course website.
+  \end{enumerate}
+\item True or false?
+  \begin{enumerate}
+  \item $\Qq (\sqrt[3]{2}) = \Qq (e^{2\pi i / 3} \sqrt[3]{2})$.
+  \item $\Qq (\sqrt[3]{2}) \cong \Qq (e^{2\pi i / 3} \sqrt[3]{2})$.
+  \item $\Qq (i) = \Qq (-i)$.
+  \item $\Qq (i) \cong \Qq (-i)$.
+  \end{enumerate}
+\end{enumerate}
+\section*{Problems for credit}
+
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 2 from that assignment (submit your comment on Canvas, \emph{not} with this assignment). Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+\item (DF, 13.1.1)
+    \begin{enumerate}
+    \item Show that $p (x) = x^3 + 9x + 6$ is irreducible in $\Qq[x]$.
+    \item Let $\theta$ be a root of $p (x)$. Find rational numbers $a, b, c$ such that the multiplicative inverse of $1 + \theta$ in $\Qq (\theta)$ is equal to $a + b\theta + c\theta^2$.
+    \end{enumerate}
+\item (DF, 13.1.7) Prove that $x^3 - nx + 2$ is irreducible in $\Zz[x]$ for $n \neq -1, 3, 5$.
+\item (DF, 13.2.1) Let $F$ be a finite field of prime characteristic $p$. Prove that $|F| = p^n$ for some positive integer $n$.
+\item (DF, 13.2.3) Determine the minimal polynomial over $\Qq$ for the element $1 + i$.
+\end{enumerate}
+\end{document}

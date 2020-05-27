@@ -1,0 +1,85 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\Diag}{\bigtriangleup}
+\newcommand{\Diagu}{\bigtriangledown}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+\newcommand{\Ff}{\mathcal{F}}
+
+\title[Math 145a, Fall 2019: assignment 12]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 12}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, November 26, 11h59pm.} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item   Assume $F := \seq{F_i}{i \in I}$ is a class sequence such that for each $i \in I$, $F_i$ is a class function from $\Set^{n_i}$ to $\Set$, for some $n_i < \omega$. Assume $M$ is a class which is closed under $F$ (that is, for any $i \in I$ and any $a_0, \ldots, a_{n_i - 1} \in M$, $F_i (a_0, \ldots, a_{n_i - 1}) \in M$)). Show that if $I$ is a set and $X \subseteq M$ is a set, then there exists $A \subseteq M$ such that $X \subseteq A$, $A$ is closed under $F$, and $|A| \le |I| + |X| + \aleph_0$. 
+\item Let $\lambda$ be the least cardinal such that $V_\lambda$ is a model of ZFC. Is $\lambda$ regular or singular?
+
+  
+\item Submit your project peer-review separately on Canvas.
+\end{enumerate}
+
+
+
+\end{document}

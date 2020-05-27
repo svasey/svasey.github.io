@@ -1,0 +1,132 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 4]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 4}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, October 1 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item Show that $\alpha + \beta$ is isomorphic to the concatenation  $(\alpha, \in) \oplus (\beta, \in)$.
+  \item Show that $\alpha \beta$ is isomorphic to $(\beta, \in) \times (\alpha, \in)$, ordered with the lexicographic ordering.
+  \end{enumerate}
+\item Prove the following basic properties of ordinal arithmetic, and give examples showing that the left versions of these properties are not true in general.
+
+  \begin{enumerate}
+  \item Right (strict) monotonicity: if $\beta < \gamma$, then $\alpha + \beta < \alpha + \gamma$.
+  \item Right continuity: if $X$ is a non-empty set of ordinals, $\sup_{\beta \in X} (\alpha + \beta) = \alpha + \sup_{\beta \in X} \beta$.
+  \item Right cancellation: if $\alpha + \beta = \alpha + \gamma$, then $\beta = \gamma$.
+  \item Right distributivity: $\alpha (\beta + \gamma) = \alpha \beta + \alpha \gamma$.
+  \end{enumerate}
+\item \begin{enumerate}
+\item Show that any ordinal $\alpha$ can be written as $\alpha = \delta + n$ for $n < \omega$ and $\delta$ limit or zero.
+\item Show that for any ordinal $\alpha$ and any ordinal $\beta > 0$, there exists unique ordinals $\gamma$ and $\delta$ such that $\delta < \beta$ and $\alpha = \beta  \gamma + \delta$ \emph{Note: this shows there is a kind of division. Hint: take $\gamma$ minimal such that $\beta (\gamma + 1) > \alpha$, then find $\delta$.}
+\item Let $\gamma \ge 2$ be an ordinal. Show that for any ordinal $\alpha$, there exists $n < \omega$ and ordinals $\alpha_0 > \alpha_1 > \ldots > \alpha_{n - 1}$, $c_0, \ldots, c_{n - 1}$ such that $0 < c_i < \gamma$ for all $i < n$ and $\alpha = \gamma^{\alpha_0} c_0 + \gamma^{\alpha_1} c_1 + \ldots + \gamma^{\alpha_{n - 1}}c_{n - 1}$ (with the convention that when $n = 0$, the empty sum is zero). \emph{Note: This representation is called the base $\gamma$ normal form of $\alpha$. It is tedious but possible to show that this representation is also unique. Hint: proceed by induction on $\alpha$: to start, take $\alpha_0$ to be minimal such that $\gamma^{\alpha_0 + 1} > \alpha$ and ``divide'' by $\gamma^{\alpha_0}$.}
+\item Write the following expression in base $\omega$ normal form (no full proof needed, you only need to justify briefly). For example, $\omega + \omega = \omega^1 \cdot 2$ in base $\omega$ normal form.
+  \begin{enumerate}
+  \item $3 + \omega + 5 + \omega$.
+  \item $\omega^2 \cdot 3 + 5 \cdot \omega^3$.
+  \item $(\omega \cdot 3) \cdot (\omega \cdot 5)$.
+  \item $2^{32 \cdot (1 + \omega) + 2^\omega}$ (\emph{Warning: exponentiation here is ordinal, not cardinal, exponentiation.})
+  \end{enumerate}
+\end{enumerate}
+\item Show that for sets $X$ and $Y$, the following are equivalent:
+
+  \begin{itemize}
+  \item $|X| \le |Y|$.
+  \item There is an injection from $X$ to $Y$.
+  \item $X = \emptyset$ or there is a surjection from $Y$ to $X$.    
+  \end{itemize}
+
+\item Show (without using the axiom of choice) that the following are equivalent:
+
+  \begin{itemize}
+  \item The axiom of choice.
+  \item There is a bijection from $\OR$ to $\Set$.
+  \end{itemize}
+
+  Deduce that a class $A$ is proper if and only if there is a bijection from $A$ to $\Set$. \emph{Hint: think about the cumulative hierarchy.}
+\item (Extra credit) Zorn's lemma is the statement that any ordering in which every chain has an upper bound has a maximal element (see the notes for definitions of these terms).
+
+  \begin{enumerate}
+  \item Show (without using the axiom of choice) that the following are equivalent.
+    \begin{itemize}
+    \item The axiom of local choice.
+    \item For every set $X$, there is a well-ordering on $X$. 
+    \item Zorn's lemma.
+    \end{itemize}
+  \item \emph{Zorn's lemma for classes} states that if $P$ is a class ordering with no maximal elements in which every (set) chain has an upper bound, then $P$ contains a chain which is a proper class.
+    \begin{enumerate}
+    \item Explain why Zorn's lemma for classes implies Zorn's lemma. 
+    \item Prove that Zorn's lemma for classes is equivalent to the axiom of choice.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+
+
+
+\end{document}

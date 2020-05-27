@@ -1,0 +1,67 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 16]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 16}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, November 12 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may (unless the instructions say otherwise) assume the axioms, facts, and theorems on the reference sheet on the axioms, facts, and theorems of the real lines. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Compute the infimum and supremum of the sets below (if they exist). Each time, prove your answer.
+
+  \begin{enumerate}
+  \item $\mathbb{Q} \cap (-\infty, 0)$.
+  \item $\{\frac{m}{n} \mid m, n \in \mathbb{N}, m < n\}$.
+  \end{enumerate}
+\item Prove Fact 16 from the reference sheet: any non-empty set of real numbers which is bounded below has a greatest lower bound (you may only use axioms, theorems and facts 1-15 for this).
+\item (Extra credit)
+  \begin{enumerate}
+  \item Prove the \emph{principle of continuous induction}: If $X$ is a set of real numbers such that all of the conditions below are true, then $X = \mathbb{R}$.
+
+  \begin{enumerate}
+  \item $(-\infty, x_0) \subseteq X$ for some real number $x_0$.
+  \item For every $x \in X$, there exists $\epsilon > 0$ such that $(x, x + \epsilon) \subseteq X$.
+  \item For every $x \in \mathbb{R}$, if $(-\infty, x) \subseteq X$, then $x \in X$.
+  \end{enumerate}
+
+\item For each of the three conditions above, give an example showing that it cannot be removed.
+  \end{enumerate}
+
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

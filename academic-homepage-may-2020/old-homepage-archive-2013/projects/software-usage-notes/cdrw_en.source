@@ -1,0 +1,31 @@
+.. default-role:: literal
+
+
+CD / DVD: reading, ripping, burning
+===================================
+
+Burning a file to a CD-R (basic)
+--------------------------------
+
+This documents how to do this from the command line. I assume your CD burner is
+mapped to the device file `/dev/sr1`.
+
+First, make an iso of the directory you want to burn::
+
+       mkisofs -r -R -J -l your-directory > your-iso.iso
+
+Then burn the iso (check that root has write access to ``/dev/sr1``)::
+       
+       sudo cdrecord -v dev=/dev/sr1 your-iso.iso
+
+
+References
+----------
+
+I basically copied-down the instructions from `a YoLinux tutorial`_
+
+.. _a YoLinux tutorial: http://www.yolinux.com/TUTORIALS/LinuxTutorialCDBurn.html
+
+
+
+

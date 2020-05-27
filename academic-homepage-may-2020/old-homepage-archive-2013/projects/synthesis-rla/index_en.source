@@ -1,0 +1,28 @@
+.. default-role:: literal
+
+
+Synthesis for Rational Linear Arithmetic
+========================================
+
+This is the title of my bachelor thesis, done at EPFL_ in the `Laboratory for
+Automated Reasoning and Analysis`_. It was supervised by `Viktor Kuncak`_. 
+
+The idea was to write a program that takes as input some specifications, like
+"choose :math:`x` such that :math:`x < a`, and :math:`x \le b`", for arbitrary
+parameters :math:`a` and :math:`b`. The program would then output code that
+given :math:`a` and :math:`b` returns :math:`x` satisfying the
+specifications. For the example above, this would be of the form (in
+pseudocode)::
+
+    def f(a,b):
+        return min (a,b) - 1
+
+If you are interested, read the `final report`_, or have a look at the
+`program's source code`_ (as always, you should verify its `PGP signature`_).
+
+.. _EPFL: http://www.epfl.ch/index.en.html
+.. _Laboratory for Automated Reasoning and Analysis: http://lara.epfl.ch/web2010/
+.. _Viktor Kuncak: http://lara.epfl.ch/~kuncak/
+.. _final report: rla-report.pdf
+.. _program's source code: ../../download.svasey.org/synthesis-rationals/synthesis-rationals.tar.gz
+.. _PGP signature: ../../download.svasey.org/synthesis-rationals/synthesis-rationals.tar.gz.sig

@@ -1,0 +1,83 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\Diag}{\bigtriangleup}
+\newcommand{\Diagu}{\bigtriangledown}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+\newcommand{\Ff}{\mathcal{F}}
+
+\title[Math 145a, Fall 2019: assignment 11]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 11}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, November 19 at the beginning of class.} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Which axioms of ZF does the class $\OR$ satisfy? Which axioms does it not satisfy? \emph{Note: be careful! You should use the axioms from the class notes. For example, the pairing axiom does not say that if $a, b \in \OR$ then $\{a, b\} \in \OR$. You should also make sure to relativize all axioms appropriately.}      
+\item Let $\lambda$ be a regular uncountable cardinal. Prove that $\lambda$ is strongly inaccessible if and only if $\lambda = \beth_\lambda$.
+\item Submit your project draft separately on Canvas. Please note that another student in the class will peer-review your draft. If you would be interested in giving a short in-class presentation of your project, please let me know.
+\end{enumerate}
+
+
+
+\end{document}

@@ -1,0 +1,81 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 1]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 1}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, September 10 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+\begin{enumerate}
+\item (Extra credit: 25\%) \begin{enumerate}
+\item Please fill in the survey at: \\
+  \url{http://math.harvard.edu/~sebv/101-fall-2018/questionnaire.odt}. Submit it separately on Canvas.
+\item I like to know my students as human beings, so I would like to have a short one on one 5-10 min chat with you during the first few weeks of the semester, just so that I can know your face, name, and a little bit about your background. Don't be afraid, we're not going to talk math (unless you really want to!). You don't need to prepare anything for the meeting.
+
+  Please send me a short email at \url{sebv@math.harvard.edu} with subject ``101 short meeting'' and ask e.g.\ ``is 1pm next Monday okay?''. I will either reply yes or give you another time. The meeting will take place in my office, SC 321H. \emph{Note that I am out of town Sep. 11 and Sep.12!}
+\end{enumerate}
+\item Recall that $\pi$ is defined to be the ratio of a circle's circumference to its diameter (you may take it for granted that this ratio is always constant). A well known theorem of Archimedes says that the \emph{area} of a circle of radius $r$ is given by $\pi r^2$ (this is actually not that easy to prove). Show that $\pi \neq 4$. 
+
+  You are allowed to use basic geometric facts and constructions, but not any results (except the ones just mentioned) about $\pi$ itself. If you draw a picture, explain precisely how it is drawn. If you want to claim a quantity is greater than another, make sure you justify why without relying too much on a (possibly imperfect) drawing. In general, try to justify each step as well as you can.
+\item  What is (mathematically) wrong in the following ``proof'' that $0 = 1$?
+
+Assume $x, y$ are real numbers such that $x = y$.
+
+\begin{align*}
+  x &= y \qquad &\text{(by assumption)} \\
+  x - y &= 0 \qquad &\text{(Subtracting $y$ from both sides)} \\
+  (x - y)(x - y)^{-1} &= 0 (x - y)^{-1} \qquad &\text{(Multiplying both sides by $(x - y)^{-1}$)} \\
+  1 &= 0 (x - y)^{-1} \qquad &\text{($1 = a \cdot a^{-1}$ for any real number $a$)} \\
+  1 &= 0 \qquad &\text{(Any number multiplied by zero is zero)}
+\end{align*}
+
+\item What is (mathematically) wrong in the following ``proof'' that all nonzero real numbers are positive?
+
+  For $x$ a nonzero real number, we always have that $0 < x \cdot x$. Multiply both sides of the inequality by $x^{-1}$ to obtain $0 \cdot x^{-1} < x \cdot x \cdot x^{-1}$. Since any number multiplied by zero is zero, $0 < x \cdot x \cdot x^{-1}$. By properties of $x^{-1}$, $x \cdot x^{-1} = 1$, so $0 < x \cdot 1$. Since $x \cdot 1 = x$, $0 < x$.
+\item What is (mathematically) wrong in the following ``proof'' that $1 = 2$?
+
+  \begin{align*}
+    1 &= 2 \\
+    0 \cdot 1 &= 0 \cdot 2 \qquad & \text{(Multiply both sides by zero)} \\
+    0 &= 0 \qquad & \text{(Any number multiplied by zero is zero)}
+  \end{align*}
+
+  It is true that $0 = 0$, therefore we conclude that the original statement $1 = 2$ is also true.
+
+  
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

@@ -1,0 +1,64 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 8]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 8}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, October 29, at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+
+\item Let $P$ be a finite ordering. We call an independent set $I \subseteq P$ \emph{maximal} if there is no independent set $J$ such that $I \subsetneq J$. On the other hand, we say that $I$ has \emph{maximal size} if for any other independent set $J$ in $P$, $|J| \le |I|$.
+
+  Prove or disprove:
+
+  \begin{enumerate}
+  \item If $I$ is an independent set in $P$ which is maximal, then it has maximal size.
+  \item If $I$ is an independent set of maximal size in $P$, then $I$ is maximal.
+  \item If $I$ is an independent set of maximal size in $P$, then for any automorphism $f$ of $P$, $f[I] = I$.
+  \item If $I$ is an independent set in $P$, and $I$ is \emph{not} of maximal size, then there is an automorphism $f$ of $P$ so that $f[I] \neq I$.
+  \item If $I$ is an independent set in $P$, and $I$ is \emph{not} maximal, then there is an automorphism $f$ of $P$ so that $f[I] \neq I$.    
+  \end{enumerate}
+\item (MN, 7.2.5) Let $P$ be a finite ordering. Show that there exists an independent set $I$ of maximal size so that $f[I] = I$ for any automorphism $f$ of $P$. \emph{Hint: look back at the proof of Sperner's theorem using automorphisms.}
+\item Please submit your final project proposal separately on Canvas \emph{(see the course website for information on the final project)}.
+\end{enumerate}
+
+
+
+\end{document}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>EEE 901 Documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="eee-901-documentation">
+<h2>EEE 901 Documentation</h2>
+<p>Documents my experience with the <a class="reference external" href="http://en.wikipedia.org/wiki/ASUS_Eee_PC#Other_Eee_90x_models">EEE PC 901</a></p>
+<div class="section" id="problems-that-could-happen">
+<h3>Problems that could happen</h3>
+<p>This is just a list of problems that happened to me, and how I fixed them</p>
+<div class="section" id="wireless-card-stops-working">
+<h4>Wireless card stops working</h4>
+<div class="section" id="the-problem">
+<h5>The problem</h5>
+<p>Wireless is not working properly, doing a:</p>
+<pre class="literal-block">
+$ ifconfig ra0
+</pre>
+<p>just returns something like: <tt class="docutils literal"><span class="pre">interface</span> <span class="pre">not</span> <span class="pre">found</span></tt>.</p>
+</div>
+<div class="section" id="the-solution">
+<h5>The solution</h5>
+<p>The card is probably disabled in the BIOS. I have no clue why it suddenly
+disables, but that happened to me once and this is the first thing to
+check. Also, check out <tt class="docutils literal"><span class="pre">/proc/acpi/asus/wlan</span></tt> to see if wireless is on (1) or
+off (0).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

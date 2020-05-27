@@ -1,0 +1,102 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 1]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 1}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Tuesday, September 10 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item (Extra credit: 15\%) \begin{enumerate}
+\item Please fill in the survey at: \\
+  \url{http://math.harvard.edu/~sebv/155r-fall-2019/questionnaire.odt}. Submit it separately on Canvas.
+\item I like to know my students as human beings, so I would like to have a short one on one 5-10 min chat with you during the first few weeks of the semester, just so that I can know your face, name, and a little bit about your background. Don't be afraid, we're not going to talk math (unless you really want to!). You don't need to prepare anything for the meeting.
+
+  Please send me a short email at \url{sebv@math.harvard.edu} with subject ``145a short meeting'' and ask e.g.\ ``is 1pm next Monday okay?''. I will either reply yes or propose another time. The meeting will take place in my office, SC 321H.
+\end{enumerate}
+\item Let $E$ be an equivalence relation on a set $A$. Prove that its set $A / E$ of equivalence classes is a partition on $A$. Conversely, if $P$ is a partition of the set $A$, prove that there is an equivalence relation $E_P$ on $A$ so that $A / E_P = P$.
+\item 
+  \begin{enumerate}
+  \item Prove that if $A$ and $B$ are sets, then $A \times B$ is a set.
+  \item Prove that if $A$ and $B$ are sets, then the class $\fct{A}{B}$ of all functions from $A$ to $B$ is a set.
+  \end{enumerate}
+\item \begin{enumerate}
+\item Prove that the composition of two injections is an injection, and that the composition of two surjections is a surjection.
+\item Prove that a function $f: B \to C$ is an injection if and only if whenever $g_1, g_2: A \to B$ are functions with $f \circ g_1 = f \circ g_2$ then $g_1 = g_2$. State a similar characterization for surjections (no need to prove it).
+\item Prove that any function $f$ can be written as $f = g \circ h$ for some injection $g$ and some surjection $h$. Prove also that $f = g' \circ h'$ for some surjection $g'$ and some injection $h'$.
+\end{enumerate}
+\item \begin{enumerate}
+\item Prove that if $n \in \Nn$, then $n \subseteq \Nn$.
+\item Prove that if $n, m \in \Nn$ and $n \in m$, then $n \subseteq m$.
+\item Prove that if $n \in \Nn$, then $n \notin n$.
+\item Prove that for $n, m$ in $\Nn$, $n \in m$ if and only if $n \subsetneq m$. Deduce that $\in$ is an irreflexive, antisymmetric, transitive relation on $\Nn$.
+\item Recall that addition on $\Nn$ is defined using the following properties, for any $n, m \in \Nn$:
+
+  \begin{itemize}
+  \item $n + 0 = n$.
+  \item $n + (\Ss m) = \Ss (n + m)$.
+  \end{itemize}
+
+  Using only these properties, prove that addition is commutative. That is, for $a, b \in \Nn$, $a + b = b + a$. 
+  \emph{Hint for all parts: induction}.
+\end{enumerate}
+  
+
+\end{enumerate}
+
+
+
+\end{document}

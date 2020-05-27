@@ -1,0 +1,98 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 3]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 3}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, September 24 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item Let $R$ be a class relation on a class $A$. Prove that the following are equivalent:
+    \begin{itemize}
+    \item $R$ is wellfounded.
+    \item There does \emph{not} exist a sequence $\seq{a_n}{n \in \Nn}$ of elements of $A$ such that $a_{n + 1} R a_n$ for all $n \in \Nn$.
+    \end{itemize}
+  \item Let $(A, \le_A)$ be a \emph{linear} ordering, let $(B, \le_B)$ be a partial ordering, and let $f: A \to B$ be a function such that $a_1 <_A a_2$ implies $f (a_1) <_B f (a_2)$ whenever $a_1, a_2 \in A$. Prove that $f$ is an order embedding.
+  \item Give an example of a \emph{partial} ordering $(A, \le_A)$, a partial ordering $(B, \le_B)$ and a function $f: A \to B$ satisfying the hypothesis of the previous part, but so that $f$ is not an injection. Give another example where $f$ is an injection but not an order embedding.
+  \end{enumerate}
+\item Recall that $\fct{\Nn}{2}$ denotes the set of functions from $\Nn$ into $2 = \{0,1\}$ (you can think of them as sequences of bits). Let $A$ denote the set of sequences $s$ in $\fct{\Nn}{2}$ so that for some $n \in \Nn$, $s (n) = 1$ and for all $m > n$, $s (m) = 0$. Define a relation $<$ on $A$ by $s < t$ if and only if there exists a natural number $k$ such that $s \rest k = t \rest k$ and $s (k) < t (k)$.
+
+  \begin{enumerate}
+  \item Prove that $<$ is a strict linear ordering on $A$.
+  \item Give a well known ordering that $(A, <)$ is isomorphic to.
+  \end{enumerate}
+
+\item
+  \begin{enumerate}
+  \item How many countable dense linear orderings are there, up to isomorphism? \emph{Hint: do not forget the small cases.}  
+  \item Prove that any two separable complete linear orders without endpoints are isomorphic.
+  \item Let $(A, \le)$ be a non-empty discrete linear ordering without endpoints so that for any $a_1 < a_2$, $\{a \in A \mid a_1 \le a \le a_2\}$ is finite. Prove that $(A, \le)$ is isomorphic to $(\Zz, \le)$.
+
+  \end{enumerate}
+\item Give an example of a non-empty, countable discrete linear ordering without endpoints that is not complete.
+\item Prove that a class $A$ of ordinals is bounded if and only if it is a set. Here, $A$ is defined to be \emph{bounded} if there exists an ordinal $\beta$ such that $\alpha \le \beta$ for any $\alpha \in A$. 
+\end{enumerate}
+
+
+
+
+\end{document}

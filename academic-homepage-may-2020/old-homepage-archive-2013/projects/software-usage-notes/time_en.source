@@ -1,0 +1,19 @@
+.. default-role:: literal
+
+
+Time documentation
+==================
+
+Documentation about the time settings and how it is set
+
+Changing the timezone
+---------------------
+
+This has been tested on `Arch Linux`_.
+
+Find the timezone file you want in ``/usr/share/zoneinfo``. Then copy it to
+``/etc/localtime``.
+
+To make the change permanent, change the timezone path in ``/etc/rc.conf``
+
+.. _Arch Linux: http://www.archlinux.org/

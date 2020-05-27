@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Autonet documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="autonet-documentation">
+<h2>Autonet documentation</h2>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#what-is-autonet" id="id1">What is autonet ?</a></li>
+<li><a class="reference internal" href="#why-not-network-manager" id="id2">Why not Network Manager ?</a></li>
+<li><a class="reference internal" href="#goals" id="id3">Goals</a></li>
+<li><a class="reference internal" href="#overview" id="id4">Overview</a></li>
+<li><a class="reference internal" href="#packaging" id="id5">Packaging</a></li>
+<li><a class="reference internal" href="#a-more-in-depth-explaination" id="id6">A more in depth explaination</a></li>
+<li><a class="reference internal" href="#autonet-tools" id="id7">Autonet tools</a></li>
+<li><a class="reference internal" href="#configuring-autonet" id="id8">Configuring autonet</a><ul>
+<li><a class="reference internal" href="#the-global-configuration-file" id="id9">The global configuration file</a><ul>
+<li><a class="reference internal" href="#log-file" id="id10">LOG_FILE</a></li>
+<li><a class="reference internal" href="#connection-test-interval" id="id11">CONNECTION_TEST_INTERVAL</a></li>
+<li><a class="reference internal" href="#first-connection-test-interval" id="id12">FIRST_CONNECTION_TEST_INTERVAL</a></li>
+<li><a class="reference internal" href="#reconnect-interval" id="id13">RECONNECT_INTERVAL</a></li>
+<li><a class="reference internal" href="#preferred-wireless" id="id14">PREFERRED_WIRELESS</a></li>
+<li><a class="reference internal" href="#preferred-wired" id="id15">PREFERRED_WIRED</a></li>
+<li><a class="reference internal" href="#wireless-when-unplugged" id="id16">WIRELESS_WHEN_UNPLUGGED</a></li>
+<li><a class="reference internal" href="#wireless-preup" id="id17">WIRELESS_PREUP</a></li>
+<li><a class="reference internal" href="#wireless-postup" id="id18">WIRELESS_POSTUP</a></li>
+<li><a class="reference internal" href="#wireless-predown" id="id19">WIRELESS_PREDOWN</a></li>
+<li><a class="reference internal" href="#wireless-postdown" id="id20">WIRELESS_POSTDOWN</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-interface-configuration-file" id="id21">The interface configuration file</a><ul>
+<li><a class="reference internal" href="#connect-command" id="id22">CONNECT_COMMAND</a></li>
+<li><a class="reference internal" href="#test-command" id="id23">TEST_COMMAND</a></li>
+<li><a class="reference internal" href="#disconnect-command" id="id24">DISCONNECT_COMMAND</a></li>
+<li><a class="reference internal" href="#nonet-connect" id="id25">NONET_CONNECT</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-network-configuration-file" id="id26">The network configuration file</a></li>
+<li><a class="reference internal" href="#the-wpa-supplicant-configuration-file" id="id27">The wpa_supplicant configuration file</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-autonet">
+<h3>What is autonet ?</h3>
+<p>Autonet is a quick and dirty alternative to <a class="reference external" href="http://projects.gnome.org/NetworkManager/">Network Manager</a>. It is a wrapper
+around <a class="reference external" href="http://hostap.epitest.fi/wpa_supplicant/">wpa_supplicant</a> to automate the process of connecting to your favorite
+networks, while trying to be robust and customizable.</p>
+</div>
+<div class="section" id="why-not-network-manager">
+<h3>Why not Network Manager ?</h3>
+<p>I tried Network Manager in 2008. At the time, I found that it had too many
+dependencies, and I found it hard to install on my <a class="reference external" href="http://www.fluxbox.org/">Fluxbox</a> desktop. Last but
+not least, I did not find any command-line interface to Network Manager, which I
+didn't like because that leaves me too dependent on a working X environment.</p>
+<p>There were also other details, like being forced to use the gnome keyring to
+remember passwords.</p>
+<p>Maybe some of those problems have been fixed by now, maybe I just didn't do
+things the right way, but the fact is that I thought networking should be easier
+and I wrote autonet. I am now sharing it with everybody looking for an
+alternative to Network Manager.</p>
+</div>
+<div class="section" id="goals">
+<h3>Goals</h3>
+<p>I wanted to use a simple configuration file system for everything, including my
+passwords. This is a security risk, but is the only way if you want to have
+everything automated.</p>
+<p>I wanted the system to work with my favorite networks. That meant</p>
+<ul class="simple">
+<li>Automatically try to connect using DHCP when an ethernet cable is plugged-in,
+favoring it over any wireless connection.</li>
+<li>Automatically connect to my home WEP wireless network</li>
+<li>Automatically connect to my university wireless networks:<ul>
+<li>Automatically connect to the WPA network</li>
+<li>If that fails, connect to the unsecured network and use the VPN client <a class="reference external" href="http://www.unix-ag.uni-kl.de/~massar/vpnc/">vpnc</a></li>
+</ul>
+</li>
+<li>Automatically connect to some wireless hotspots:<ul>
+<li>Some wireless hotspot can only be accessed if I use the vpn to connect
+through my university.</li>
+</ul>
+</li>
+</ul>
+<p>Furthermore, I wanted the system to re-connect as soon as connectivity is
+lost. I also wanted to be able to run custom connection/deconnection
+scripts.</p>
+</div>
+<div class="section" id="overview">
+<h3>Overview</h3>
+<p>Autonet is started at boot by a simple rc script. It immediately tries to
+connect to wired or wireless networks and stay running in the background no
+matter what.</p>
+<p>Once connected to a network, autonet will test if still connected at regular
+intervals, and disconnect and re-connect if not connected anymore.</p>
+<p>For each possible network, a connect, disconnect and connection test command
+must be specified. Autonet will use those to do its job.</p>
+</div>
+<div class="section" id="packaging">
+<h3>Packaging</h3>
+<p>Autonet is packaged in the <tt class="docutils literal"><span class="pre">autonet</span></tt> package. My configuration is in
+<tt class="docutils literal"><span class="pre">autonet-config</span></tt>.</p>
+</div>
+<div class="section" id="a-more-in-depth-explaination">
+<h3>A more in depth explaination</h3>
+<p>Autonet works with objects called interface. An interface is something that can
+be brought up or down using the <tt class="docutils literal"><span class="pre">ifconfig</span></tt> command. For example, <tt class="docutils literal"><span class="pre">eth0</span></tt> is
+usually the name for the first ethernet interface, whereas <tt class="docutils literal"><span class="pre">wlan0</span></tt> is usually
+the name for the first wireless interface. Usually a laptop will only have those
+two, but autonet can work with any number of interface.</p>
+<p>With some interface, like <tt class="docutils literal"><span class="pre">eth0</span></tt>, one cannot normally choose a network on
+which to connect to, whereas for others, like <tt class="docutils literal"><span class="pre">wlan0</span></tt>, one has to choose some
+network and connect to it. Autonet makes the distinction between the two,
+calling them wired and wireless respectively.</p>
+<p>Autonet maintains a list of preferred wired and wireless interface. If more than
+one interface can be used to connect to the internet, it will use the one whose
+position is the highest in that list. Autonet will always prefer wired interface
+to wireless ones.</p>
+<p>Autonoet tries to connect immediately if an ethernet cable is plugged in. In
+case the wireless interface can be used, autonet will start <tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt>
+and wait for it to send a signal saying it managed to connect to one of the
+user's favorite network. Autonet will then do the rest.</p>
+<p>Everytime an interface is brougt up or down, some custom scripts are run.</p>
+</div>
+<div class="section" id="autonet-tools">
+<h3>Autonet tools</h3>
+<p>For a user, there is not much that can be done to interact with autonet. The
+only things that can be done is to check its status, using the
+<tt class="docutils literal"><span class="pre">autonet-status</span></tt> command. If you need more information on what it is doing, you
+can try looking at autonet's log file, using:</p>
+<pre class="literal-block">
+$ tail -f /var/log/autonet.log
+</pre>
+<p>If you want to connect to a wireless network that is not in your favorite list,
+you can use <tt class="docutils literal"><span class="pre">wpa_gui</span></tt>, or any other tool communicating with
+<tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt>, and connect to the network you need. Autonet will then
+automatically do the rest and you should be able to get an IP.</p>
+</div>
+<div class="section" id="configuring-autonet">
+<h3>Configuring autonet</h3>
+<p>First of all, you should make sure that the autonet rc script is started at
+boot. Furthermore, if you want to use a wired interface you should also make
+sure <tt class="docutils literal"><span class="pre">ifplugd</span></tt> is started.</p>
+<p>Autonet keeps all its configuration files in a <tt class="docutils literal"><span class="pre">/etc/autonet</span></tt> directory, that
+should have been created at installation time.</p>
+<p>You should create several files there:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">autonet.conf</span></tt>, a global file containing very general settings</li>
+<li><tt class="docutils literal"><span class="pre">$interfacename.conf</span></tt>, the interface-specific configuration file</li>
+<li><tt class="docutils literal"><span class="pre">$interfacename.$networkname.conf</span></tt>, a network-specific configuration file,
+it case you are not satisfied by the default in
+<tt class="docutils literal"><span class="pre">$interfacename.conf</span></tt>. <tt class="docutils literal"><span class="pre">$networkname</span></tt> is the name indicated in the network's
+<tt class="docutils literal"><span class="pre">id_str</span></tt> field in the <tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt> configuration file.</li>
+<li><tt class="docutils literal"><span class="pre">wpa_supplicant-$interfacename.conf</span></tt>, the <tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt> configuration
+file for the <tt class="docutils literal"><span class="pre">$interfacename</span></tt> interface</li>
+</ul>
+<p>You can also put other files, like scripts you would like to use with autonet.</p>
+<p>The format of the <tt class="docutils literal"><span class="pre">.conf</span></tt> files is always the same: the shell-style format,
+i.e one variable declaration per line using the format <tt class="docutils literal"><span class="pre">VARIABLE_NAME=</span>
+<span class="pre">VARIABLE_VALUE</span></tt>, lines starting with <tt class="docutils literal"><span class="pre">#</span></tt> are ignored (comments). For example,
+a short configuration file would be:</p>
+<pre class="literal-block">
+# Just a test
+MY_TEST_VARIABLE=1
+</pre>
+<div class="section" id="the-global-configuration-file">
+<h4>The global configuration file</h4>
+<p>This is where you give your interface preferrence list, and the scripts you
+would like to run when an interface is brought up or down. Here is the complete
+list of variables.</p>
+<div class="section" id="log-file">
+<h5>LOG_FILE</h5>
+<p>Specify the path to autonet's log file</p>
+</div>
+<div class="section" id="connection-test-interval">
+<h5>CONNECTION_TEST_INTERVAL</h5>
+<p>Number of seconds between each connectivity test</p>
+</div>
+<div class="section" id="first-connection-test-interval">
+<h5>FIRST_CONNECTION_TEST_INTERVAL</h5>
+<p>Number of seconds between the connection to a network, and the first
+connectivity test</p>
+</div>
+<div class="section" id="reconnect-interval">
+<h5>RECONNECT_INTERVAL</h5>
+<p>Number of seconds to wait between disconnection and reconnection</p>
+</div>
+<div class="section" id="preferred-wireless">
+<h5>PREFERRED_WIRELESS</h5>
+<p>An array listing your favorite wireless interfaces, preferred one first. The
+list should be written between parentheses, and the items should be separated by
+spaces. For example:</p>
+<pre class="literal-block">
+PREFERED_WIRELESS=(ra0 wlan0 eth1)
+</pre>
+<p>If you do not want to use any wireless interface, put in <tt class="docutils literal"><span class="pre">()</span></tt></p>
+</div>
+<div class="section" id="preferred-wired">
+<h5>PREFERRED_WIRED</h5>
+<p>An array listing your favorite wired interface. It has the same format as
+<a class="reference internal" href="#preferred-wireless">PREFERRED_WIRELESS</a></p>
+</div>
+<div class="section" id="wireless-when-unplugged">
+<h5>WIRELESS_WHEN_UNPLUGGED</h5>
+<p>Set this to <tt class="docutils literal"><span class="pre">true</span></tt> is you want to automatically connect to a wireless network
+if no wired interface is available. Set this to <tt class="docutils literal"><span class="pre">false</span></tt> otherwise.</p>
+</div>
+<div class="section" id="wireless-preup">
+<h5>WIRELESS_PREUP</h5>
+<p>Command that is run before bringing up a wireless interface. <tt class="docutils literal"><span class="pre">WIRED_PREUP</span></tt> is
+the wired equivalent.</p>
+</div>
+<div class="section" id="wireless-postup">
+<h5>WIRELESS_POSTUP</h5>
+<p>Command that is run after bringing up a wireless interface. <tt class="docutils literal"><span class="pre">WIRED_POSTUP</span></tt> is
+the wired equivalent.</p>
+</div>
+<div class="section" id="wireless-predown">
+<h5>WIRELESS_PREDOWN</h5>
+<p>Command that is run before bringing down a wireless interface. <tt class="docutils literal"><span class="pre">WIRED_PREDOWN</span></tt>
+is the wired equivalent.</p>
+</div>
+<div class="section" id="wireless-postdown">
+<h5>WIRELESS_POSTDOWN</h5>
+<p>Command that is run after bringing down a wireless interface.
+<tt class="docutils literal"><span class="pre">WIRED_POSTDOWN</span></tt> is the wired equivalent.</p>
+</div>
+</div>
+<div class="section" id="the-interface-configuration-file">
+<h4>The interface configuration file</h4>
+<p>A file should exist for each interface given in <a class="reference internal" href="#preferred-wireless">PREFERRED_WIRELESS</a> and
+<a class="reference internal" href="#preferred-wired">PREFERRED_WIRED</a> . The file specifies the default connection, test, and
+disconnection commands that are to be used when connecting to a network. Those
+commands can be overriden in the <a class="reference internal" href="#the-network-configuration-file">network configuration file</a>. Here is the full
+list of variables</p>
+<div class="section" id="connect-command">
+<h5>CONNECT_COMMAND</h5>
+<p>Specifies the command to run to connect to the network. The command will be
+passed one argument: the name of the interface we are connecting to. Once this
+command is run, the network connectivity test must pass. <tt class="docutils literal"><span class="pre">dhcpcd</span></tt> is a good
+default value for this variable.</p>
+</div>
+<div class="section" id="test-command">
+<h5>TEST_COMMAND</h5>
+<p>Specifies the command to run as connectivity test. The command should return a
+zero status if we are connected to the network and a non-zero status
+otherwise. Some tests are already available in <tt class="docutils literal"><span class="pre">/usr/lib/autonet</span></tt>, like
+<tt class="docutils literal"><span class="pre">test-googleping</span></tt>, that just pings www.google.com, or <tt class="docutils literal"><span class="pre">test-paypalwget</span></tt>,
+that tries to download <tt class="docutils literal"><span class="pre">https://www.paypal.com/</span></tt>, so that we can check we are
+not redirected to some stupid ISP welcome page for example.</p>
+</div>
+<div class="section" id="disconnect-command">
+<h5>DISCONNECT_COMMAND</h5>
+<p>The command to use to disconnect from the network. The command will be passed
+one argument: the named of the interface we are connecting to. <tt class="docutils literal"><span class="pre">dhcpcd</span> <span class="pre">-k</span></tt> is
+a good default value for this variable.</p>
+</div>
+<div class="section" id="nonet-connect">
+<h5>NONET_CONNECT</h5>
+<p>Set this to <tt class="docutils literal"><span class="pre">true</span></tt> if you want to try running the connection commands even
+though <tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt> did not connect to any network. Set this to <tt class="docutils literal"><span class="pre">false</span></tt>
+otherwise. This should usually be set to <tt class="docutils literal"><span class="pre">true</span></tt> for wired interfaces, and to
+<tt class="docutils literal"><span class="pre">false</span></tt> for wireless ones.</p>
+</div>
+</div>
+<div class="section" id="the-network-configuration-file">
+<h4>The network configuration file</h4>
+<p>This can contain the same variables as the ones in the <a class="reference internal" href="#the-interface-configuration-file">interface configuration
+file</a>. They will be used instead when this specific network is available. For
+example, if you need to start a VPN client for a given network, you might want
+to use some special connection and disconnection command.</p>
+</div>
+<div class="section" id="the-wpa-supplicant-configuration-file">
+<h4>The wpa_supplicant configuration file</h4>
+<p>There should be one file for each interface that is specified in
+<tt class="docutils literal"><span class="pre">autonet.conf</span></tt>.</p>
+<p>This file is parsed by <tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt> when it is started, and should have
+the format of a <tt class="docutils literal"><span class="pre">wpa_supplicant</span></tt> configuration file, use <tt class="docutils literal"><span class="pre">man</span>
+<span class="pre">wpa_configuration.conf</span></tt> for more information. For each network,
+the <tt class="docutils literal"><span class="pre">id_str</span></tt> variable will be used by autonet to identify the network in the
+output of <tt class="docutils literal"><span class="pre">autonet-status</span></tt>.</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

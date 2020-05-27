@@ -1,0 +1,75 @@
+.. default-role:: literal
+
+
+Xorg documentation
+==================
+
+This contains some documentation about what I know on Xorg_.
+
+.. _Xorg: http://en.wikipedia.org/wiki/Xorg
+
+.. contents:: Contents
+   :local:
+
+Disabling ctrl-alt-backspace and other annoying key sequences
+-------------------------------------------------------------
+
+``Ctrl-alt-backspace`` is supposed to kill the X server. This can be annoying,
+especially when the display is supposed to be locked :-)
+
+``Ctrl-alt-f1`` is supposed to switch to virtual terminal 1. There is no real
+reason one would ever want to do this when using an X server.
+
+To disable those bindings, modify the "ServerFlags" section in
+``/etc/X11/xorg.conf`` as follows::
+
+    Section "ServerFlags"
+        Option  "DontZap"  "true"
+        Option "DontVTSwitch"  "true"
+        # ...
+    EndSection
+
+
+Taking a screenshot
+-------------------
+
+To take a screenshot, use ``import`` from ImageMagick_. The program takes the
+name of the output file as argument. To take a snapshot in ten seconds, run::
+
+    $ sleep 10 && import myscreen.png
+
+then drag the mouse over the region of the screen you want in the
+screenshot. 
+
+Those instructions come from `this linux screenshot howto`_
+
+.. _this linux screenshot howto: http://tips.webdesign10.com/how-to-take-a-screenshot-on-ubuntu-linux
+.. _ImageMagick: http://www.imagemagick.org/script/index.php
+
+Xscreensaver configuration
+--------------------------
+
+xscreensaver_ is the "standard" Linux screensaving utility. This is how I
+configured it on my laptop.
+
+I had to add something like ``xscreensaver &`` in my ``.xinitrc`` so that it is
+launched with the X server. To configure it, just run ``xscreensaver-demo`` . To
+do some special action,  use ``xscreensaver-command``, e.g
+``xscreensaver-command -lock`` locks the screen.
+
+.. _xscreensaver: http://www.jwz.org/xscreensaver/
+
+X over SSH with Xnest
+---------------------
+
+Assume you want to run GNOME_ remotely, but you want to continue working on your
+window manager at the same time. The solution is to run it in a separate window
+using `Xnest`. To do that, first start `Xnest` on display `:1`::
+
+    $ Xnest -ac -geometry 1024x550 :1 
+
+Then set your display, ssh to the remote host and launch gnome::
+
+    $ DISPLAY=:1 ssh -X luser@example.com gnome-session
+
+.. _GNOME: http://www.gnome.org/

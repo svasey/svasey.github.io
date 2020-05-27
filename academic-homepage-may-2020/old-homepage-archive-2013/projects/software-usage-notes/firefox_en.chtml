@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Firefox tips and tricks</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="firefox-tips-and-tricks">
+<h2>Firefox tips and tricks</h2>
+<p>This page documents how to do some non-obvious things with <a class="reference external" href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>.</p>
+<p>Unless noted otherwise, the instructions apply to Firefox 3.5 .</p>
+<div class="section" id="clearing-your-private-data">
+<h3>Clearing your private data</h3>
+<p>If you want to clear your history and your <a class="reference external" href="http://en.wikipedia.org/wiki/HTTP_Authentication">HTTP-authenticated</a> sessions,
+follow those steps:</p>
+<ol class="arabic simple">
+<li>Click <tt class="docutils literal"><span class="pre">Menu</span> <span class="pre">-&gt;</span> <span class="pre">Edit</span> <span class="pre">-&gt;</span> <span class="pre">Preference</span></tt></li>
+<li>Go to <tt class="docutils literal"><span class="pre">Privacy</span> <span class="pre">-&gt;</span> <span class="pre">Clear</span> <span class="pre">all</span> <span class="pre">current</span> <span class="pre">history</span></tt></li>
+<li>Select your time range and click on <tt class="docutils literal"><span class="pre">Clear</span> <span class="pre">now</span></tt></li>
+</ol>
+</div>
+<div class="section" id="getting-a-warning-on-quit">
+<h3>Getting a warning on quit</h3>
+<p>Since you can easily quit firefox by mistake, e.g by typing <a class="reference external" href="http://blog.perceptus.ca/2009/01/19/disable-ctrl-q-in-firefox/">Ctrl-q instead of
+Ctrl-w</a>, getting a warning asking whether we are sure is nice. Unfortunately <a class="reference external" href="https://bugzilla.mozilla.org/show_bug.cgi?id=419009">a
+bug in firefox 3.5</a> disables this behavior under some circumstances</p>
+<p>I haven't found a fix that worked for me: even installing <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/tab-mix-plus/">Tab Mix Plus</a> could
+not do anything when I did a Ctrl-q.</p>
+</div>
+<div class="section" id="backing-up-your-configuration">
+<h3>Backing up your configuration</h3>
+<p>To backup my firefox configuration and extensions, I use an extension called
+<a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/febe/">FEBE</a> .</p>
+</div>
+</div>
+</div>
+</body>
+</html>

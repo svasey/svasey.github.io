@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The configuration directory</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch03.html" title="Chapter 3. How urpkg works" /><link rel="prev" href="ch03s04.html" title="Package directories" /><link rel="next" href="ch03s06.html" title="Owned and added files" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The configuration directory</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s04.html">Prev</a> </td><th width="60%" align="center">Chapter 3. How urpkg works</th><td width="20%" align="right"> <a accesskey="n" href="ch03s06.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="The configuration directory"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="config-dir"></a>The configuration directory</h2></div></div></div><p>
+  Urpkg's configuration directory is kept by default
+  in <code class="filename">/usr/local/etc/urpkg</code>. This is where all the files
+  urpkg needs to run correctly are stored. Those are mostly shell scripts that
+  you can change to fit your needs. They are documented here. Pay attention:
+  they are invoked with the privileges that were used to invoke urpkg.
+</p><div class="sect2" title="The find script"><div class="titlepage"><div><div><h3 class="title"><a id="find-cmd"></a>The find script</h3></div></div></div><p>
+    This is the script urpkg uses to find files whose owner or group is a given
+    package user. It is also used to list install directories or shared
+    files. It takes one argument: a user <span class="emphasis"><em>or</em></span> group name. It
+    should print the list of files in the system that are owned by this user or
+    group, <span class="emphasis"><em>excluding</em></span> the package's home directory
+  </p><p>
+    By default, a few locations such as <code class="filename">/tmp</code>
+    or <code class="filename">/mnt</code>, or the package home directory are excluded
+    from the search. They are given in the <code class="varname">EXCLUDE</code> variable
+    at the beginning of the script. Please check that they match your
+    expectation.
+  </p></div><div class="sect2" title="The preinstall script"><div class="titlepage"><div><div><h3 class="title"><a id="id423352"></a>The preinstall script</h3></div></div></div><p>
+    It is run before any installation. It takes no argument, and by default does
+    nothing but printing a line or two to confirm it was executed.
+  </p></div><div class="sect2" title="The postinstall scripts"><div class="titlepage"><div><div><h3 class="title"><a id="id423363"></a>The postinstall scripts</h3></div></div></div><p>
+    All files in the directory <code class="filename">postinst</code> relative to the
+    configuration directory will be run after the installation. Each can be
+    passed exactly one argument using the <code class="option">--SCRIPT-arg</code> option.
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	The complog script will install a compilation log in the package's home
+	directory. The file must be named <code class="filename">svcompile.log</code>, or
+	you must pass it as argument. If no such file exist, nothing will be
+	done.
+      </p></li><li class="listitem"><p>
+	The ldconfig script will only run the <span class="command"><strong>ldconfig</strong></span>
+	command and exit.
+      </p></li><li class="listitem"><p>
+	The source script will install the source file/directory, given as its
+	argument in a subdirectory <code class="filename">src/</code> of the package
+	directory.
+      </p></li></ul></div></div><div class="sect2" title="Environment variables"><div class="titlepage"><div><div><h3 class="title"><a id="id423868"></a>Environment variables</h3></div></div></div><p>
+    If you decide to write your own scripts, you can count on several
+    environment variables to help you:
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	<code class="varname">URPKG_USER</code>: gives the package username
+      </p></li><li class="listitem"><p>
+	<code class="varname">URPKG_PKGNAME</code>: gives the package name
+      </p></li><li class="listitem"><p>
+	<code class="varname">URPKG_HOMEDIR</code>: gives the package directory
+      </p></li><li class="listitem"><p>
+	<code class="varname">PWD</code> is set to the directory from which urpkg was
+	invoked.
+      </p></li></ul></div></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s04.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s06.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Package directories </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Owned and added files</td></tr></table></div></body></html>

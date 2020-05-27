@@ -1,0 +1,61 @@
+.. default-role:: literal
+
+
+Autonet
+=======
+
+:Note: This is just a bunch of ugly bash scripts that more or less work on my
+       laptop. As mentionned below, this is just a "quick and dirty" approach, a
+       better design is definitely needed. I am not interested in this
+       particular project anymore. Try to avoid using it if possible.
+
+Description
+-----------
+
+Autonet is a quick and dirty alternative to the `GNOME Network Manager`_. It
+automates the process of connecting to your favorite wired or wireless networks,
+while trying to stay robust and customizable.
+
+.. _GNOME Network Manager: http://projects.gnome.org/NetworkManager/
+
+Features
+--------
+
+* Supports both wired and wireless networks
+* Configurable via simple plain text files
+* No interaction required: works in the background
+* Constantly monitors the network connection and tries to reconnect when it
+  fails
+* Customizable: can be given post/pre connect script as well as
+  connection-testing scripts...
+* Released in the Public Domain
+
+News
+----
+
+February 4th 2010: version 2010204
+##################################
+
+Initial release.
+
+Download
+--------
+
+Autonet is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/autonet.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/autonet.tar.gz.sig
+
+Documentation
+-------------
+
+See the `autonet documentation page`_.
+
+.. _autonet documentation page: autonet-doc_en.html

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Urpkg</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="urpkg">
+<h2>Urpkg</h2>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>Urpkg lets you install programs in a safe and undoable way. It is especially
+useful to install programs from source when no packages from your distribution
+is available. It is then very easy to uninstall the programs you don't want
+anymore. Urpkg was originally inspired by the <a class="reference external" href="http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt">LFS Package user hint</a>.</p>
+<p>Urpkg works by creating a new user for each package it has to install. The
+package is then installed with the privilege of the new user. This prevents a
+new package from overwriting files from another package for example.</p>
+</div>
+<div class="section" id="features">
+<h3>Features</h3>
+<ul class="simple">
+<li>Can be used with any installation methods, i.e not only a Makefile.</li>
+<li>Avoids a dangerous root installation by restricting privileges to what is
+effectively needed.</li>
+<li>Lets you decide where you want to allow packages to have write access</li>
+<li>Lets you uninstall any program.</li>
+<li>Could also be useful to create binary packages in an automated way. The manual
+describes <a class="reference external" href="manual/index-nochunk.html#slackpkg">how to create Slackware packages</a>, for examples.</li>
+<li>Tested on LFS, Arch Linux and Slackware 12.1, but should work on other
+GNU/Linux distributions as well.</li>
+<li>Released in the Public Domain</li>
+</ul>
+</div>
+<div class="section" id="news">
+<h3>News</h3>
+<div class="section" id="february-4th-2010-version-20100204">
+<h4>February 4th 2010: version 20100204</h4>
+<p>Released into the public domain.</p>
+</div>
+<div class="section" id="march-28th-2009-version-1-9">
+<h4>March 28th 2009: version 1.9</h4>
+<p>Fixed a bug that would remove directories even though they were not empty.</p>
+</div>
+<div class="section" id="march-21st-2009-version-1-8">
+<h4>March 21st 2009: version 1.8</h4>
+<p>Fixed infinite looping bug which appeared in Arch Linux.</p>
+</div>
+<div class="section" id="march-21st-2009-version-1-7">
+<h4>March 21st 2009: version 1.7</h4>
+<ul class="simple">
+<li>Added arch linux PKGBUILD</li>
+<li>Added DESTDIR option to CMakeLists</li>
+<li>Documented documentation build dependencies</li>
+<li>Fixed some bugs in the installation scripts</li>
+</ul>
+</div>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>Urpkg is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/urpkg.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/urpkg.tar.gz.sig">PGP signature</a></li>
+<li><a class="reference external" href="../../download.svasey.org/urpkg/">Old releases</a></li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation</h3>
+<p>Urpkg has a user manual. You can read the online version with <a class="reference external" href="manual/index.html">one page for each
+node</a> or with <a class="reference external" href="manual/index-nochunk.html">everything on one page</a></p>
+<p>You should always refer to <em>that</em> online manual first before asking a question
+or reporting a bug.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

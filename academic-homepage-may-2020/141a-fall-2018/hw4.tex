@@ -1,0 +1,96 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\title[Math 141a, Fall 2018: assignment 4]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 4}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, October 5 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item A formula $f$ is said to be in \emph{prenex form} if all its quantifiers occur at the beginning. That is, $f$ is of the form $Q_0 x_0 Q_1 x_1 \ldots Q_{n - 1} x_{n - 1} g$, where each $x_i$ is a variable, each $Q_i$ is either $\forall$ or $\exists$, and $g$ is a quantifier-free formula.
+
+  Prove that any formula is equivalent to a formula in prenex form.
+
+  You may follow the sketch of the proof given on p.~23 in Poizat, but give the details by proceeding by induction on the complexity of the formula; you can use without proofs the equivalences listed on p.~20 and p.~21 of Poizat. Also pay attention to the difference between ``almost equivalent'' and ``equivalent'' outlined on p.~22.
+\item A quantifier-free formula $f$ is said to be in \emph{disjunctive form} if it is of the form $\bigvee_{i < n} f_i$, where each $f_i$ is of the form $\bigwedge_{j < n_i} f_{i, j}$, and $f_{i, j}$ is either atomic or the negation of an atomic formula.
+
+  Prove that any quantifier-free formula is equivalent to a quantifier-free formula in disjunctive form.
+
+\item Recall that a theory $T$ (in the language of an $m$-ary relation) is called \emph{complete} if $f \in T$ or $\neg f \in T$ for any sentence $f$ in the language of an $m$-ary relation.
+
+  Assume $T$ is a theory. Prove that $T$ is complete if and only if any two models of $T$ are elementarily equivalent.
+
+\item Recall that we call a consistent set of sentences $A$ \emph{complete} if its set $T_A$ of consequences is complete.
+
+  \begin{enumerate}
+  \item Give a set of axioms (in the language for a binary relation) whose models are exactly the  graphs (that is, the irreflexive and symmetric relations).
+  \item Give a set of axioms (in the language for a binary relation) whose models are exactly the generic graphs (see the previous problem set).
+  \item Prove that any set of axioms whose models are exactly the generic graphs must be complete.
+  \end{enumerate}
+\item For an $m$-ary relation $R$ with universe $E$ which is a restriction of a relation $R'$ with universe $E'$, we say that $R'$ is an \emph{elementary extension of $R$} (written $(E, R) \preceq (E', R')$, or just $R \preceq R'$), if for any tuple $\ba$ from $E$ and any formula $f (\bx)$, $R \models f (\ba)$ if and only if $R' \models f (\ba)$.
+
+  \begin{enumerate}
+  \item Assume that $R$ is an $m$-ary relation with universe $E$, $R'$ is a relation with universe $E'$, and $R$ is a restriction of $R'$. Prove that the following are equivalent:
+    \begin{enumerate}
+    \item For any tuple $\ba$ from $E$, $(\ba, R) \sim_{\omega} (\ba, R')$
+    \item $R \preceq R'$.
+    \end{enumerate}
+
+    (note that the first item is the definition of elementary extension given on p.~4 of Poizat).
+  \item Prove that $(\mathbb{N}, <) \not \preceq (\{-1\} \cup \mathbb{N}, <)$, but $(\mathbb{N}, <)$ and $(\{-1\} \cup \mathbb{N}, <)$ are elementarily equivalent.
+  \item Prove that $(\mathbb{Q}, <) \preceq (\mathbb{R}, <)$ and $(\mathbb{Z}, <) \preceq (\mathbb{Z}, <) + (\mathbb{Z}, <)$. \emph{Hint: use Poizat's equivalent definition.}
+  \end{enumerate}
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>EEE 901 Documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="eee901_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="eee901_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="eee901_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="eee-901-documentation">
+<h2>EEE 901 Documentation</h2>
+<p>Documents my experience with the <a class="reference external" href="http://en.wikipedia.org/wiki/ASUS_Eee_PC#Other_Eee_90x_models">EEE PC 901</a></p>
+<div class="section" id="problems-that-could-happen">
+<h3>Problems that could happen</h3>
+<p>This is just a list of problems that happened to me, and how I fixed them</p>
+<div class="section" id="wireless-card-stops-working">
+<h4>Wireless card stops working</h4>
+<div class="section" id="the-problem">
+<h5>The problem</h5>
+<p>Wireless is not working properly, doing a:</p>
+<pre class="literal-block">
+$ ifconfig ra0
+</pre>
+<p>just returns something like: <tt class="docutils literal"><span class="pre">interface</span> <span class="pre">not</span> <span class="pre">found</span></tt>.</p>
+</div>
+<div class="section" id="the-solution">
+<h5>The solution</h5>
+<p>The card is probably disabled in the BIOS. I have no clue why it suddenly
+disables, but that happened to me once and this is the first thing to
+check. Also, check out <tt class="docutils literal"><span class="pre">/proc/acpi/asus/wlan</span></tt> to see if wireless is on (1) or
+off (0).</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >eee901</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

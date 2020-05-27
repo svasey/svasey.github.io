@@ -1,0 +1,1208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Urpkg User Manual</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /></head><body><div xml:lang="en" class="book" title="Urpkg User Manual" lang="en"><div class="titlepage"><div><div><h1 class="title"><a id="id470898"></a>Urpkg User Manual</h1></div><div><div class="authorgroup"><div class="author"><h3 class="author"><span class="firstname">Sebastien</span> <span class="surname">Vasey</span></h3></div></div></div><div><p class="releaseinfo">
+      urpkg 20110630
+    </p></div><div><div class="legalnotice" title="Legal Notice"><a id="id499302"></a><p>
+	I hereby release this software in the public domain.  This means that
+	you can use and distribute it in whatever way you see fit.  However, if
+	you want to re-publish it, I ask you to please put a link to its web
+	page, and mention my name. You are not forced to do it, but that would
+	be a way to say thanks ! See also:
+	<a class="ulink" href="http://svasey.org/copyright_en.html" target="_top">
+	  My copyright page
+	</a>
+      </p></div></div></div><hr /></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="preface"><a href="#preface">Preface</a></span></dt><dt><span class="chapter"><a href="#introduction">1. Introduction</a></span></dt><dd><dl><dt><span class="sect1"><a href="#whatis-urpkg">What is urpkg ?</a></span></dt><dt><span class="sect1"><a href="#how-can-useful">How can urpkg be useful ?</a></span></dt></dl></dd><dt><span class="chapter"><a href="#getting-started">2. Getting started</a></span></dt><dd><dl><dt><span class="sect1"><a href="#compile-install">Compiling and installing urpkg</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id469604">Prerequisites</a></span></dt><dt><span class="sect2"><a href="#id516654">Extracting the tarball</a></span></dt><dt><span class="sect2"><a href="#configuring-build">Configuring the build</a></span></dt><dt><span class="sect2"><a href="#id516992">Compiling urpkg</a></span></dt><dt><span class="sect2"><a href="#id517028">Installing urpkg</a></span></dt></dl></dd><dt><span class="sect1"><a href="#create-test-package">Creating a test package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id517883">Creating the destination directories</a></span></dt><dt><span class="sect2"><a href="#id518320">Creating the source files</a></span></dt></dl></dd><dt><span class="sect1"><a href="#add-install-dir">Adding installation directories and shared files</a></span></dt><dt><span class="sect1"><a href="#inst-prog">Installing a program</a></span></dt><dt><span class="sect1"><a href="#play-files">Playing with the program's files</a></span></dt><dt><span class="sect1"><a href="#pre-post">Pre and post install scripts</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id519017">The preinstall script</a></span></dt><dt><span class="sect2"><a href="#id518919">The postinstall scripts</a></span></dt></dl></dd><dt><span class="sect1"><a href="#slackpkg">Creating a Slackware package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id519416">Listing the package's file</a></span></dt><dt><span class="sect2"><a href="#id519439">Creating the package</a></span></dt></dl></dd><dt><span class="sect1"><a href="#uninst">Uninstalling a program</a></span></dt></dl></dd><dt><span class="chapter"><a href="#how-works">3. How urpkg works</a></span></dt><dd><dl><dt><span class="sect1"><a href="#how-intro">Introduction</a></span></dt><dt><span class="sect1"><a href="#user-pkgname">Package user and package name</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id522017">Generating a username</a></span></dt><dt><span class="sect2"><a href="#id522127">Finding the package user owning a file</a></span></dt><dt><span class="sect2"><a href="#id522158">Finding a package name</a></span></dt></dl></dd><dt><span class="sect1"><a href="#group-perm">Installation groups and file permissions</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id521984">The sticky bit</a></span></dt><dt><span class="sect2"><a href="#package-groups">Package user groups</a></span></dt><dt><span class="sect2"><a href="#id522502">Owner and group of a package's file</a></span></dt></dl></dd><dt><span class="sect1"><a href="#package-dir">Package directories</a></span></dt><dt><span class="sect1"><a href="#config-dir">The configuration directory</a></span></dt><dd><dl><dt><span class="sect2"><a href="#find-cmd">The find script</a></span></dt><dt><span class="sect2"><a href="#id522458">The preinstall script</a></span></dt><dt><span class="sect2"><a href="#id522470">The postinstall scripts</a></span></dt><dt><span class="sect2"><a href="#id522975">Environment variables</a></span></dt></dl></dd><dt><span class="sect1"><a href="#owned-files">Owned and added files</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id522959">Which file belong to a package ?</a></span></dt><dt><span class="sect2"><a href="#id523305">What gets removed or listed ?</a></span></dt><dt><span class="sect2"><a href="#id523329">What about directories ?</a></span></dt></dl></dd></dl></dd><dt><span class="chapter"><a href="#using-urpkg">4. Using urpkg</a></span></dt><dd><dl><dt><span class="sect1"><a href="#manpages">Manpages</a></span></dt><dt><span class="sect1"><a href="#problems">Common problems</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id528653">Programs writing in the current directory</a></span></dt><dt><span class="sect2"><a href="#id528719">Programs writing to non-install directories</a></span></dt><dt><span class="sect2"><a href="#id528773">Unwanted permission/ownership changes</a></span></dt><dt><span class="sect2"><a href="#id528864">Overwritten or deleted files</a></span></dt><dt><span class="sect2"><a href="#id528916">Ldconfig</a></span></dt></dl></dd><dt><span class="sect1"><a href="#bugs">Bugs</a></span></dt><dt><span class="sect1"><a href="#todo">Todo</a></span></dt><dt><span class="sect1"><a href="#faq">FAQ</a></span></dt></dl></dd><dt><span class="chapter"><a href="#contributing">5. Contributing to urpkg</a></span></dt></dl></div><div class="preface" title="Preface"><div class="titlepage"><div><div><h2 class="title"><a id="preface"></a>Preface</h2></div></div></div><p>
+  This is the user manual for urpkg, a software to install programs in a safe
+  and easily undoable way. Urpkg is public-domain software, written in C.
+</p><p>
+  I first begun working on urpkg after reading
+  the <a class="ulink" href="http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt" target="_top"> 
+    More Control and Package Management using
+    Package Users LFS hint</a> so a lot of ideas implemented in urpkg come
+  from the hint's author Matthias S. Benkmann which I would like to credit
+  here.
+</p><p>
+  Even though this document should be complete enough, I strongly recommend
+  you to read the hint first, as to better understand the ideas behind
+  urpkg.
+</p></div><div class="chapter" title="Chapter 1. Introduction"><div class="titlepage"><div><div><h2 class="title"><a id="introduction"></a>Chapter 1. Introduction</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#whatis-urpkg">What is urpkg ?</a></span></dt><dt><span class="sect1"><a href="#how-can-useful">How can urpkg be useful ?</a></span></dt></dl></div><div class="sect1" title="What is urpkg ?"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="whatis-urpkg"></a>What is urpkg ?</h2></div></div></div><p>
+  urpkg is a software to install programs in a safe and undoable way. One
+  could call it a package management software, although its
+  features are somewhat scarce compared to the other tools in that
+  domain. Urpkg let you install programs (usually from source, although
+  you could also consider using another package manager for example) in
+  such a way that you have complete controls over where the installation
+  program has access. Once your software is installed, it is very easy to
+  list its files and uninstall it in case you are not satisfied.
+</p><p>
+  Under the hood, urpkg creates a user for each program that you install
+  and run the installation command as this user. The command is therefore
+  never given root access and will not be allowed to do any unwanted
+  damages as it may happen if you run the usual <code class="code">sudo make
+    install</code> for example.
+</p></div><div class="sect1" title="How can urpkg be useful ?"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="how-can-useful"></a>How can urpkg be useful ?</h2></div></div></div><p>
+  The first goal I had in mind when creating urpkg was to prevent installation
+  programs from overwriting files or getting suid behind my back. I did not want
+  to let the program run as root for a task as delicate as installing a
+  program. So that's the first idea: complete control over what gets installed
+  and how. You may trust your package manager, but do you trust all the
+  installation scripts of all the programs you are ever going to install, remove
+  and upgrade ?
+</p><p>
+  The second goal was to be able to uninstall any software, even if there
+  is no available package (for example for development
+  versions), <code class="code">make uninstall</code> target, or other means of
+  uninstalling it. Urpkg lets you run any command, and then remove all
+  files generated by that command easily. This way it is much easier to
+  install software from source or to create packages for your favorite
+  distro in an automated way, much like 
+  <a class="ulink" href="http://www.asic-linux.com.mx/~izto/checkinstall/" target="_top">
+    checkinstall</a>.
+</p><p>
+  By the way, since version 1.4, you can easily create Slackware packages using
+  urpkg. See <a class="xref" href="#slackpkg" title="Creating a Slackware package">the section called “Creating a Slackware package”</a>
+</p><p>
+  In short, urpkg can be used to...
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+      Keep control over what any installation program (including your favorite
+      package manager) is doing
+    </p></li><li class="listitem"><p>
+      Install any program from source
+    </p></li><li class="listitem"><p>
+      Generate package for your favorite distribution
+    </p></li><li class="listitem"><p>
+      Anything you think it can be good at...
+      </p></li></ul></div></div></div><div class="chapter" title="Chapter 2. Getting started"><div class="titlepage"><div><div><h2 class="title"><a id="getting-started"></a>Chapter 2. Getting started</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#compile-install">Compiling and installing urpkg</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id469604">Prerequisites</a></span></dt><dt><span class="sect2"><a href="#id516654">Extracting the tarball</a></span></dt><dt><span class="sect2"><a href="#configuring-build">Configuring the build</a></span></dt><dt><span class="sect2"><a href="#id516992">Compiling urpkg</a></span></dt><dt><span class="sect2"><a href="#id517028">Installing urpkg</a></span></dt></dl></dd><dt><span class="sect1"><a href="#create-test-package">Creating a test package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id517883">Creating the destination directories</a></span></dt><dt><span class="sect2"><a href="#id518320">Creating the source files</a></span></dt></dl></dd><dt><span class="sect1"><a href="#add-install-dir">Adding installation directories and shared files</a></span></dt><dt><span class="sect1"><a href="#inst-prog">Installing a program</a></span></dt><dt><span class="sect1"><a href="#play-files">Playing with the program's files</a></span></dt><dt><span class="sect1"><a href="#pre-post">Pre and post install scripts</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id519017">The preinstall script</a></span></dt><dt><span class="sect2"><a href="#id518919">The postinstall scripts</a></span></dt></dl></dd><dt><span class="sect1"><a href="#slackpkg">Creating a Slackware package</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id519416">Listing the package's file</a></span></dt><dt><span class="sect2"><a href="#id519439">Creating the package</a></span></dt></dl></dd><dt><span class="sect1"><a href="#uninst">Uninstalling a program</a></span></dt></dl></div><div class="sect1" title="Compiling and installing urpkg"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="compile-install"></a>Compiling and installing urpkg</h2></div></div></div><p>
+  This section details how to compile and install urpkg from source on your
+  machine.
+</p><div class="sect2" title="Prerequisites"><div class="titlepage"><div><div><h3 class="title"><a id="id469604"></a>Prerequisites</h3></div></div></div><p>
+    You need a UNIX-like system for urpkg to work. I have tested it on GNU/Linux
+    (LFS and Slackware 12.1), but other systems should work as well. You will
+    also need root access on that system. By design, urpkg is useless if you
+    cannot get root access, since it needs to be able to create new users to
+    install a package. Some scripts assume that your user list is in
+    <code class="filename">/etc/passwd</code> and your group list in 
+    <code class="filename">/etc/group</code>. If that is not the case, you should
+    change them accordingly.
+  </p><div class="sect3" title="Build time dependencies"><div class="titlepage"><div><div><h4 class="title"><a id="id469631"></a>Build time dependencies</h4></div></div></div><p>
+      urpkg uses <a class="ulink" href="http://www.cmake.org" target="_top">CMake</a> as build
+      system, so you will need to download and install it. You will also need
+      the standard make and gcc tools.
+    </p><p>
+      If you want to build the documentation yourself (this should not be
+      necessary if you are installing a release tarball), you should have the
+      necessary tools to build docbook documentation, that is
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	  <a class="ulink" href="https://fedorahosted.org/xmlto/" target="_top">xmlto</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://lynx.browser.org/" target="_top">Lynx</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://xmlsoft.org/XSLT/xsltproc2.html" target="_top">xsltproc</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://wiki.docbook.org/DocBookXslStylesheets" target="_top">The
+	  docbook XSL stylesheets</a>
+	</p></li></ul></div><p>
+      You must also have
+      the <span class="command"><strong>useradd</strong></span>, <span class="command"><strong>usermod</strong></span>, etc. programs
+      available, because urpkg looks for them before compiling the software. Any
+      standard linux distribution has these tools.
+    </p></div><div class="sect3" title="Run time dependencies"><div class="titlepage"><div><div><h4 class="title"><a id="id516551"></a>Run time dependencies</h4></div></div></div><p>
+      urpkg relies on some external shell scripts using standard tools that
+      should be available on your system. Those are:
+    </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/bash/" target="_top">GNU bash</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/grep/" target="_top">GNU grep</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.gnu.org/software/sed/" target="_top">GNU sed</a>
+	</p></li><li class="listitem"><a class="ulink" href="http://www.gnu.org/software/findutils/" target="_top">GNU find</a></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.xs4all.nl/~carlo17/which/" target="_top">which</a>
+	</p></li><li class="listitem"><p>
+	  Several utilities from the 
+	  <a class="ulink" href="http://www.gnu.org/software/coreutils/" target="_top">
+	    GNU Coreutils</a>
+	</p></li><li class="listitem"><p>
+	  <a class="ulink" href="http://www.perl.com" target="_top">Perl</a> (only if you want to use
+	  the <a class="link" href="#urpkgize.1" title="urpkgize">urpkgize</a> script).
+	</p></li></ul></div><p>
+      Most of those software should already be on your system, so urpkg is
+      indeed very light on dependencies.
+    </p></div></div><div class="sect2" title="Extracting the tarball"><div class="titlepage"><div><div><h3 class="title"><a id="id516654"></a>Extracting the tarball</h3></div></div></div><p>
+    First, extract the urpkg tarball and cd to it.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>tar -xf <em class="parameter"><code>&lt;Your .tar.gz file&gt;</code></em>
+    <code class="prompt">$ </code>cd <em class="parameter"><code>&lt;filename without .tar.gz&gt;</code></em>
+  </pre><p>
+    Then, you should create a build directory
+  </p><pre class="screen">
+    <code class="prompt">$ </code> mkdir build
+    <code class="prompt">$ </code> cd build
+  </pre></div><div class="sect2" title="Configuring the build"><div class="titlepage"><div><div><h3 class="title"><a id="configuring-build"></a>Configuring the build</h3></div></div></div><p>
+    Now it is time to configure your build. The command is of the form
+  </p><code class="code">
+    cmake -D<em class="parameter"><code>BuildVariable1=Content1</code></em> ... 
+    -D<em class="parameter"><code>BuildVariablen=Contentn</code></em> ..
+  </code><p>
+    In general, you should not need to set a lot of variables. A simple 
+  </p><pre class="screen">
+    <code class="prompt">$ </code>cmake ..
+  </pre><p>
+    should be enough. The possible variables and their default values are listed
+    below.
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	<code class="varname">CMAKE_BUILD_TYPE</code>: specify what kind of build you
+	want to do. It is either "release" or "debug". The default is
+	"release".
+      </p></li><li class="listitem"><p>
+	<code class="varname">DEBUG</code>: If this variable is 1, the program will act in
+	debug mode, e.g it will coredump if something is wrong. The default is 0
+	if <code class="varname">CMAKE_BUILD_TYPE</code> is release, 1 otherwise.
+      </p></li><li class="listitem"><code class="varname">DESTDIR</code>: The destination directory, defaulting
+      to <code class="filename">/</code>. This is the root directory where everything
+      will be copied. This can be useful if for example you want to install
+      urpkg on some other filesystem, and then mount it as the root
+      filesystem.
+    </li><li class="listitem"><code class="varname">CMAKE_INSTALL_PREFIX</code>: The installation prefix,
+      defaulting to <code class="filename">/usr/local</code>. All urpkg files will be
+      installed there.
+    </li><li class="listitem"><code class="varname">DOCDIR</code>: Where all the documentation will be
+      installed. It defaults to 
+      <code class="filename">${CMAKE_INSTALL_PREFIX}/share/doc</code></li><li class="listitem"><code class="varname">MANDIR</code>: Where the manpage are on the system. Default to
+      <code class="filename">${CMAKE_INSTALL_PREFIX}/share/man</code></li><li class="listitem"><code class="varname">PKGDIR</code>: Path to the package directories,
+      where all package user will have their home directory. See 
+      <a class="xref" href="#package-dir" title="Package directories">the section called “Package directories”</a> for more information. The default is 
+      <code class="filename">${CMAKE_INSTALL_PREFIX}/urpkg/</code></li><li class="listitem"><p>
+	<code class="varname">CONFIGDIR</code>: Path to the configuration directory,
+	where urpkg keeps its scripts and some information about what is
+	installed (see <a class="xref" href="#config-dir" title="The configuration directory">the section called “The configuration directory”</a>). The default is 
+	<code class="filename">${CMAKE_INSTALL_PREFIX}/etc/urpkg/</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">INST_LOG</code>: Where error outputted by the installation
+	script will be logged. By default, 
+	<code class="filename">/var/tmp/install.log</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">FINDCMD</code>: The script urpkg uses to find the files
+	belonging to a given package. See also 
+	<a class="xref" href="#find-cmd" title="The find script">the section called “The find script”</a>. You should not change that variable
+	unless you know what you are doing. It defaults
+	to <code class="filename">${CONFIGDIR}/find</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">PREINST</code>: The script urpkg runs before any
+	installation. See also <a class="xref" href="#pre-post" title="Pre and post install scripts">the section called “Pre and post install scripts”</a>. You should not
+	change that variable unless you know what you are doing. It defaults
+	to <code class="filename">${CONFIGDIR}/preinst</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">POSTINST_DIR</code>: Directory where all the scripts urpkg
+	runs after an installation should be. See also 
+	<a class="xref" href="#pre-post" title="Pre and post install scripts">the section called “Pre and post install scripts”</a>. You should not change that variable
+	unless you know what you are doing. 
+	It defaults to <code class="filename">${CONFIGDIR}/postinst/</code>
+      </p></li><li class="listitem"><p>
+	<code class="varname">UADD_PATH</code>, <code class="varname">UMOD_PATH</code>,
+	<code class="varname">UDEL_PATH</code>, <code class="varname">GADD_PATH</code>,
+	<code class="varname">GDEL_PATH</code>: Specify the path for respectively
+	<span class="command"><strong>useradd</strong></span>, <span class="command"><strong>usermod</strong></span>, 
+	<span class="command"><strong>userdel</strong></span>, <span class="command"><strong>groupadd</strong></span> and
+	<span class="command"><strong>groupdel</strong></span>. You need to change those only if cmake
+	cannot find them automatically.
+      </p></li></ul></div></div><div class="sect2" title="Compiling urpkg"><div class="titlepage"><div><div><h3 class="title"><a id="id516992"></a>Compiling urpkg</h3></div></div></div><p>
+    Now everything should be ready. Compile the program.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>make
+  </pre><p>
+    If you want to compile the documentation as well (if you downloaded a
+    release tarball that should not be necessary, as it has already been
+    compiled to most format for you), run
+  </p><pre class="screen">
+    <code class="prompt">$ </code>make doc
+  </pre></div><div class="sect2" title="Installing urpkg"><div class="titlepage"><div><div><h3 class="title"><a id="id517028"></a>Installing urpkg</h3></div></div></div><p>
+    To install urpkg, you have two choices: the first is to directly run
+  </p><pre class="screen">
+    <code class="prompt">$ </code>make install
+  </pre><p>
+    with root privileges if necessary. However, if you have read all I said in
+    <a class="xref" href="#how-can-useful" title="How can urpkg be useful ?">the section called “How can urpkg be useful ?”</a> about installation programs changing file
+    permissions behind your back, you may not even want to trust the
+    installation commands generated by cmake.
+  </p><p>
+    This is perfectly fine. Since you have compiled urpkg, you can use it
+    to <span class="emphasis"><em>install itself</em></span> in a secure way. The following
+    section lists the necessary steps. I recommend this
+    method <span class="emphasis"><em>only</em></span> to users already familiar with how urpkg
+    works. If you are doing this often, you should write yourself a script that
+    automates this action. One such script is in
+    <code class="filename">helpers/bootstrap.sh</code> in the top level directory of
+    urpkg's source.
+  </p><div class="sect3" title="Bootstrapping urpkg"><div class="titlepage"><div><div><h4 class="title"><a id="id517076"></a>Bootstrapping urpkg</h4></div></div></div><p>
+      In these instructions, I assume you are at urpkg's top level directory and
+      you have already build the software in <code class="filename">build/</code>. The
+      shell variable <code class="varname">VERSION</code> is assumed to contain urpkg's
+      version number. You can replace it with whatever you like.
+    </p><p>
+      First, cd to the build directory.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>cd build/
+    </pre><p>
+      For various reasons, you should create the package directory
+      first, as root. Replace <code class="varname">PKGDIR</code> in the
+      following instructions with whatever you configured the program
+      with in <a class="xref" href="#configuring-build" title="Configuring the build">the section called “Configuring the build”</a>
+    </p><pre class="screen">
+      <code class="prompt">$ </code>mkdir ${PKGDIR}
+    </pre><p>
+      You should not forget to create the install and shared group,
+      and then mark places where you want urpkg to be installed as
+      install directories.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>groupadd urpkgrp-install
+      <code class="prompt">$ </code>groupadd urpkgrp-shared
+      <code class="prompt">$ </code>src/urpkg --gen ${CMAKE_INSTALL_PREFIX}/bin
+      <code class="prompt">$ </code>src/urpkg --gen $DOCDIR
+      <code class="prompt">$ </code>src/urpkg --gen ${MANDIR}/man*
+      <code class="prompt">$ </code>src/urpkg --gen $(dirname $CONFIGDIR)
+    </pre><p>
+      Then, you have to create a temporary package directory where urpkg will
+      put all files of the urpkg package. You will then copy this temporary
+      package directory to the real package directory (which is created during
+      urpkg's installation).
+    </p><pre class="screen">
+      <code class="prompt">$ </code>PKGDIR="$(mktemp -d /var/tmp/urpkg.XXXXXXX)"
+    </pre><p>
+      To avoid any permission problem when the install script tries to create
+      files in the build directory, change its access permissions.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>chmod -Rv o+xrw .
+    </pre><p>
+      You are now ready to run urpkg. Be aware though that no find command, no
+      postinstall script and no preinstall script are available so you have to
+      either specify the path explicitly or disable them when you invoke urpkg.
+    </p><pre class="screen">
+      <code class="prompt">$ </code>src/urpkg --install --pkg-name=urpkg-$VERSION \
+      --findcmd=../scripts/find --pkg-dir=$PKGDIR --no-preinst --no-postinst \
+      make install
+    </pre><p>
+      Normally, everything should go fine and urpkg should be installed. Check
+      it by running
+    </p><pre class="screen">
+      <code class="prompt">$ </code>urpkg --info
+    </pre><p>
+      You still have to copy the temporary package directory to the real package
+      directory. You can know its location by looking at the output
+      of <code class="code">urpkg --info</code>. I will refer to it
+      as <code class="varname">TRUE_PKGDIR</code>
+    </p><pre class="screen">
+      <code class="prompt">$ </code>cp -rav ${PKGDIR}/urpkg-$VERSION $TRUE_PKGDIR
+    </pre><p>
+      That's not completely finished. The package user has been created with
+      the temporary package directory as its home directory. To change that, you
+      need to know what the package user is. You can find it using
+    </p><pre class="screen">
+      <code class="prompt">$ </code>USERNAME="$(stat --format=%U ${TRUE_PKGDIR}/urpkg-$VERSION)"
+    </pre><p>
+      Finally, change the package user's home directory and remove the temporary
+      package directory
+    </p><pre class="screen">
+      <code class="prompt">$ </code>usermod --home ${TRUE_PKGDIR}/urpkg-$VERSION $USERNAME
+      <code class="prompt">$ </code>rm -rv $PKGDIR
+    </pre><p>
+      I leave up to you whether you want the package to own the package
+      directory. I like to keep the package directory owned by root,
+      because even if you remove urpkg from your system, you might
+      want to keep some files from various package directories.
+    </p></div></div></div><div class="sect1" title="Creating a test package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="create-test-package"></a>Creating a test package</h2></div></div></div><p>
+  In order to test urpkg's feature, we are going to create a test package, with
+  some files and an installation command that will try everything it can to mess
+  up with the system. We will then install this package using urpkg, play a
+  little bit with it, and finally uninstall it.
+</p><div class="sect2" title="Creating the destination directories"><div class="titlepage"><div><div><h3 class="title"><a id="id517883"></a>Creating the destination directories</h3></div></div></div><p>
+    We will create two destination directories. One where the program will be
+    allowed to be installed, and one where it should not write any files. We
+    will create those directories in <code class="filename">/usr/urpkg-test</code>, or
+    any other directory you wish (just be sure that it is not listed in the
+    <code class="varname">EXCLUDE</code> variable of the find command). We will
+    assume <code class="filename">/usr/urpkg-test/</code> has been chosen.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>cd /usr
+    <code class="prompt">$ </code>sudo mkdir urpkg-test
+    <code class="prompt">$ </code>cd urpkg-test
+    <code class="prompt">$ </code>sudo mkdir allowed
+    <code class="prompt">$ </code>sudo mkdir restricted
+  </pre><p>
+    Now we put some files in the two directories. Those files should not be
+    overwritten by our test package.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo touch allowed/{file1,file2}
+    <code class="prompt">$ </code>sudo touch restricted/{file1,file2}
+  </pre></div><div class="sect2" title="Creating the source files"><div class="titlepage"><div><div><h3 class="title"><a id="id518320"></a>Creating the source files</h3></div></div></div><p>
+    Let's name our package foo, and create some files in it.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo mkdir foo
+    <code class="prompt">$ </code>sudo touch foo/{foo1,file2}
+    <code class="prompt">$ </code>cd foo
+  </pre><p>
+    Let's say that <code class="filename">foo1</code> is specific to the package foo,
+    while <code class="filename">file2</code> is a more recent version of 
+    <code class="filename">allowed/file2</code>. So we would like to
+    overwrite <code class="filename">allowed/file2</code>
+    with <code class="filename">foo/file2</code> .
+    The installation command will be given to urpkg in the next chapter.
+  </p></div></div><div class="sect1" title="Adding installation directories and shared files"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="add-install-dir"></a>Adding installation directories and shared files</h2></div></div></div><p>
+  Once you have installed urpkg, you cannot install a program with it right
+  away. If you try, you will find that files can only be written where everybody
+  has write permission. Concretely, the package foo cannot be installed in
+  <code class="filename">allowed</code> or in <code class="filename">restricted</code> at the
+  moment. Let's make sure of this.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --install install -v foo1 ../restricted/.
+</pre><p>
+  Should output something like this
+</p><pre class="screen">
+  Installing package foo-20080527...
+  Preinstall script
+  Running install command: install -v foo1 ../restricted/.
+  install: cannot create regular file `../restricted/./foo1': Permission denied
+  `foo1' -&gt; `../allowed/./foo1'
+  *** WARNING: The install command printed something to stderr (see /var/tmp/install.log): 
+  install: cannot create regular file `../restricted/./foo1': Permission denied
+  *** ERROR ***
+  urpkg: Command install with arguments '-v foo1 ../restricted/.' returned non-zero status 1
+  Cleaning up...
+  Terminating all processes...
+  Closing all files...
+  Uninstalling uncompletely installed package. PLEASE DO NOT KILL
+  Uninstalling package foo-20080527...
+  Listing and removing files...
+  Removing package user...
+</pre><p>
+  What happened was that our package user had no permission to write in 
+  <code class="filename">../restricted</code>, so the installation command failed and the
+  program was immediately uninstalled.
+</p><p>
+  To allow programs to be installed in a directory, you need to change the
+  directory's permissions. 
+</p><p>
+  Before doing that, you have to create two special groups. They are described
+  in more details in <a class="xref" href="#package-groups" title="Package user groups">the section called “Package user groups”</a>
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo groupadd urpkgrp-install
+  <code class="prompt">$ </code>sudo groupadd urpkgrp-shared
+</pre><p>
+  Now you can invoke the <code class="option">gen</code> command on the directories in
+  which you want to allow packages to be installed.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --gen ../allowed
+</pre><p>
+  This allows any package user to write
+  in <code class="filename">../allowed</code>. However, existing files in these
+  directories cannot be overwritten or removed by anything else than the package
+  those files belong to. As an example
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --install install -v file2 ../allowed/file2
+</pre><p>
+  Will not work. You might simply want to
+  remove <code class="filename">../allowed/file2</code> and then retry, but what if the
+  installation script needs the content of <code class="filename">file2</code> ? For
+  example, <code class="filename">file2</code> could be an index, and the installation
+  script might just want to append something to the index. The solution to this
+  is to change the permission of <code class="filename">file2</code> to allow it to be
+  overwritten. It will still not be possible to remove it though. This is done
+  using the <code class="option">share</code> command.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --share ../allowed/file2
+</pre><p>
+  Directories where one can install program are referred to
+  as <span class="emphasis"><em>installation directories</em></span> while regular files that
+  package user can overwrite are called <span class="emphasis"><em>shared files</em></span>.  In a
+  real system, installation directories would for example
+  be <code class="filename">/usr/bin/</code> or <code class="filename">/etc</code>. Shared files
+  are rarer but can for example
+  include <code class="filename">/usr/share/info/dir</code>, the index of all installed
+  info documentation files. 
+</p><p>
+  To make a shared file a normal file, or make an install directory a usual
+  directory, use respectively <code class="option">--unshare</code>
+  and <code class="option">--ungen</code>. If you want to list your shared files,
+  use <code class="option">--list-shared</code>, <code class="option">--list-instdir</code> is used to
+  list installation directories.
+</p></div><div class="sect1" title="Installing a program"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="inst-prog"></a>Installing a program</h2></div></div></div><p>
+  We are finally ready to install our foo package. Make sure
+  that <code class="filename">../allowed</code> is an installation directory and
+  that <code class="filename">../allowed/file2</code> is a shared file. Then run
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --install cp -v foo1 file2 ../allowed/.
+</pre><p>
+  The command should terminate without error. The package foo has now been
+  installed and is part of the system. To list all installed packages, do
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list
+</pre><p>
+  Notice that a date string has been happened to foo. In fact, the package name
+  was <span class="emphasis"><em>guessed</em></span> from the current directory. Had the directory
+  been named <code class="filename">foo-1.1</code>, the package name would have been
+  foo-1.1 , as a version string already existed. If you don't want the name to
+  be guessed, you can use <code class="option">--pkg-name</code> to give any name you want.
+</p></div><div class="sect1" title="Playing with the program's files"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="play-files"></a>Playing with the program's files</h2></div></div></div><p>
+  You can also use <code class="option">--list</code> with the package name
+  as an argument to list all files belonging to a given package.
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list foo
+</pre><p>
+  Notice that there is no need to give the package's full name. An unambiguous
+  name is enough (e.g if there were two versions of foo installed, say foo-1.1
+  and foo-1.2, then we would have had to be more precise).
+</p><p>
+  You should also see that there is only one file, <code class="filename">foo1</code>
+  that is listed. This is because <code class="filename">file2</code> is a shared
+  file. Now what if you want to add it to the package, so that it is removed if
+  we uninstall foo ?
+</p><p>
+  We first have to strip <code class="filename">file2</code> of its status of shared
+  file. Even though urpkg does not forbid shared files part of a package, it is
+  a bad habit to take. Then we simply use the <code class="option">--add-files</code>
+  action.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --unshare ../allowed/file2
+  <code class="prompt">$ </code>sudo urpkg --add-files --change-owner --change-group foo ../allowed/file2
+</pre><p>
+  The <code class="option">--change-owner</code> and <code class="option">--change-group</code>
+  deserve a more detailed explanation on what it exactly means to add a file
+  to a package. This is presented in <a class="xref" href="#owned-files" title="Owned and added files">the section called “Owned and added files”</a>. For the
+  moment, it is enough to say that unless it is necessary for the file to keep
+  its owner or group (e.g because it's a suid file), then those options should
+  be used.
+</p><p>
+  Another option since version 1.4 is to use the <span class="command"><strong>urpkgize</strong></span>
+  script. This script adds a bunch of files to a given package, trying to figure
+  out the correct options for each file on the way. For example, to perform the
+  same action as before you would do:
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkgize foo ../allowed/file2
+</pre><p>
+  In general, you should use <code class="option">--add-files</code>, and
+  take care of the options yourself. urpkgize only comes in
+  handy when you want to add a lot of files to a package. You can find more
+  information on urpkgize in <a class="xref" href="#urpkgize.1" title="urpkgize"><span class="refentrytitle">urpkgize</span>(1)</a>.
+</p><p>
+  Now let's check that the file has correctly been added
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list foo
+</pre><p>
+  What if you don't want <code class="filename">foo1</code> to be part of the package
+  anymore ? In that case, you should do
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --free-files --change-owner=OWNER --change-group=GROUP foo ../allowed/foo1
+</pre><p>
+  You should replace OWNER and GROUP by the owner and group you want the file to
+  have. If those options are not specified, they will both be set to root.
+</p><p>
+  What if you don't remember which package(s) the
+  file <code class="filename">file2</code> belongs to ? Then you can
+  use <code class="option">--find</code>
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --find ../allowed/file2
+</pre></div><div class="sect1" title="Pre and post install scripts"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="pre-post"></a>Pre and post install scripts</h2></div></div></div><p>
+  You might have remarked by looking at the output of
+  the <code class="option">--install</code> command that some commands are run after the
+  installation, like ldconfig for example. In fact, it is very easy to add
+  scripts to be automatically executed before or after a package's installation.
+</p><div class="sect2" title="The preinstall script"><div class="titlepage"><div><div><h3 class="title"><a id="id519017"></a>The preinstall script</h3></div></div></div><p>
+  The preinstall script should be
+  in <code class="filename">${CONFIGDIR}/preinst</code>, by default
+  <code class="filename">/usr/local/etc/urpkg/preinst</code>. The default script that
+  comes with the urpkg tarball does not run any command. It is up to you to
+  change it if you want certain command to be run before any package is
+  installed. Pay attention though, because this script will be invoked with the
+  same privileges you had when you invoked urpkg. They
+  will <span class="emphasis"><em>not</em></span> be run as the package user. If you want to
+  exclude the preinstall script from being run, you have to use the 
+  <code class="option">--no-preinst</code> option.
+  </p></div><div class="sect2" title="The postinstall scripts"><div class="titlepage"><div><div><h3 class="title"><a id="id518919"></a>The postinstall scripts</h3></div></div></div><p>
+    Every postinstall script should be put in 
+    <code class="filename">${CONFIGDIR}/postinst/</code>, by
+    default <code class="filename">/usr/local/etc/urpkg/postinst/</code>. Every script
+    here is run after the installation. The scripts are run in an
+    <span class="emphasis"><em>undefined</em></span> order. By default, ldconfig and a
+    script installing the program's source are run.
+  </p><p>
+    The source script is run only if it is passed the source files as an
+    argument. To pass an argument to a postinstall script,
+    use <code class="option">--SCRIPT-arg</code>. For example, if the sources of foo are in
+    a foo.tar.gz file, you would do
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo urpkg --install --source-arg=foo.tar.gz make install
+  </pre><p>
+    The sources are installed in the package directory,
+    in <code class="filename">src/</code>. For a package named foo-1.1 that would be
+    <code class="filename">${PKGDIR}/foo-1.1/src</code>
+  </p><p>
+    You can use the <code class="option">--no-postinst</code> option to  not
+    run <span class="emphasis"><em>any</em></span> postinstall script
+    or <code class="option">--exclude-script</code> to exclude a particular one.
+  </p></div></div><div class="sect1" title="Creating a Slackware package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="slackpkg"></a>Creating a Slackware package</h2></div></div></div><p>
+  Since version 1.4, it is possible to create a slackware package of whatever
+  program we installed with urpkg. In this section, we are going to create a
+  Slackware package of foo, the test package we are using. To do that, you will
+  need to download and install another of my utilities:
+  <a class="ulink" href="http://svasey.org/projects/old-stuff/list2pkg/index_en.html" target="_top">list2pkg</a> . This is a
+  tool which converts a list of files to a Slackware package. The idea is to use
+  urpkg's <code class="option">--list</code> action to create a file list to be used by
+  list2pkg.
+</p><p>
+  Note that you should first read list2pkg's user manual before using it to
+  create <span class="quote">“<span class="quote">serious</span>”</span> packages. The content of this section is just
+  meant as an overview of list2pkg's possibilities.
+</p><div class="sect2" title="Listing the package's file"><div class="titlepage"><div><div><h3 class="title"><a id="id519416"></a>Listing the package's file</h3></div></div></div><p>
+    We already know we can use the <code class="option">--list</code> action to list all
+    files which are part of foo. However, what is outputted does not only
+    contain files, as list2pkg require. We must add the <code class="option">--quiet</code>
+    option for a <span class="quote">“<span class="quote">pure</span>”</span> list of files to be generated.
+  </p></div><div class="sect2" title="Creating the package"><div class="titlepage"><div><div><h3 class="title"><a id="id519439"></a>Creating the package</h3></div></div></div><p>
+    That's all we need. We now only have to use the file listing command, and
+    pipe its output to list2pkg.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>urpkg --list --quiet foo | sudo list2pkg foo-0.1-noarch-1usr.tgz
+  </pre><p>
+    Note that we absolutely need to invoke list2pkg with root privilege, in
+    order for all metadata to be preserved.
+  </p></div></div><div class="sect1" title="Uninstalling a program"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="uninst"></a>Uninstalling a program</h2></div></div></div><p>
+  Finally, it is time to remove foo from the system. It is a good idea to list
+  the files that would be removed before actually removing anything. To do that,
+  you should use the <code class="option">--pretend</code> option.
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --uninstall --pretend foo
+</pre><p>
+  Once you have checked that the action the program would take satisfy you, you
+  can uninstall it.
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --uninstall foo
+</pre><p>
+  You can check that foo has been correctly removed using
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list
+</pre></div></div><div class="chapter" title="Chapter 3. How urpkg works"><div class="titlepage"><div><div><h2 class="title"><a id="how-works"></a>Chapter 3. How urpkg works</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#how-intro">Introduction</a></span></dt><dt><span class="sect1"><a href="#user-pkgname">Package user and package name</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id522017">Generating a username</a></span></dt><dt><span class="sect2"><a href="#id522127">Finding the package user owning a file</a></span></dt><dt><span class="sect2"><a href="#id522158">Finding a package name</a></span></dt></dl></dd><dt><span class="sect1"><a href="#group-perm">Installation groups and file permissions</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id521984">The sticky bit</a></span></dt><dt><span class="sect2"><a href="#package-groups">Package user groups</a></span></dt><dt><span class="sect2"><a href="#id522502">Owner and group of a package's file</a></span></dt></dl></dd><dt><span class="sect1"><a href="#package-dir">Package directories</a></span></dt><dt><span class="sect1"><a href="#config-dir">The configuration directory</a></span></dt><dd><dl><dt><span class="sect2"><a href="#find-cmd">The find script</a></span></dt><dt><span class="sect2"><a href="#id522458">The preinstall script</a></span></dt><dt><span class="sect2"><a href="#id522470">The postinstall scripts</a></span></dt><dt><span class="sect2"><a href="#id522975">Environment variables</a></span></dt></dl></dd><dt><span class="sect1"><a href="#owned-files">Owned and added files</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id522959">Which file belong to a package ?</a></span></dt><dt><span class="sect2"><a href="#id523305">What gets removed or listed ?</a></span></dt><dt><span class="sect2"><a href="#id523329">What about directories ?</a></span></dt></dl></dd></dl></div><div class="sect1" title="Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="how-intro"></a>Introduction</h2></div></div></div><p>
+  This chapter details the concept behind urpkg and you should read it if you
+  want to know exactly what is being done to your system e.g when you install a
+  package. It also provides useful hint in the terminology that is used in this
+  manual. Last but not least once you understand how things are done you will be
+  better prepared to deal with the <a class="link" href="#problems" title="Common problems">problems</a> you
+  might encounter when you install a program.
+</p></div><div class="sect1" title="Package user and package name"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="user-pkgname"></a>Package user and package name</h2></div></div></div><p>
+  There is an importance distinction to make between a package name and a
+  package user. As already mentioned, urpkg creates a new user for each program
+  (urpkg calls them package) you install. The files that are then created all
+  have the new user as owner and can therefore easily be found.
+</p><div class="sect2" title="Generating a username"><div class="titlepage"><div><div><h3 class="title"><a id="id522017"></a>Generating a username</h3></div></div></div><p>
+    However, urpkg first has to come up with a name for this user. The name should
+    conform to the syntax of a username (e.g, no dot in the name) and should not
+    be the same as other users in the system. One could simply come up with a
+    unique number as username, however that would be really confusing and not
+    really helpful e.g to someone listing a file belonging to that package. 
+  </p><p>
+    The solution that urpkg uses is the following. We ask the user for, or
+    guess, a <span class="emphasis"><em>package name</em></span> that is basically the name of the
+    program we are installing. This name can syntactically be anything the user
+    wants. Then, from that name we generate a <span class="emphasis"><em>package user
+      name</em></span>. The package name is kept in the comment field of the user
+    name in <code class="filename">/etc/passwd</code>.
+  </p><p>
+    The package user name always begins
+    with <span class="quote">“<span class="quote">urpkg-</span>”</span>. This is a prefix to avoid that the
+    name collides with another user of the system. Urpkg then
+    generates the rest of the username using the beginning of the
+    package name, and adding some numbers if necessary. You should
+    look at the source if you want more details on the exact algorithm
+    which is used. Special characters in the package name are replaced
+    by <span class="quote">“<span class="quote">_</span>”</span>. For example, from a package
+    name <span class="quote">“<span class="quote">emacs-22</span>”</span>, the package user could
+    be <span class="quote">“<span class="quote">urpkg-emacs-22</span>”</span>. You shouldn't rely on
+    this, however, as the algorithm used by urpkg to generate user
+    names can change at any release without notice !
+  </p><p>
+    Note that package names (and package users) are always all in lowercase
+    letters. Even if you give your name explicitly, the case does not matter
+    and your name will automatically be converted to lowercase. For example,
+    running
+  </p><pre class="screen">
+    <code class="prompt">$ </code>urpkg --install --pkg-name=Emacs-22 make install
+  </pre><p>
+    Will still create a package name <span class="quote">“<span class="quote">emacs-22</span>”</span> and a package
+    user <span class="quote">“<span class="quote">urpkg-emacs-22</span>”</span>.
+  </p></div><div class="sect2" title="Finding the package user owning a file"><div class="titlepage"><div><div><h3 class="title"><a id="id522127"></a>Finding the package user owning a file</h3></div></div></div><p>
+    In general, you don't have to worry about package users, but it's good to
+    know about them, as you can still see them mentioned from time to time. For
+    example, assuming you really have emacs installed as a package named
+    emacs-22, doing 
+  </p><pre class="screen">
+    <code class="prompt">$ </code>ls -l $(which emacs)
+    -rwxr-xr-t 2 urpkg-emacs-22 urpkg-emacs-22 13576490 2008-03-21 17:59 /usr/bin/emacs
+  </pre><p>
+    will really give you the package user name of the package the
+    file <code class="filename">/usr/bin/emacs</code> belongs to.
+  </p></div><div class="sect2" title="Finding a package name"><div class="titlepage"><div><div><h3 class="title"><a id="id522158"></a>Finding a package name</h3></div></div></div><p>
+    As you learned in the previous chapter, you can specify a package name
+    explicitly using <code class="option">--pkg-name</code>. Urpkg can also guess a
+    package name for you from the current directory. Now how does it do it ?
+  </p><p>
+    Urpkg will simply take the basename of your current directory (i.e if your
+    current directory is <code class="filename">/var/tmp/emacs-22.1</code>, the basename
+    is <code class="filename">emacs-22.1</code>). It will then check if it has a version
+    string. A version string is defined as anything following a dash
+    (<code class="code">-</code>). In our example, there is a version string so the package
+    name would be <span class="quote">“<span class="quote">emacs-22.1</span>”</span>. If there is no version string,
+    urpkg will append one with the date in the following
+    format: <code class="code">YYYYmmdd</code>. For example, if you are developing your own
+    program, foo which is in a directory <code class="filename">/var/tmp/foo</code>, then
+    if you install it on June, 30th 2010 the package name will
+    be <span class="quote">“<span class="quote">foo-20100630</span>”</span>.
+  </p><p>
+    Of course, there cannot be two package with the same name
+    installed on the system, so urpkg will signal an error if you try
+    to give a package name which is already the name of an existing package.
+  </p></div></div><div class="sect1" title="Installation groups and file permissions"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="group-perm"></a>Installation groups and file permissions</h2></div></div></div><div class="sect2" title="The sticky bit"><div class="titlepage"><div><div><h3 class="title"><a id="id521984"></a>The sticky bit</h3></div></div></div><p>
+    Now that we have created a user for the package, we still have to decide
+    where it has permission to write. This is done, as seen previously, using
+    the <code class="option">--gen</code> option. Ideally, we would like the package not to
+    be able to overwrite other package files in the install directories, nor
+    remove them. There is a permission bit on UNIX systems that achieve just
+    that: the sticky bit.
+  </p><p>
+    The sticky bit prevents unprivileged user (i.e the package user in our
+    case) from changing or removing a file that they don't own. It is typically
+    used in directories like <code class="filename">/tmp</code>, where everyone has write
+    access.
+  </p><p>
+    The idea is that you are going to give write access in the install directory
+    to all package users, but since the sticky bit is on, they won't be able to
+    damage files from other packages.
+  </p></div><div class="sect2" title="Package user groups"><div class="titlepage"><div><div><h3 class="title"><a id="package-groups"></a>Package user groups</h3></div></div></div><p>
+    How do we give write access to all package users ? In short, we put every
+    package user in a given group, called the install group, as they are
+    created. When <code class="option">--gen</code> is invoked, all urpkg do is to change
+    the directory's group to this install group, enable write access for this
+    group and turn on the sticky bit.
+  </p><p>
+    Something similar happens for shared files, although we don't need the
+    sticky bit here, and a different group is used: the shared group.
+  </p><p>
+    The install group is <span class="quote">“<span class="quote">urpkgrp-install</span>”</span> and the shared group
+    is <span class="quote">“<span class="quote">urpkgrp-group</span>”</span>. Every package user is a member of those
+    groups once it is created. This means it is possible
+    for <span class="emphasis"><em>any</em></span> package to write to a shared file or put files
+    in an installation directory. Keep this in mind when you make a file shared
+    for example.
+  </p></div><div class="sect2" title="Owner and group of a package's file"><div class="titlepage"><div><div><h3 class="title"><a id="id522502"></a>Owner and group of a package's file</h3></div></div></div><p>
+    As we have already seen, all files created by a package user have by default
+    its name as owner and its group as group. Why do we need to have both ? In
+    fact we don't, <span class="emphasis"><em>for simple cases</em></span>.  As a matter of fact,
+    urpkg will consider any file that has the package user as its
+    owner <span class="emphasis"><em>or</em></span> as its group. The nice thing about this is
+    that you can easily change the owner or group of any file of the package.
+  </p><p>
+    For example, suppose you are installing the 
+    <a class="ulink" href="http://www.gratisoft.us/sudo/" target="_top">sudo</a> program. It
+    obviously needs to be suid root by the very nature of the task it
+    performs. In that case, you can just change its owner to root and set the
+    suid bit as usual. The file will still be detected as belonging to the sudo
+    package since its group still has the package user name of sudo.
+  </p><p>
+    Sometimes it may happen that both the group and the owner have to be
+    changed. This is the case for some daemon that uses both the suid and the
+    sgid bit. <a class="ulink" href="http://fcron.free.fr/" target="_top">Fcron</a> is an example of
+    this. In that case, you can still force the file to belong to the package
+    using <code class="option">--add</code> <span class="emphasis"><em>without</em></span>
+    any <code class="option">--change-owner</code> or <code class="option">--change-group</code>
+    option. The file name will then be added to a text file containing a list of
+    supplementary files belonging to fcron. The disadvantage here is that you
+    cannot move or remove the file without having urpkg complaining, so don't do
+    it unless you really have to. More details are given in
+    <a class="xref" href="#owned-files" title="Owned and added files">the section called “Owned and added files”</a>
+  </p></div></div><div class="sect1" title="Package directories"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="package-dir"></a>Package directories</h2></div></div></div><p>
+  Every user on a UNIX system has a home directory. The question is, where do we
+  put a package user's home directory, and what do we do with it ?
+</p><p>
+  Urpkg deals with this problem the following way. A root package
+  directory is created (by default <code class="filename">/usr/local/urpkg</code>) where
+  each package has its home directory, named like the package name. For example,
+  the package <span class="quote">“<span class="quote">emacs-22.1</span>”</span> would have a home directory
+  at <code class="filename">/usr/local/urpkg/emacs-22.1</code>. Users can put anything
+  they want in the home directory. It is typically used for putting the
+  program's source.
+</p><p>
+  Urpkg stores some metadata concerning the package (for the moment only the
+  files that belong to the package but whose owner or group have not been
+  changed) in a subdirectory <code class="filename">.urpkg</code> of the package's home
+  directory. This directory should not be modified by the human user.
+</p><p>
+  It is possible to give another package directory root when installing the
+  package, using the <code class="option">--pkg-dir</code> option. 
+</p></div><div class="sect1" title="The configuration directory"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="config-dir"></a>The configuration directory</h2></div></div></div><p>
+  Urpkg's configuration directory is kept by default
+  in <code class="filename">/usr/local/etc/urpkg</code>. This is where all the files
+  urpkg needs to run correctly are stored. Those are mostly shell scripts that
+  you can change to fit your needs. They are documented here. Pay attention:
+  they are invoked with the privileges that were used to invoke urpkg.
+</p><div class="sect2" title="The find script"><div class="titlepage"><div><div><h3 class="title"><a id="find-cmd"></a>The find script</h3></div></div></div><p>
+    This is the script urpkg uses to find files whose owner or group is a given
+    package user. It is also used to list install directories or shared
+    files. It takes one argument: a user <span class="emphasis"><em>or</em></span> group name. It
+    should print the list of files in the system that are owned by this user or
+    group, <span class="emphasis"><em>excluding</em></span> the package's home directory
+  </p><p>
+    By default, a few locations such as <code class="filename">/tmp</code>
+    or <code class="filename">/mnt</code>, or the package home directory are excluded
+    from the search. They are given in the <code class="varname">EXCLUDE</code> variable
+    at the beginning of the script. Please check that they match your
+    expectation.
+  </p></div><div class="sect2" title="The preinstall script"><div class="titlepage"><div><div><h3 class="title"><a id="id522458"></a>The preinstall script</h3></div></div></div><p>
+    It is run before any installation. It takes no argument, and by default does
+    nothing but printing a line or two to confirm it was executed.
+  </p></div><div class="sect2" title="The postinstall scripts"><div class="titlepage"><div><div><h3 class="title"><a id="id522470"></a>The postinstall scripts</h3></div></div></div><p>
+    All files in the directory <code class="filename">postinst</code> relative to the
+    configuration directory will be run after the installation. Each can be
+    passed exactly one argument using the <code class="option">--SCRIPT-arg</code> option.
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	The complog script will install a compilation log in the package's home
+	directory. The file must be named <code class="filename">svcompile.log</code>, or
+	you must pass it as argument. If no such file exist, nothing will be
+	done.
+      </p></li><li class="listitem"><p>
+	The ldconfig script will only run the <span class="command"><strong>ldconfig</strong></span>
+	command and exit.
+      </p></li><li class="listitem"><p>
+	The source script will install the source file/directory, given as its
+	argument in a subdirectory <code class="filename">src/</code> of the package
+	directory.
+      </p></li></ul></div></div><div class="sect2" title="Environment variables"><div class="titlepage"><div><div><h3 class="title"><a id="id522975"></a>Environment variables</h3></div></div></div><p>
+    If you decide to write your own scripts, you can count on several
+    environment variables to help you:
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	<code class="varname">URPKG_USER</code>: gives the package username
+      </p></li><li class="listitem"><p>
+	<code class="varname">URPKG_PKGNAME</code>: gives the package name
+      </p></li><li class="listitem"><p>
+	<code class="varname">URPKG_HOMEDIR</code>: gives the package directory
+      </p></li><li class="listitem"><p>
+	<code class="varname">PWD</code> is set to the directory from which urpkg was
+	invoked.
+      </p></li></ul></div></div></div><div class="sect1" title="Owned and added files"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="owned-files"></a>Owned and added files</h2></div></div></div><p>
+  What do I exactly mean when I say that a file belongs to a package ? Can a
+  file belong to more than one package ? What exactly gets uninstalled or listed
+  then ? This section tries to answer those questions.
+</p><div class="sect2" title="Which file belong to a package ?"><div class="titlepage"><div><div><h3 class="title"><a id="id522959"></a>Which file belong to a package ?</h3></div></div></div><p>
+    Urpkg considers a file as belonging to a given package if one of the two
+    conditions below is satisfied.
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The file has the package user as owner or group</p></li><li class="listitem"><p>
+	The file is listed in <code class="filename">${HOMEDIR}/.urpkg/added</code>,
+	where <code class="varname">HOMEDIR</code> is the path to the package's home
+	directory.
+      </p></li></ol></div><p>
+    Given this definition, it is easy to see that a file can belong to more than
+    one package. For example, it could have a given package user as its owner
+    , another as its group, and be listed in the added list of a third
+    package. Most of the time though, a file will be only part of one package
+    and you should really keep it that way.
+  </p><p>
+    If you use the <code class="option">--find</code> command, urpkg will list you all
+    packages the given file belongs to.
+  </p></div><div class="sect2" title="What gets removed or listed ?"><div class="titlepage"><div><div><h3 class="title"><a id="id523305"></a>What gets removed or listed ?</h3></div></div></div><p>
+    When you use the <code class="option">--list</code> action, urpkg will list you the
+    files that are <span class="emphasis"><em>unique</em></span> to the given package, and the
+    files that are <span class="emphasis"><em>shared</em></span> with other packages. Only the
+    former category will be deleted when you uninstall the package. Keep in mind
+    that you can always use <code class="option">--pretend</code> to know for sure what
+    would be removed.
+  </p></div><div class="sect2" title="What about directories ?"><div class="titlepage"><div><div><h3 class="title"><a id="id523329"></a>What about directories ?</h3></div></div></div><p>
+    First, urpkg will never remove a directory that does not belong to the
+    package you want to uninstall, even if it is empty. Second, a directory that
+    belongs to the package you are considering <span class="emphasis"><em>must</em></span> be
+    empty (after you deleted all the other files in it belonging to the package)
+    to be deleted. This prevents other files from other packages that are in the
+    directory to be deleted as well. This can happen if, for example you
+    temporarily set a directory as an install directory and then revert it to
+    belong to the given package.
+  </p><p>
+    Urpkg will take no risk and only warn you that the directory is not
+    empty. The uninstallation will not fail just because of that. You will have
+    to remove those directories manually. If you are careful the way you manage
+    your system, this should only happen rarely.
+  </p></div></div></div><div class="chapter" title="Chapter 4. Using urpkg"><div class="titlepage"><div><div><h2 class="title"><a id="using-urpkg"></a>Chapter 4. Using urpkg</h2></div></div></div><div class="toc"><p><strong>Table of Contents</strong></p><dl><dt><span class="sect1"><a href="#manpages">Manpages</a></span></dt><dt><span class="sect1"><a href="#problems">Common problems</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id528653">Programs writing in the current directory</a></span></dt><dt><span class="sect2"><a href="#id528719">Programs writing to non-install directories</a></span></dt><dt><span class="sect2"><a href="#id528773">Unwanted permission/ownership changes</a></span></dt><dt><span class="sect2"><a href="#id528864">Overwritten or deleted files</a></span></dt><dt><span class="sect2"><a href="#id528916">Ldconfig</a></span></dt></dl></dd><dt><span class="sect1"><a href="#bugs">Bugs</a></span></dt><dt><span class="sect1"><a href="#todo">Todo</a></span></dt><dt><span class="sect1"><a href="#faq">FAQ</a></span></dt></dl></div><div class="sect1" title="Manpages"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="manpages"></a>Manpages</h2></div></div></div><p>
+  This section contains the manpages of the commands part of urpkg.
+</p><div class="refentry" title="urpkg"><a id="urpkg.1"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>urpkg — 
+    Install programs in a safe and undoable way
+  </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">urpkg</code>  {<em class="replaceable"><code>ACTION</code></em>} [<em class="replaceable"><code>OPTIONS</code></em>] [<em class="replaceable"><code>ARGUMENTS</code></em>]</p></div></div><div class="refsect1" title="Description"><a id="id524716"></a><h2>Description</h2><p>
+    Urpkg is a software to install programs so that we can easily uninstall them
+    afterward. It does so by creating a new user for each package that gets
+    installed on the system. The package is then installed with this user's
+    privileges instead of root's. This guarantees a much better security during 
+    installation.
+  </p><p>
+    Note that this manpage is only a short reference. You should read the user
+    manual (published on urpkg's homepage) if you want to know more about urpkg.
+  </p><p>
+    When invoking urpkg, you must always specify <span class="emphasis"><em>exactly
+    one</em></span> action <span class="emphasis"><em>first</em></span>. You can then give options
+    and arguments if required.
+  </p></div><div class="refsect1" title="Actions"><a id="actions-options"></a><h2>Actions</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-h</code>, </span><span class="term"><code class="option">--help</code></span></dt><dd><p>
+	  Print a short description of each option and exit.
+	</p></dd><dt><span class="term"><code class="option">-v</code>, </span><span class="term"><code class="option">--version</code></span></dt><dd><p>
+	  Output information about the program's version and exit.
+	</p></dd><dt><span class="term"><code class="option">-I</code>, </span><span class="term"><code class="option">--info</code></span></dt><dd><p>
+	  Output some information on the settings urpkg was compiled with and
+	  exit.
+	</p></dd><dt><span class="term"><code class="option">-i</code>, </span><span class="term"><code class="option">--install</code></span></dt><dd><p>
+	  Install a package by running the command given as argument.	    
+	</p></dd><dt><span class="term"><code class="option">-u</code>, </span><span class="term"><code class="option">--uninstall</code></span></dt><dd><p>
+	  Uninstall the package(s) whose name(s) are given as argument.
+	</p></dd><dt><span class="term"><code class="option">-l</code>, </span><span class="term"><code class="option">--list</code></span></dt><dd><p>
+	  Without argument, list all installed packages on the
+	  system. Otherwise, list all files part of the package(s) that are
+	  given.
+	</p></dd><dt><span class="term"><code class="option">-W</code>, </span><span class="term"><code class="option">--list-instdir</code></span></dt><dd><p>
+	  List all the installation directories that are in the path(s)
+	  specified as argument. If no path is given, <code class="filename">/</code> is
+	  assumed.
+	</p></dd><dt><span class="term"><code class="option">-L</code>, </span><span class="term"><code class="option">--list-shared</code></span></dt><dd><p>
+	  Same as <code class="option">--list-instdir</code> but for shared directories.
+	</p></dd><dt><span class="term"><code class="option">-a</code>, </span><span class="term"><code class="option">--add-files</code></span></dt><dd><p>
+	  Add some files to a package, without changing their owner or group
+	  unless the <code class="option">--change-owner</code>
+	  and/or <code class="option">--change-group</code> options are given. The package
+	  name must be the first argument, then the files should follow
+	</p></dd><dt><span class="term"><code class="option">-T</code>, </span><span class="term"><code class="option">--free-files</code></span></dt><dd><p>
+	  Remove some files from a given package i.e urpkg will not remove those
+	  files if we remove the package. The files are of course not removed
+	  from the filesystem. 
+	</p></dd><dt><span class="term"><code class="option">-g</code>, </span><span class="term"><code class="option">--gen</code></span></dt><dd><p>
+	  Make the given directories to install directories (i.e place where
+	    package can install files).
+	</p></dd><dt><span class="term"><code class="option">-w</code>, </span><span class="term"><code class="option">--ungen</code></span></dt><dd><p>
+	  Make the given install directories normal directories again.
+	</p></dd><dt><span class="term"><code class="option">-s</code>, </span><span class="term"><code class="option">--share</code></span></dt><dd><p>
+	  Make the given files shared files (i.e files packages can write to)
+	</p></dd><dt><span class="term"><code class="option">-S</code>, </span><span class="term"><code class="option">--unshare</code></span></dt><dd><p>
+	  Make the given shared files ordinary file again.
+	</p></dd><dt><span class="term"><code class="option">-f</code>, </span><span class="term"><code class="option">--find</code></span></dt><dd><p>
+	  Find which package the given files belong to.
+	</p></dd></dl></div></div><div class="refsect1" title="Global Options"><a id="id525049"></a><h2>Global Options</h2><p>
+    Global options can be used with any action
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="option">-D</code>, </span><span class="term"><code class="option">--debug</code></span></dt><dd><p>
+	  Print debugging information to
+	  stderr. Implies <code class="option">--verbose</code>
+	</p></dd><dt><span class="term"><code class="option">-V</code>, </span><span class="term"><code class="option">--verbose</code></span></dt><dd><p>
+	  Print more details on what urpkg is doing to stdout.
+	</p></dd><dt><span class="term"><code class="option">-q</code>, </span><span class="term"><code class="option">--quiet</code></span></dt><dd><p>
+	  Only print warnings, errors, and what the user asks for.
+	</p></dd></dl></div></div><div class="refsect1" title="Install Options"><a id="install-options"></a><h2>Install Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-p</code>, </span><span class="term"><code class="option">--pretend</code></span></dt><dd><p>
+	  Print what would have been done but do not install the package.
+	</p></dd><dt><span class="term"><code class="option">-P</code>, </span><span class="term"><code class="option">--no-preinst</code></span></dt><dd><p>
+	  Don't run the preinstall script.
+	</p></dd><dt><span class="term"><code class="option">-G</code>, </span><span class="term"><code class="option">--no-postinst</code></span></dt><dd><p>
+	  Don't run <span class="emphasis"><em>any</em></span> postinstall scripts
+	</p></dd><dt><span class="term"><code class="option">-e</code>, </span><span class="term"><code class="option">
+	  --exclude-script=<em class="parameter"><code>NAME</code></em>
+      </code></span></dt><dd><p>
+	  Do not run the postinstall script <em class="parameter"><code>NAME</code></em>,
+	  where <em class="parameter"><code>NAME</code></em> is the beginning of the script's
+	  name such that it can be recognized unambiguously.
+	</p></dd><dt><span class="term"><code class="option">
+	  --<em class="replaceable"><code>NAME</code></em>-arg=<em class="parameter"><code>A</code></em>
+      </code></span></dt><dd><p>
+	  Pass the argument <em class="parameter"><code>A</code></em> to the postinstall
+	  script <em class="parameter"><code>NAME</code></em>.
+	</p></dd><dt><span class="term"><code class="option">-H</code>, </span><span class="term"><code class="option">--pkg-dir=<em class="parameter"><code>PATH</code></em></code></span></dt><dd><p>
+	  Use <em class="parameter"><code>PATH/NAME</code></em> as the package's home directory,
+	  where <em class="parameter"><code>NAME</code></em> is the package's name (guessed or
+	  given explicitly using <code class="option">--pkg-name</code>).
+	</p></dd><dt><span class="term"><code class="option">-n</code>, </span><span class="term"><code class="option">--pkg-name=<em class="parameter"><code>NAME</code></em></code></span></dt><dd><p>
+	  Explicitly specify the package's name. Otherwise, urpkg will try to
+	  guess it from the current directory.
+	</p></dd><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd=<em class="parameter"><code>SCRIPT</code></em></code></span></dt><dd><p>
+	  Give a custom script to be used to find files part of a given
+	  package.
+	</p></dd></dl></div></div><div class="refsect1" title="Uninstall Options"><a id="uninstall-options"></a><h2>Uninstall Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-p</code>, </span><span class="term"><code class="option">--pretend</code></span></dt><dd><p>
+	  See <a class="xref" href="#install-options" title="Install Options">the section called “Install Options”</a>
+	</p></dd><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd=<em class="parameter"><code>SCRIPT</code></em></code></span></dt><dd><p>
+	  See <a class="xref" href="#install-options" title="Install Options">the section called “Install Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="List Options"><a id="list-options"></a><h2>List Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd</code></span></dt><dd><p>
+	  See <a class="xref" href="#uninstall-options" title="Uninstall Options">the section called “Uninstall Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="List-instdir Options"><a id="list-instdir-options"></a><h2>List-instdir Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd</code></span></dt><dd><p>
+	  See <a class="xref" href="#uninstall-options" title="Uninstall Options">the section called “Uninstall Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="List-instdir Options"><a id="list-shared-options"></a><h2>List-instdir Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-F</code>, </span><span class="term"><code class="option">--findcmd</code></span></dt><dd><p>
+	  See <a class="xref" href="#uninstall-options" title="Uninstall Options">the section called “Uninstall Options”</a>
+	</p></dd></dl></div></div><div class="refsect1" title="Add-files Options"><a id="add-options"></a><h2>Add-files Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-U</code>, </span><span class="term"><code class="option">--change-owner</code></span></dt><dd><p>
+	  Change the file's owner (set it to the package user). By default, the
+	  file's owner is not changed.
+	</p></dd><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--change-group</code></span></dt><dd><p>
+	  Change the file's group (set it to the package user). By default, the
+	  file's group is not changed.
+	</p></dd></dl></div></div><div class="refsect1" title="Free-files Options"><a id="free-options"></a><h2>Free-files Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-U</code>, </span><span class="term"><code class="option">--change-owner=<em class="parameter"><code>USER</code></em></code></span></dt><dd><p>
+	  Restore the file's owner to <em class="parameter"><code>USER</code></em>. By default,
+	  the program will set it to root.
+	</p></dd><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--change-group=<em class="parameter"><code>GROUP</code></em></code></span></dt><dd><p>
+	  Restore the file's group to <em class="parameter"><code>GROUP</code></em>. By default,
+	  the program will set it to root.
+	</p></dd></dl></div></div><div class="refsect1" title="Ungen and Unshare Options"><a id="ungen-unshare-options"></a><h2>Ungen and Unshare Options</h2><div class="variablelist"><dl><dt><span class="term"><code class="option">-d</code>, </span><span class="term"><code class="option">--change-group=<em class="parameter"><code>GROUP</code></em></code></span></dt><dd><p>
+	  See <a class="xref" href="#free-options" title="Free-files Options">the section called “Free-files Options”</a>
+	</p></dd><dt><span class="term"><code class="option">-m</code>, </span><span class="term"><code class="option">--change-perm=<em class="parameter"><code>PERM</code></em></code></span></dt><dd><p>
+	  Change the files access permission to <em class="parameter"><code>PERM</code></em>
+	  (given in octal form). If not given, urpkg will try to set the
+	  permissions to a reasonable default.
+	</p></dd></dl></div></div><div class="refsect1" title="See Also"><a id="man-seealso"></a><h2>See Also</h2><p>
+    urpkgize(1)
+  </p></div><div class="refsect1" title="Contributing"><a id="man-contribute"></a><h2>Contributing</h2><p>
+    Please report bugs and other inconsistencies you find to the author (address
+    is below). If you have implemented a patch, please do send it there. Any
+    contribution is welcome. See also urpkg's website:
+    <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">http://svasey.org/projects/urpkg/</a>
+  </p></div><div class="refsect1" title="Unrestrictions"><a id="man-unrestrictions"></a><h2>Unrestrictions</h2><p>
+    Urpkg is public-domain software. See the COPYING file for more information.
+  </p></div><div class="refsect1" title="Author"><a id="man-authors"></a><h2>Author</h2><p>
+  The author is Sebastien Vasey (<code class="code">sebastien dot vasey at gmail dot com</code>)
+</p></div></div><div class="refentry" title="urpkgize"><div class="refentry.separator"><hr /></div><a id="urpkgize.1"></a><div class="titlepage"></div><div class="refnamediv"><h2>Name</h2><p>urpkgize — 
+    Add a bunch of file to an existing urpkg package
+  </p></div><div class="refsynopsisdiv" title="Synopsis"><h2>Synopsis</h2><div class="cmdsynopsis"><p><code class="command">urpkgize</code>  [<em class="replaceable"><code>OPTIONS</code></em>] {<em class="replaceable"><code>PKGNAME</code></em>} {<em class="replaceable"><code>FILES</code></em>}</p></div></div><div class="refsect1" title="Description"><a id="id526963"></a><h2>Description</h2><p>
+    Urpkgize is a small script to add files to an existing urpkg package. For
+    each file, it tries to invoke urpkg with the correct options so that the
+    file is added cleanly. It is especially useful when you have a lot of files
+    to add and don't want to figure out the options for each one.
+  </p></div><div class="refsect1" title="How it works"><a id="id526975"></a><h2>How it works</h2><p>
+    There are three ways urpkg can add a file to a package. It can change the
+    file's owner to the package username, it can change the file's group to the
+    package username or it can add the file to a list of all files belonging to
+    the package. It is usually better to change the file's owner or group
+    (often, both are changed), since the information is then embedded in the
+    file itself. However, this is not always possible as sometimes the file's
+    owner matters (e.g because the file is set user id). Urpkgize tries to keep
+    it simple and adopts the following rules concerning how a file is added to a
+    package.
+  </p><p>
+    First of all, if the file is set user id or set group id, urpkgize will not
+    change respectively the owner or the group of the file. Otherwise, urpkgize
+    will consider its list of "neutral" user and group name. A neutral
+    name is one that can be overwritten without problem. By default, only root
+    is in this list, since most system-wide files have the root owner. You can
+    use the <code class="option">--neutral</code> family of options to add other user/group
+    names to that list, or the <code class="option">--no-neutral-root</code> option to
+    remove root from the neutral list.
+  </p><p>
+    If a file owner or group name is considered neutral, then it will be changed
+    to the package username to add the file to the package. Otherwise, urpkgize
+    will not modify it. In the end, if neither the owner, nor the group of a
+    file can be changed, then the file will be added to the list of all files
+    belonging to the given package.
+  </p></div><div class="refsect1" title="Options"><a id="id527016"></a><h2>Options</h2><p>
+    Note that each option can be abbreviated and will be recognized if
+    unambiguous.
+  </p><div class="variablelist"><dl><dt><span class="term"><code class="option">--help</code></span></dt><dd><p>
+	  Print a short description of each option and exit.
+	</p></dd><dt><span class="term"><code class="option">--neutral=<em class="parameter"><code>NAMES</code></em></code></span></dt><dd><p>
+	  Specify group and owner names that are not considered important and
+	  that can be replaced by the package user name (except if the file is
+	  set user id or set group id). Each value should be comma-separated. By
+	  default, only root is in this list.
+	</p></dd><dt><span class="term"><code class="option">--neutral-owners=<em class="parameter"><code>NAMES</code></em></code>
+      </span></dt><dd><p>
+	  Same as <code class="option">--neutral</code> but concerns only owner names.
+	</p></dd><dt><span class="term"><code class="option">--neutral-groups=<em class="parameter"><code>NAMES</code></em></code>
+      </span></dt><dd><p>
+	  Same as <code class="option">--neutral</code> but concerns only group names.
+	</p></dd><dt><span class="term"><code class="option">--no-neutral-root</code></span></dt><dd><p>
+	  If this is given, then root will not be in the list of neutral owner
+	  and group names anymore.
+	</p></dd></dl></div></div><div class="refsect1" title="See Also"><a id="man-seealso"></a><h2>See Also</h2><p>
+    urpkg(1)
+  </p></div><div class="refsect1" title="Contributing"><a id="man-contribute"></a><h2>Contributing</h2><p>
+    Please report bugs and other inconsistencies you find to the author (address
+    is below). If you have implemented a patch, please do send it there. Any
+    contribution is welcome. See also urpkg's website:
+    <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">http://svasey.org/projects/urpkg/</a>
+  </p></div><div class="refsect1" title="Unrestrictions"><a id="man-unrestrictions"></a><h2>Unrestrictions</h2><p>
+    Urpkgize is public-domain software. See the COPYING file for more
+    information.
+  </p></div><div class="refsect1" title="Author"><a id="man-authors"></a><h2>Author</h2><p>
+  The author is Sebastien Vasey (<code class="code">sebastien dot vasey at gmail dot com</code>)
+</p></div></div></div><div class="sect1" title="Common problems"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="problems"></a>Common problems</h2></div></div></div><p>
+  Urpkg is enforcing a lot of restrictions on the installation script it runs,
+  compared to a "classical" installation with root privileges. Since a
+  lot of installation programs were not written to deal with an unprivileged
+  installation, problems involving <span class="quote">“<span class="quote">permission denied</span>”</span> errors can
+  and will occur occasionally. You can usually find the installation command's
+  error message in urpkg's installation log file (by default
+  in <code class="filename">/var/tmp/install.log</code>). You should always read that
+  file after an installation, successful or not.
+</p><p>
+  Those errors are <span class="emphasis"><em>not</em></span> considered bugs in urpkg, as they
+  are due to the installation command. However, you should know how to deal with
+  them as they occur pretty often when installing large software. In
+  the <a class="ulink" href="http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt" target="_top">
+  LFS package user hint</a>, the author suggests using special versions of
+  commonly used programs, like <span class="command"><strong>install</strong></span>, modified to catch
+  possible errors and arrange for the installation scripts to use them. In my
+  opinion, this is not general enough, so this has not been implemented in urpkg
+  (you could try to do it using the preinstall script though). If you have ideas
+  on how to solve the problems described in this section, please share them. See
+  <a class="xref" href="#contributing" title="Chapter 5. Contributing to urpkg">Chapter 5, <em>Contributing to urpkg</em></a>.
+</p><div class="sect2" title="Programs writing in the current directory"><div class="titlepage"><div><div><h3 class="title"><a id="id528653"></a>Programs writing in the current directory</h3></div></div></div><div class="sect3" title="Problem"><div class="titlepage"><div><div><h4 class="title"><a id="id528659"></a>Problem</h4></div></div></div><p>
+      Sometimes the installation command needs write access to the current
+      directory. This is often due to libtool wanting to relink some libraries
+      at installation time. Sometimes also the installation program wants to use
+      some log file or <span class="command"><strong>touch</strong></span> some temporary file.
+    </p><p>
+      Most of the time, the package user does not have write access to the build
+      directory. What you usually do is to extract the tarball as a normal user,
+      cd to it and begin to build. In that case, the default permission of the
+      current, build directory should be something like 0755. Therefore the
+      package user does not have write access.
+    </p></div><div class="sect3" title="Solution"><div class="titlepage"><div><div><h4 class="title"><a id="id528682"></a>Solution</h4></div></div></div><p>
+      You should definitely arrange for the current directory to be world
+      writable. A quick and dirty way to do that is
+    </p><pre class="screen">
+      <code class="prompt">$ </code>chmod o+w .
+    </pre><p>
+      If that is not enough (sometimes the installation script needs write
+      access to other existing files for example), you could just go with
+    </p><pre class="screen">
+      <code class="prompt">$ </code>chmod -R o+w .
+    </pre></div></div><div class="sect2" title="Programs writing to non-install directories"><div class="titlepage"><div><div><h3 class="title"><a id="id528719"></a>Programs writing to non-install directories</h3></div></div></div><div class="sect3" title="Problem"><div class="titlepage"><div><div><h4 class="title"><a id="id528725"></a>Problem</h4></div></div></div><p>
+      The installation program wants to write somewhere it is not allowed to.
+    </p></div><div class="sect3" title="Solution"><div class="titlepage"><div><div><h4 class="title"><a id="id528735"></a>Solution</h4></div></div></div><p>
+      If you want to allow the program to write there, just
+      use <code class="option">--gen</code> to make the location an install directory.
+    </p><p>
+      If you don't want the program to write there, then you have a bit more
+      work to do. Maybe you made a mistake specifying the destination paths at
+      configure time (e.g you gave the <code class="filename">/usr/local</code> prefix
+      instead of <code class="filename">/usr</code>). Sometimes the program just wants to
+      install some locales and in that case you just have to create the
+      destination directories, make them installation directories and run the
+      install command again. As a last resort, you can consider going into the
+      Makefile (or whatever installation script you are using) and changing the
+      lines that cause problems. You can then complain to the program's
+      maintainer about this unexpected behavior.
+    </p></div></div><div class="sect2" title="Unwanted permission/ownership changes"><div class="titlepage"><div><div><h3 class="title"><a id="id528773"></a>Unwanted permission/ownership changes</h3></div></div></div><div class="sect3" title="Problem"><div class="titlepage"><div><div><h4 class="title"><a id="id528778"></a>Problem</h4></div></div></div><p>
+      The installation program wants to change the permission of some
+      directories like <code class="filename">/usr</code>
+      or <code class="filename">/usr/bin</code>, e.g to 0755 while they are install
+      directories. It can also happen that it wants to change their owner and
+      group to root.
+    </p><p>
+      The installation program could also want to change the ownership of some
+      of its executable to root, or some other user.
+    </p></div><div class="sect3" title="Solution"><div class="titlepage"><div><div><h4 class="title"><a id="id528805"></a>Solution</h4></div></div></div><p>
+      The permission / ownership change of install directories is due to poorly
+      written installation script. The command that causes this is usually
+      something like
+    </p><pre class="screen">
+      <code class="prompt">$ </code>install -d /usr/bin
+    </pre><p>
+      If the directory already exists, its permissions will be changed to 0755
+      which is typically not wanted in our case. A command like
+    </p><pre class="screen">
+      <code class="prompt">$ </code>install -d --owner=root --group=root /usr/bin
+    </pre><p>
+      is even worse since it does not take into account the possibility of
+      installation in a user's home directory for example. In both cases, the
+      solution is simple: remove those commands from the offending Makefile /
+      installation script and complain to the maintainer.
+    </p><p>
+      If the installation program tries to change the ownership of its own
+      executable, this is also unwanted except if the executable are suid or
+      sgid. In any case, you cannot allow this change to happen so just remove
+      the offending lines from the Makefile and change the ownership and / or
+      permissions of the files afterward if you really want to.
+    </p><p>
+      Regarding suid and sgid programs, you should <span class="emphasis"><em>never</em></span>
+      use the package user as a user or group for a suid or sgid file. The
+      reason for this is that package user still have more privileges than
+      ordinary user, and should not be used for anything else but installing
+      packages.
+    </p></div></div><div class="sect2" title="Overwritten or deleted files"><div class="titlepage"><div><div><h3 class="title"><a id="id528864"></a>Overwritten or deleted files</h3></div></div></div><div class="sect3" title="Problem"><div class="titlepage"><div><div><h4 class="title"><a id="id528869"></a>Problem</h4></div></div></div><p>
+      Some installation program sometimes try to overwrite files from another
+      package, or even delete them so that they can be replaced with the new
+      versions the installation program provides. Since urpkg does not allow
+      them to overwrite files, the installation command fails.
+    </p></div><div class="sect3" title="Solution"><div class="titlepage"><div><div><h4 class="title"><a id="id528881"></a>Solution</h4></div></div></div><p>
+      The solution depends on what the installation command intends to do with
+      the files. If they are e.g index files,
+      like <code class="filename">/usr/share/info</code> then you can consider making
+      them shared files using <code class="option">--share</code>. If you don't want your
+      old files to be erased, just copy them somewhere and copy them back after
+      the installation. If you want your old files to be erased, just remove
+      them or move them somewhere else.
+    </p><p>
+      In the end, make sure to check what packages the files you moved around
+      belong to. Don't hesitate to use the <code class="option">--free-files</code>
+      and <code class="option">--add-files</code> options to move files to a different
+      package.
+    </p></div></div><div class="sect2" title="Ldconfig"><div class="titlepage"><div><div><h3 class="title"><a id="id528916"></a>Ldconfig</h3></div></div></div><div class="sect3" title="Problem"><div class="titlepage"><div><div><h4 class="title"><a id="id528921"></a>Problem</h4></div></div></div><p>
+      Some install script run ldconfig. Since they don't have permission to
+      write to <code class="filename">/etc/ld.so.cache</code>, this command fails
+    </p></div><div class="sect3" title="Solution"><div class="titlepage"><div><div><h4 class="title"><a id="id528937"></a>Solution</h4></div></div></div><p>
+      Most script won't fail just because ldconfig fails. In any case, ldconfig
+      will be run automatically afterward by a postinstall script.
+    </p></div></div></div><div class="sect1" title="Bugs"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="bugs"></a>Bugs</h2></div></div></div><p>
+  Urpkg is far from perfect. Here is a list of bugs that are known and should be
+  fixed in a subsequent release. If you want to help, see
+  <a class="xref" href="#contributing" title="Chapter 5. Contributing to urpkg">Chapter 5, <em>Contributing to urpkg</em></a>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+      Urpkg does not support users or groups of more than 127 characters. If you
+      have any user or group with 128 characters or more on your system,
+      consider changing their name or changing
+      <code class="varname">UGRP_RE_MAX_LENGTH</code> in
+      <code class="filename">src/ugrp.h</code> to fit your maximum size.
+    </p></li></ul></div></div><div class="sect1" title="Todo"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="todo"></a>Todo</h2></div></div></div><p>
+  This section lists some tasks that haven't been done and might show up in a
+  future release. They are only at the stage of random ideas. If you want to
+  implement one of them, please see <a class="xref" href="#contributing" title="Chapter 5. Contributing to urpkg">Chapter 5, <em>Contributing to urpkg</em></a>
+</p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+      Implement a better system of package group so that some packages are
+      allowed to write to some file but others are not (e.g if they are part of
+      urpkgrp-emacs they can write into <code class="filename">/usr/share/emacs</code>
+      but otherwise it is not possible).
+    </p></li><li class="listitem"><p>
+      Write scripts to create binary packages for various distributions
+    </p></li><li class="listitem"><p>
+      Write the find script in C and integrate it better with urpkg.
+    </p></li><li class="listitem"><p>
+      Write some tests so that we can make sure urpkg works more or less before
+      releasing a new version.
+    </p></li></ul></div></div><div class="sect1" title="FAQ"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="faq"></a>FAQ</h2></div></div></div><p>
+  Don't hesitate to ask questions. See <a class="xref" href="#contributing" title="Chapter 5. Contributing to urpkg">Chapter 5, <em>Contributing to urpkg</em></a>
+</p></div></div><div class="chapter" title="Chapter 5. Contributing to urpkg"><div class="titlepage"><div><div><h2 class="title"><a id="contributing"></a>Chapter 5. Contributing to urpkg</h2></div></div></div><p>
+  There are several ways you can contribute to urpkg. One way is to report bugs,
+  another way is to help writing documentation (or correct the existing one. I
+  think there is already a fair number of English mistakes in that document :-)
+  ). You could also try writing patches implementing the features you want that
+  are not yet in urpkg. Also, simply asking questions (that
+  are <span class="emphasis"><em>not</em></span> answered within this manual) is a great way to
+  participate.
+</p><p>
+  Whatever you decide to do, please send the content to <code class="code">sebastien dot
+  vasey at gmail dot com</code>
+  
+
+
+</p><p>
+  Urpkg also has a
+  webpage. See <a class="ulink" href="http://svasey.org/projects/urpkg/" target="_top">the urpkg
+  webpage</a> for the most up to date information.
+</p><div class="sect2" title="Reporting bugs"><div class="titlepage"><div><div><h3 class="title"><a id="id531362"></a>Reporting bugs</h3></div></div></div><p>
+    So you have found a bug ? Great ! Please report it to me. But
+    before doing that, ensure that...
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	The bug still exists in the latest version of urpkg
+      </p></li><li class="listitem"><p>
+	You are able to reproduce the bug.
+      </p></li></ul></div><p>
+    When you report a bug, you should always, if possible
+  </p><div class="itemizedlist"><ul class="itemizedlist" type="disc"><li class="listitem"><p>
+	Include information on how to reproduce the bug
+      </p></li><li class="listitem"><p>
+	Include as verbose as possible output from your program. This means
+	running urpkg with the <code class="option">--debug</code> switch if possible.
+      </p></li><li class="listitem"><p>
+	Include the versions of urpkg on which the bug applies
+	(use <code class="option">--version</code>).
+      </p></li><li class="listitem"><p>
+	Include the output of <code class="code">urpkg <code class="option">--info</code></code>
+      </p></li></ul></div></div></div></div></body></html>

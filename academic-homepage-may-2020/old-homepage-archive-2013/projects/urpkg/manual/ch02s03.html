@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Adding installation directories and shared files</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch02.html" title="Chapter 2. Getting started" /><link rel="prev" href="ch02s02.html" title="Creating a test package" /><link rel="next" href="ch02s04.html" title="Installing a program" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Adding installation directories and shared files</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Getting started</th><td width="20%" align="right"> <a accesskey="n" href="ch02s04.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Adding installation directories and shared files"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="add-install-dir"></a>Adding installation directories and shared files</h2></div></div></div><p>
+  Once you have installed urpkg, you cannot install a program with it right
+  away. If you try, you will find that files can only be written where everybody
+  has write permission. Concretely, the package foo cannot be installed in
+  <code class="filename">allowed</code> or in <code class="filename">restricted</code> at the
+  moment. Let's make sure of this.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --install install -v foo1 ../restricted/.
+</pre><p>
+  Should output something like this
+</p><pre class="screen">
+  Installing package foo-20080527...
+  Preinstall script
+  Running install command: install -v foo1 ../restricted/.
+  install: cannot create regular file `../restricted/./foo1': Permission denied
+  `foo1' -&gt; `../allowed/./foo1'
+  *** WARNING: The install command printed something to stderr (see /var/tmp/install.log): 
+  install: cannot create regular file `../restricted/./foo1': Permission denied
+  *** ERROR ***
+  urpkg: Command install with arguments '-v foo1 ../restricted/.' returned non-zero status 1
+  Cleaning up...
+  Terminating all processes...
+  Closing all files...
+  Uninstalling uncompletely installed package. PLEASE DO NOT KILL
+  Uninstalling package foo-20080527...
+  Listing and removing files...
+  Removing package user...
+</pre><p>
+  What happened was that our package user had no permission to write in 
+  <code class="filename">../restricted</code>, so the installation command failed and the
+  program was immediately uninstalled.
+</p><p>
+  To allow programs to be installed in a directory, you need to change the
+  directory's permissions. 
+</p><p>
+  Before doing that, you have to create two special groups. They are described
+  in more details in <a class="xref" href="ch03s03.html#package-groups" title="Package user groups">the section called “Package user groups”</a>
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo groupadd urpkgrp-install
+  <code class="prompt">$ </code>sudo groupadd urpkgrp-shared
+</pre><p>
+  Now you can invoke the <code class="option">gen</code> command on the directories in
+  which you want to allow packages to be installed.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --gen ../allowed
+</pre><p>
+  This allows any package user to write
+  in <code class="filename">../allowed</code>. However, existing files in these
+  directories cannot be overwritten or removed by anything else than the package
+  those files belong to. As an example
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --install install -v file2 ../allowed/file2
+</pre><p>
+  Will not work. You might simply want to
+  remove <code class="filename">../allowed/file2</code> and then retry, but what if the
+  installation script needs the content of <code class="filename">file2</code> ? For
+  example, <code class="filename">file2</code> could be an index, and the installation
+  script might just want to append something to the index. The solution to this
+  is to change the permission of <code class="filename">file2</code> to allow it to be
+  overwritten. It will still not be possible to remove it though. This is done
+  using the <code class="option">share</code> command.
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --share ../allowed/file2
+</pre><p>
+  Directories where one can install program are referred to
+  as <span class="emphasis"><em>installation directories</em></span> while regular files that
+  package user can overwrite are called <span class="emphasis"><em>shared files</em></span>.  In a
+  real system, installation directories would for example
+  be <code class="filename">/usr/bin/</code> or <code class="filename">/etc</code>. Shared files
+  are rarer but can for example
+  include <code class="filename">/usr/share/info/dir</code>, the index of all installed
+  info documentation files. 
+</p><p>
+  To make a shared file a normal file, or make an install directory a usual
+  directory, use respectively <code class="option">--unshare</code>
+  and <code class="option">--ungen</code>. If you want to list your shared files,
+  use <code class="option">--list-shared</code>, <code class="option">--list-instdir</code> is used to
+  list installation directories.
+</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Creating a test package </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Installing a program</td></tr></table></div></body></html>

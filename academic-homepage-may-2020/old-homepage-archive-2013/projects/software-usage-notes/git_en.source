@@ -1,0 +1,58 @@
+.. default-role:: literal
+
+
+Git tips and tricks
+===================
+
+Documents how to do some simple things with git_
+
+.. _git: http://git-scm.com/
+
+Import svn repository
+---------------------
+
+To import a svn repository, create your repository, and init git svn::
+
+   mkdir mygitrepo && git svn init http://my.repo.google.com/trunk
+
+It's better to get only the trunk and not the branches and the tags: this
+creates several problems with git-svn
+
+To create an initial copy, or update your content, use ``git svn fetch``
+
+To update your change, you moreover have to do ``git svn rebase``
+
+To commit your changes to the svn repo, use ``git svn dcommit``
+
+If you cloned the project, you have to add the svn remote branch manually. Add
+to ``.gitconfig``, e.g::
+
+   [svn-remote "svn"]
+   url = https://svn.epfl.ch/svn/itp-team-lambda/trunk
+   fetch = :refs/remotes/git-svn
+
+Merge two git projects
+----------------------
+
+To merge one git repository (in $repopath) into another (e.g in subdirectory
+$dir), do::
+
+   git remote add -f Bproject $repopath
+   git merge -s ours --no-commit Bproject/master
+   git read-tree --prefix=${dir}/ -u Bproject/master
+   git commit -m "Merge B project as our subdirectory"
+
+.. Somehow disappeared...
+.. See the `using merge subtree howto`_ for more information.
+.. .. _using merge subtree howto: http://www.kernel.org/pub/software/scm/git/docs/howto/using-merge-subtree.html
+
+
+Revert a change to a file
+-------------------------
+
+To revert a file to a previous state, do::
+
+   git checkout $commit -- $filename
+
+and commit the result.
+

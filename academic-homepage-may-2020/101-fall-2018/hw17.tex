@@ -1,0 +1,73 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 17]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 17}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 16 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may (unless the instructions say otherwise) assume the axioms, facts, and theorems on the reference sheet on the axioms, facts, and theorems of the real lines. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item (This problem does not assume knowledge of limits) Recall that a set $X$ of real numbers is called \emph{dense} if between any two real numbers, there is a member of $X$. That is, for any real numbers $a < b$, $(a, b) \cap X \neq \emptyset$. In this problem, you will give a proof (different from that in the book) that $\mathbb{Q}$ is dense. \emph{For this problem, you are only allowed to use axioms, facts and theorems 1-19 from the notes.}
+
+  For the first four parts below, assume $X$ is a nonempty set of real numbers such that for all $x \in X$ and all rational numbers $r$, $x + r \in X$. 
+  
+  \begin{enumerate}
+  \item Show that for every natural number $n$, there exists $x \in X$ such that $n < x$. 
+  \item Show that if $r$ is a real number, $n$ is a natural number, and $(r, r + \frac{1}{n}) \cap X \neq \emptyset$, then $(r - \frac{1}{n}, r) \cap X \neq \emptyset$.
+  \item Show that for any two real numbers $a < b$, there exists a natural number $n$ such that $a < b - \frac{1}{n}$ \emph{Hint: first use the Archimedean property, to find $n$ such that $\frac{1}{n} < b - a$.}
+  \item Prove that $X$ is dense. \emph{Hint: Suppose not. Fix real numbers $a < b$ such that $X \cap (a, b) = \emptyset$. Take the supremum of the set of reals $c \ge b$ such that $X \cap (a, c) = \emptyset$ and use the previous part to derive a contradiction.}
+  \item Deduce that $\mathbb{Q}$ is dense. Also deduce that the set of irrational numbers is dense.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Fix a real number $a$ and consider the sequence $(a_n)$, where $a_n = a$ for each natural number $n$. Prove (using the definition of the limit), that $(a_n) \to a$.
+  \item Show that the limit of a sequence if unique if it exists. That is, assume that $(a_n)$ is a sequence and for real numbers $a$ and $b$, $(a_n) \to a$ and $(a_n) \to b$. Prove that $a = b$. \emph{Hint: use the triangle inequality to show that $|a - b| < \epsilon$ for every positive real number $\epsilon$.}
+  \end{enumerate}
+\item Define a relation $\sim$ on the set $S$ of all sequences of real numbers as follows: $(a_n) \sim (b_n)$ if there exists a natural number $N$ such that whenever $n \ge N$, $a_n = b_n$. Intuitively, $(a_n) \sim (b_n)$ if they are eventually (after some $N$) the same. For example, the sequences $(0, 42, -1, 1, 1, 1, 1, 1, \ldots)$ and $(\sqrt{2}, \pi, e, 1, 1, 1, \ldots)$ are $\sim$-related (we can take $N = 4$ in the definition).
+
+  \begin{enumerate}
+  \item Prove that $\sim$ is an equivalence relation.
+  \item Assume that $(a_n)$ and $(b_n)$ are sequences and $\ell$ is a real number. Show that if $(a_n) \sim (b_n)$ and $(a_n) \to \ell$, then $(b_n) \to \ell$. \emph{Note: intuitively, this means that the limit does not depend on the first few terms of a sequence.}
+  \end{enumerate}
+
+\item A \emph{Cauchy sequence} is a sequence $(a_n)$ such that for all $\epsilon > 0$, there exists a natural number $N$ such that whenever $n \ge N$ and $m \ge N$ are natural numbers, $|a_n - a_m| < \epsilon$. \emph{This is similar to the definition of a convergent sequence but note that here there is no ``limit'' $a$, we just compare the distances between the $n$th and $m$th terms of the sequence.}
+
+  Prove that any convergent sequence is a Cauchy sequence.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

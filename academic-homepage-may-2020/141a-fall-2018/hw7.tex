@@ -1,0 +1,101 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\title[Math 141a, Fall 2018: assignment 7]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 7}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, October 26 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Recall that we call a class $K$ of $\sigma$-structures \emph{elementary} if there exists a set $A$ of sentences in the language of $\sigma$ such that $K$ is exactly the class of models of $A$. We call $K$ \emph{finitely axiomatizable} if we can take $A$ finite. For example, the class of all infinite sets (in the empty signature) is elementary and the class of chains is finitely axiomatizable (chains can be described by three sentences: irreflexivity, transitivity, and totality). 
+  \begin{enumerate}
+  \item Show that if $K$ is finitely axiomatizable, then its complement (the class of $\sigma$-structures not in $K$) is also finitely axiomatizable.
+  \item Prove that the class of all \emph{finite} sets (in the empty signature) is \emph{not} elementary. \emph{Hint: use the compactness theorem just like in the proof of the upward Löwenheim-Skolem theorem.}
+  \item Deduce that the class of all infinite sets (in the empty signature) is \emph{not} finitely axiomatizable.
+  \end{enumerate}
+\item Show that the interpretation of each function symbol is well-defined in the definition of the ultraproduct. That is, assume that $U$ is an ultrafilter on a set $I$ and $(M_i)_{i \in I}$ is a sequence of non-empty $\sigma$-structures. Let $f$ be a function symbol of arity $n$, $(a_i^1)_{i \in I}$, $(b_i^1)_{i \in I}$, $(a_i^2)_{i \in I}$, $(b_i^2)_{i \in I}$ ..., $(a_i^n)_{i \in I}, (b_i^n)_{i \in I}$ be elements of $\prod_{i \in I} \text{univ}(M_i)$. Assume that $(a_i^k)_{i \in I} \sim (b_i^k)_{i \in I}$ for each $k \le n$. Show that $(f^{M_i} (a_i^1, a_i^2, \ldots, a_i^n))_{i \in I} \sim (f^{M_i} (b_i^1, b_i^2, \ldots, b_i^n))_{i \in I}$. \emph{(Recall that $\sim$ means equality modulo $U$: $(c_i)_{i \in I} \sim (d_i)_{i \in I}$ if and only if $\{i \in I \mid c_i = d_i\} \in U$).}
+\item First a general definition. Let $U$ be an ultrafilter on a set $I$, and let $M$ be a non-empty $\sigma$-structure. For $i \in I$, let $M_i = M$. We write $M^U$ for $\prod_{i \in I} M_i / U$. This is called the \emph{ultrapower} of $M$ by $U$. 
+
+  For the rest of this problem, set $M := (\mathbb{N}, +, \cdot, <, 0, 1)$, and let $U$ be a nonprincipal ultrafilter on $I = \omega$.
+
+  \begin{enumerate}
+  \item Fix $m < \omega$. Give a function $x: \omega \to \omega$ such that $M^U \models [x] = \underbrace{1 + 1+ \ldots + 1}_{m \text{ times}}$.
+  \item For $a, b \in M^U$, let us say that $b$ is \emph{well above} $a$ if for any $m < \omega$, $M^U \models a + \underbrace{1 + 1 + \ldots + 1}_{m \text{ times}} < b$. Show that $[\text{id}]$ is well above $0^{M^U}$, where $\text{id}$ is the function: $\text{id}: \omega \to \omega$ given by $\text{id} (n) = n$.
+  \item Show that for any $a \in M^U$, there exists $b \in M^U$ which is well above $a$.
+  \item Show that for any $a \in M^U$ that is well above $0^{M^U}$, there exists $b \in M^U$ such that $a$ is well above $b$ and $b$ is well above $0^{M^U}$.
+  \item Show that for any (possibly infinite) set $P$ of primes there exists $a \in M^U$ that is divisible exactly by the primes in $P$.
+  \end{enumerate}
+  
+\item An \emph{elementary embedding} from a $\sigma$-structure $M$ to a $\sigma$-structure $N$ is an injection $s: M \to N$ such that $s$ is an isomorphism onto $s[M]$ and $s[M] \preceq N$ \emph{(note: we are abusing notation here, and should have really written $s: \text{univ} (M) \to \text{univ} (N)$. We also have written $s[M]$ for the unique substructure of $N$ with universe $s[\text{univ} (M)]$)}.
+
+  \begin{enumerate}
+  \item Prove that the following are equivalent, for a function $s: M \to N$.
+
+    \begin{enumerate}
+    \item $s$ is an elementary embedding.
+    \item For any formula $\phi (x_1, \ldots, x_n)$ and any $a_1, \ldots, a_n$ in the universe of $M$, $M \models \phi (a_1, \ldots, a_n)$ if and only if $M \models \phi (s (a_1), \ldots, s (a_n))$.
+    \end{enumerate}
+
+  \item Assume that $s: M \to N$ is an elementary embedding. Prove that there exists a $\sigma$-structure $M'$ and an isomorphism $t: M' \cong N$ such that $M \preceq M'$ and $t$ extends $s$. \emph{Hint: first think of the structures as chains and try to draw a picture of the situation.}
+  \item Let $U$ be an ultrafilter on some set $I$ and let $M$ be a non-empty $\sigma$-structure. Prove that the function $s: M \to M^U$ given by $s (a) = [c_a]$ (where $c_a: I \to M$ is the constantly $a$ function: $c_a (i) = a$) is an elementary embedding. It is called the \emph{canonical embedding} of $M$ into $M^U$.
+  \item Assume now that $U$ is nonprincipal and $I = \text{univ} (M)$. Prove that the canonical embedding is proper (that is, it is not surjective). Deduce that any infinite $\sigma$-structure has a proper elementary extension. 
+  \end{enumerate}
+  
+
+
+\item (Extra credit) Let $N$ be countable, elementarily equivalent but not isomorphic to $(\mathbb{N}, +, \cdot, <, 0, 1)$. Describe the chain $(\text{univ} (N), <^N)$ up to isomorphism.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

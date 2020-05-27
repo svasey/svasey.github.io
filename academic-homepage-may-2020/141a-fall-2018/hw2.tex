@@ -1,0 +1,109 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+
+\title[Math 141a, Fall 2018: assignment 2]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 2}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, September 21 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+This assignment relies on the following facts and definitions (which have all been discussed in class):
+
+\begin{itemize}
+\item \textbf{Theorem.} (8.1,8.2 in Poizat) For any two well-orderings $\bA = (A, <)$ and $\bB = (B, <)$, either $\bA$ is isomorphic to an initial segment of $\bB$ or $\bB$ is isomorphic to an initial segment of $\bA$. In either case, the isomorphism is unique.
+
+\item A set $X$ is \emph{transitive} if $x \subseteq X$ for any $x \in X$.
+\item An \emph{ordinal} is a transitive set $\alpha$ such that $(\alpha, \in)$ is a well-ordering. For ordinals $\alpha$ and $\beta$, we write $\alpha < \beta$ instead of $\alpha \in \beta$. We write $\omega$ for the first infinite ordinal and identify the finite ordinals with the natural numbers (so $0 = \emptyset$, $1 = \{0\}$, etc.).
+\item \textbf{Theorem.} (8.3 in Poizat) If two ordinals are isomorphic (as well-orderings), then they are equal.
+\item \textbf{Theorem.} (8.4 in Poizat) Any well-ordering is (uniquely) isomorphic to a unique ordinal.
+\item \textbf{Theorem.} (p.~163 in Poizat) Any non-empty collection of ordinals has a minimal element.
+
+\item For an ordinal $\alpha$, $\alpha + 1 = \alpha \cup \{\alpha\}$. This is the minimal ordinal strictly above $\alpha$.
+\item For a sequence of ordinals $\seq{\alpha_i : i \in I}$, $\sup_{i \in I} \alpha_i = \bigcup_{i \in I} \alpha_i$. This is the minimal ordinal $\alpha$ such that $\alpha_i \le \alpha$ for all $i \in I$.
+\item An ordinal $\alpha$ is a \emph{successor} if $\alpha = \beta + 1$ for some ordinal $\beta$. It is \emph{limit} if it is not zero and not a successor. Note that if $\alpha$ is limit, then $\alpha = \sup_{\beta < \alpha} \beta$.
+\item The \emph{principle of transfinite induction for ordinals} says that if $P (x)$ is a property of ordinals and for all ordinals $\alpha$, $P(0)$, $P (\alpha)$ implies $P (\alpha + 1)$, and $P (\beta)$ for all $\beta < \alpha$ implies $P (\alpha)$, then $P (\alpha)$ holds for all $\alpha$.
+\item For ordinals $\alpha$ and $\beta$, $\alpha + \beta$ is the unique ordinal isomorphic to $(\alpha, \in) + (\beta, \in)$ (see assignment 1). Similarly, $\alpha \cdot \beta$ is the unique ordinal isomorphic to $(\alpha, \in) \times (\beta, \in)$.
+\item Equivalently, one can inductively define $\alpha + 0 = \alpha$, $\alpha + (\beta + 1) = (\alpha + \beta) + 1$, and $\alpha + \beta = \sup_{\gamma < \beta} \alpha + \gamma$ for $\beta$ limit. One can then define ordinal multiplication: $\alpha \cdot 0 = 0$, $\alpha \cdot (\beta + 1) = \alpha \cdot \beta + \alpha$, and $\alpha \cdot \beta = \sup_{\gamma < \beta} \alpha \cdot \gamma$ for $\beta$ limit. You may take it for granted that these two definitions of addition/multiplication are equivalent.
+\item Define $\alpha^\beta$ by induction on $\beta$ as follows: $\alpha^0 = 1$, $\alpha^{\beta + 1} = \alpha^\beta \cdot \alpha$, and $\alpha^\beta = \sup_{\gamma < \beta} \alpha^\gamma$ for $\beta$ limit.
+\item \textbf{Theorem.} (8.6 in Poizat) Any set can be well-ordered.
+\item The \emph{cardinality} of a set $X$, denoted $|X|$, is the minimal ordinal isomorphic to a well-ordering of $X$. An ordinal $\alpha$ is a \emph{cardinal} if $|\alpha| = \alpha$.
+\item \textbf{Theorem.} (8.8 in Poizat) $|X| < |\mathcal{P} (X)|$ for any set $X$.
+\item For a cardinal $\kappa$, $\kappa^+$ is the minimal cardinal strictly greater than $\kappa$. Define inductively $\aleph_0 = \omega$, $\aleph_{\alpha + 1} = \left(\aleph_\alpha\right)^+$, and $\aleph_{\alpha} = \sup_{\beta < \alpha} \aleph_\beta$ for $\alpha$ a limit ordinal.
+\item \textbf{Theorem.} (seen in class) For any infinite cardinal $\lambda$, there exists an ordinal $\alpha$ such that $\lambda = \aleph_\alpha$.
+\end{itemize}
+\begin{enumerate}
+\item \begin{enumerate}
+\item Show that if $\beta$ is an ordinal and $\alpha \in \beta$, then $\alpha$ is an ordinal.
+\item Show that if $\beta$ is an ordinal and $A$ is an initial segment of $(\beta, \in)$, then $A$ is an ordinal.
+\item Show that for ordinals $\alpha$ and $\beta$, $\alpha \in \beta$ if and only if $\alpha \subsetneq \beta$.
+\item Show that if $\alpha$ and $\beta$ are ordinals, then either $\alpha \le \beta$ or $\beta < \alpha$.
+\end{enumerate}
+\item \begin{enumerate}
+\item Prove that any ordinal $\alpha$ can be written uniquely as $\alpha = \alpha_0 + n$, where $n < \omega$ and $\alpha_0$ is limit or zero. \emph{Hint: use transfinite induction on $\alpha$.}
+\item Prove that for any two ordinals $\alpha \le \beta$, there exists a unique ordinal $\delta$ such that $\beta = \alpha + \delta$ \emph{Note: this shows that there is a kind of subtraction. Hint: proceed by transfinite induction on $\beta$.}
+\item Prove that for any ordinal $\alpha$ and any ordinal $\beta > 0$, there exists unique ordinals $\gamma$ and $\delta$ such that $\delta < \beta$ and $\alpha = \beta \cdot \gamma + \delta$ \emph{Note: this shows there is a kind of division. Hint: take $\gamma$ minimal such that $\beta \cdot (\gamma + 1) > \alpha$, then use the previous part to find $\delta$.} 
+\end{enumerate}
+\item Let $\gamma$ be a nonzero ordinal. Show that for any ordinal $\alpha$, there exists $n < \omega$ and ordinals $\alpha_0 > \alpha_1 > \ldots > \alpha_{n - 1}$, $c_0, \ldots, c_{n - 1}$ such that $0 < c_i < \gamma$ for all $i < n$ and $\alpha = \gamma^{\alpha_0} c_0 + \gamma^{\alpha_1} c_1 + \ldots + \gamma^{\alpha_{n - 1}}c_{n - 1}$ (with the convention that when $n = 0$, the empty sum is zero). \emph{Note: This representation is called the base $\gamma$ normal form of $\alpha$. It is tedious but possible to show that this representation is also unique. Hint: proceed by induction on $\alpha$: to start, take $\alpha_0$ to be minimal such that $\gamma^{\alpha_0 + 1} > \alpha$ and use a previous exercise to ``divide'' by $\gamma^{\alpha_0}$.}
+\item Write the following expression in base $\omega$ normal form (no full proof needed, you only need to justify briefly). For example, $\omega + \omega = \omega^1 \cdot 2$ in base $\omega$ normal form.
+  \begin{enumerate}
+  \item $3 + \omega + 5 + \omega$.
+  \item $\omega^2 \cdot 3 + 5 \cdot \omega^3$.
+  \item $(\omega \cdot 3) \cdot (\omega \cdot 5)$.
+  \item $2^{32 \cdot (1 + \omega) + 2^\omega}$ (\emph{Warning: exponentiation here is the ordinal exponentiation defined above.})
+  \end{enumerate}
+\item Show that for sets $X$ and $Y$, $|X| = |Y|$ if and only if there is a bijection from $X$ onto $Y$.
+\item Show that for sets $X$ and $Y$, the following are equivalent:
+
+  \begin{enumerate}
+  \item $|X| \le |Y|$.
+  \item There is a surjection from $Y$ onto $X$.
+  \item There is an injection from $X$ to $Y$.
+  \end{enumerate}
+
+  \emph{Hint: to go from the second to the third, draw a picture to understand the situation and use the well-ordering of $Y$ to ``choose'' where to send each element.}
+\item (Extra credit) Show that there exists an infinite cardinal $\lambda$ such that $\lambda = \aleph_\lambda$.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

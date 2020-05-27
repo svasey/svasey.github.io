@@ -1,0 +1,112 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+\newcommand{\Ff}{\mathbb{F}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ann}{\operatorname{Ann}}
+
+\title[Math 123, Spring 2020: assignment 5]{Math 123 - Algebra II - Spring 2020 \\ Assignment 5}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, March 3, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+Remember that in this class ``ring'' means ``ring with identity''. Everywhere below, $R$ denotes a ring.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Give the definition of the following: external direct sum, internal direct sum, free module, basis of a module, rank of a module, Noetherian, elementary divisors, invariant factors, Jordan canonical form.
+\item State and prove the structure theorem for modules seen in class (both forms).
+\item For what kind of integral domains is a submodule of a free module free, and why?
+\item Prove that any square matrix of complex numbers has a Jordan canonical form.
+\item True or false?
+  \begin{enumerate}
+  \item A module is Noetherian if and only if it is finitely generated.
+  \item Any abelian group is isomorphic to a product of cyclic groups.
+  \item For finitely generated modules over PIDs, free is equivalent to torsion-free.
+  \item For $R$ an integral domain, any free $R$-module of rank $n$ is isomorphic to $R^n$.
+  \item For $R$ an integral domain, any submodule of a finitely generated free module is finitely generated.
+  \end{enumerate}
+\end{enumerate}
+
+\section*{Problems for credit}
+
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 3 from that assignment (submit your comment on Canvas, \emph{not} with this assignment). Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+\item 
+  \begin{enumerate}
+  \item Let $M_1, M_2$ be $R$-modules and $N_1, N_2$ be submodules of $M_1$ and $M_2$ respectively. Show that $(M_1 \times M_2) / (N_1 \times N_2) \cong (M_1 / N_1) \times (M_2 / N_2)$.
+  \item Let $R$ be an integral domain and let $M$ be an $R$-module. Let $y \in M$ and $a \in R$. Assume that $y$ is not a torsion element. Show that $(R y) / (R ay) \cong R / (a)$. Give an example showing that this may no longer hold if $y$ is a torsion element.
+  \item Assume $R$ is a commutative ring with $0 \neq 1$. Show that if $R^n \cong R^m$ (as $R$-modules), then $n = m$. \emph{Hint: take a maximal ideal of $R$, and quotient by a suitable submodule. Be careful: we are NOT asuming that $R$ is an integral domain here, so you cannot use the proposition about the rank proven in class.}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item (DF, 10.1.9) If $N$ is a submodule of $M$, recall that the \emph{annihilator of $N$ in $R$}, $\Ann (N)$, is defined to be $\{r \in R \mid rn = 0 \text{ for all } n \in N\}$. Show that the annihilator of $N$ in $R$ is an ideal of $R$.
+  \item (DF, 10.1.10) If $I$ is an ideal of $R$, the \emph{annihilator of $I$ in $M$} is defined to be $\{m \in M \mid rm = 0 \text{ for all } r \in I\}$. Prove that the annihilator of $I$ in $M$ is a submodule of $M$.
+  \item (DF, 10.1.11) Let $M$ be the abelian group $\Zz / 24 \Zz \times \Zz / 15 \Zz \times \Zz / 50 \Zz$, considered as a $\Zz$-module.
+    \begin{enumerate}
+    \item Give a generator for the annihilator of $M$ in $\Zz$.
+    \item Describe the annihilator of $2\Zz$ in $M$ as a product of cyclic groups.
+    \end{enumerate}
+  \end{enumerate}
+\item Assume that $R$ is commutative with $0 \neq 1$. 
+  \begin{enumerate}
+  \item Prove that all $R$-modules are free if and only if $R$ is a field.
+  \item (DF, 10.3.13) Let $F$ be a free $R$-module of finite rank. Prove that $\Hom_R (F, R) \cong F$. Here, $\Hom_R (F, R)$ is the $R$-module of all homomorphisms from $F$ to $R$, under the natural action and addition.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Describe all abelian groups of order 72.
+  \item For each of the following abelian groups, determine whether it is finitely generated. If it is, give its free rank, elementary divisors, and invariant factors. We write $\Zz_n$ for $\Zz / n \Zz$.
+    \begin{enumerate}
+    \item $\Zz \oplus \Zz_6 \oplus \Zz_{16} \oplus \Zz$.
+    \item $\Qq$, with addition.
+    \item $\Zz_4 \oplus \Zz_4 \oplus \Zz_3$.
+    \end{enumerate}
+  \end{enumerate}
+\item (DF, 12.1.8) Let $R$ be a PID, let $M$ be a (not necessarily finitely generated!) torsion $R$-module, and let $p$ be a prime in $R$. Show that if there exists a nonzero $m \in M$ such that $pm = 0$, then $\Ann (M)  \subseteq (p)$.
+\item (DF, 12.1.15) Show that if $R$ is a Noetherian ring, then $R^n$ is a Noetherian $R$-module.
+\end{enumerate}
+\end{document}

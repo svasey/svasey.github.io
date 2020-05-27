@@ -1,0 +1,108 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+
+\newcommand{\Ff}{\mathbb{F}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Mult}{\operatorname{Mult}}
+
+\title[Math 123, Spring 2020: assignment 11]{Math 123 - Algebra II - Spring 2020 \\ Assignment 11}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Friday, April 24, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Give the definition of the Galois closure, and of the notion of a separable extension.
+\item Prove that if $K / F$ is a Galois extension and $E$ is an intermediate field, then $E / F$ is Galois if and only if $\Aut (K / E)$ is normal in $\Aut (K / F)$.
+\item State and prove the primitive element theorem.
+\item State and prove the characterization of the numbers $n$ such that the regular $n$-gon can be constructed with straightedge and compass.
+\item True or false?
+  \begin{enumerate}
+  \item Any finite extension of $\Qq$ is simple.
+  \item If $K_1 / F$, $K_2 / F$ are Galois extensions with Galois group $G_1$ and $G_2$, then the composite $K_1 K_2 / F$ is a Galois extension, with Galois group $G_1 \times G_2$.
+  \item Any finite extension of $\Ff_p$ is simple.
+  \item Any simple extension of $\Ff_p$ is finite.
+  \item The Galois group of $\Qq (e^{\pi i / 8}) / \Qq$ is the cyclic group of order 15.
+  \end{enumerate}
+\end{enumerate}
+\section*{Problems for credit}
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 4 from that assignment (submit your comment on Canvas, \emph{not} with this assignment). Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+
+\item Consider the statement ``If $F$ is a field and $G_1, G_2$ are finite groups that can be realized as Galois groups of extensions of $F$, then $G_1 \times G_2$ is the Galois group of an extension of $F$''.
+  \begin{enumerate}
+  \item  Describe what is wrong with the following ``proof'' of the statement: Let $K_1 / F$ be an extension with Galois group $G_1$, and $K_2 / F$ be an extension with Galois group $G_2$. Then the composite $K_1 K_2 / F$ has Galois group $G_1 \times G_2$.
+  \item Show that the statement is false by giving an explicit counterexample.
+  \item Let $G$ be an arbitrary finite group. Show that if there is an extension of $\Qq$ with Galois group $G$, then there is an extension of $\Qq$ with Galois group $G \times Z_2$ (where $Z_2$ is the cyclic group of order 2).
+  \end{enumerate}
+
+\item (DF, 14.4.2) Find a primitive generator for $\Qq (\sqrt{2}, \sqrt{3}, \sqrt{5})$ over $\Qq$.
+\item (DF, 14.4.9) Suppose $K / F$ is a Galois extension with Galois group $G$ and $\theta$ is a primitive element for $K$: $K = F (\theta)$. For any subgroup $H$ of $G$, let $f (x) = \prod_{\sigma \in H} (x - \sigma (\theta))$. Show $f (x) \in E[x]$, where $E$ is the fixed field of $H$ in $K$, and that moreover $f (x)$ is the minimal polynomial for $\theta$ over $E$, and the coefficients of $f (x)$ generate $E$ over $F$.
+
+  
+\item (DF, 14.5.5) Let $p$ be a prime and let $\epsilon_1, \ldots, \epsilon_{p - 1}$ denote the primitive $p$th roots of unity in $\Cc$. Set $p_n = \epsilon_1^n + \ldots + \epsilon_{p - 1}^n$. Prove that $p_n = -1$ if $p$ does not divide $n$, and $p_n = p - 1$ if $p$ does divide $n$.
+\item (DF, 14.5.8) Let $K_n = \Qq (\zeta_{2^{n + 2}})$ ($n \ge 0$). Set $\alpha_n := \zeta_{2^{n + 2}} + \zeta_{2^{n + 2}}^{-1}$, and let $K_n^+ := \Qq (\alpha_n)$.
+
+  \begin{enumerate}
+  \item Show that $[K_n : \Qq]  = 2^{n + 1}$, $[K_n : K_n^+] = 2$, $[K_{n}^+ : \Qq] = 2^n]$, and $[K_{n + 1}^+ : K_n^+] = 2$.
+  \item Determine the minimal polynomial of $\zeta_{2^{n + 2}}$ over $K_n^+$ (in terms of $\alpha_n$).
+  \item Show that $\alpha_{n + 1}^2 = 2 + \alpha_n$, and deduce that:
+
+    $$
+    \alpha_n = \sqrt{2 + \sqrt{2 + \sqrt{ \ldots + \sqrt{2}}}}
+    $$
+
+    where the square root symbol appears $n$ times. \emph{[This gives an explicit way to realize $K_n$ by iterating quadratic extensions.]} 
+  \end{enumerate}
+  
+\item (DF, 14.5.10) Prove that $\Qq (\sqrt[3]{2})$ is not a subfield of any cyclotomic field over $\Qq$.
+
+
+\end{enumerate}
+\end{document}

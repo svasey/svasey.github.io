@@ -1,0 +1,74 @@
+.. default-role:: literal
+
+
+Copyright on svasey.org
+=======================
+
+Philosophy
+----------
+
+Believe it or not, today you *cannot* copy most of the content on the web
+without prior approval of its author. You risk getting sued if you do not obtain
+his blessing. That is why I need this page to tell you I give up all my
+so-called "rights" and will let you copy whatever you which for any purpose
+whatsoever. A more carefully worded declaration is below. 
+
+If it bothers you that this page should even exist, check out Richard Stallman's
+essay `The Right to Read`_.
+
+.. _The Right to Read: http://www.gnu.org/philosophy/right-to-read.html
+
+General conditions
+------------------
+
+Excepted the content listed below, I hereby release all the content of
+`http://svasey.org` in the public domain. I grant anyone the right to use it for
+any purpose, without any conditions. 
+
+This means that you can copy, change and publish, for commercial purpose or not,
+any content on this website.
+
+This does not exempt you from being polite: please give me proper credit when
+due, e.g by mentioning my name and linking to my webpage. Thank-you emails are
+also appreciated. 
+
+If you change some of my software, please consider `sharing back`_ your changes with me
+and the community at large.
+
+.. _sharing back: http://www.gnu.org/philosophy/philosophy.html
+
+Exceptions
+----------
+
+Some content on this site is clearly marked as copyrighted, either because it is
+the work of someone else, or because it is joint work I have done with somebody
+not sharing my opinions on copyright. Most often, it will still be released
+under a copyleft license. Below is a list of the copyrighted content on my
+website.
+
+CG4 Image
+#########
+
+The image of the planetary globule CG4 on http://svasey.org/ is copyright
+T.A. Rector/University of Alaska Anchorage, T. Abbott and NOAO/AURA/NSF. See
+`the original source`_ for the full copying conditions.
+
+.. _the original source: http://www.noao.edu/image_gallery/html/im1000.html
+
+Kinonk
+######
+
+Kinonk_ is free software distributed under the `GNU General Public License,
+version 2`_. See the release tarball for the full copying conditions.
+
+.. _Kinonk: http://kinonk.sourceforge.net/
+.. _GNU General Public License, version 2: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+
+Deep Pink
+#########
+
+`Deep Pink`_ is free software distributed under the `MIT License`_. See the
+release tarball for the full copying conditions.
+
+.. _Deep Pink: projects/deeppink_en.html
+.. _MIT License: http://www.opensource.org/licenses/mit-license.php

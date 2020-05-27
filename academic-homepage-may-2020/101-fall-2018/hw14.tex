@@ -1,0 +1,57 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 14]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 14}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 9 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Assume $G$ is a group and $H$ is a subgroup of $G$. Show that $H$ is normal if and only if $ghg^{-1} \in H$ for all $g \in G$ and all $h \in H$.
+\item Assume $G$ and $G'$ are groups and $f: G \to G'$ is a homomorphism. Prove that $\ker (f)$ is a normal subgroup of $G$. \emph{Hint: use the previous problem.}
+\item Assume that $G$ is a group and $H$ is a subgroup of $G$ of index $2$. Prove that $H$ is normal.
+\item Assume $G$ and $G'$ are two groups, with identity elements $e_G$ and $e_{G'}$ respectively. Write $N = G \times \{e_{G'}\}$.
+  \begin{enumerate}
+  \item Show that $N$ is a normal subgroup of $G \times G'$, the direct product of $G$ with $G'$ (see problem 4 on assignment 10).
+  \item Show that $N$ is isomorphic to $G$.
+  \item Show that the quotient group $(G \times G') / N$ is isomorphic to $G'$. \emph{Hint: one quick way to do this is to use the first isomorphism theorem: find a homomorphism with domain $G \times G'$, kernel $N$, and image $G'$.}
+  \end{enumerate}
+\item (Extra credit -- challenging) Show that any group of order 6 is isomorphic to either $D_3$ or $\mathbb{Z}_6$.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

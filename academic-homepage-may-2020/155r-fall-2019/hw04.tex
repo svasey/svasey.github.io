@@ -1,0 +1,70 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 4]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 4}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, October 1 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+
+\item
+  \begin{enumerate}
+  \item Give a (short) necessary and sufficient condition for a sequence of zeroes and ones to be a graph score.
+  \item (MN, 4.3.2) Give an example of a number $n$ and a sequence of length $n$ in which each term is some of the numbers $1, 2, \ldots, n - 1$, and which has an even number of odd terms, and yet is not a graph score.
+  \end{enumerate}
+\item (MN, 4.2.1) Prove for any graph $G$, either $G$ or its complement is connected (the \emph{complement} of a graph $(V, E)$ is the graph $\left(V, {V \choose 2} - E \right)$).
+\item (MN, 4.2.4) Prove that a graph is bipartite if and only if it contains no cycle of odd length.
+\item (MN, 4.4.1, \emph{The seven bridges of Königsberg}) Is it possible to tour the city depicted on the map below\footnote{Source: \url{https://en.wikipedia.org/wiki/File:Konigsberg_bridges.png}} in such a way that each of the seven bridges is crossed exactly once (there is no need to start and end at the same place)? If your answer is yes, show how. If your answer is no, prove why and explain where one would need to add bridges to make such a tour possible.
+
+  \includegraphics[height=4cm]{bridges.png}
+\item
+  The \emph{$n$-dimensional cube} is the graph whose vertices are all the sequences of zero and ones of length $n$, and where there is an edge between two sequences if and only if they differ at exactly one place.
+
+  \begin{enumerate}
+  \item For any partially ordered set $P = (A, \le)$, we can define a \emph{directed} graph $G (P)$ whose vertex set is $A$ and where there is an edge from $x$ to $y$ exactly when $y$ is an immediate successor of $x$. How is the $n$-dimensional cube (as defined above) related to $G ((\Ps (\{1, \ldots, n\}, \subseteq))$?
+    \item Prove that the $n$-dimensional cube is bipartite.
+    \item (MN, 4.6.5) What is the largest natural number $k$ such that the $n$-dimensional cube is $k$-connected?
+    \end{enumerate}
+
+\item (Extra credit) Show that every connected graph contains a vertex whose removal does not disconnect the graph.
+\end{enumerate}
+
+
+
+\end{document}

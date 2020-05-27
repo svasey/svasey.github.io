@@ -1,0 +1,91 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\newcommand{\proves}{\vdash}
+\newcommand{\imp}{\rightarrow}
+\newcommand{\impp}{\leftrightarrow}
+
+
+\title[Math 141a, Fall 2018: assignment 8]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 8}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 2 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+
+\item Assume $A$ is a set of sentences and $\phi, \psi$ are sentences. Prove (without using the completeness theorem) that the following are equivalent:
+  \begin{enumerate}
+  \item $A \proves \phi \land \psi$.
+  \item $A \proves \phi$ and $A \proves \psi$.
+  \end{enumerate}
+
+\item Assume $\phi$ is a sentence. Show (without using the completeness theorem) that $\proves (\exists x) \neg \phi \leftrightarrow \neg (\forall x) \phi$. \emph{Hint: do not hesitate to use the deduction theorem, the ``proof by contradiction'' lemma, as well as the introduction and elimination rules for quantifiers.}  
+\item Let $\sigma$ be a signature with at least one constant symbol. Assume $A$ is a set of sentences in the language of $\sigma$. Solve the following two problems \emph{without} using the completeness theorem.
+
+  \begin{enumerate}
+
+  \item Let $X$ be the set of all closed terms (i.e.\ terms without free variables) in the language of $\sigma$. Define a relation $\sim$ on $X$ by $t \sim s$ if $A \proves t = s$. Prove that $\sim$ is an equivalence relation.
+  \item Let $f$ be a function symbol of arity $n$ and let $t_1, \ldots, t_n, s_1, \ldots, s_n$ be closed terms. Show that if $A \proves t_i = s_i$ for all $i \le n$, then $A \proves f (t_1, \ldots, t_n) = f (s_1, \ldots, s_n)$.
+  \end{enumerate}
+\item For a fixed signature $\sigma$ and $A$, $B$ sets of sentences in the language of $\sigma$, we write $A \proves B$  if $A \proves \phi$ for every $\phi \in B$.
+
+  \begin{enumerate}
+  \item Prove without using the completeness theorem that if $A \proves B$ and $B \proves C$, then $A \proves C$. 
+  \item Use the completeness theorem to give another proof that if $A \proves B$ and $B \proves C$, then $A \proves C$.
+  \end{enumerate}
+  
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

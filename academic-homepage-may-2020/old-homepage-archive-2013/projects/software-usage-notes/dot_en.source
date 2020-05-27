@@ -1,0 +1,40 @@
+.. default-role:: literal
+
+
+Dot documentation
+=================
+
+This page documents some tricks I learned when using dot_
+
+.. _dot: http://www.graphviz.org/
+
+Multiple nodes with the same label
+----------------------------------
+
+::
+
+    node1 [label = "a"];
+    node2 [label = "a"];
+
+    node1 -> node2;
+
+Drawing a tree
+--------------
+
+Use dot (standard digraph type). Use the ``orientation`` variable to change the
+orientation of the tree
+
+Left to right ordering taken into account
+-----------------------------------------
+
+use ``ordering = out;``
+
+Make edges avoid nodes
+----------------------
+
+use ``splines = true;``
+
+Avoid overlaping nodes
+----------------------
+
+use ``overlap = "scale";``

@@ -1,0 +1,110 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\title[Math 141a, Fall 2018: assignment 3]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 3}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, September 28 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+This assignment relies on the following facts and definitions (which have all been discussed in class):
+
+\begin{itemize}
+\item A set $A$ is \emph{countable} if $|A| \le \aleph_0$. We call $A$ \emph{finite} if $|A| < \aleph_0$ and \emph{infinite} otherwise. We say that $A$ is \emph{countably infinite}, or \emph{denumerable}, if $|A| = \aleph_0$.
+\item For sets $A$ and $B$, $\fct{A}{B}$ denotes the set of functions from $A$ to $B$. More precisely, $\fct{A}{B}$ is the set of all relations $R \subseteq A \times B$ such that for any $a \in A$, there exists a unique $b \in B$ with $(a, b) \in R$. Note in particular that $\fct{A}{B} \subseteq \fct{A}{B'}$ for $B \subseteq B'$.
+\item \emph{Cardinal addition, multiplication, and exponentiation} (which are different from the corresponding ordinal operations) are defined as follows. For $\lambda$ and $\mu$ cardinals:
+  \begin{itemize}
+  \item $\lambda + \mu = |(\lambda \times \{1\}) \cup (\mu \times \{2\})|$.
+  \item $\lambda \cdot \mu = |\lambda \times \mu|$.
+  \item $\lambda^\mu = |\fct{\mu}{\lambda}|$.
+  \end{itemize}
+\item \textbf{Theorem.} (see 8.9 and the few pages after in Poizat) If $\lambda$ and $\mu$ are both infinite cardinals, then $\lambda + \mu = \lambda \cdot \mu = \max (\lambda, \mu)$.
+\item A chain $\bA = (A, <)$ is \emph{dense} if for any $x < y$ in $A$, there exists $z \in A$ such that $x < z < y$. An \emph{endpoint} of a chain $\bA$ is a minimum or a maximum.
+\item \textbf{Theorem.} (a special case of 1.14 in Poizat) Any two non-empty countable dense chains without endpoints are isomorphic.
+\item We will also rely on some of the other definitions given in Chapter 1 of Poizat, such as that of a local isomorphism and of an $\alpha$-isomorphism. Two relations $R$ and $R'$ are \emph{elementarily equivalent} if there is an $\omega$-isomorphism from $R$ to $R'$.
+\item For two relations $R$ and $R'$, we say that a tuple $\ba = (a_1, \ldots, a_k)$ from the universe of $R$ is \emph{$\alpha$-equivalent} to a tuple $\bb = (b_1, b_2, \ldots, b_k)$ from the universe of $R'$ (written $(\ba, R) \sim_\alpha (\bb, R')$) if there is an $\alpha$-isomorphism from $R$ to $R'$ taking $\ba$ to $\bb$. That is, sending $a_i$ to $b_i$ for each $i \le k$ defines an $\alpha$-isomorphism. See the end of p.~3 in Poizat.
+
+\end{itemize}
+
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item Fix an infinite cardinal $\mu$. Give an example of an infinite cardinal $\lambda$ such that $\lambda^{\mu} = \lambda$.
+  \item Let $\seq{A_i : i \in I}$ be a non-empty sequence of sets. Show that:
+
+    $$
+    \left| \bigcup_{i \in I} A_i \right| \le |I| \cdot \sup_{i \in I} |A_i| 
+    $$
+  \item Let $\lambda$ be an infinite cardinal. Let $A \subseteq \lambda^+$ be such that $|A| \le \lambda$. Show that there exists an ordinal $\alpha < \lambda^+$ such that $A \subseteq \alpha$. \emph{Hint: suppose not, and write $\lambda^+$ as a union of $\lambda$-many sets of cardinality $\lambda$.}
+  \item Let $\mu \le \lambda$ be infinite cardinals. Show that $\fct{\mu}{\left(\lambda^+\right)} = \bigcup_{\alpha < \lambda^+} \fct{\mu}{\alpha}$.
+
+  \item Let $\lambda$ and $\mu$ be infinite cardinals. Assume that $\lambda^\mu = \lambda$. Prove that $\left(\lambda^+\right)^\mu = \lambda^+$.
+  \end{enumerate}
+\item (Exercise 1.1 in Poizat) Let $R$ and $R'$ be $m$-ary relations with universes $E$ and $E'$ respectively. Show that if $R$ and $R'$ are elementarily equivalent, then for every $k < \omega$, every $p < \omega$, and every $k$-tuple $\ba \in E^k$, there is a $k$-tuple $\bb \in (E')^k$ such that $(\ba, R) \sim_p (\bb, R')$.
+\item How many countable dense chains are there, up to isomorphism?
+\item Show that the chains $(\mathbb{R}, <)$ and $(\mathbb{R} \backslash \{0\}, <)$ are \emph{not} isomorphic.
+\item A \emph{graph} is a pair $(V, E)$, where $V$ is a set and $E$ is a binary relation on $A$ that is symmetric and irreflexive (we think of $V$ as a set of \emph{vertices} and $E$ as a set of \emph{edges} connecting the vertices). A graph is called \emph{generic} if for any finite set $V_0 \subseteq V$ and any $S \subseteq V_0$, there exists $v \in V \backslash V_0$ such that for all $w \in V_0$, $E (v, w)$ if and only if $w \in S$. In other words, $v$ is connected to all the vertices in $S$ and to none of the vertices in $V_0 \backslash S$.
+
+  Prove that any two countable generic graphs are isomorphic.
+
+  \emph{Note: there are several ways to see that generic graphs exist. One construction is to take the vertex set to be $\omega$, and for each $i < j$, toss a coin to decide whether or not there is an edge between $i$ and $j$ (with probability one, we then obtain a generic graph). We will see another construction later in this class. The unique countable generic graph is often called the random graph, or the Rado graph.}
+
+\item (Extra credit) 
+
+  Let $S$ be a non-empty set (think of it as the set of ``states'' of the physical universe). Show that there is a function $\sigma$ (the ``strategy'') that:
+  \begin{itemize}
+  \item Takes as input a function $g: (-\infty, t) \to S$, for some real $t$ (you can think of $g$ as giving the ``past'' state of the universe at any time $s < t$), and outputs a state $\sigma (g) \in S$.
+  \item ``Predicts'' the present from the past correctly almost always, in the sense that for any function $f: \mathbb{R} \to S$, for all but countably-many $t \in \mathbb{R}$, $f (t) = \sigma (f \rest (-\infty, t))$.
+  \end{itemize}
+
+  \emph{Hint: Well-order the set of functions from $\mathbb{R}$ to $S$ and have $\sigma$ pick out the value given by the minimal one agreeing with the past. To prove that $\sigma$ works, prove that the set of points where $\sigma$ is wrong has to be well-ordered by the usual ordering on the reals. Conclude by showing (using that the rationals are dense in the reals) that any subset of reals that is well-ordered by the usual ordering on the reals must be countable.}
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

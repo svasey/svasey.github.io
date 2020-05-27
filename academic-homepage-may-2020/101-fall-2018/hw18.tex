@@ -1,0 +1,100 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\acc}{\operatorname{acc}}
+
+\title[Math 101, Fall 2018: assignment 18]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 18}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 30 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may (unless the instructions say otherwise) assume the axioms, facts, and theorems on the reference sheet on the axioms, facts, and theorems of the real lines. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English.
+
+\textbf{Special instructions:} Do \textbf{exactly five} of the seven non-extra-credit problems below (plus the extra credit if you like). Please make sure to clearly mark which problems you have chosen. You should attempt the other problems too, but they will not be graded for credit.
+
+For some of the problems in this assignment, the following definition will be useful (see the supplementary notes on the course website for more information): An \emph{accumulation point} of a sequence $(a_n)$ is a real number $a$ such that some subsequence of $(a_n)$ converges to $a$. We denote the set of all accumulation points of the sequence $(a_n)$ by $\acc ((a_n))$.
+
+\begin{enumerate}
+\item (For this problem, you can use all the results up to Theorem 39 in the reference sheet) Assume that $A$ and $B$ are non-empty sets of real numbers that are bounded below and bounded above. Prove the following:
+
+  \begin{enumerate}
+  \item $\inf (A) \le \sup (A)$.
+  \item $\inf (A) = \sup (A)$ if and only if $A = \{a\}$ for some real number $a$ (in this case, $a = \inf (A) = \sup (A)$).
+  \item If for all $a \in A$, there exists $b \in B$ with $a \le b$, then $\sup (A) \le \sup (B)$.
+  \item If for all $a \in A$ and all $b \in B$, $a \le b$, then $\sup (A) \le \inf (B)$.
+  \end{enumerate}  
+\item (For this problem, you can use all the results from the reference sheet) For $d_1, d_2, \ldots, d_n$ integers between $0$ and $9$ and $m$ a non-negative integer, we \emph{define} $m.d_1d_2 \ldots d_n$ to be the number $m + \frac{d_1}{10} + \frac{d_2}{100} + \frac{d_3}{1000} + \ldots + \frac{d_n}{10^n}$. For example, $7.23$ is $7 + \frac{2}{10} + \frac{3}{100} = 7 + \frac{23}{100}$. The goal of this problem is to give a precise meaning to expressions such as $0.3434343434343\ldots$ (where the number of digits is \emph{infinite}).
+
+  \begin{enumerate}
+  \item Consider the sequence $(a_n) = (0, 0.3, 0.33, 0.333, 0.3333, \ldots)$. Prove that $(a_n) \to \frac{1}{3}$. Deduce that $(3 a_n) \to 1$. \emph{Hint: problem 2 from assignment 4 may be useful.}
+  \item Generalize this result to prove that for any (infinite) sequence $(d_n)$, with $d_n$ an integer between $0$ and $9$ for all $n \in \mathbb{N}$, the sequence $(a_n)$ defined by $a_n = 0.d_1d_2 \ldots d_n$ converges. \emph{Hint: show that the sequence is Cauchy}.
+  \item Using the previous problem, we \emph{define} $0.d_1d_2 \ldots$ to be the limit of the sequence $(a_n)$ with $a_n = 0.d_1 d_2 \ldots d_n$. For example, the first part showed that $\frac{1}{3} = 0.333333333\ldots$. More generally, for a non-negative integer $m$ we define $m.d_1 d_2 \ldots$ to be $m + 0.d_1 d_2 \ldots$.
+
+    \begin{enumerate}
+    \item Convince yourself that any non-negative real number $x$ can be written as $x = m. d_1 d_2 \ldots$ for a non-negative integer $m$ and a sequence $(d_n)$ of integers between $0$ and $9$ (no need to write anything).
+    \item Is this representation unique?
+    \end{enumerate}
+  \end{enumerate}
+\item (For this problem, you can use all the results from the reference sheet) For each of the sequence below, say whether it is bounded, and whether it converges or diverges. If it converges, give the limit. If it diverges, list all the accumulation points. Each time, write one sentence explaining your answer (no need to give a full proof). 
+
+  \begin{enumerate}
+
+  \item $(2^{-n})_{n \in \mathbb{N}}$.
+  \item $(\frac{(-1)^n}{n})_{n \in \mathbb{N}}$.
+  \item $(\pi, \sqrt{2}, -\sqrt{2}, -\pi, \pi, \sqrt{2}, -\sqrt{2}, -\pi, \ldots)$.    
+  \item $(0, 2, 0, 2, 4, 0, 2, 4, 6, 0, 2, 4, 6, 8, \ldots)$.    
+  \item $(2^{5432}, 0, 0.1, 0.2, 0.3, 0.4, 0.5, \ldots)$.
+  \item $(524, 0.11, 0.111, 0.22, 0.222, 0.1111, 0.11111, 0.2222, 0.22222, \ldots)$.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Prove that if $(a_n)$ is a bounded sequence, $a$ is a real number, and any convergent subsequence of $(a_n)$ converges to $a$, then the original sequence $(a_n)$ converges to $a$ (you can use everything up to 38(2) in the reference sheet).
+  \item Is the result still true if we do not assume that $(a_n)$ is bounded?
+  \end{enumerate}
+\item (For this problem, you can use everything up to 38(4) in the reference sheet) Prove that if $(a_n)$ is a bounded sequence, then $\acc ((a_n))$ is not empty, bounded below, and bounded above.
+
+\item (For this problem you can use everything up to Theorem 42 in the reference sheet) Prove the \emph{strengthened squeeze theorem}: Assume that $(a_n)$, $(b_n)$, $(c_n)$ are sequences. Assume that $(a_n) \to \ell$ and $(c_n) \to \ell$. Assume further that for all $\epsilon > 0$ there exists a natural number $N$ such that whenever $n \ge N$, we have that $a_n - \epsilon \le b_n \le c_n + \epsilon$. Then $(b_n) \to \ell$. 
+\item (For this problem, you can only use the results listed before the ``algebraic limit theorem, part II'' in the reference sheet) Assume $(a_n), (b_n)$ are sequences and $a, b$ are real numbers. Show that:
+
+  \begin{enumerate}
+  \item If $(a_n) \to a$, then $(a_n + b) \to a + b$.
+  \item $(a_n) \to 0$ if and only if $(|a_n|) \to 0$. \emph{Hint: for the right to left direction, squeeze $a_n$ between $-|a_n|$ and $|a_n|$.}
+  \item $(a_n) \to a$ if and only if $(|a_n - a|) \to 0$.
+  \item If $(b_n) \to b$ and $b \neq 0$, then there exists a real number $\delta > 0$ and a natural number $N$ such that $|b_n| \ge \delta$ whenever $n \ge N$.
+  \end{enumerate}
+\item (Extra credit) Prove or disprove: there exists a sequence $(a_n)$ such that $\acc ((a_n)) = \mathbb{R}$.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

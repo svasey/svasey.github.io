@@ -1,0 +1,105 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+\title[Math 123, Spring 2020: assignment 1]{Math 123 - Algebra II - Spring 2020 \\ Assignment 1}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, February 4, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+In this problem set, ``ring'' means ``ring with identity''.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Show that the commutativity of addition in a ring follows from the other axioms.
+\item Show that in a ring, $0 \cdot a = 0$ for any $a$.
+\item Let $R$ be a commutative ring where $0 \neq 1$. Show that $R$ is an integral domain if and only if for any nonzero $a$ and any $b,c \in R$, $ab = ac$ implies $b = c$.
+\item Prove that, in $\Zz / n \Zz$, a nonzero element is a zero divisor if and only if it is not coprime to $n$. 
+\item Prove that a finite integral domain is a field.
+\item True or false?
+  \begin{enumerate}
+  \item Any integral domain is a field.
+  \item Any field is an integral domain.
+  \item Any division ring is a field.
+  \item Any division ring is an integral domain.
+  \item The zero ring is a field.
+  \item In any ring, $(ab)^2 = a^2 b^2$.
+  \end{enumerate}
+\item DF, 7.1.5.
+\item (DF, 7.1.21) Let $X$ be any set, and for $A, B \in \Ps (X)$, define $A \cdot B$ to be $A \cap B$ and $A + B$ to be $(A - B) \cup (B - A)$ (the \emph{symmetric difference} of $A$ and $B$, also denoted $A \Delta B$). Prove that under these operations $\Ps (X)$ is a ring, and moreover is Boolean: $A^2 = A$ for any $A$.   
+\end{enumerate}
+
+\section*{Problems for credit}
+
+\begin{enumerate}
+\item (Extra credit: 15\%) \begin{enumerate}
+\item Please fill in the survey at: \\
+  \url{http://math.harvard.edu/~sebv/123-spring-2020/questionnaire.odt}. Submit it separately on Canvas.
+\item I like to know my students as human beings, so I would like to have a short one on one 5-10 min chat with you during the first few weeks of the semester, just so that I can know your face, name, and a little bit about your background. Don't be afraid, we're not going to talk math (unless you really want to!). You don't need to prepare anything for the meeting.
+
+  Please send me a short email at \url{sebv@math.harvard.edu} with subject ``123 short meeting'' and ask e.g.\ ``is 1pm next Monday okay?''. I will either reply yes or propose another time. The meeting will take place in my office, SC 321H.
+\end{enumerate}
+\item (DF, 7.1.1) Prove from the axioms that $(-1)(-1) = 1$ in a ring.
+\item (DF, 7.1.11) Prove that if $R$ is an integral domain and $x^2 = 1$, then $x = 1$ or $x = -1$.
+\item (DF, 7.1.15) A \emph{Boolean ring} is a ring where $a^2 = a$ for any $a$. Prove that any Boolean ring is commutative. \emph{Hint: consider $(a + b)^2$.}
+\item Let $X$ be a set and $+$, $\cdot$ be two binary operations on $X$ such that both have identities, and for any $a,b,c, d \in X$:
+
+  $$
+  (a + b) \cdot (c + d) = (a \cdot c) + (b \cdot d)
+  $$
+
+  Prove that $+$ and $\cdot$ are the same operation, and that this operation is commutative.
+
+\item A \emph{subring} of a ring $R$ is a subset of $R$ that contains $0$, $1$ and is closed under addition and multiplication. For example, $\Qq$ is a subring of $\Rr$, but $\{0,1\}$ is not a subring of $\Rr$.
+
+  \begin{enumerate}
+  \item (DF, 7.1.3) Assume $S$ is a subring of $R$. Show that if $u$ is a unit in $S$, then it is a unit in $R$. Give an example showing the converse is false.
+  \item (DF, 7.1.12) Show that any subring of a field is an integral domain.
+  \item (DF, 7.1.7) The \emph{center} of a ring $R$ is the set $\{z \in R \mid zr = rz \text{ for all r } \in R\}$. Prove that the center is a subring of $R$.
+  \item (DF, 7.1.8) Describe the center of the quarternions (in other words, give a simple description of it in terms of well-known rings).
+  \end{enumerate}
+\end{enumerate}
+
+
+\end{document}

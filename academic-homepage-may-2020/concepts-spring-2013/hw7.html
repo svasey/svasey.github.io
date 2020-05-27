@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>21-127 Concepts of Mathematics: Feedback on hw 7</title>
+    <link rel="stylesheet" type="text/css" href="../default.css" />
+    <!-- <link rel="shortcut icon" href="./favicon.ico" -->
+    <!-- 	  type="image/x-icon" /> -->
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>Feedback on hw 7</h1>
+    <h2>Cardinality of infinite sets</h2>
+    <p>
+      If A is an infinite set, one should be careful when talking about its cardinality |A|: what kind of object is it ? Whatever it is, we know that if e.g. A is the set of natural numbers, and B is the reals, |A| &ne; |B|, so we cannot just say that |A| and |B| are &infin; (whatever that means). It turns out one can see |A|, |B| as some kind of infinitary numbers, called cardinals, that will not be defined in this course. Fortunately, you can still talk about what it means for A and B to have the same cardinality using bijections, but unless A is finite, it is best to avoid writing |A| entirely, in my opinion.
+    </p>
+    <p>
+      We might revisit this subject once we get to equivalence relations.
+    </p>
+    <h2>Countable sets are infinite</h2>
+    <p>
+      Your textbook defines a set as countable if it is in bijection with the natural numbers, thus if A is a countable set, one directly knows it is infinite (why ?).
+    </p>
+    <h2>A surjection is enough to prove countability</h2>
+    <p>
+      When you want to <em>prove</em> a certain set A is countable (as in 4.49), it is enough to build a surjection from the natural into A, <em>and</em> prove that A is infinite. 
+    </p>
+    <p>
+      The natural map many of you defined in 4.49 is <em>not</em> a bijection, as it could be that A<sub>1</sub>, A<sub>2</sub>, ... are not disjoint (e.g. they may all be equal), so the fact a surjection is enough comes in handy (but then you shouldn't forget to argue A is infinite).
+    </p>
+    <h2>Finite vs infinite unions</h2>
+    <p>
+      A very serious mistake in 4.49 was to prove only that the union of A<sub>1</sub>, ..., A<sub>k</sub> is countable for all k. This is <em>not</em> the same as showing the entire union is countable. For example, if you replace "countable" by "finite", it is true that a union of finitely many finite sets is finite, but a countable union of finite sets is not necessarily finite (why ?). This shows that even if a property is true of any "initial segment" of a countable union, it may not hold for the entire union.
+    </p>
+</body>
+</html>

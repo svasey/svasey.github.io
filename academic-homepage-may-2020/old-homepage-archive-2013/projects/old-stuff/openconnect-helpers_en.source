@@ -1,0 +1,79 @@
+.. default-role:: literal
+
+
+Openconnect helpers
+===================
+
+I wrote an openconnect_ wrapper to help setup a vpn connection to the EPFL_
+network. It can of course also be used to connect to another
+network. The script setups routing tables and update DNS information on the
+client.
+
+.. _EPFL: http://www.epfl.ch/index.en.html
+.. _openconnect: http://www.infradead.org/openconnect/
+
+Download
+--------
+
+`openconnect-helpers` is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+There is also an `Ubuntu package`_, thanks to Didier Raboud.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/openconnect-helpers.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/openconnect-helpers.tar.gz.sig
+.. _Ubuntu package: https://launchpad.net/~odyx/+archive/openconnect-helpers
+
+
+Usage
+-----
+
+There are two scripts: `vpn-connect` and `vpn-disconnect`. `vpn-connect` takes
+as argument the configuration file you want to use, or it will use
+`/etc/openconnect-helpers/default.conf` if no argument is given. Once connected,
+you can call `vpn-disconnect` to close the connection and revert the routing
+table to what it was before.
+
+The configuration file is a simple key-value file. For example::
+
+    # VPN server to connect to. This is a mandatory option
+    VPN_SERVER="vpn.epfl.ch"
+    # vpnc script program to use. You can either use the one from vpnc, or use the
+    # ones from http://git.infradead.org/users/dwmw2/vpnc-scripts.git
+    SCRIPT_PROGRAM="/etc/vpnc/vpnc-script"
+    # Username to use when connecting. Leave blank if you want to input it
+    # interactively everytime or if it isn't relevant
+    USERNAME=""
+    # If you do not want to type in your password everytime, this gives a file where
+    # your password is stored.
+    #PASSWORD_FILE="/etc/epfl-vpn.pass"
+    PASSWORD_FILE=""
+    # SHA1 SSL fingerprint of the your vpn server
+    SERVER_SHA1=""
+    # Path to SSL certificate of server (or CA having signed the server's
+    # certificate)
+    SERVER_CERT="/etc/ssl/certs/QuoVadis_Root_CA.pem"
+    # Additional options that are directly passed to openconnect 
+    ADDITIONAL_OPTS=""
+
+The variables are:
+
+* `VPN_SERVER`: gives the address of the server you want to connect
+  to. Mandatory.
+* `SCRIPT_PROGRAM`: script to use to setup DNS and routing table, by default use
+  the one at `/etc/vpnc/vpnc-script`.
+* `USERNAME`: The username to connect as.
+* `PASSWORD_FILE`: Path to a file containing your password, followed by a new
+  line. This must be specified if you do not want to input your password
+  interactively everytime.
+* `SERVER_SHA1`: The fingerprint of your vpn server's SSL certificate
+* `SERVER_CERT`: The path to your vpn server's SSL certificate
+* `ADDITIONAL_OPTS`: Additionnal options that are directly passed to
+  openconnect.
+

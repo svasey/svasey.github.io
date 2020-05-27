@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Bash tips and tricks</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="bash_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="bash_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="bash_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="bash-tips-and-tricks">
+<h2>Bash tips and tricks</h2>
+<div class="section" id="concatenate-two-arrays">
+<h3>Concatenate two arrays</h3>
+<p>Let's say I have two arrays:</p>
+<pre class="literal-block">
+myarray1=( '1' '2' '3' )
+myarray2=( '4' '5' '6' )
+</pre>
+<p>what I want is to get a third array containing the content of the first array
+and the content of the second one. This is the equivalent of <a class="reference external" href="http://docs.python.org/library/stdtypes.html#mutable-sequence-types">python's extend
+function</a>. The syntax to do this is (as often in bash) horrible:</p>
+<pre class="literal-block">
+myarray3=( ${myarray1[&#64;]} ${myarray2[&#64;]} )
+</pre>
+<p>To test that it worked:</p>
+<pre class="literal-block">
+echo ${myarray3[&#64;]}
+</pre>
+<p>The <a class="reference external" href="http://tldp.org/">Linux documentation project</a> has a nice page on <a class="reference external" href="http://tldp.org/LDP/abs/html/arrays.html">bash arrays</a></p>
+</div>
+<div class="section" id="change-history-settings">
+<h3>Change history settings</h3>
+<div class="section" id="set-the-number-of-commands-remembered">
+<h4>Set the number of commands remembered</h4>
+<p>To make sure bash does not remembers everything you type, you should set the
+exact number of commands you want to be remembered. This is described by the
+<tt class="docutils literal"><span class="pre">HISTSIZE</span></tt> environment variable. For example, to set the size to 20, put the
+following line in your <tt class="docutils literal"><span class="pre">.bashrc</span></tt>:</p>
+<pre class="literal-block">
+export HISTSIZE=20
+</pre>
+<p>You can also set the number of lines in your history file (<tt class="docutils literal"><span class="pre">.bash_history</span></tt> by
+default) using the <tt class="docutils literal"><span class="pre">HISTFILESIZE</span></tt> variable.</p>
+</div>
+<div class="section" id="make-bash-forget-some-commands">
+<h4>Make bash forget some commands</h4>
+<p>You can make bash not log some commands using the <tt class="docutils literal"><span class="pre">HISTIGNORE</span></tt> variable. It
+contains a comma-separated list of patterns that should be ignored.</p>
+<p>A nice trick is to ignore all commands beginning with a space:</p>
+<pre class="literal-block">
+export HISTIGNORE='[ ]*'
+</pre>
+<p>This way when I do not want bash to log a given command, I just preceed it by a
+space.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.talug.org/events/20030709/cmdline_history.html">Using Bash's History Effectively</a>  is a nice tutorial on bash's command
+history.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >bash</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

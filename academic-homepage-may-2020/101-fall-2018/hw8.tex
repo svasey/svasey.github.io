@@ -1,0 +1,78 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 8]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 8}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, October 12 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the book, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item For each of the following four conditions, give an example of a function from $\mathbb{N}$ to $\mathbb{N}$ which satisfies it: bijective, injective and not surjective, surjective and not injective, not surjective and not injective. In each case, prove that your example has these properties.
+\item Assume $A$ is a set of real numbers. The \emph{indicator function} $\chi_A$ of $A$ is defined to be the function $\chi_A : \mathbb{R} \to \{0, 1\}$ given by:
+
+  $$
+  \chi_A (x) = \begin{cases}
+    0 &\text{if } x \notin A \\
+    1 &\text{if } x \in A
+  \end{cases}
+  $$
+
+  \begin{enumerate}
+  \item When is $\chi_A$ an injection? When is $\chi_A$ a surjection?
+  \item Call $\mathcal{F}$ the set of all functions from $\mathbb{R}$ to $\{0, 1\}$. Show that the function $f: \mathcal{P} (\mathbb{R}) \to \mathcal{F}$ defined by $f (A) = \chi_A$ is a bijection.
+  \end{enumerate}
+\item
+  Assume that $A$ is a non-empty set and $a \in A$. Define $P = \{X \in \mathcal{P} (A) \mid a \in X\}$ and $Q = \{X \in \mathcal{P} (A) \mid a \notin X\}$ (in words, $P$ is the set of subsets of $A$ that have $a$ as a member, and $Q$ is the set of subsets of $A$ that do \emph{not} have $a$ as a member).
+    \begin{enumerate}
+    \item Set $A = \{1, 2, 3\}$ and $a = 2$. Write down $P$ and $Q$ explicitly.
+    \item Prove that (for general $A$ and $a$), $\{P, Q\}$ is a partition of $\mathcal{P} (A)$.
+    \item Explain why, if $A$ is finite, $|\mathcal{P} (A)| = |P| + |Q|$.
+    \item Give an explicit bijection from $P$ to $Q$, and prove that it is a bijection.
+    \item Deduce using induction that for any non-negative integer $n$ and any set $B$ of cardinality $n$, $|\mathcal{P} (B)| = 2^n$.
+    \end{enumerate}
+\item Assume $f: A \to B$ and $g: B \to C$. Prove or disprove:
+  \begin{enumerate}
+  \item If $f$ is a surjection and $g$ is an injection, then $g \circ f$ is an injection.
+  \item If $f$ and $g$ are bijections, then $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$. (Recall that for a bijection $h$, $h^{-1}$ denotes the inverse of $h$). \emph{Hint: what happens if you start with the equation $c = g (f (a))$ and apply $g^{-1}$ to both sides? What if you then apply $f^{-1}$?}
+  \end{enumerate}
+\item First, two definitions: A set $A$ is called \emph{countably infinite} if there is a bijection from $\mathbb{N}$ to $A$. A set is called \emph{uncountable} if it is infinite but not countably infinite.
+
+  \begin{enumerate}
+  \item Show that the set of natural numbers that are multiples of five is countably infinite.
+  \item Show that the set of irrational numbers is uncountable. \emph{Hint: do it by contradiction. You may use without proof that the union of two countably infinite sets is countably infinite (Theorem 13.6 in Hammack).}
+  \end{enumerate}
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

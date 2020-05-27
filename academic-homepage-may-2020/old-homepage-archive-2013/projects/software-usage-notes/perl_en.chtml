@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Perl documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="perl-documentation">
+<h2>Perl documentation</h2>
+<p>This page gives some <a class="reference external" href="http://www.perl.org/">Perl</a> tricks</p>
+<div class="section" id="install-perl-module-dependencies">
+<h3>Install perl module dependencies</h3>
+<p>Run:</p>
+<pre class="literal-block">
+$ cpan -i $module
+</pre>
+<p>i.e:</p>
+<pre class="literal-block">
+$ cpan -i Gtk2
+</pre>
+<p>One might need to force the installation (i.e some tests did not pass). To do
+this, do:</p>
+<pre class="literal-block">
+$ cpan
+</pre>
+<p>Then type:</p>
+<pre class="literal-block">
+force install $module
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

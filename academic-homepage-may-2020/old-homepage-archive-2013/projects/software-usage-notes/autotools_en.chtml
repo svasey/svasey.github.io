@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Autotools tips and tricks</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="autotools-tips-and-tricks">
+<h2>Autotools tips and tricks</h2>
+<div class="section" id="compile-a-64-bits-library">
+<h3>Compile a 64 bits library</h3>
+<p>That tips is aimed at solving the following error message, usually appearing
+when compiling some large piece of software on a 64 bits system:</p>
+<pre class="literal-block">
+$afile: relocation R_X86_64_32 against $afile can not be used when making
+  a shared object; recompile with -fPIC
+</pre>
+<p>where <tt class="docutils literal"><span class="pre">$afile</span></tt> is the path to some <tt class="docutils literal"><span class="pre">.a</span></tt> library file. The solution to this to
+recompile the library containing <tt class="docutils literal"><span class="pre">$afile</span></tt> as a pure shared 64 bits library. I
+will assume the library is using the <a class="reference external" href="http://en.wikipedia.org/wiki/GNU_build_system">GNU autotools</a> (i.e the configure script,
+Make etc...) as its build system</p>
+<p>To recompile, cd into the library's build directory and run something like:</p>
+<pre class="literal-block">
+$ make distclean
+$ CFLAGS='-m64 -fPIC' CC='gcc -m64 -fPIC' ./configure --enable-shared
+</pre>
+<p>You can of course add other options to <tt class="docutils literal"><span class="pre">./configure</span></tt> as you see fit.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

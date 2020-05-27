@@ -1,0 +1,100 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+\title[Math 123, Spring 2020: assignment 2]{Math 123 - Algebra II - Spring 2020 \\ Assignment 2}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, February 11, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+Remember that in this class ``ring'' means ``ring with identity''.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Give the definition of the following: zero ring, field, division ring, integral domain, unit, $R^\times$,  ideal, homomorphism, $R[x]$, principal ideal.
+\item State and prove the first isomorphism theorem for rings.
+\item (DF, 7.3.3) Find all homomorphic images of $\Zz$.
+\item Prove that an ideal $I$ in a commutative ring $R$ is maximal if and only if $R / I$ is a field.
+\item Prove that any nonzero homomorphism with domain a field is injective.
+\item True or false?
+  \begin{enumerate}
+  \item Every ring has maximal ideals.
+  \item There is a unique homomorphism from the zero ring into any other ring.
+  \item There is a unique homomorphism from any ring into the zero ring.
+  \item If $R$ is a ring and $a \in R$, then $(a) = \{ra \mid r \in R\}$.
+  \item In $\mathbb{Z}[x]$, every ideal is principal.
+  \end{enumerate}
+\end{enumerate}
+
+\section*{Problems for credit}
+
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 5 from that assignment. Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+\item Let $R$ be a ring. A \emph{congruence relation} on $R$ is an equivalence relation $\sim$ such that for any $a, a', b, b' \in R$, if $a \sim b$ and $a' \sim b'$ then $a + a' \sim b + b'$ and $a \cdot a' \sim b \cdot b'$.
+
+  \begin{enumerate}
+  \item Let $I$ be an ideal of $R$. Prove that the relation $\sim$ defined by $a \sim b$ if and only if $a - b \in I$ is a congruence relation. How is the quotient $R / I$ related to $\sim$?  
+  \item Conversely, show that if $\sim$ is a congruence relation, then the equivalence class of $0$ is an ideal.
+  \item Define an appropriate notion of congruence relation for groups, and prove analogously to the above that:
+    \begin{enumerate}
+    \item Any normal subgroup naturally yields a congruence relation.
+    \item Any congruence relation naturally yields a normal subgroup.
+    \end{enumerate}
+  \end{enumerate}
+\item The ring $\Rr[x] / (x^2 + 1)$ is isomorphic to a well known ring: which one, and why?
+
+\item (DF, 7.3.29) Let $R$ be a commutative ring. An element $a$ of $R$ is called \emph{nilpotent} if $a^n = 0$ for some integer $n \ge 0$. Prove that the set of nilpotent elements forms an ideal.
+\item Let $R$ be a commutative ring. If $R$ is an integral domain, is $R[x]$ an integral domain? What about the converse?
+
+\item (DF, 7.4.8) Let $R$ be an integral domain, and let $a, b \in R$. Prove that $(a) = (b)$ if and only if $a = ub$ for some unit $u$. 
+\item (DF, 7.4.16) Consider $x^4 - 16$ as an element of the polynomial ring $E = \Zz[x]$. 
+  \begin{enumerate}
+  \item Find a polynomial of degree at most 3 which in $E / (x^4 - 16)$ is equal to $7x^{13} -11 x^9 + 5x^5 - 2x^3 + 3$.
+  \item Prove that, in $E / (x^4 - 16)$, $x - 2$ and $x + 2$ are zero divisors.
+  \end{enumerate}
+  \item (DF, 7.4.23) Prove that in a Boolean ring, every prime ideal is maximal.  
+\end{enumerate}
+
+
+\end{document}

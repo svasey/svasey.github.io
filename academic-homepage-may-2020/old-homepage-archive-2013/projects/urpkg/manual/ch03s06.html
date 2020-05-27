@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Owned and added files</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch03.html" title="Chapter 3. How urpkg works" /><link rel="prev" href="ch03s05.html" title="The configuration directory" /><link rel="next" href="ch04.html" title="Chapter 4. Using urpkg" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Owned and added files</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s05.html">Prev</a> </td><th width="60%" align="center">Chapter 3. How urpkg works</th><td width="20%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Owned and added files"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="owned-files"></a>Owned and added files</h2></div></div></div><p>
+  What do I exactly mean when I say that a file belongs to a package ? Can a
+  file belong to more than one package ? What exactly gets uninstalled or listed
+  then ? This section tries to answer those questions.
+</p><div class="sect2" title="Which file belong to a package ?"><div class="titlepage"><div><div><h3 class="title"><a id="id423853"></a>Which file belong to a package ?</h3></div></div></div><p>
+    Urpkg considers a file as belonging to a given package if one of the two
+    conditions below is satisfied.
+  </p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>The file has the package user as owner or group</p></li><li class="listitem"><p>
+	The file is listed in <code class="filename">${HOMEDIR}/.urpkg/added</code>,
+	where <code class="varname">HOMEDIR</code> is the path to the package's home
+	directory.
+      </p></li></ol></div><p>
+    Given this definition, it is easy to see that a file can belong to more than
+    one package. For example, it could have a given package user as its owner
+    , another as its group, and be listed in the added list of a third
+    package. Most of the time though, a file will be only part of one package
+    and you should really keep it that way.
+  </p><p>
+    If you use the <code class="option">--find</code> command, urpkg will list you all
+    packages the given file belongs to.
+  </p></div><div class="sect2" title="What gets removed or listed ?"><div class="titlepage"><div><div><h3 class="title"><a id="id424198"></a>What gets removed or listed ?</h3></div></div></div><p>
+    When you use the <code class="option">--list</code> action, urpkg will list you the
+    files that are <span class="emphasis"><em>unique</em></span> to the given package, and the
+    files that are <span class="emphasis"><em>shared</em></span> with other packages. Only the
+    former category will be deleted when you uninstall the package. Keep in mind
+    that you can always use <code class="option">--pretend</code> to know for sure what
+    would be removed.
+  </p></div><div class="sect2" title="What about directories ?"><div class="titlepage"><div><div><h3 class="title"><a id="id424222"></a>What about directories ?</h3></div></div></div><p>
+    First, urpkg will never remove a directory that does not belong to the
+    package you want to uninstall, even if it is empty. Second, a directory that
+    belongs to the package you are considering <span class="emphasis"><em>must</em></span> be
+    empty (after you deleted all the other files in it belonging to the package)
+    to be deleted. This prevents other files from other packages that are in the
+    directory to be deleted as well. This can happen if, for example you
+    temporarily set a directory as an install directory and then revert it to
+    belong to the given package.
+  </p><p>
+    Urpkg will take no risk and only warn you that the directory is not
+    empty. The uninstallation will not fail just because of that. You will have
+    to remove those directories manually. If you are careful the way you manage
+    your system, this should only happen rarely.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s05.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">The configuration directory </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 4. Using urpkg</td></tr></table></div></body></html>

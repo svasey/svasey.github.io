@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Cryptography and Privacy</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="cryptography-and-privacy">
+<h2>Cryptography and Privacy</h2>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#what-is-cryptography" id="id4">What is cryptography ?</a></li>
+<li><a class="reference internal" href="#why-is-it-useful" id="id5">Why is it useful ?</a><ul>
+<li><a class="reference internal" href="#encryption-is-only-for-the-military" id="id6">Encryption is only for the military</a></li>
+<li><a class="reference internal" href="#encryption-is-used-by-criminals" id="id7">Encryption is used by criminals</a></li>
+<li><a class="reference internal" href="#but-i-have-nothing-to-hide" id="id8">But I have nothing to hide !</a></li>
+<li><a class="reference internal" href="#nobody-reads-cares-about-the-data-anyway" id="id9">Nobody reads / cares about the data anyway</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-web-of-trust" id="id10">The Web of Trust</a><ul>
+<li><a class="reference internal" href="#how-i-use-gpg" id="id11">How I use GPG</a><ul>
+<li><a class="reference internal" href="#release-signing" id="id12">Release signing</a></li>
+<li><a class="reference internal" href="#email-signing" id="id13">Email signing</a></li>
+<li><a class="reference internal" href="#email-encryption" id="id14">Email encryption</a></li>
+<li><a class="reference internal" href="#tls" id="id15">TLS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references" id="id16">References</a></li>
+</ul>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Note:</th><td class="field-body">This was originally written in the beginning of 2008, and not updated
+since. I now do not believe this text to be particularly useful. You
+should probably directly look at the <a class="reference internal" href="#references">References</a>.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="introduction">
+<h3>Introduction</h3>
+<p>This page is yet another attempt at explaining what cryptography is, and why it
+is useful. A lot of pages like this already exist (see <a class="reference internal" href="#references">References</a>), but it seems
+to me adding more noise can help.</p>
+</div>
+<div class="section" id="what-is-cryptography">
+<h3>What is cryptography ?</h3>
+<p>From the <a class="reference external" href="http://en.wikipedia.org/wiki/Cryptography">Wikipedia article</a>:</p>
+<blockquote>
+Cryptography is the practice and study of hiding information. Modern
+cryptography intersects the disciplines of mathematics, computer science,
+and engineering.</blockquote>
+<p>Hiding information (i.e encryption) is one well-kown goal of cryptography, but
+<em>authentication</em> via <a class="reference external" href="http://en.wikipedia.org/wiki/Digital_signature">digital signatures</a> is another which is at least as
+important: what is the use of sending encrypted information if you are not sure
+you are sending it to the right person ?</p>
+<p>You use cryptography when you login into your e-banking site, or when you give
+out your credit card number to a shopping website. This prevents e.g your credit
+card number from being read while it is being sent.</p>
+<p>Of course, <a class="reference external" href="http://www.openssh.org/">SSH</a> also uses cryptography to avoid password snooping and other
+attacks. A lot of software, free or non-free have built-in crypto capabilities.</p>
+</div>
+<div class="section" id="why-is-it-useful">
+<h3>Why is it useful ?</h3>
+<p>Cryptography is useful to communicate securely over an insecure channel such
+as the Internet. In short: if A and B are communicating using secure
+cryptography protocols, they are sure they are communicating with the right
+person, and nobody can understand what they are saying.</p>
+<p>Some people are skeptical on the practical use of such an accomplishment . Below
+are some of the most common reactions.</p>
+<div class="section" id="encryption-is-only-for-the-military">
+<h4>Encryption is only for the military</h4>
+<p>Of course not: several civilian applications have already been given above. The
+army is not the only one to need privacy: businesses have secrets, and so have
+people. When those secrets need to be transmitted over an insecure channel like
+the internet, encryption is needed.</p>
+</div>
+<div class="section" id="encryption-is-used-by-criminals">
+<h4>Encryption is used by criminals</h4>
+<p>Of course it is, so what ? Criminals also use cars and credit cards to commit
+crimes, and we use those too ! Just because criminals use <tt class="docutils literal"><span class="pre">x</span></tt> doesn't mean <tt class="docutils literal"><span class="pre">x</span></tt>
+should be banned. Here is an interesting quote:</p>
+<blockquote>
+<p>Crime? If you are not a politician, research scientist, investor, CEO,
+lawyer, celebrity, libertarian in a repressive society, investor, or person
+having too much fun, and you do not send e-mail about your private sex life,
+financial/political/legal/scientific plans, or gossip then maybe you don't
+need PGP, but at least realize that privacy has nothing to do with crime and
+is in fact what keeps the world from falling apart. Besides, PGP is FUN. You
+never had a secret decoder ring? Boo!</p>
+<p class="attribution">&mdash;Xenon <tt class="docutils literal"><span class="pre">&lt;an48138</span> <span class="pre">at</span> <span class="pre">anon.penet.fi&gt;</span></tt> (Copyright 1993, Xenon)</p>
+</blockquote>
+</div>
+<div class="section" id="but-i-have-nothing-to-hide">
+<h4>But I have nothing to hide !</h4>
+<p>That's the most common argument. The first answer to that is: even if you have
+nothing to hide, you still need to use crypto <em>for authentication</em>. It is
+trivial, for example, for someone to <a class="reference external" href="http://en.wikipedia.org/wiki/E-mail_spoofing">send an email as you</a>. Digital signatures
+can solve that problem.</p>
+<p>The second answer is that even if you haven't done anything illegal, you have
+something to hide: would you allow somebody to sit just behind you and look at
+you computer screen all day ? Privacy is a basic right, and that's what
+encryption protects.</p>
+<p>Once it is granted that you sometimes send something you do not want people to
+know, it makes sense to use encryption for everything: if you only encrypt what
+you want to hide, people will know you are sending sensitive content and might
+try hard to break it or prevent you from using encryption. On the other hand, if
+you encrypt everything, nobody can know when or if you are sending sensitive
+content.</p>
+<p>Phil Zimmermann, the author of <a class="reference external" href="http://en.wikipedia.org/wiki/Pretty_Good_Privacy">PGP</a>, says all this much better than me in <a class="reference external" href="http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html">Why I
+wrote PGP</a></p>
+</div>
+<div class="section" id="nobody-reads-cares-about-the-data-anyway">
+<h4>Nobody reads / cares about the data anyway</h4>
+<p>Maybe so, but then would you be willing to just write it on your webpage, or
+send it on a postcard ?</p>
+<p>What's more, we are not only talking about humans: fully automated systems
+intercepting communications and looking for keywords already exist: and even if
+nothing is found, they will be archived for further review.</p>
+<p>In short, you never know who might be listening: using crypto is a small price
+to pay to make sure your communications are really private</p>
+</div>
+</div>
+<div class="section" id="the-web-of-trust">
+<h3>The Web of Trust</h3>
+<p>Once you have accepted that you should use cryptography, everything isn't solved
+magically: encryption is relatively easy to achieve, but to achieve
+authentication, one needs trust. What follows is a simplified picture of what is
+needed, and different ways of achieving it. If you want to go into the technical
+details, you can start with Wikipedia's <a class="reference external" href="http://en.wikipedia.org/wiki/Key_authentication">article on key authentication</a>.</p>
+<p>Basically, if you are A and you want to make sure that B is really who he claims
+he is, then you need to trust someone who trusts someone who trusts
+someone... Who knows B and can certify he really is who he claims to be !</p>
+<p>There are several ways to achieve this: the system that is very popular on the
+web today is centralized: you pay money to some big trusted companies so that
+they can tell others that you are who you claim to be. The flaw in this system
+is obvious: you have to trust the big companies !</p>
+<p>Another popular system is the web of trust, implemented by <a class="reference external" href="http://www.gnupg.org/">GPG</a>. Basically, you
+manually verify the identity of some people (for example, you meet them in real
+life), which you can then trust. If your network of trust is large enough, you
+may be able to find someone you trust who knows someone he trust who knows
+someone... Who trusts B.</p>
+<p>Of course, this is oversimplified: trust is not completely transitive: if I
+trust B and B trusts C, I may not completely trust C. The longer the chain, the
+lower the trust. That's why GPG for example imposes a maximal chain length.</p>
+<p>Since this web of trust system seemed to be a better idea than the centralized
+one actually working on the web, I decided to try to actively use GPG for my
+communications.</p>
+<div class="section" id="how-i-use-gpg">
+<h4>How I use GPG</h4>
+<div class="section" id="release-signing">
+<h5>Release signing</h5>
+<p>As you might have remarked, I sign all software releases on <tt class="docutils literal"><span class="pre">svasey.org</span></tt> with <a class="reference external" href="http://certs.svasey.org/gpg-svasey-pubkey.asc">my
+GPG key</a>. Be aware if you find an unsigned tarball on my site: I did not
+package it ! (Or maybe I just forgot to upload the signature...). Please <a class="reference external" href="../../about_en.html#contact-information">report
+it to me</a>.</p>
+<p>Signing a release tarball is useful to prevent them from being modified in
+transit: an attacker could replace it with malware, and the poor user would
+install it, as he would believe to be installing some innocent <tt class="docutils literal"><span class="pre">svasey.org</span></tt>
+software :-) . Problems could also arise if my web server is compromised: again,
+the attacker could replace the tarballs with malware.</p>
+</div>
+<div class="section" id="email-signing">
+<h5>Email signing</h5>
+<p>I sign all my outgoing emails. If you receive unsigned email, it did not come
+from me !</p>
+</div>
+<div class="section" id="email-encryption">
+<h5>Email encryption</h5>
+<p>Unfortunately, not everybody I send mail to has a GPG key. However, I
+systematically encrypt all my outgoing mails to people in my web of trust. If
+someone else has a GPG key and asks me to send information encrypted, I will do
+it: it cannot lessen security !</p>
+</div>
+<div class="section" id="tls">
+<h5>TLS</h5>
+<p>If you want, you can use <a class="reference external" href="http://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> to communicate with all my websites. My
+certificate is signed using GPG. See the <a class="reference external" href="../../tls-user_en.html">svasey.org TLS documentation</a> for
+more.</p>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.cam.ac.uk.pgp.net/pgpnet/pgp-faq/">The comp.security.pgp FAQ</a> is a good starting point to learn about PGP</li>
+<li><a class="reference external" href="http://www.andrebacard.com/pgp.html">André Bacard's &quot;Non-Technical PGP FAQ&quot;</a> answers the &quot;I have nothing to hide&quot;
+and other arguments against crypto.</li>
+<li><a class="reference external" href="http://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html">Why I wrote PGP</a> is an outstanding essay by the author of PGP</li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>

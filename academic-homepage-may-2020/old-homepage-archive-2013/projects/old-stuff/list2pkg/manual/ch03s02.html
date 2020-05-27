@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>The perfect package</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="list2pkg User Manual" /><link rel="up" href="ch03.html" title="Chapter 3. Using list2pkg" /><link rel="prev" href="ch03.html" title="Chapter 3. Using list2pkg" /><link rel="next" href="ch03s03.html" title="Tricky cases" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">The perfect package</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. Using list2pkg</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="The perfect package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="perfect-package"></a>The perfect package</h2></div></div></div><p>
+  The reference document I used on the format of a Slackware package is
+  LinuxPackages's
+  <a class="ulink" href="http://www.linuxpackages.net/howto.php?page=perfect-package" target="_top">
+    The Perfect Package (TPP)</a> . In this section, I will try to sum-up this
+    document and explain how list2pkg support each important item.
+</p><div class="sect2" title="The package's file name"><div class="titlepage"><div><div><h3 class="title"><a id="id397909"></a>The package's file name</h3></div></div></div><p>
+    According to TPP, the package's file name should be formatted in a very
+    strict way. It should be made of several fields, including the program
+    name, version number and architecture, all separated by dashes. List2pkg
+    does not directly enforce this rule, because <span class="command"><strong>makepkg</strong></span>
+    should output a warning if the name is not standard.
+  </p></div><div class="sect2" title="Install locations"><div class="titlepage"><div><div><h3 class="title"><a id="id397927"></a>Install locations</h3></div></div></div><p>
+    A good Slackware packages has its files
+    in <a class="ulink" href="http://www.linuxfoundation.org/collaborate/workgroups/lsb" target="_top">
+      LSB</a> standard locations. For example, no files should be
+    in <code class="filename">/usr/local</code> because this is reserved for files that
+    do not come from a package.
+  </p><p>
+    List2pkg does not do anything to enforce this for the moment. However, the
+    script which can be given using the <code class="option">--changetree</code> option can
+    do it. Maybe in the future there will be standard scripts that list2pkg will
+    run by default, and which will take care of fixing install locations inside
+    the package tree. If you wrote a script you think could be included as a
+    default script, please send it to me (see <a class="xref" href="ch04.html" title="Chapter 4. Contributing to list2pkg">Chapter 4, <em>Contributing to list2pkg</em></a>).
+  </p><p>
+    Similarly, you can also write scripts to strip executable or gzip manpages.
+  </p></div><div class="sect2" title="Permissions and Ownership"><div class="titlepage"><div><div><h3 class="title"><a id="id398544"></a>Permissions and Ownership</h3></div></div></div><p>
+    I have tried hard to make list2pkg keep all permissions of all files and
+    directories given in the file list. This way if the permissions are
+    correctly set on your system, then those in the package should also be
+    correct. If you think permissions are mishandled in some way by list2pkg,
+    it's worth reporting the bug to me.
+  </p></div><div class="sect2" title="Slack-desc"><div class="titlepage"><div><div><h3 class="title"><a id="id398557"></a>Slack-desc</h3></div></div></div><p>
+    list2pkg automatically creates a standard slack-desc file. However, it is
+    unable to put useful content in it, so you might want to create your own and
+    add it using the <code class="option">--slack-desc</code> option.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. Using list2pkg </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Tricky cases</td></tr></table></div></body></html>

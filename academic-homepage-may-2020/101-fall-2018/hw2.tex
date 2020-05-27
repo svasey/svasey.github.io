@@ -1,0 +1,79 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 2]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 2}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, September 14 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results covered in class or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Assume that $x$ and $y$ are integers. Prove the following:
+
+  \begin{enumerate}
+  \item If both $x$ and $y$ are odd, then $x + y$ is even.
+  \item If $7xy$ is even, then either $x$ is even or $y$ is even.
+  \item If $x$ is a multiple of 3, then $x + 1$ is \emph{not} a multiple of $3$.
+  \item If $x^2 + 1$ is a multiple of $3$, then $x$ is \emph{not} a multiple of $3$. \emph{Hint: you are always allowed to use statements that have been proven previously.}
+  \end{enumerate}
+\item The \emph{absolute value} $|x|$ of a real number $x$ is defined by:
+  $$
+  |x| = \begin{cases}
+    x &\text{ if } x \ge 0 \\
+    -x &\text{ if } x < 0
+  \end{cases}
+  $$
+
+  Using this definition, prove the following basic properties of the absolute value:
+
+  \begin{enumerate}
+  \item If $x$ is a real number, then $x \le |x|$.
+  \item If $x$ and $y$ are real numbers, then $|xy| = |x||y|$.
+  \end{enumerate}
+\item For $x$ and $b$ both strictly positive real numbers, $\log_b (x)$ is defined to be\footnote{You may take it as a given that this number exists and is unique.} the number $y$ such that $b^y = x$. Prove that $\log_2 (3)$ is irrational.
+\item Rewrite each of the statements below to have the form ``If $P$ then $Q$''. Then decide whether the statement is true or false. If it is true, give a proof. If it is false, give an explicit counterexample (and \emph{justify} why your counterexample works). The first one has been done for you as an example.
+
+  \begin{enumerate}
+  \item The product of two odd integers is a multiple of $3$. \textbf{Solution.} This can be rewritten as ``If $x$ and $y$ are both odd integers, then $x y$ is a multiple of $3$''. This is a \emph{false} statement:  $x = 1$ and $y = 5$ are both odd, but $x y = 5$ is not a multiple of $3$.
+  \item The sum of two rational numbers is rational.
+  \item The product of two irrationals is irrational.
+  \item The product of an irrational and a nonzero rational is irrational.
+  \item The sum of two irrational numbers is irrational.
+  \end{enumerate}
+  
+\end{enumerate}
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

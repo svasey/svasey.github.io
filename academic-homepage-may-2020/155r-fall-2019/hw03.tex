@@ -1,0 +1,75 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 3]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 3}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, September 24 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+You may freely refer to the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}.
+
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item (MN, 3.3.11) Prove the binomial theorem using induction.
+  \item Prove that $1 + x \le e^x$ for any real number $x$.
+  \end{enumerate}
+
+\item Assume $n$ is a natural number. Prove  that $\sum_{k = 0}^n k {n \choose k} = n 2^{n - 1}$ by counting in two ways.
+\item (MN, 3.7.6) How many ways are there to arrange four Americans, three Russians, and five Chinese into a queue in such a way that no nationality forms a single consecutive block? Your final result should be a single natural number, such as $42$ or $12345$ (calculators are allowed, of course).
+  
+\item Assume $n$ is a natural number.
+
+  \begin{enumerate}
+  \item (MN, 3.8.11(a)) How many divisors does $n$ have? Express your answer in terms of the prime factorization of $n$.
+  \item (MN, 3.8.10) Recall that $\phi (d)$ denotes the cardinality of $\{k \le d \mid k \text{ is coprime to } d\}$. For example, $\phi (5) = 4$ and $\phi (6) = 2$.
+
+    Prove that $\sum_{d | n} \phi (d) = n$ (the sum is over all the natural number divisors of $d$).  \emph{Hint: count in two ways the number of fractions $\frac{k}{n}$ with $k \le n$.}
+  \end{enumerate}
+
+\item Assume that $p$ is a prime and $k, n$ are natural numbers.
+  \begin{enumerate}
+  \item (MN, 3.2.8) Show that $(k!)^n$ divides $(kn)!$. \emph{Hint: one way is to think of these numbers as counting certain permutations.}
+  \item (MN, 3.3.15) Show that if $k < p$, then $p$ divides $p \choose k$.
+  \item Show that $p$ divides $n^p - n$.
+  \end{enumerate}  
+\end{enumerate}
+
+
+
+\end{document}

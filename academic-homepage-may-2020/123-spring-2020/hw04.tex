@@ -1,0 +1,110 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+\newcommand{\Ff}{\mathbb{F}}
+\newcommand{\Tor}{\text{Tor}}
+
+\title[Math 123, Spring 2020: assignment 4]{Math 123 - Algebra II - Spring 2020 \\ Assignment 4}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, February 25, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+Remember that in this class ``ring'' means ``ring with identity''.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Give the definition of the following: degree, monic, module, submodule, module homomorphism, free module of rank $n$, direct product of modules, cyclic module. 
+\item State and prove Gauss' lemma.
+\item State and prove Eisenstein's criterion.
+\item State and prove the relationship between irreducibility of a polynomial and having a root.
+\item Explain why $\Zz$-modules are the same as abelian groups, and why an $F[x]$-module ($F$ a field)  is the same as a vector space $V$ over $F$ plus a linear transformation from $V$ to itself.
+\item True or false?
+  \begin{enumerate}
+  \item If $R$ is a UFD with field of fractions $F$, then a polynomial in $R[x]$ is irreducible in $R[x]$ if and only if it is irreducible in $F[x]$.
+  \item If $F$ is a field and a polynomial $f(x)$ does not have a root in $F$, then it is irreducible.
+  \item A degree one polynomial is always irreducible.
+  \item If $R$ is a commutative ring, then it is naturally an $R$-module and its $R$-submodules are exactly its ideals.
+  \item If $V = \Rr^2$ (as an $\Rr$-vector space), and $T: \Rr^2 \to \Rr^2$ is the linear transformation given by 90 degrees counterclockwise rotation, then the $\Rr[x]$-module induced by $(V, T)$ is cyclic.
+  \item If $M$ is an $R$-module and $m \in M$ is not zero, then $m + m$ is not zero.
+  \end{enumerate}
+\end{enumerate}
+
+\section*{Problems for credit}
+
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 7 from that assignment (submit your comment on Canvas, \emph{not} with this assignment). Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+\item Let $R$ be an integral domain. A polynomial in $R[x]$ is called a \emph{monomial} if it is of the form $a x^k$ for $a \in R$ and $k \ge 0$. Prove that if $f(x), g(x) \in R[x]$, then $f(x) \cdot g (x)$ is a monomial if and only if both $f$ and $g$ are monomials. \emph{[Remark: this explains in particular why both constant coefficients are zero in the proof of Eisenstein's criterion.]}
+\item \begin{enumerate}
+\item (DF, 9.2.2) Let $F$ be a field with $q$ elements and let $f (x) \in F[x]$ be a polynomial of degree $n \ge 1$. Prove that $F[x] / (f (x))$ has $q^n$ elements.
+\item (DF, 9.2.3) Let $F$ be a field and let $f (x) \in F[x]$ be a polynomial of degree $n \ge 1$. Prove that $F[x] / (f (x))$ is a field if and only if $f$ is irreducible.
+\item (DF, 9.4.6) Construct fields with the following number of elements: 9, 49, 8, and 81.
+\end{enumerate}
+\item (DF, 9.3.4) Let $R$ be the set of polynomials in $\Qq[x]$ whose constant term is an integer (you should convince yourself that this is a subring of $\Qq[x]$).
+  \begin{enumerate}
+  \item Prove that $R$ is an integral domain with units $\pm 1$.
+  \item Show that the irreducibles in $R$ are $\pm p$ where $p$ is a prime in $\Zz$, and the polynomials $f(x)$ that are irreducible in $\Qq[x]$ and have constant term $\pm 1$. Prove that all these irreducibles are prime in $R$.
+  \item Show that $x$ cannot be written as the product of irreducibles in $R$ (in particular, $x$ is not irreducible). Conclude that $R$ is not a UFD.
+  \item Show that $(x)$ is not prime in $R$ and describe units and zero divisors in the quotient ring $R / (x)$.
+  \end{enumerate}
+  \emph{[Remark: DF, 9.3.5 establishes that $R$ is in fact a Bezout domain.]}
+\item (DF, 9.4.1) Determine whether the following polynomials are irreducible in the ring indicated. For those that are reducible, determine their factorization into irreducibles. The notation $\Ff_p$ denotes $\Zz / p \Zz$ for $p$ a prime.
+
+  \begin{enumerate}
+  \item $x^2 + x + 1$ in $\Ff_2[x]$.
+  \item $x^3 + x + 1$ in $\Ff_3[x]$.
+  \item $x^4 + 1$ in $\Ff_5[x]$.
+  \item $x^4 + 10x^2 + 1$ in $\Zz[x]$.
+
+  \end{enumerate}
+\item (DF, 9.4.18) Show that $6x^5 + 14x^3 -21x + 35$ and $18x^5 - 30x^2 +120 x + 360$ are irreducible in $\Qq[x]$. Are they also irreducible in $\Zz[x]$? \emph{[Hint: generalize Eisenstein's criterion to non-monic polynomials].}
+\item Recall there is a correspondence between $\Zz$-modules and abelian groups. What object(s) correspond to $\Zz[x]$-modules?  
+\item (DF, 10.1.8) An element $m$ of the $R$-module $M$ is called a \emph{torsion element} if $rm = 0$ for some nonzero $r \in R$. The set of torsion elements of $M$ is denoted $\Tor (M)$.
+  \begin{enumerate}
+  \item Prove that if $R$ is an integral domain, then $\Tor (M)$ is a submodule of $M$ (called the \emph{torsion submodule of $M$}.)
+  \item Give an example of a ring $R$ and an $R$-module $M$ such that $\Tor (M)$ is not a submodule of $M$ \emph{[Hint: consider $R$ itself]}.
+  \item If $R$ has nonzero zero divisors, show that every nonzero $R$-module has nonzero torsion elements.
+  \end{enumerate}
+\end{enumerate}
+\end{document}

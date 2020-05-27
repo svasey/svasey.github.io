@@ -1,0 +1,94 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\title[Math 141a, Fall 2018: assignment 1]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 1}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, September 14 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+This assignment relies on the following definitions (most appear on p.~7-10 of Poizat and have or will soon be discussed in class):
+
+\begin{itemize}
+\item A \emph{chain} (also called a \emph{linear order}) is a pair $\mathbf{A} = (A, <)$ where $A$ is a set and $<$ is a binary relation on $A$. We require that $<$ is transitive, irreflexive, and total (either $a < b$ or $b < a$ whenever $a \neq b$ are in $A$). As usual, we write $a \le b$ for ``$a < b$ or $a = b$''.
+\item A \emph{well-ordering} is a chain $\bA = (A, <)$ where every non-empty subset has a minimal element (i.e.\ for every non-empty $S \subseteq A$ there exists $a \in S$ such that $a \le b$ for any $b \in S$). 
+  \item For $\mathbf{A}$ and $\mathbf{B}$ chains, a function $f: \mathbf{A} \to \mathbf{B}$ is \emph{order-preserving} (or \emph{increasing}) if $a < b$ implies $f (a) < f (b)$. We say that $f$ is an \emph{isomorphism} from $\mathbf{A}$ to $\mathbf{B}$ if $f$ is an order-preserving bijection. In this case, we write $f: \mathbf{A} \cong \mathbf{B}$. We say that $\mathbf{A}$ and $\mathbf{B}$ are \emph{isomorphic} (written $\mathbf{A} \cong \mathbf{B}$) if there exists an isomorphism from $\mathbf{A}$ to $\mathbf{B}$.
+  \item The \emph{inverse} of a chain $\bA = (A, <)$ is the chain $\bA^- = (A, <^-)$, where $<^-$ is the ``inverse'' order: $a <^- b$ if and only if $b < a$.
+  \item The \emph{sum} of two chains $\mathbf{A}_1 = (A_1, <_1), \mathbf{A}_2 = (A_2, <_2)$, written $\mathbf{A}_1 + \mathbf{A}_2$, is the pair $((A_1 \times \{1\}) \cup (A_2 \times \{2\}), <)$, where $(a, \ell_1) < (b, \ell_2)$ is true exactly when one of the following conditions hold:
+    \begin{itemize}
+    \item $\ell_1 < \ell_2$.
+    \item $\ell_1 = \ell_2$ and $a <_{\ell_1} b$.
+    \end{itemize}
+
+    In other words, $\mathbf{A}_1 + \mathbf{A}_2$ puts all the elements of $\mathbf{A}_2$ after the elements of $\mathbf{A}_1$.
+  \item The \emph{product} of two chains $\mathbf{A}_1 = (A_1, <_1), \mathbf{A}_2 = (A_2, <_2)$, written $\mathbf{A}_1 \times \mathbf{A}_2$ is $(A_1 \times A_2, <)$, where $(a_1, a_2) < (b_1, b_2)$ is true exactly when one of the following conditions hold:
+
+    \begin{itemize}
+    \item $a_2 <_2 b_2$.
+    \item $a_2 = b_2$ and $a_1 <_1 b_1$.
+    \end{itemize}
+
+    (This would be the dictionary order of a language written right to left, such as arabic).
+\end{itemize}
+
+\begin{enumerate}
+\item (Extra credit: 12.5\%) \begin{enumerate}
+\item Please fill in the survey at: \\
+  \url{http://math.harvard.edu/~sebv/141a-fall-2018/questionnaire.odt}. Submit it separately on Canvas.
+\item I like to know my students as human beings, so I would like to have a short one on one 5-10 min chat with you during the first few weeks of the semester, just so that I can know your face, name, and a little bit about your background. Don't be afraid, we're not going to talk math (unless you really want to!). You don't need to prepare anything for the meeting.
+
+  Please send me a short email at \url{sebv@math.harvard.edu} with subject ``141a short meeting'' and ask e.g.\ ``is 1pm next Monday okay?''. I will either reply yes or give you another time. The meeting will take place in my office, SC 321H. \emph{Note that I am out of town Sep. 11 and Sep. 12!}
+\end{enumerate}
+\item \begin{enumerate}
+\item Show that any order-preserving function is injective.
+\item Show that if $f$ is an isomorphism, then its inverse $f^{-1}$ is also an isomorphism.
+\end{enumerate}
+\item Show that the sum of two chains is a chain. Also show that the product of two chains is a chain.
+\item Show that the sum of two well-orderings is a well-ordering. Also show that the product of two well-orderings is a well-ordering.
+\item Show that any two chains of the same finite cardinality are isomorphic.
+\item Show that $\mathbb{Z}$ (with its natural ordering) is isomorphic to its inverse, but not isomorphic to $\mathbb{Q}$.
+\item Give an example of a chain which is not isomorphic to its inverse (and prove it).
+\item Show that for any chains $\bA$, $\bB$, and $\bC$, we have $\bA \times (\bB + \bC) \cong (\bA \times \bB) + (\bA \times \bC)$.
+\item Let $\mathbf{1} = (\{0\}, <)$ be the one element chain and let $\mathbb{N}$ be the natural numbers with their usual ordering. Show that $\mathbf{1} + \mathbb{N} \cong \mathbb{N}$ but $\mathbb{N} \not \cong \mathbb{N} + \mathbf{1}$.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

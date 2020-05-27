@@ -1,0 +1,67 @@
+.. default-role:: literal
+
+
+File system documentation
+=========================
+
+How to do low level operations on the file system
+
+Create and mount a FAT32 partition
+----------------------------------
+
+Using fdisk, set the system id to b (W95 FAT32)
+
+Download and install dosfstools_
+
+Run (as root)::
+
+    $ mkfs.vfat $yourpartition
+
+In ``/etc/fstab``, use the following options::
+
+    /dev/$yourdev /$mountpoint vfat rw,sohrtname=mixed,utf8 0 0
+
+.. _dosfstools: http://www.daniel-baumann.ch/software/dosfstools/
+
+How to resize a partition
+-------------------------
+
+First edit the partition table so that your partition has the size you want (i.e
+delete other partitions around, and so on). Run this as root::
+
+   $ fdisk $yourdev
+
+Then use ``resize2fs`` to resize your partition (as root)::
+
+   resize2fs /dev/sda7 [$size]
+
+where ``$size`` is optionnal (normally grows the partition to its dimensions
+given with ``fdisk``)
+
+Use uuid to recognize your devices
+----------------------------------
+
+When a partition is created, a lot of different filesystems add a universally
+unique identifier (UUID) to the volume. This can be used to recognize a disk
+unambiguously. To get a partition's uuid::
+
+    $ vol_id $devname
+
+The uuid is given by the `ID_FS_UUID` line in the output.
+
+On Arch Linux, `vol_id` can be found in `lib/initcpio/udev/vol_id`.
+
+You can then add a line like this in your `fstab`::
+
+    UUID=1234-5678-9101-abcde $mountpoint $fstype $opts 0 0
+
+.. Somehow disappeared
+.. The article named `What UUID can do for you`_ provides much more information.
+
+
+.. .. _What UUID can do for you: http://www.linux.com/archive/feature/146951
+
+
+
+
+

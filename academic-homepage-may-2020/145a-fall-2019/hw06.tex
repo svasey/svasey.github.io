@@ -1,0 +1,94 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 6]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 6}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, October 15 before 11h59pm} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item We start with some definitions. Let $\lambda$ be a cardinal. A partially ordered set $P = (A, \le)$ is \emph{$\lambda$-directed} if any subset of $A$ of size strictly less than $\lambda$ has an upper bound. That is, for every set $S \subseteq A$ with $|S| < \lambda$, there exists $a \in A$ such that $s \le a$ for every $s \in S$.
+
+  For $X$ a set and $\lambda$ a cardinal, let $[X]^{<\lambda}$ denote $\{S \subseteq X \mid |S| < \lambda\}$.
+
+  \begin{enumerate}
+  \item Show that if $P$ is $\lambda$-directed and does not have a maximal element, then $P$ has cofinality at least $\lambda$. 
+  \item Let $\lambda$ be an infinite regular cardinal and let $X$ be a set of cardinality at least $\lambda$. Prove that $([X]^{<\lambda}, \subseteq)$ is $\lambda$-directed but not $\lambda^+$-directed.
+  \item Prove that any $3$-directed poset is $\aleph_0$-directed.
+  \item Prove that if $\lambda$ is a singular infinite cardinal, then any $\lambda$-directed poset is $\lambda^+$-directed.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Prove that there is a set $A \subseteq \fct{\omega}{\omega}$ that is determined while $\fct{\omega}{\omega} - A$ is not determined.
+  \item Prove that any countable set is determined.
+  \end{enumerate}
+\item Show that there exists a set of reals which does not have the perfect set property.
+\item For this exercise, do not assume the axiom of choice. The \emph{axiom of determinacy} is the statement that every subset of $\fct{\omega}{\omega}$ is determined. Prove that the axiom of determinacy implies the following weak version of choice: for every sequence $\seq{A_n}{n < \omega}$ of non-empty subsets of $\fct{\omega}{\omega}$, there exists $f: \omega \to \bigcup_{n < \omega} A_n$ such that $f (n) \in A_n$ for all $n < \omega$.
+\end{enumerate}
+
+
+
+
+\end{document}

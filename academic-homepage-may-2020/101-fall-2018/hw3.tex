@@ -1,0 +1,51 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 3]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 3}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, September 17 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results covered in class or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Prove that there exists a positive real number $x$ such that $x^2 < \sqrt{x}$. (\emph{Don't forget to justify why your $x$ works!})
+\item Two integers $x$ and $y$ are defined to have \emph{the same parity} if they are either both even or both odd. Prove that for two integers $x$ and $y$, $x$ and $y$ have the same parity if and only if $x + y$ is even.
+\item\label{ex-3} Prove that for integers $x$ and $y$, if $xy$ is odd then $x^2 + y^2$ is even.
+\item State the converse of (\ref{ex-3}), then prove or disprove it. \emph{(This means you must say whether the converse is true or false, and then give a proof of your claim.)}
+
+\end{enumerate}
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

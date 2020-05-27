@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>21-127 Concepts of Mathematics: Feedback on hw 9</title>
+    <link rel="stylesheet" type="text/css" href="../default.css" />
+    <!-- <link rel="shortcut icon" href="./favicon.ico" -->
+    <!-- 	  type="image/x-icon" /> -->
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>Feedback on hw 9</h1>
+    <h2>Problem 6.5</h2>
+    <p>
+      Remember that from gcd (a,b) with a &lt; b, the Euclidean algorithm goes directly to gcd (a, r), where 0 &le; r &lt; a is the remainder of the division of b by a. 
+    </p>
+    <p>
+      It is true that gcd (a,b) = gcd(a, b - a), and computing the gcd using this method would work, but this is not how the Euclidean algorithm operates.
+    </p>
+    <h2>Problem 6.17</h2>
+    <p>
+      Most of you got this one right.
+    </p>
+    <h2>Problem 6.28</h2>
+    <p>
+      An easy way to solve this was to consider the prime factorization of a and b, and use the fact they are completely disjoint, i.e. no prime appears in both of them. 
+      It was also possible to give a proof from the definition of dividing and gcd. Be careful when using the definition of dividing though: a divides b if there is an integer k such that b = ka (and not the other way around: a is potentially smaller than b).
+    </p>
+    <h2>Problem 6.35</h2>
+    <p>
+      Except for some off-by-one errors (a few of you gave only n - 1 consecutive non-prime integers), most of you had the correct idea.
+    </p>
+    <h2>Problem 6.39</h2>
+    <p>
+      I went over this in recitation. Most of you correctly wrote that if n is not prime, then 2<sup>n</sup> - 1 = ab for some integers a and b. 
+    </p>
+    <p>
+      By itself, this doesn't prove anything, since one could have e.g. a = 1 and b = 2<sup>n</sup> - 1, so you shouldn't forget to argue that <em>both</em> a and b are greater than 1.
+    </p>
+</body>
+</html>

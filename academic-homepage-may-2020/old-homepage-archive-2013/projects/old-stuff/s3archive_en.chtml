@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>s3archive</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="s3archive">
+<h2>s3archive</h2>
+<div class="section" id="what-is-s3archive">
+<h3>What is s3archive ?</h3>
+<p><tt class="docutils literal"><span class="pre">s3archive</span></tt> is a simple python script which can be used to archive the content
+of an <a class="reference external" href="http://aws.amazon.com/s3/">Amazon S3</a> bucket. It is a quick and dirty wrapper around <a class="reference external" href="http://timkay.com/aws/">Tim Kay's
+aws</a>. It can be used to backup the files you store on S3.</p>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>S3archive is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/s3archive.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/s3archive.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="basic-concepts">
+<h3>Basic concepts</h3>
+<p>The task of <tt class="docutils literal"><span class="pre">s3archive</span></tt> is very basic: given a prefix (or &quot;path&quot;), download all
+objects stored on S3 whose name begins with the prefix. Those objects will be
+stored in a regular local directory I call an archive.</p>
+<p>If <tt class="docutils literal"><span class="pre">s3archive</span></tt> is run again with the same prefix to archive, it will keep or
+remove the previous archive depending on user requirements. More precisely,
+<tt class="docutils literal"><span class="pre">s3archive</span></tt> has to be given the number of archives to keep on the local
+filesystem.</p>
+<p><tt class="docutils literal"><span class="pre">s3archive</span></tt> does not implement compression, differential archives, or other
+fancy stuff. It is meant as a very basic and simple tool.</p>
+</div>
+<div class="section" id="usage">
+<h3>Usage</h3>
+<p><tt class="docutils literal"><span class="pre">s3archive</span></tt> takes exactly three arguments</p>
+<ol class="arabic simple">
+<li>The prefix or S3 path to backup, formed as follows: <tt class="docutils literal"><span class="pre">$bucket/$prefix</span></tt>, for
+example if you want to backup all files with path <tt class="docutils literal"><span class="pre">foo/bar</span></tt> in the bucket
+<tt class="docutils literal"><span class="pre">baz</span></tt>, then the argument should be <tt class="docutils literal"><span class="pre">baz/foo/bar</span></tt>.</li>
+<li>The directory where to store your archives.</li>
+<li>The number of archives of the given path to keep on the local
+filesystem. Note that if there are more than that number, the oldest will be
+deleted to make room for the new one.</li>
+</ol>
+<p>In addition, one command line option can be given: <tt class="docutils literal"><span class="pre">--awsopts</span></tt>, which can be
+used to specify additionnal, space-separated options to pass to <tt class="docutils literal"><span class="pre">aws</span></tt>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

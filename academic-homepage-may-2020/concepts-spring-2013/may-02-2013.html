@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>21-127 Recitation of May. 2, 2013</title>
+    <link rel="stylesheet" type="text/css" href="../default.css" />
+    <!-- <link rel="shortcut icon" href="./favicon.ico" -->
+    <!-- 	  type="image/x-icon" /> -->
+    <!-- <link rel="icon" href="./favicon.ico" type="image/x-icon" /> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+
+  <body>
+    <h1>Recitation of May. 2, 2013</h1>
+    <p>
+      We discussed Problem 9.40 from the homework. The proof of this using the binomial theorem (which was explicitly forbidden) is obtained simply by expanding ((-1) + 2)<sup>n</sup> in two different ways.
+    </p>
+    <p>
+      We talked about the numbers of surjections from [k] to [n]. First of all, if k &lt; n, there is no surjection. If k = n, surjections are also injections, so they are bijections, and hence there are n! many of them.
+    </p>
+    <p>
+      If k &gt n, things become nasty. The formula from the inclusion-exclusion principle I gave is correct, and I don't think there is a much simpler formula in the general case. Another less explicit way to do it is to use the <a href="https://en.wikipedia.org/wiki/Stirling_numbers_of_the_second_kind">Stirling numbers of the second kind</a> S(n,k) which count the number of ways to partition a set of size n into k non-empty disjoint sets. 
+      </p>
+    <p>
+      There is a recursive formula to compute them, and then one can write that the number of surjections from k to n is S(n,k) k! . I will let you think about why this is true !
+    </p>
+    <p>
+      If you need practice, here are some suggested exercises I haven't had time to go through in class: 
+      <ul>
+	<li>On modular arithmetic: 7.21</li>
+	<li>On the Pigeonhole and inclusion/exclusion principle: 10.14, 10.33, 10.34 </li>
+	<li>On probability: 9.3, 9.10, 9.11</li>
+	<li>A bonus exercise on probability: 8000 out of the 10000 emails a user has received are spam. From those spams, half of them contain the word "money", whereas only 20 of the 2000 nonspam messages she has received contain this word. A new message containing the word  "money" comes in. What is the probability it is a spam ? (<em>Hint: use Bayes formula</em>) </li>
+      </ul>
+    </p>
+</body>
+</html>

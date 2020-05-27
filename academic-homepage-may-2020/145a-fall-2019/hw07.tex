@@ -1,0 +1,101 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 7]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 7}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Thursday, October 24 before class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Let $X$ be a non-empty set. Prove that a subset $C$ of $\fct{\omega}{X}$ is closed if and only if there is a tree $T$ on $X$ so that $[T] = C$.
+\item Let $I$ be the set of all injections from $\omega$ to $\omega$ and let $S$ be the set of all surjections from $\omega$ to $\omega$. Determine whether $I$ and $S$ are closed, open, both, or neither.  
+\item Prove that for any countable ordinal $\alpha$ there exists a wellfounded tree on $\omega$ with rank $\alpha$.
+\item The \emph{Kleene-Brouwer ordering} on $\fct{<\omega}{\omega}$ is defined as follows: $t < s$ if either $s \subsetneq t$ or there exists $n \in \dom (s) \cap \dom (t)$ so that $s \rest n = t \rest n$ but $t (n) < s (n)$.
+
+  \begin{enumerate}
+  \item Prove that the Kleene-Brouwer ordering is indeed a strict linear ordering on $\fct{<\omega}{\omega}$. Can you find a well known linear ordering that it is isomorphic to?
+  \item Let $T$ be a tree on $\omega$. Show that the restriction of the Kleene-Brouwer ordering to $T$ is a well-ordering if and only if $T$ is wellfounded.
+  \end{enumerate}
+\item A \emph{metric} on a set $A$ is a function $d: A \times A \to [0, \infty)$ such that for any $x, y, z \in A$, $d (x, y) = 0$ if and only if $x = y$, $d (x,  y) = d (y, x)$, and $d (x, z) \le d (x, y) + d (y, z)$ (triangle inequality).
+
+  The \emph{topology given by $d$} has as open sets unions of \emph{open balls}: sets of the form $B_r (x) = \{y \in A \mid d (x, y) < r\}$, for any $r > 0$ and any $x \in A$ (you should be able to prove that this is indeed a topology).
+
+  A \emph{Cauchy sequence} in $(A, d)$ is a sequence $\seq{a_n}{n < \omega}$ such that for any $\epsilon > 0$ there is $N < \omega$ so that for all $n, m \ge N$, $d (a_n, a_m) < \epsilon$. We say that $(A, d)$ is \emph{complete} if any Cauchy sequence has a limit (a point $a \in A$ so that any non-empty open Ball centered at $a$ contains all but finitely-many of the $a_n$'s).
+
+  A subset $D$ of a topological space is \emph{dense} if it intersects every non-empty open set. A topological space is called \emph{separable} if it has a countable dense subset.
+
+  \begin{enumerate}
+  \item Show that for any non-empty set $X$ there is a metric on $\fct{\omega}{X}$ which gives the same topology on $\fct{\omega}{X}$ as the one seen in class. \emph{[We say that $\fct{\omega}{X}$ is metrizable]}.
+  \item Show that you can take $d$ in the first part so that $(\fct{\omega}{X},d)$ is complete. \emph{[We say that $\fct{\omega}{X}$ is completely metrizable]}.
+  \item Assume that $X$ is not empty and countable. Show that $\fct{\omega}{X}$ is separable. \emph{[Topological spaces that are completely metrizable and separable are called Polish spaces]}.
+  \end{enumerate}
+
+\item (Extra credit) Find a function $F: [\omega_1]^2 \to 2$ so that for any uncountable $H \subseteq \omega_1$, $F \rest [H]^2$ is not constant. (This shows that Ramsey's theorem does not generalize to all infinite cardinals).
+\end{enumerate}
+
+
+
+
+\end{document}

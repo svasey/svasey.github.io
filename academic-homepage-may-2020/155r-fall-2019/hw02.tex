@@ -1,0 +1,72 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 2]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 2}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, September 17 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+You may freely refer to the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}.
+
+\begin{enumerate}
+\item (Partially from MN, ex.\ 2.1.4) Recall that two posets $(X, \le)$, $(X', \le')$ are said to be \emph{isomorphic} if there exists a bijection $f: X \to X'$ such that for $x, y \in X$, $x \le y$ if and only if $f (x) \le f (y)$. Intuitively, this means that they ``are the same, up to a renaming of the elements''.
+  \begin{enumerate}
+  \item Draw all Hasse diagrams for all nonisomorphic three elements posets (no justification needed).
+  \item Explain why any two $n$-elements linear orderings are isomorphic.
+  \item Prove that the $(n + 1)$-dimensional cube $\Bb_{n + 1}$ is isomorphic to $\Bb_n \times \Bb_1$, ordered by the ``weak'' lexicographic ordering ($(x_1, y_1) \le (x_2, y_2)$ if and only if $x_1 \subseteq x_2$ and $y_1 \subseteq y_2$)).
+  \end{enumerate}
+\item (MN, 2.2.2) Find $\omega (P)$, the cardinality of the largest chain in the poset $P$, for each of the following posets:
+  \begin{enumerate}
+  \item $P$ is $\Bb_n$.
+  \item $P$ is $(\{1, ..., n\}, |)$, where $|$ is the divisibility relation.    
+  \end{enumerate}
+\item \begin{enumerate}
+\item (MN, 2.4.4) Generalize the Erdős-Szekeres lemma by showing that, for natural numbers $k$ and $\ell$, any sequence of real numbers of length $k \ell + 1$ contains either an increasing subsequence of length $k + 1$ or a decreasing subsequence of length $\ell + 1$.
+
+\item (MN, 2.4.5) Prove that the previous result is optimal by giving for each natural numbers $k$ and $\ell$ an example of a sequence of real numbers of length $k \ell$ which does not contain either an increasing subsequence of length $k + 1$ or a decreasing subsequence of length $\ell + 1$.
+\end{enumerate}
+\item (MN, 2.4.5)
+  Prove that the ``large implies tall or wide'' theorem is optimal, by giving, for each natural numbers $k$ and $\ell$, an example of an ordering $P = (X, \le)$ with $\omega (P) = k$, $\alpha (P) = \ell$, and $|X| = k \ell$.
+
+\item (MN, 3.1.2) For a fixed $n$, how many pairs $(A, B)$ with $A \subseteq B \subseteq \{1, \ldots, n\}$ are  there? \emph{Hint: a fixed element $k$ can either be in $A$, in $B$ but outside of $A$, or outside of $B$.}
+\item (Extra credit, MN, 2.4.7) Prove Dilworth's theorem: any finite poset $P$ can be partitionned into exactly $\alpha (P)$-many chains. How does that relate to the proof of the ``large implies wide or tall'' theorem seen in class?
+\end{enumerate}
+
+
+
+\end{document}

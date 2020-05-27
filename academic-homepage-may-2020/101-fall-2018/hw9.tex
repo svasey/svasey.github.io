@@ -1,0 +1,69 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 9]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 9}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, October 15 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item In each part below, you are given a set with a binary operation. For each of these, either prove that they define a group or give a group axiom that fails (and justify why it fails).
+
+  \begin{enumerate}
+  \item $((0, \infty), \ast)$, where $x \ast y$ is defined to be $x^y$.
+  \item $(\mathcal{P} (\mathbb{N}), \cup)$.
+  \item The set of all functions from $\mathbb{N}$ to $\mathbb{N}$, with composition as the binary operation.
+  \item The set of all bijections from $\mathbb{N}$ to $\mathbb{N}$, with composition as the binary operation.
+  \item $(\{1, -1\}, \cdot)$.
+  \end{enumerate}
+
+\item Assume $G$ is a group\footnote{Note: remember that we will often drop the operation from the description of the group and just write $ab$ instead of $a \ast b$.} and assume $a, b, c \in G$. Prove the following:
+  \begin{enumerate}
+  \item $e = e^{-1}$. (Remember that $e$ denotes the identity element)
+  \item If $a b = a c$, then $b = c$.
+  \item If $ab = e$, then $ba = e$. \emph{Hint: first show that $e = (ba)^{-1}$.}
+  \end{enumerate}
+\item For each of the two binary operations below, write its multiplication table and use the table to deduce whether it is a group or not:
+
+  \begin{enumerate}
+  \item $(\{1, 2, 3, 4, 5, 6\}, \ast)$, where $x \ast y$ is the remainder of $x \cdot y$ divided by $7$. For example, $3 \ast 4 = 5$, because $3 \cdot 4 = 12$ and $12$ divided by $7$ leaves a remainder of $5$.
+  \item $(\{0, 1, 2, 3, 4, 5\}, \ast)$, where $x \ast y$ is the remainder of $x \cdot y$ divided by $6$.
+  \end{enumerate}
+\item (Extra credit) Prove that any group with four elements is abelian.
+  
+\end{enumerate}
+
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

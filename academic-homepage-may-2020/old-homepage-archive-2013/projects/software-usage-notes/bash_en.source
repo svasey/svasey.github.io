@@ -1,0 +1,66 @@
+.. default-role:: literal
+
+
+Bash tips and tricks
+====================
+
+Concatenate two arrays
+----------------------
+
+Let's say I have two arrays::
+
+    myarray1=( '1' '2' '3' )
+    myarray2=( '4' '5' '6' )
+
+what I want is to get a third array containing the content of the first array
+and the content of the second one. This is the equivalent of `python's extend
+function`_. The syntax to do this is (as often in bash) horrible::
+
+    myarray3=( ${myarray1[@]} ${myarray2[@]} )
+
+To test that it worked::
+
+    echo ${myarray3[@]}
+
+The `Linux documentation project`_ has a nice page on `bash arrays`_
+
+.. _python's extend function: http://docs.python.org/library/stdtypes.html#mutable-sequence-types
+.. _Linux documentation project: http://tldp.org/
+.. _bash arrays: http://tldp.org/LDP/abs/html/arrays.html
+
+Change history settings
+-----------------------
+
+Set the number of commands remembered
+#####################################
+
+To make sure bash does not remembers everything you type, you should set the
+exact number of commands you want to be remembered. This is described by the
+`HISTSIZE` environment variable. For example, to set the size to 20, put the
+following line in your `.bashrc`::
+
+    export HISTSIZE=20
+
+You can also set the number of lines in your history file (`.bash_history` by
+default) using the `HISTFILESIZE` variable.
+
+Make bash forget some commands
+##############################
+
+You can make bash not log some commands using the `HISTIGNORE` variable. It
+contains a comma-separated list of patterns that should be ignored. 
+
+A nice trick is to ignore all commands beginning with a space::
+
+    export HISTIGNORE='[ ]*'
+
+This way when I do not want bash to log a given command, I just preceed it by a
+space.
+
+References
+----------
+
+* `Using Bash's History Effectively`_  is a nice tutorial on bash's command
+  history.
+
+.. _Using Bash's History Effectively: http://www.talug.org/events/20030709/cmdline_history.html

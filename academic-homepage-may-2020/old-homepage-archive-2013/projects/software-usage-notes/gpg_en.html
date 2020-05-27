@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>GPG documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+    <link rel="shortcut icon" href="../../favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="gpg_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="gpg_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="gpg_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="gpg-documentation">
+<h2>GPG documentation</h2>
+<p>Contains some tricks on using <a class="reference external" href="http://gnupg.org/">GnuPG</a>.</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#how-to-sign-a-release-tarball" id="id1">How to sign a release tarball</a></li>
+<li><a class="reference internal" href="#how-to-get-a-gpg-key-fingerprint" id="id2">How to get a gpg key fingerprint</a></li>
+<li><a class="reference internal" href="#how-to-specify-an-alternate-keyring" id="id3">How to specify an alternate keyring</a></li>
+<li><a class="reference internal" href="#how-to-sign-a-new-key" id="id4">How to sign a new key</a></li>
+<li><a class="reference internal" href="#how-to-merge-two-secret-keys-and-import-them" id="id5">How to merge two secret keys and import them</a></li>
+<li><a class="reference internal" href="#setting-the-default-key" id="id6">Setting the default key</a></li>
+<li><a class="reference internal" href="#forcing-a-particular-subkey-to-be-used" id="id7">Forcing a particular subkey to be used</a></li>
+</ul>
+</div>
+<div class="section" id="how-to-sign-a-release-tarball">
+<h3>How to sign a release tarball</h3>
+<pre class="literal-block">
+gpg --detach-sign --armor -o release.tar.gz.sign release.tar.gz
+</pre>
+</div>
+<div class="section" id="how-to-get-a-gpg-key-fingerprint">
+<h3>How to get a gpg key fingerprint</h3>
+<pre class="literal-block">
+gpg --fingerprint $name_or_keyid
+</pre>
+<p>e.g:</p>
+<pre class="literal-block">
+gpg --fingerprint Sebastien
+</pre>
+</div>
+<div class="section" id="how-to-specify-an-alternate-keyring">
+<h3>How to specify an alternate keyring</h3>
+<pre class="literal-block">
+gpg --no-default-keyring --keyring pubring.gpg [...]
+</pre>
+<p>or, if this is a private keyring:</p>
+<pre class="literal-block">
+gpg --no-default-keyring --secret-keyring secring.gpg [...]
+</pre>
+</div>
+<div class="section" id="how-to-sign-a-new-key">
+<h3>How to sign a new key</h3>
+<p>First, import the public key:</p>
+<pre class="literal-block">
+gpg --import $keyfile
+</pre>
+<p>or get it from a key server:</p>
+<pre class="literal-block">
+gpg --search-key $keyid
+</pre>
+<p>Then edit the key:</p>
+<pre class="literal-block">
+gpg --edit-key $keyid
+</pre>
+<p>Use the <tt class="docutils literal"><span class="pre">fpr</span></tt> command to check the fingerprints. Use the <tt class="docutils literal"><span class="pre">list</span></tt> command to
+see the key information at any time. Then use the <tt class="docutils literal"><span class="pre">sign</span></tt> command to sign it
+once you have checked everything. Do not forget to <a class="reference internal" href="#setting-the-default-key">set the default key</a> if you
+want to sign with a specific key. You should then change the owner trust using
+the <tt class="docutils literal"><span class="pre">trust</span></tt> command.</p>
+<p>Use <tt class="docutils literal"><span class="pre">save</span></tt> to save your changes and quit.</p>
+<p>Finally, use:</p>
+<pre class="literal-block">
+gpg --send-keys $keyid
+</pre>
+<p>to send your signatures back to the key server.</p>
+</div>
+<div class="section" id="how-to-merge-two-secret-keys-and-import-them">
+<h3>How to merge two secret keys and import them</h3>
+<p>Assume I have a secret key with subkey A, and the same secret key but with
+subkey B. How do I import a secret key with subkeys A and B ?</p>
+<p>The solution is rather involved and uses <tt class="docutils literal"><span class="pre">gpgsplit</span></tt>. First, export the two
+secret keys:</p>
+<pre class="literal-block">
+gpg --export-secret-keys SECID &gt; firstkey.gpg gpg --export-secret-keys SECID2 &gt; secondkey.gpg
+</pre>
+<p>Then split one key:</p>
+<pre class="literal-block">
+gpgsplit secondkey.gpg
+</pre>
+<p>And create a new key by concatenating its subkey file with the first key:</p>
+<pre class="literal-block">
+cat firstkey.gpg 00000x-05.secret-subkey 0000000x-06.sig ... &gt; newkey.gpg
+</pre>
+<p>And export the new key after having deleted all references to the old ones:</p>
+<pre class="literal-block">
+gpg --import newkey.gpg
+</pre>
+<p>This method was given in <a class="reference external" href="http://lists.gnupg.org/pipermail/gnupg-devel/2002-March/018193.html">a post on the GPG mailing list</a></p>
+</div>
+<div class="section" id="setting-the-default-key">
+<h3>Setting the default key</h3>
+<p>The default key is the one that is used by default to sign data. If you have
+more than one secret key in your keyring, you may want to set a specific one as
+default. To do this, edit <tt class="docutils literal"><span class="pre">gpg.conf</span></tt> and add the following line:</p>
+<pre class="literal-block">
+default-key $keyid
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">$keyid</span></tt> is your default key's id.</p>
+<p>If you want to override that choice when invoking GPG, give the <tt class="docutils literal"><span class="pre">--default-key</span></tt>
+option.</p>
+</div>
+<div class="section" id="forcing-a-particular-subkey-to-be-used">
+<h3>Forcing a particular subkey to be used</h3>
+<p>You can prefix a key ID with an exclamation mark (<tt class="docutils literal"><span class="pre">!</span></tt>) to force this particular
+subkey to be used. This is sometimes necessary e.g when default signing subkeys
+are defined.</p>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="../../index_en.html" class="site-tree-link">home</a> / <a href="../index_en.html" class="site-tree-link">projects</a> / <a href="index_en.html" class="site-tree-link">software-usage-notes</a> / <span class="site-tree-nolink" >gpg</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="../../about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="../../img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="../../img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="../../copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

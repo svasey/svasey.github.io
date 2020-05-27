@@ -1,0 +1,90 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 9]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 9}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Wednesday, November 6, 11h59pm} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item (MN, 9.1.1) A \emph{set system} is a pair $(X, \Ls)$, where $X$ is a set and $\Ls$ is a set of subsets of $X$ (for example, projective planes or graphs are special types of set systems).
+  \begin{enumerate}
+  \item Give what you think should be the definition of an \emph{isomorphism of set systems}.
+  \item Using your definition, prove that any finite projective plane of order 2 is isomorphic to the Fano plane.
+  \end{enumerate}
+\item (MN, 9.1.4) Assume $(X, \Ls)$ is a set system satisfying $(P1)$ and $(P2)$. Prove that the following are equivalent:
+  \begin{itemize}
+  \item $(P0)$: there exists four points, no three of them on a line.
+  \item $(P0')$: There exists two distinct lines that each have at least three points.
+  \end{itemize}
+\item (MN, 9.1.3)
+  \begin{enumerate}
+  \item Give an example of a set system $(X, \Ls)$ that satisfies $(P1)$ and $(P2)$ but does \emph{not} satisfy $(P0)$.
+  \item Give an example as above, but with at least ten lines, at least ten points, and each line containing at least two points.
+  \item Describe all possible set systems $(X, \Ls)$ satisfying $(P1)$ and $(P2)$ but not $(P0)$.
+  \end{enumerate}
+
+\item (MN, 9.1.8)
+  Let $n \ge 2$ be a natural number and let $(X, \Ls)$ be a set system. Assume that $|X| = n^2 + n +1$, $|\Ls| = n^2 + n + 1$, and each $L \in \Ls$ has exactly $n + 1$ elements. Assume further that any two distinct elements of $\Ls$ intersect in at most one point. Prove that $(X, \Ls)$ is a finite projective plane. If it helps, you can follow the steps below.
+  
+  \begin{enumerate}
+  \item Prove that any two distinct points are contained in exactly one line. 
+  \item Prove that at most $n + 1$ lines contain any given point.
+  \item Prove that at least $n + 1$ lines contain any given point.
+  \item Prove that any two lines intersect.
+  \item Conclude that $(X, \Ls)$ is indeed a finite projective plane.  
+  \end{enumerate}
+
+  \emph{Hint for the first three parts: do some double counting!}
+\item  \emph{(Extra credit)}  (MN, 9.1.10) An \emph{affine plane} is a set system $(X, \Ls)$ (the members of $X$ are called \emph{points}, those of $\Ls$ \emph{lines}) satisfying the following axioms: there exists three points not contained in a common line, any two distinct points are contained in exactly one line, and for any line $L$ and point $p \notin L$, there is a unique line $L'$ with $p \in L'$ and $L \cap L' = \emptyset$.
+
+  Before starting, you should convince yourself that the usual Euclidean plane is an affine plane (and make this statement precise!).
+
+  \begin{enumerate}
+  \item Let $(X, \Ls)$ be an affine plane. Define a relation $||$ on $\Ls$ by $L_1 || L_2$ (read \emph{$L_1$ is parallel to $L_2$}) if $L_1 = L_2$ or $L_1 \cap L_2 = \emptyset$. Prove that $||$ is an equivalence relation.
+  \item Show how to derive a projective plane from an affine plane. Deduce that in a finite affine plane, all lines have the same number of points.
+  \item Deduce an alternative proof of the fact that if there is a field with $n$ elements, then there is a projective plane of order $n$.
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}

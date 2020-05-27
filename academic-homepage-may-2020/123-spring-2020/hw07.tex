@@ -1,0 +1,86 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+\newcommand{\Ff}{\mathbb{F}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ann}{\operatorname{Ann}}
+
+\title[Math 123, Spring 2020: assignment 7]{Math 123 - Algebra II - Spring 2020 \\ Assignment 7}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Friday, March 27, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item Give the definition of the following: simple extension, algebraic extension, finitely generated field extension, composite of two fields. 
+\item Prove that the minimal polynomial of an algebraic element over a given field is unique.
+\item Prove that if $F \subseteq K \subseteq L$ are field extensions, then $[L : F] = [K : F] [L : K]$.
+\item Prove that the algebraic elements in a field extension themselves form a field.
+\item True or false?
+  \begin{enumerate}
+  \item $\sqrt{3} + \sqrt[3]{2} + i$ is algebraic (over $\Qq$).
+  \item Any finite extension is algebraic.
+  \item Any algebraic extension is finite.
+  \end{enumerate}
+\end{enumerate}
+\section*{Problems for credit}
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 4 from that assignment (submit your comment on Canvas, \emph{not} with this assignment). Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+\item Prove or disprove:
+  \begin{enumerate}
+  \item $e$ is algebraic over $\Qq (\sqrt{2})$ \emph{[you may use without proof that $e$ is transcendental over $\Qq$]}.
+  \item Any simple extension is finite. \emph{[Note: you may want to think about the converse. We will explore it in future classes]}.
+  \item Any finite extension is finitely generated.
+  \item Any finitely generated extension is finite.
+  \end{enumerate}
+\item (DF, 13.2.5) Let $F = \Qq (i)$. Prove that $x^3 - 2$ and $x^3 - 3$ are irreducible over $F$.
+\item (DF, 13.2.7) Prove that $\Qq (\sqrt{2} + \sqrt{3}) = \Qq (\sqrt{2}, \sqrt{3})$ and find an irreducible polynomial over $\Qq$ satisfied by $\sqrt{2} + \sqrt{3}$.
+\item (DF, 13.2.10) Determine the degree of the extension $\Qq (\sqrt{3 + 2 \sqrt{2}})$ over $\Qq$.
+
+\item (DF, 13.2.16) Let $K / F$ be an algebraic field extension and let $R$ be a \emph{subring} of $K$ containing $F$. Show that $R$ is a \emph{subfield} of $K$. Is it still true if $K / F$ is not an algebraic extension?
+\item (DF, 13.2.19) Let $K / F$ be a field extension of degree $n$. Prove that $K$ is isomorphic to a subfield of the ring of $n \times n$ matrices over $F$. \emph{Hint: first show that for each fixed $\alpha \in K$, multiplication by $\alpha$ gives an $F$-linear transformation from $K$ to $K$.}
+\end{enumerate}
+\end{document}

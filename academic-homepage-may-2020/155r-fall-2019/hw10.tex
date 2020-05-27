@@ -1,0 +1,61 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 10]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 10}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Wednesday, November 13, 11h59pm.} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Complete the proof of theorem 9.3.2 in MN by explaining in details how to start from a projective plane $(X, \Ls)$ of order $n$ and build $n - 1$ mutually orthogonal Latin squares of order $n$.
+\item Ninety percent of the surface of planet Zorglx consists of water. Show that (irrespective of the exact geography of Zorglx) it is possible to inscribe a cube on the surface of the planet so that all the vertices of the cube lie on water.
+\item \emph{(Just for fun -- due only December 6 at 11h59pm: email it to George and me). Worth some extra credit that can bump up your course grade if needed. You can do this in groups, but make sure to document the contribution of each group member.} Prove that there are no orthogonal Latin squares of order six (and hence no projective plane of order 6). You can use computers if you like, but:
+
+  \begin{itemize}
+  \item Make sure to explain what your program does and why you think it is correct.
+  \item Explain how we can compile and run your program on our own personal computers (no cloud computing).
+  \item Your program should terminate in a reasonable amount of time (at most a day or two).
+  \end{itemize}
+\end{enumerate}
+
+
+
+\end{document}

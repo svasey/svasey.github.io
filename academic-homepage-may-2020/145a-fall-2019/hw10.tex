@@ -1,0 +1,87 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\Diag}{\bigtriangleup}
+\newcommand{\Diagu}{\bigtriangledown}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+\newcommand{\Ff}{\mathcal{F}}
+
+\title[Math 145a, Fall 2019: assignment 10]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 10}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Wednesday, November 13, 11h59pm.} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Let $\lambda$ be an uncountable regular cardinal, and let $\Ff$ be an almost disjoint set of sequences with domain $\lambda$. Show that if $U$ is an ultrafilter extending the club filter on $\lambda$, then the relation $<$ on $\Ff$ defined by $f < g$ if $\{\alpha < \lambda \mid f (\alpha) < g (\alpha)\} \in U$ is a strict linear ordering.
+\item Let $(L, \le)$ be a linear ordering and let $\lambda$ be an infinite cardinal. Show that if $|\pred_< (a)| \le \lambda$ for all $a \in L$, then $|L| \le \lambda^+$. Give an example where equality holds. \emph{Hint: you may want to use problem 2a(i) of assignment 5.}
+\item An infinite cardinal $\lambda$ is said to be \emph{strong limit} if $2^\mu < \lambda$ whenever $\mu < \lambda$.
+  \begin{enumerate}
+  \item Explain why any strong limit cardinal is a limit cardinal, and give an example of a strong limit cardinal.
+  \item Prove that if $\lambda$ is a strong limit cardinal, then $\lambda^{\cf{\lambda}} = 2^\lambda$.
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}

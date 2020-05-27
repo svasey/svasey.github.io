@@ -1,0 +1,70 @@
+.. default-role:: literal
+
+
+Software Usage Notes
+====================
+
+Some random notes on how to do certain things with a given program.
+
+Programming
+-----------
+
+* `Perl tips and tricks`_
+* `Python tips and tricks`_
+* `Bash tips and tricks`_
+* `Matlab tips and tricks`_
+* `Autotools tips and tricks`_
+
+Network
+-------
+
+* `SSH tips and tricks`_
+* `SSL helpers`_
+* `WLAN tricks`_
+* `Firefox tips and tricks`_
+* `Wget notes`_ 
+
+Hardware
+--------
+
+* `CD burning`_
+* `Nokia 6600 slide`_
+* `EEE 901`_
+
+Other
+-----
+
+* `Arch Linux repository management`_
+* `Dot tips and tricks`_
+* `File systems management`_
+* `GPG documentation`_
+* `Git tips and tricks`_
+* `MultiMarkdown notes`_
+* `Multimedia`_
+* `Time settings`_
+* `XORG notes`_
+* `PDF tips and tricks`_
+
+.. _Matlab tips and tricks: matlab_en.html
+.. _Autotools tips and tricks: autotools_en.html
+.. _Arch Linux repository management: archrepos_en.html
+.. _CD burning: cdrw_en.html
+.. _Dot tips and tricks: dot_en.html
+.. _Nokia 6600 slide: nokia6600-slide_en.html
+.. _EEE 901: eee901_en.html
+.. _File systems management: fs_en.html
+.. _GPG documentation: gpg_en.html
+.. _Git tips and tricks: git_en.html
+.. _MultiMarkdown notes: mmarkdown_en.html
+.. _Multimedia: multimedia_en.html
+.. _Perl tips and tricks: perl_en.html
+.. _Python tips and tricks: python_en.html
+.. _Bash tips and tricks: bash_en.html
+.. _SSH tips and tricks: ssh_en.html
+.. _SSL helpers: ssl_en.html
+.. _Time settings: time_en.html
+.. _WLAN tricks: wlan_en.html
+.. _XORG notes: xorg_en.html
+.. _PDF tips and tricks: pdf_en.html
+..  _Firefox tips and tricks: firefox_en.html
+.. _Wget notes: wget_en.html

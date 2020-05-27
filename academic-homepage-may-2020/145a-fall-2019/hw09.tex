@@ -1,0 +1,119 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\Diag}{\bigtriangleup}
+\newcommand{\Diagu}{\bigtriangledown}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 9]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 9}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Wednesday, Nov. 6, 2019, 11h59pm.} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item
+ Recall that a filter $F$ on a set $S$ is \emph{principal} if there exists a subset $A$ of $S$ such that $F = \{X \subseteq S \mid A \subseteq X\}$. Prove that any filter on a finite set is principal.
+
+
+\item A \emph{near-partition} of a set $S$ is a collection $P$ of pairwise disjoint subsets of $S$ such that the union of all sets in $P$ is $S$ (the difference with a partition is that we allow the empty set to be in $P$). Prove that the following are equivalent, for a non-empty set $S$ and a collection $U$ of subsets of $S$:
+
+  \begin{enumerate}
+  \item $U$ is an ultrafilter on $S$.
+  \item $|U \cap P| = 1$ for any near-partition $P$ of $S$ with $|P| \le 3$.
+  \item $S \in U$, $U$ is closed under taking supersets ($A \in U$, $A \subseteq B \subseteq S$ implies $B \in U$), and for any two disjoint subsets $A$ and $B$ of $S$, if $A \cup B \in U$ then exactly one of $A$ or $B$ is in $U$.
+  \end{enumerate}
+  
+\item Let $F$ be a filter on $\omega$. Let $(a_n)_{n < \omega}$ be a sequence of real numbers and let $a$ be a real number. Recall that $(a_n)_{n < \omega}$ \emph{$F$-converges to $a$} if for any $\epsilon > 0$, $\{n < \omega \mid |a_n - a| < \epsilon\} \in F$. We call $a$ an \emph{$F$-limit} of $(a_n)_{n < \omega}$ and write $\lim_F a_n = a$.
+
+  \begin{enumerate}
+  \item Show that if $(a_n)_{n < \omega}$ $F$-converges to both $a$ and $b$, then $a = b$. \emph{Note: this shows that the $F$-limit is unique if it exists.}
+  \item Describe the $F$-limit if $F$ is the cofinite filter. What if $F$ is a principal filter?
+  \item Assume now that $U$ is an ultrafilter. Show that any bounded sequence $U$-converges (a sequence $(a_n)$ is \emph{bounded} if there exists $C > 0$ so that $|a_n| < C$ for all $n$).
+  \item If $\lim_{F} a_n = a$ and $\lim_F b_n = b$, then:
+
+    \begin{enumerate}
+    \item $\lim_F (a_n + b_n) = a + b$.
+    \item For any $c \in \Rr$, $\lim_F c a_n = c a$.
+    \item If $a_n \le b_n$ for all $n$, then $a \le b$.
+    \end{enumerate}
+  \end{enumerate}
+\item Let $\lambda$ be a regular uncountable cardinal. Assume $\seq{C_i}{i < \lambda}$ are club subsets of $\lambda$.
+  \begin{enumerate}
+  \item Show that for any nonzero $\alpha < \lambda$, $\bigcap_{i < \alpha} C_i$ is club.
+  \item Show that $\Diag_{i < \lambda} C_i$ is club.
+  \end{enumerate}
+\item \emph{(Extra credit)} Is there a way to associate to each bounded sequence $\seq{a_n}{n \in \Nn}$ a ``limit'' $\lim_{n \to \infty}^\ast a_n$ such that the following properties are satisfied?
+  
+  \begin{itemize}
+  \item $\lim_{n \to \infty}^\ast a_n = a$ if $\lim_{n \to \infty} a_n = a$.
+  \item $\lim_{n \to \infty}^\ast (a_n + b_n) = \lim_{n \to \infty}^\ast a_n + \lim_{n \to \infty}^\ast b_n$.
+  \item For any $c \in \Rr$, $\lim_{n \to \infty}^\ast c a_n = c \lim_{n \to \infty}^\ast a_n$.
+  \item (Translation invariance) For any $m \in \Nn$, $\lim_{n \to \infty}^\ast a_n = \lim_{n \to \infty}^\ast a_{n + m}$.
+  \end{itemize}
+
+\end{enumerate}
+
+
+
+\end{document}

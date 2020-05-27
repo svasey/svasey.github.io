@@ -1,0 +1,111 @@
+\documentclass{amsart}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\title[Math 141a, Fall 2018: assignment 5]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 5}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, October 12 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Show that there are only countably-many formulas (in the language for an $m$-ary relation, for a fixed $m < \omega$).
+\item Let $f (\bx)$ be a formula (in the language for a binary relation), with $\bx = (x_1, \ldots, x_n)$, $n \ge 1$.
+  \begin{enumerate}
+  \item Show that there is a \emph{quantifier-free} formula $g (\bx)$ so that for any tuple $\ba$ of rationals, $(\mathbb{Q}, <) \models f (\ba)$ if and only if $(\mathbb{Q}, <) \models g (\ba)$. \emph{Note: the proof will in fact give an algorithm that takes as input a formula $f (\bx)$ and a tuple $\ba$ of rationals and outputs whether or not $(\mathbb{Q}, <) \models f (\ba)$.}
+
+    \emph{Hint: to see one idea, first solve the problem when $f (x_1, x_2)$ is $(\exists x) (x_1 < x \land x < x_2)$. Then remember from the previous assignment that every formula can be put in prenex form, and every quantifier-free formula has a disjunctive form.}
+  \item Let $g (\bx)$ be as in the previous part. Let $T$ be the theory of non-empty dense chains without endpoints. Show that:
+    
+    $$T
+    \models \forall x_1 \forall x_2 \ldots \forall x_n \left(f (\bx) \leftrightarrow g (\bx)\right)
+    $$
+
+    \emph{Note: when such a phenomenon happens, we say that $T$ has quantifier elimination.}
+  \end{enumerate}
+
+\item Assume that $T$ is a theory (in the language for an $m$-ary relation). Prove that if any two \emph{countable} models of $T$ are elementarily equivalent, then $T$ is complete.
+\item
+  
+  \begin{enumerate}
+  \item For each of the following properties, give a sentence (in the language for a binary relation) which expresses it:
+    \begin{enumerate}
+    \item $r$ is (the graph of) a function (from the universe of $r$ to itself).
+    \item $r$ is a surjection.
+    \item $r$ is an injection.
+    \item $r$ is a bijection.
+    \end{enumerate}
+
+  \item Give a set of axioms whose models are exactly the bijections with infinite domain. Is this set complete? 
+  \item Give a set of axioms $A$ in the language for a binary relation so that the models of $A$ are exactly the bijections $R$ with non-empty domain such that $R^n (x) \neq x$ for any $x$ and any nonzero $n < \omega$. Here, we use $R^n$ to denote the composition of $R$ with itself $n$ times.
+  \item Show that $A$ is consistent, by giving both a countable and an uncountable model for $A$.
+  \item Let $(E, R)$ be a model of $A$. We write $R (x)$ for the output of the function $R$ at $x$, $R^{n}$ for the composition of $R$ with itself $n$ times ($n \ge 1$), and $R^{-n}$ for the composition of the inverse $R^{-1}$ with itself $n$ times. When $n = 0$, $R^0$ is notation for the identity function on $E$. Show that the relation $\approx$ on $E$ defined  $x \approx y$ if and only if there exists $n \in \mathbb{Z}$ so that $R^n (x) = y$ is an equivalence relation.
+  \item Let $(E, R)$ be a model of $A$. Let $C \subseteq E$ be an $\approx$-equivalence class. For $x, y \in C$, show that the $n \in \mathbb{Z}$ such that $y = R^n (x)$ is unique. Deduce that defining  $x < y$ to hold if and only if there exists a strictly positive $n$ such that $y = R^n (x)$ gives a total ordering on $C$. Show moreover that $(\mathbb{Z}, <) \cong (C, <)$.
+  \item Is $A$ complete? \emph{Hint: change the structure a little bit to make it look like a non-empty discrete chain without endpoints, then use Theorem 1.8 in Poizat. You do not need to give full details, but explain the intuition carefully.}
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Let $(C, <)$ and $(C', <)$ be two discrete chains with minimums but no maximums. Let $a_0$ be the minimum of $C$ and $a_0'$ be the minimum of $C'$. Let $a_1 < a_2 < \ldots < a_n$ be an increasing sequence in $C$ and let $a_1' < a_2' < \ldots < a_n'$ be an increasing sequence in $C'$. Fix $p < \omega$ and assume that for any $i < n$, at least one of the following is true:
+
+    \begin{itemize}
+    \item $d (a_i, a_{i + 1}) = d (a_i', a_{i + 1}')$. \emph{(See right before 1.8 in Poizat for the definition of $d$)}.
+    \item $d (a_i, a_{i + 1}) \ge 2^{p} - 1$ and $d (a_{i}', a_{i + 1}') \ge 2^p - 1$.
+    \end{itemize}
+
+    Show that the map sending $a_i$ to $a_i'$ for each $i \le n$ is a $p$-isomorphism. \emph{Hint: look at the proof of Theorem 1.8 in Poizat.}
+    
+  \item Deduce that $(\mathbb{N}, <) \preceq (\mathbb{N}, <) + (\mathbb{Z}, <)$. 
+  \item Is there a set of axioms (in the langugage for a binary relation) whose models are exactly the well-orderings? 
+  \end{enumerate}
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

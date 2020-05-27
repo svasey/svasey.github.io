@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Dot documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="dot-documentation">
+<h2>Dot documentation</h2>
+<p>This page documents some tricks I learned when using <a class="reference external" href="http://www.graphviz.org/">dot</a></p>
+<div class="section" id="multiple-nodes-with-the-same-label">
+<h3>Multiple nodes with the same label</h3>
+<pre class="literal-block">
+node1 [label = &quot;a&quot;];
+node2 [label = &quot;a&quot;];
+
+node1 -&gt; node2;
+</pre>
+</div>
+<div class="section" id="drawing-a-tree">
+<h3>Drawing a tree</h3>
+<p>Use dot (standard digraph type). Use the <tt class="docutils literal"><span class="pre">orientation</span></tt> variable to change the
+orientation of the tree</p>
+</div>
+<div class="section" id="left-to-right-ordering-taken-into-account">
+<h3>Left to right ordering taken into account</h3>
+<p>use <tt class="docutils literal"><span class="pre">ordering</span> <span class="pre">=</span> <span class="pre">out;</span></tt></p>
+</div>
+<div class="section" id="make-edges-avoid-nodes">
+<h3>Make edges avoid nodes</h3>
+<p>use <tt class="docutils literal"><span class="pre">splines</span> <span class="pre">=</span> <span class="pre">true;</span></tt></p>
+</div>
+<div class="section" id="avoid-overlaping-nodes">
+<h3>Avoid overlaping nodes</h3>
+<p>use <tt class="docutils literal"><span class="pre">overlap</span> <span class="pre">=</span> <span class="pre">&quot;scale&quot;;</span></tt></p>
+</div>
+</div>
+</div>
+</body>
+</html>

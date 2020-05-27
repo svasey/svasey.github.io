@@ -1,0 +1,63 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 12]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 12}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, November 26, 11h59pm.} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item A fair six-sided die is rolled $n$ times. On average, how many times will the sum of two consecutive rolls be even?
+\item Prove Theorem 10.4.1 in MN directly using induction. The theorem says that for every graph $G$ with $2n$ vertices and $m > 0$ edges, there exists an $n$-element set $A \subseteq V (G)$ such that there are strictly more than $\frac{m}{2}$ edges from $A$ to $V (G) - A$.  
+\item Let $X$ be a set with $n$ elements.
+  \begin{enumerate}
+  \item What is the maximal size of an intersecting family of $k$-element subsets of $X$, if $2k > n$?
+  \item What is the maximal size of an intersecting family of subsets of $X$? (here, there are no restrictions on the cardinality of the sets in the family).
+  \end{enumerate}
+
+\item \emph{(Extra credit)} Prove that $r (3, 4) = 9$.
+\item Submit your project peer-review separately on Canvas.
+
+\end{enumerate}
+
+
+
+\end{document}

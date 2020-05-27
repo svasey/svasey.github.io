@@ -1,0 +1,28 @@
+.. default-role:: literal
+
+
+Autotools tips and tricks
+=========================
+
+Compile a 64 bits library
+-------------------------
+
+That tips is aimed at solving the following error message, usually appearing
+when compiling some large piece of software on a 64 bits system::
+
+    $afile: relocation R_X86_64_32 against $afile can not be used when making 
+      a shared object; recompile with -fPIC
+
+where `$afile` is the path to some `.a` library file. The solution to this to
+recompile the library containing `$afile` as a pure shared 64 bits library. I
+will assume the library is using the `GNU autotools`_ (i.e the configure script,
+Make etc...) as its build system
+
+To recompile, cd into the library's build directory and run something like::
+
+    $ make distclean
+    $ CFLAGS='-m64 -fPIC' CC='gcc -m64 -fPIC' ./configure --enable-shared
+
+You can of course add other options to `./configure` as you see fit. 
+
+.. _GNU autotools: http://en.wikipedia.org/wiki/GNU_build_system

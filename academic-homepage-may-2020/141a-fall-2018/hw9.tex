@@ -1,0 +1,98 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\newcommand{\proves}{\vdash}
+\newcommand{\imp}{\rightarrow}
+\newcommand{\impp}{\leftrightarrow}
+\newcommand{\PA}{\operatorname{PA}}
+
+\title[Math 141a, Fall 2018: assignment 9]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 9}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 9 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Prove that for any signature $\sigma$ and any cardinal $\lambda \ge |\sigma| + \aleph_0$, there are at most $2^{\lambda}$-many non-isomorphic $\sigma$-structures of cardinality $\lambda$. In other words, if $(M_i)_{i < \left(2^\lambda\right)^+}$ are $\sigma$-structures of cardinality $\lambda$, there must exist $i < j < \left(2^{\lambda}\right)^+$ such that $M_i \cong M_j$. \emph{Hint: restrict yourself to a fixed universe.}
+\item Assume that $A$ is a set of sentences in the language of a signature $\sigma$. For a cardinal $\lambda$, we say that $A$ is \emph{categorical} in $\lambda$ if $A$ has exactly one model of cardinality $\lambda$ up to isomorphism. That is, $A$ has a model $M$ of cardinality $\lambda$, and any other model $N$ of $A$ of cardinality $\lambda$ is isomorphic to $M$.
+
+  Prove that if $A$ has no finite models and $A$ is categorical in some cardinal $\lambda$ such that $\lambda \ge |\sigma| + \aleph_0$, then $A$ is complete.
+\item Let $N$ be a model of $\PA$. We call $a \in N$ \emph{superdivisible} if it is not zero and for every standard non-zero natural number $n$, $n$ divides $a$. More precisely, for every nonzero $n < \omega$,
+
+  $$
+  N\models a \neq 0 \land (\exists x)( a = x \cdot (\underbrace{1 + 1 + \ldots + 1}_{n \text{ times}}))
+  $$
+
+  We also fix more notation: for $a \in N$ nonstandard and $k$ a natural number, we write $(a + k)^N$ for $(a + 0)^N$ if $k = 0$ or $(a + \underbrace{1 + 1 + \ldots + 1}_{k \text{ times}})^N$ if $k > 0$. For $k$ a strictly negative integer, we write $(a + k)^N$ for the unique $b \in N$ such that $(b + |k|)^N = a$.
+
+  \emph{Note: for the problems below, you do not need to explain in details why a fact about the natural numbers follows from the axioms of $\PA$. Just make sure to convince yourself that it is true.}
+
+  \begin{enumerate}
+  \item Show that there exists a model of $\PA$ which has a superdivisible element.
+  \item Let $N$ be a model of $\PA$ with superdivisible elements. Show that:
+
+    \begin{enumerate}
+    \item If $a$ and $b$ are superdivisible, then $a +^N b$ is superdivisible.
+    \item If $a$ is superdivisible and $b$ is any nonzero element of $N$, then and $a \cdot^N b$ is superdivisible.
+    \item If $a \in N$ is superdivisible, then $(a + k)^N$ is \emph{not} superdivisible for any nonzero integer $k$.
+    \item If $a \in N$ is superdivisible and $n < \omega$ is not zero, then $\frac{a}{n}$ is superdivisible. More formally, there exists a unique superdivisible $b$ such that $N \models a = b \cdot (\underbrace{1 + 1 + \ldots + 1}_{n \text{ times}})$.
+    \end{enumerate}
+  \item Let $N$ be a model of $\PA$ with superdivisible elements. Let $X = \mathbb{N} \cup \{(a + k)^N \mid a \text{ superdivisible}, k \in \mathbb{Z}\}$. Show that $X$ is closed under addition and multiplication in $N$.
+  \item Write a formula $\phi (x)$ in the language of $\PA$ such that $(\mathbb{N}, +, \cdot, 0, 1) \models \phi (n)$ if and only if $n$ is prime.
+  \item Show that Goldbach's conjecture fails in the substructure $M$ of $N$ with universe $X$ (more precisely, the formula coding Goldbach's conjecture in the language of $\PA$ is false in $M$). \emph{(It is unclear whether $M$ is a model of $\PA$ -- you get nonstandard bonus points if you can figure it out.)}
+  \end{enumerate} 
+
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

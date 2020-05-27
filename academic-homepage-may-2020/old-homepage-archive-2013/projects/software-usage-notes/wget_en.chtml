@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Wget documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="wget-documentation">
+<h2>Wget documentation</h2>
+<p>This documents how to do some simple things with <a class="reference external" href="http://www.gnu.org/software/wget/">wget</a>.</p>
+<div class="section" id="using-a-proxy-server">
+<h3>Using a proxy server</h3>
+<p>To set a proxy server, you need to use the <tt class="docutils literal"><span class="pre">http_proxy</span></tt> environment variable:</p>
+<pre class="literal-block">
+$ export http_proxy=&quot;http://localhost:8118&quot;
+$ wget http://example.com
+</pre>
+</div>
+</div>
+</div>
+</body>
+</html>

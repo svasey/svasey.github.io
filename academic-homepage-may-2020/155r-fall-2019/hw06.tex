@@ -1,0 +1,62 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 6]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 6}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, October 15, before 11h59pm} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item (MN, 5.1.2) Prove that any graph $G = (V, E)$ having no cycles and satisfying $|V| = |E| + 1$ is a tree.
+\item Let $k \ge 2$, let $T$ be a tree on $k$ vertices and let $G$ be a graph with minimum degree at least $k - 1$. Prove that $T$ is isomorphic to a subgraph of $G$.  
+\item Let $G$ be a graph. An \emph{independent set} in $G$ is a set $I$ of vertices that are not connected by an edge: if $x, y \in I$ then $\{x, y\} \notin E (G)$. A \emph{vertex cover} of $G$ is a set $C$ of vertices so that for every edge $e \in E (G)$ there exists $v \in C$ with $v \in e$.
+
+  Let $\alpha (G)$ denote the maximal size of an independent set in $G$, and let $\tau (G)$ denote the minimal size of a vertex cover of $G$.
+
+  \begin{enumerate}
+  \item Give a formula for $\tau (G)$ in terms of $\alpha (G)$.
+  \item Let $G$ be a triangle-free graph. Show that the degree of any vertex in $G$ is at most $\alpha (G)$.
+  \item Prove that for every triangle-free graph $G$, $|E (G)| \le \alpha (G) \tau (G)$.
+  \item Explain why this implies that for every triangle-free graph $G$, $|E (G)| \le \frac{|V (G)|^2}{4}$.
+  \end{enumerate}
+\item (MN, 6.2.(b)) Draw $K_6$, the complete graph on six vertices, on the torus in such a way that no edges cross.
+\end{enumerate}
+
+
+
+\end{document}

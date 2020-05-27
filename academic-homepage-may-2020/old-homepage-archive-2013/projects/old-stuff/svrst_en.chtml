@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Svrst</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="svrst">
+<h2>Svrst</h2>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#what-is-svrst" id="id2">What is svrst ?</a></li>
+<li><a class="reference internal" href="#download" id="id3">Download</a></li>
+<li><a class="reference internal" href="#usage" id="id4">Usage</a><ul>
+<li><a class="reference internal" href="#svrst2html-py" id="id5">svrst2html.py</a></li>
+<li><a class="reference internal" href="#svrst2latex-py" id="id6">svrst2latex.py</a></li>
+<li><a class="reference internal" href="#svrst2pdf-py" id="id7">svrst2pdf.py</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-math-extension" id="id8">The math extension</a></li>
+<li><a class="reference internal" href="#links-in-pdf-files" id="id9">Links in PDF files</a></li>
+<li><a class="reference internal" href="#limitations" id="id10">Limitations</a><ul>
+<li><a class="reference internal" href="#admonitions" id="id11">Admonitions</a></li>
+<li><a class="reference internal" href="#links-in-headers" id="id12">Links in headers</a></li>
+<li><a class="reference internal" href="#links-in-numbered-footnotes" id="id13">Links in numbered footnotes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references" id="id14">References</a></li>
+</ul>
+</div>
+<div class="section" id="what-is-svrst">
+<h3>What is svrst ?</h3>
+<p>Svrst contains customized builders for converting <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> to html,
+text and pdf. The main feature that was added is the ability to write math
+equation in latex, and several improvements to get a more printable pdf.</p>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>svrst is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/svrst.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/svrst.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h3>Usage</h3>
+<div class="section" id="svrst2html-py">
+<h4>svrst2html.py</h4>
+<p>This converts a rst document to html. The usage is the same as <tt class="docutils literal"><span class="pre">rst2html.py</span></tt>
+. See its manual for more information.</p>
+</div>
+<div class="section" id="svrst2latex-py">
+<h4>svrst2latex.py</h4>
+<p>This converts a rst document to latex. The usage is the same as
+<tt class="docutils literal"><span class="pre">rst2latex.py</span></tt>. See its manual for more information.</p>
+</div>
+<div class="section" id="svrst2pdf-py">
+<h4>svrst2pdf.py</h4>
+<p>This converts a rst document into a pdf file. The program takes exactly two
+arguments: the source RST file, and the destination PDF file. The environment
+variable <tt class="docutils literal"><span class="pre">FULL_DIR_URL</span></tt> can be used to give a base URL to prepend to relative
+links.</p>
+<p>For example, if in the rst file there is a link to <tt class="docutils literal"><span class="pre">test.html</span></tt>, then the
+person reading the printed PDF will not know where the link really points to if
+a base URL is not specified. If <tt class="docutils literal"><span class="pre">FULL_DIR_URL</span></tt> is e.g <tt class="docutils literal"><span class="pre">http://svasey.org</span></tt>,
+then it will be written in the PDF, and the user will know that the link really
+points to <tt class="docutils literal"><span class="pre">http://svasey.org/test.html</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="the-math-extension">
+<h3>The math extension</h3>
+<p>To write math, the simplest is to do something like:</p>
+<pre class="literal-block">
+.. default-role::math
+
+Hey this is some math: `\frac{x}{x} \ne 1`
+
+or on its own line
+
+`\pi \approx 3.141592`
+</pre>
+<p>This will render as</p>
+<blockquote>
+<p>Hey this is some math: <img class="inlineformulaimg" alt="\frac{x}{x} \ne 1" src="svrst_en.source-formula-png/7e957ac9b5bfe375f3c1cd3905f21224b71c08df47707042b58258f9-11-article.png" /></p>
+<p>or on its own line</p>
+<img class="formulaimg" alt="\pi \approx 3.141592" src="svrst_en.source-formula-png/26a04e6b1ec64da3235638f4089cc275f75b950c6e2ccdf1393a7aa3-11-article.png" /></blockquote>
+<p>If you do not want to set math as a default role, you can do:</p>
+<pre class="literal-block">
+Formula on its own line
+
+.. math::
+
+    e^{i\pi} + 1 = 0
+</pre>
+<p>or even</p>
+<pre class="literal-block">
+Formula follows on the same line: :math:`2 + 2 = 5`
+</pre>
+<p>Except for very simple cases, the formula will be compiled into an image in html
+documents, and the math mode will be used in the latex document, which is
+then compiled to pdf.</p>
+</div>
+<div class="section" id="links-in-pdf-files">
+<h3>Links in PDF files</h3>
+<p>By default, <tt class="docutils literal"><span class="pre">rst2latex.py</span></tt> converts the RST links to clickable links in latex
+(using <tt class="docutils literal"><span class="pre">\href</span></tt>). This means that the resulting PDF is good for computer-use,
+but one cannot see where the links point to when the PDF is printed. Since I
+consider PDF a format for printing, I made the following modification: links are
+mapped to a footnote giving the location they point to. If the link's text is a
+URL, no footnote is added, however.</p>
+</div>
+<div class="section" id="limitations">
+<h3>Limitations</h3>
+<p><tt class="docutils literal"><span class="pre">svrst2latex.py</span></tt> reprocesses the latex file after compilation by rst2latex.py
+. For simplicity reasons, some corner cases are not considered when doing this,
+and the result is that some RST directives will not work when compiled into
+pdf.</p>
+<div class="section" id="admonitions">
+<h4>Admonitions</h4>
+<p><a class="reference external" href="http://docutils.sourceforge.net/docs/ref/rst/directives.html#admonitions">Admonitions</a> are known not to compile to pdf at all. If you want to use them,
+that will have to be for html documents only.</p>
+</div>
+<div class="section" id="links-in-headers">
+<h4>Links in headers</h4>
+<p>Links cannot be used in headers when compiling to pdf. If you want to use them,
+that will have to be for html documents only.</p>
+</div>
+<div class="section" id="links-in-numbered-footnotes">
+<h4>Links in numbered footnotes</h4>
+<p>Links in numbered footnotes will not render correctly in the pdf version (the
+footnote indicating the URL will be missing). This works fine with references
+though.</p>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<p>The math extension was inspired by a blogpost called <a class="reference external" href="http://www.hvergi.net/2008/06/restructuredtext-extensions/">reStructuredText
+extensions</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

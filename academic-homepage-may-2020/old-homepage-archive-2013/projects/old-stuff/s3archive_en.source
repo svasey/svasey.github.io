@@ -1,0 +1,61 @@
+.. default-role:: literal
+
+
+s3archive
+=========
+
+What is s3archive ?
+-------------------
+
+`s3archive` is a simple python script which can be used to archive the content
+of an `Amazon S3`_ bucket. It is a quick and dirty wrapper around `Tim Kay's
+aws`_. It can be used to backup the files you store on S3.
+
+.. _Amazon S3: http://aws.amazon.com/s3/
+.. _Tim Kay's aws: http://timkay.com/aws/
+
+Download
+--------
+
+S3archive is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/s3archive.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/s3archive.tar.gz.sig
+
+Basic concepts
+--------------
+
+The task of `s3archive` is very basic: given a prefix (or "path"), download all
+objects stored on S3 whose name begins with the prefix. Those objects will be
+stored in a regular local directory I call an archive. 
+
+If `s3archive` is run again with the same prefix to archive, it will keep or
+remove the previous archive depending on user requirements. More precisely,
+`s3archive` has to be given the number of archives to keep on the local
+filesystem.
+
+`s3archive` does not implement compression, differential archives, or other
+fancy stuff. It is meant as a very basic and simple tool.
+
+Usage
+-----
+
+`s3archive` takes exactly three arguments
+
+1. The prefix or S3 path to backup, formed as follows: `$bucket/$prefix`, for
+   example if you want to backup all files with path `foo/bar` in the bucket
+   `baz`, then the argument should be `baz/foo/bar`.
+2. The directory where to store your archives.
+3. The number of archives of the given path to keep on the local
+   filesystem. Note that if there are more than that number, the oldest will be
+   deleted to make room for the new one.
+
+In addition, one command line option can be given: `--awsopts`, which can be
+used to specify additionnal, space-separated options to pass to `aws`.

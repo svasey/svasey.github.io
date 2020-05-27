@@ -1,0 +1,97 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\newcommand{\proves}{\vdash}
+\newcommand{\imp}{\rightarrow}
+\newcommand{\impp}{\leftrightarrow}
+\newcommand{\PA}{\operatorname{PA}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\im}{\operatorname{im}}
+
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\acl}{\operatorname{acl}}
+
+\title[Math 141a, Fall 2018: assignment 11]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 11}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 30 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+\textbf{Special instructions:} Do \textbf{exactly five} of the problems below. Please make sure to clearly mark which problems you have chosen. You should attempt the other problems too, but they will not be graded for credit.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item For a nonzero hyperreal number $\delta$, we say that a hyperreal number $x$ is \emph{infinitesimal relative to $\delta$} if $|x| < r |\delta|$ for any positive real number $r$. Thus an infinitesimal is exactly an infinitesimal relative to a nonzero real number.
+
+  \begin{enumerate}
+  \item Assume that $\delta$ is an infinite hyperreal. Show that any real number is infinitesimal relative to $\delta$.
+  \item Show that for any nonzero hyperreal $\delta$, there exists a nonzero hyperreal $\epsilon$ that is infinitesimal with respect to $\delta$.
+  \end{enumerate}
+  
+\item Give a proof (using nonstandard analysis) of the intermediate value theorem: if $f: \mathbb{R} \to \mathbb{R}$ is continuous and $a < b$ are real numbers such that $f (a) < 0 < f (b)$, then there exists a real number $x \in [a,b]$ such that $f (x) = 0$.
+
+\item A sequence $(a_n)$ of real numbers is nothing but a function from $\mathbb{N}$ to $\mathbb{R}$. Using the extension principle we can, given such a sequence, make sense of $a_N$ for $N$ any hypernatural number. Thus we say that a sequence $(a_n)$ of real numbers \emph{converges} to a real number $a$ if $a_N \simeq a$ for any infinite hypernatural $N$.
+
+  \begin{enumerate}
+  \item Prove that this is equivalent to the standard definition of convergence: for any real number $\epsilon > 0$ there exists $n \in \mathbb{N}$ such that for all $m \ge n$, $|a_m - a| < \epsilon$.
+  \item Recall that a sequence $(a_n)$ of real numbers is \emph{Cauchy} if for any real number $\epsilon > 0$ there exists $n \in \mathbb{N}$ such that for any $m_1, m_2 \ge n$, $|a_{m_1} - a_{m_2}| < \epsilon$. Give a ``nonstandard'' definition of a Cauchy sequence, prove it is equivalent to the classical definition, and use your definition to prove that any Cauchy sequence converges.
+  \end{enumerate}
+
+\item Prove that for any infinite structure $M$ and any cardinal $\lambda$, $M$ has an elementary extension of cardinality at least $\lambda$.
+  
+\item Prove that if $F$ is a field and $X$ is a subset of $F$, then $|\acl^F (X)| \le |X| + \aleph_0$.
+\item Assume $E$ and $F$ are fields, $s$ is a local isomorphism from $E$ to $F$, $E_0 = \langle \dom (s) \rangle$ is the subfield of $E$ generated by $\dom (s)$, and $F_0 = \langle \im (s) \rangle$ is the subfield of $F$ generated by $\im (s)$. Show that $s$ extends to an isomorphism $f: E_0 \cong F_0$.
+\item Using only that for any field $F$, any nonconstant polynomial with coefficients from $F$ has a root in a field extension of $F$, show that any field has an algebraically closed extension. \emph{Use transfinite induction: keep adding roots until you reach an algebraically closed extension!}
+\end{enumerate}
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

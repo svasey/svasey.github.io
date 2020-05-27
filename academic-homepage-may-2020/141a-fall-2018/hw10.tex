@@ -1,0 +1,90 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\bA}{\mathbf{A}}
+\newcommand{\bB}{\mathbf{B}}
+\newcommand{\bC}{\mathbf{C}}
+\newcommand{\bD}{\mathbf{D}}
+
+\newcommand{\ba}{\bar{a}}
+\newcommand{\bb}{\bar{b}}
+
+\newcommand{\bx}{\bar{x}}
+\newcommand{\by}{\bar{y}}
+
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\fct}[2]{{}^{#1}{#2}}
+\newcommand{\rest}{\upharpoonright}
+
+\newcommand{\proves}{\vdash}
+\newcommand{\imp}{\rightarrow}
+\newcommand{\impp}{\leftrightarrow}
+\newcommand{\PA}{\operatorname{PA}}
+
+\title[Math 141a, Fall 2018: assignment 10]{Math 141a - Mathematical logic I, Fall 2018 \\ Assignment 10}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, November 16 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+With regards to answering these problems, imagine that you are writing an answer to teach someone else in the class how to do the problem. In particular, you must give a complete outline for how you arrived at your answer. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+  \item Assume $I$ is a non-empty set. Recall that a \emph{partition} of $I$ is a non-empty collection $P$ of pairwise disjoint subsets of $I$ such that the union of all sets in $P$ is $I$ (we allow the empty set to be in $P$). Prove that the following are equivalent, for a collection $U$ of subsets of $I$:
+
+  \begin{enumerate}
+  \item $U$ is an ultrafilter on $I$.
+  \item $|U \cap P| = 1$ for any partition $P$ of $I$ with $|P| \le 3$.
+  \item $I \in U$, $U$ is closed under taking supersets ($A \in U$, $A \subseteq B \subseteq I$ implies $B \in U$), and for any two disjoint subsets $A$ and $B$ of $I$, if $A \cup B \in U$ then exactly one of $A$ or $B$ is in $U$.
+  \end{enumerate}
+
+\item Assume that $(A, V, F)$ is a voting system with at least three but finitely-many candidates (but possibly infinitely-many voters). Assume this voting system satisfies unanimity and independence of irrelevant alternatives. Show that there exists an ultrafilter $U$ on $V$ such that for any preference profile $(C_v)_{v \in V}$, $C = F ((C_v)_{v \in V})$ is given by, for $a, b \in A$, $a <^C b$ if and only if $\{v \in V \mid a <^{C_v} b\} \in U$.
+\item (The infinite pigeonhole principle) Let $\lambda$ be an infinite cardinal.
+
+  \begin{enumerate}
+  \item Show that for any finite cardinal $\mu$ and any function $f: \lambda \to \mu$ there exists $A \subseteq \lambda$ with $|A| = \lambda$ such that $f$ is constant on $A$.
+  \item Show that for any \emph{infinite} cardinal $\mu < \lambda$ and any $\chi < \lambda$, there exists $A \subseteq \lambda$ with $|A| \ge \chi^+$ such that $f$ is constant on $A$. (\emph{In general, we cannot find such an $A$ of cardinality $\lambda$, see the extra credit problem.})
+  \end{enumerate}
+\item Prove the De Bruijn-Erdős theorem: for any natural number $k < \omega$, a graph is $k$-colorable if and only if all of its finite subgraphs are $k$-colorable.
+\item (Extra credit)
+  \begin{enumerate}
+  \item Give an example of infinite cardinals $\mu < \lambda$ and a function $f: \lambda \to \mu$ such that $f$ is not constant on any set of cardinality $\lambda$.
+  \item Give an example of a function $f: [\mathbb{R}]^2 \to 2$ that has no uncountable homogeneous set. \emph{Note: this shows that we cannot replace ``infinite homogeneous set'' by ``homogeneous set of the cardinality of the domain'' in the statement of the infinite Ramsey theorem.} \emph{Hint: well-order the real numbers and compare the well-ordering with the usual ordering.}
+  \end{enumerate}
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

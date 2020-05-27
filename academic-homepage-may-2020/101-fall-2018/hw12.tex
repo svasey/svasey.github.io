@@ -1,0 +1,75 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 12]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 12}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, October 26 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+
+
+\item Recall that the \emph{order} of an element $a$ in a group $G$ is the minimal natural number $n$ (if it exists) such that $a^n = e$.
+  \begin{enumerate}
+  \item Give the the order of each element in $\mathbb{Z}_{8}$ (give a brief justification).
+  \item Give the order of each element in $D_4$, the group of symmetries of a square (give a brief justification).
+  \end{enumerate}
+\item Assume $f: G \to H$ is an isomorphism. Prove that if $G$ is cyclic, then $H$ is cyclic.
+\item Prove that $\mathbb{Z}_2 \times \mathbb{Z}_3$ is cyclic, but $\mathbb{Z}_2 \times \mathbb{Z}_4$ is not cyclic.
+\item Assume that $G$ is a finite group and $a \in G$.
+  \begin{enumerate}
+  \item Prove that there exists a (strictly positive) natural number $n$ such that $a^n = e$.
+  \item Prove that the order of $a$ is equal to the order of $a^{-1}$.
+  \end{enumerate}
+
+\item Prove the following:
+
+  \begin{enumerate}
+  \item If $G$ is a group and $a \in G$ has order $n$, then $\langle a \rangle = \{a^0, a^1, \ldots, a^{n - 1}\}$, and all those powers are distinct. \emph{(Recall that $\langle a \rangle$ is defined to be the set of all integer powers of $a$.)}
+  \item If $G$ is an infinite cyclic group, then $\mathbb{Z}$ is isomorphic to $G$.
+  \item If $G$ is a finite cyclic group with $n$ elements, then $\mathbb{Z}_n$ is isomorphic to $G$.
+  \end{enumerate}
+\item Assume $G$ is group and $H$ is a subgroup of $G$. We define a relation $\sim$ on $G$ by: $a \sim b$ if there exists $x \in H$ such that $a = bx$.
+  \begin{enumerate}
+  \item Prove that $\sim$ is an equivalence relation.
+  \item Write the equivalence classes of $\sim$ if $G = \mathbb{Z}_6$ and $H = \{[0], [3]\}$ (the operation on $G$ is addition modulo $6$).
+  \end{enumerate}
+\end{enumerate}
+
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Package user and package name</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch03.html" title="Chapter 3. How urpkg works" /><link rel="prev" href="ch03.html" title="Chapter 3. How urpkg works" /><link rel="next" href="ch03s03.html" title="Installation groups and file permissions" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Package user and package name</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><th width="60%" align="center">Chapter 3. How urpkg works</th><td width="20%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Package user and package name"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="user-pkgname"></a>Package user and package name</h2></div></div></div><p>
+  There is an importance distinction to make between a package name and a
+  package user. As already mentioned, urpkg creates a new user for each program
+  (urpkg calls them package) you install. The files that are then created all
+  have the new user as owner and can therefore easily be found.
+</p><div class="sect2" title="Generating a username"><div class="titlepage"><div><div><h3 class="title"><a id="id422913"></a>Generating a username</h3></div></div></div><p>
+    However, urpkg first has to come up with a name for this user. The name should
+    conform to the syntax of a username (e.g, no dot in the name) and should not
+    be the same as other users in the system. One could simply come up with a
+    unique number as username, however that would be really confusing and not
+    really helpful e.g to someone listing a file belonging to that package. 
+  </p><p>
+    The solution that urpkg uses is the following. We ask the user for, or
+    guess, a <span class="emphasis"><em>package name</em></span> that is basically the name of the
+    program we are installing. This name can syntactically be anything the user
+    wants. Then, from that name we generate a <span class="emphasis"><em>package user
+      name</em></span>. The package name is kept in the comment field of the user
+    name in <code class="filename">/etc/passwd</code>.
+  </p><p>
+    The package user name always begins
+    with <span class="quote">“<span class="quote">urpkg-</span>”</span>. This is a prefix to avoid that the
+    name collides with another user of the system. Urpkg then
+    generates the rest of the username using the beginning of the
+    package name, and adding some numbers if necessary. You should
+    look at the source if you want more details on the exact algorithm
+    which is used. Special characters in the package name are replaced
+    by <span class="quote">“<span class="quote">_</span>”</span>. For example, from a package
+    name <span class="quote">“<span class="quote">emacs-22</span>”</span>, the package user could
+    be <span class="quote">“<span class="quote">urpkg-emacs-22</span>”</span>. You shouldn't rely on
+    this, however, as the algorithm used by urpkg to generate user
+    names can change at any release without notice !
+  </p><p>
+    Note that package names (and package users) are always all in lowercase
+    letters. Even if you give your name explicitly, the case does not matter
+    and your name will automatically be converted to lowercase. For example,
+    running
+  </p><pre class="screen">
+    <code class="prompt">$ </code>urpkg --install --pkg-name=Emacs-22 make install
+  </pre><p>
+    Will still create a package name <span class="quote">“<span class="quote">emacs-22</span>”</span> and a package
+    user <span class="quote">“<span class="quote">urpkg-emacs-22</span>”</span>.
+  </p></div><div class="sect2" title="Finding the package user owning a file"><div class="titlepage"><div><div><h3 class="title"><a id="id423022"></a>Finding the package user owning a file</h3></div></div></div><p>
+    In general, you don't have to worry about package users, but it's good to
+    know about them, as you can still see them mentioned from time to time. For
+    example, assuming you really have emacs installed as a package named
+    emacs-22, doing 
+  </p><pre class="screen">
+    <code class="prompt">$ </code>ls -l $(which emacs)
+    -rwxr-xr-t 2 urpkg-emacs-22 urpkg-emacs-22 13576490 2008-03-21 17:59 /usr/bin/emacs
+  </pre><p>
+    will really give you the package user name of the package the
+    file <code class="filename">/usr/bin/emacs</code> belongs to.
+  </p></div><div class="sect2" title="Finding a package name"><div class="titlepage"><div><div><h3 class="title"><a id="id423054"></a>Finding a package name</h3></div></div></div><p>
+    As you learned in the previous chapter, you can specify a package name
+    explicitly using <code class="option">--pkg-name</code>. Urpkg can also guess a
+    package name for you from the current directory. Now how does it do it ?
+  </p><p>
+    Urpkg will simply take the basename of your current directory (i.e if your
+    current directory is <code class="filename">/var/tmp/emacs-22.1</code>, the basename
+    is <code class="filename">emacs-22.1</code>). It will then check if it has a version
+    string. A version string is defined as anything following a dash
+    (<code class="code">-</code>). In our example, there is a version string so the package
+    name would be <span class="quote">“<span class="quote">emacs-22.1</span>”</span>. If there is no version string,
+    urpkg will append one with the date in the following
+    format: <code class="code">YYYYmmdd</code>. For example, if you are developing your own
+    program, foo which is in a directory <code class="filename">/var/tmp/foo</code>, then
+    if you install it on June, 30th 2010 the package name will
+    be <span class="quote">“<span class="quote">foo-20100630</span>”</span>.
+  </p><p>
+    Of course, there cannot be two package with the same name
+    installed on the system, so urpkg will signal an error if you try
+    to give a package name which is already the name of an existing package.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03s03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 3. How urpkg works </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Installation groups and file permissions</td></tr></table></div></body></html>

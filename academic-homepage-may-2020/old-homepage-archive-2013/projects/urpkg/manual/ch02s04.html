@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Installing a program</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="Urpkg User Manual" /><link rel="up" href="ch02.html" title="Chapter 2. Getting started" /><link rel="prev" href="ch02s03.html" title="Adding installation directories and shared files" /><link rel="next" href="ch02s05.html" title="Playing with the program's files" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Installing a program</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Getting started</th><td width="20%" align="right"> <a accesskey="n" href="ch02s05.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Installing a program"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="inst-prog"></a>Installing a program</h2></div></div></div><p>
+  We are finally ready to install our foo package. Make sure
+  that <code class="filename">../allowed</code> is an installation directory and
+  that <code class="filename">../allowed/file2</code> is a shared file. Then run
+</p><pre class="screen">
+  <code class="prompt">$ </code>sudo urpkg --install cp -v foo1 file2 ../allowed/.
+</pre><p>
+  The command should terminate without error. The package foo has now been
+  installed and is part of the system. To list all installed packages, do
+</p><pre class="screen">
+  <code class="prompt">$ </code>urpkg --list
+</pre><p>
+  Notice that a date string has been happened to foo. In fact, the package name
+  was <span class="emphasis"><em>guessed</em></span> from the current directory. Had the directory
+  been named <code class="filename">foo-1.1</code>, the package name would have been
+  foo-1.1 , as a version string already existed. If you don't want the name to
+  be guessed, you can use <code class="option">--pkg-name</code> to give any name you want.
+</p></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02s03.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch02s05.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Adding installation directories and shared files </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Playing with the program's files</td></tr></table></div></body></html>

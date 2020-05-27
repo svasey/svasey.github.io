@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <title>Using TLS on svasey.org</title>
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="shortcut icon" href="./favicon.ico"
+	  type="image/x-icon" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+
+<div id="header">
+  <div id="translation-menu">
+      <p></p>
+    </div>
+  <div id="alternative-versions">
+    <p>
+      <a href="tls-user_en.source" accesskey="t">Plaintext Version</a>
+      | <a href="tls-user_en.chtml" accesskey="r">Printable Version</a>
+       | <a href="tls-user_en.pdf">PDF</a>
+    </p>
+  </div>
+</div>
+<!-- Beginning of the real content -->
+<div id="content">
+
+<div class="document">
+
+
+<div class="section" id="using-tls-on-svasey-org">
+<h2>Using TLS on svasey.org</h2>
+<p>To encrypt your communication with this site, and more importantly make sure you
+are <a class="reference external" href="https://secure.wikimedia.org/wikipedia/en/wiki/Man_in_the_middle_attack">talking to the right server</a>, you can use Transport Layer Security.</p>
+<p>To do so, simply change the <tt class="docutils literal"><span class="pre">http</span></tt> in the URL to <tt class="docutils literal"><span class="pre">https</span></tt>. If you use Firefox,
+you can use addons such as <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/redirector/">Redirector</a> to avoid doing this manually.</p>
+<div class="section" id="downloading-my-certificate">
+<h3>Downloading my certificate</h3>
+<p>Because I haven't paid large corporations to sign my certificate, most browsers
+will issue a warning when visiting this site with HTTPS.</p>
+<p>This is why you should download my certificate, explicitely verify its PGP
+signature, and tell your browser to trust it. More explicitely, on a UNIX-like
+system you can run the following commands:</p>
+<pre class="literal-block">
+$ wget http://certs.svasey.org/svasey_org.cer http://certs.svasey.org/svasey_org.cer.sig
+$ gpg --verify svasey_org.cer.sig
+</pre>
+<p>For the last command to work, you will need to <a class="reference external" href="../about_en.html#privacy-now">fetch my PGP key</a>. You can then
+tell your browser to trust <tt class="docutils literal"><span class="pre">svasey_org.cer</span></tt>. The way to do this is
+browser-dependent.</p>
+<p>You can also replace <tt class="docutils literal"><span class="pre">svasey_org</span></tt> by <tt class="docutils literal"><span class="pre">svasey_root</span></tt> in the above instructions, in
+order to download my self-signed root certificate.</p>
+</div>
+<div class="section" id="fingerprints">
+<h3>Fingerprints</h3>
+<div class="section" id="root-certificate">
+<h4>Root certificate</h4>
+<p>The fingerprints of the svasey root certificate (<a class="reference external" href="http://certs.svasey.org/svasey_root.cer">svasey_root.cer</a>) are:</p>
+<pre class="literal-block">
+SHA1: D2:E0:1C:64:AF:02:EF:12:CB:8D:4E:6A:65:C2:D1:2F:57:53:02:4C
+MD5 : 4C:F4:49:FE:2B:AE:03:EE:B0:86:43:D5:8A:09:DF:BB
+</pre>
+</div>
+<div class="section" id="svasey-org-certificate">
+<h4>svasey.org certificate</h4>
+<p>The fingerprints of the <tt class="docutils literal"><span class="pre">svasey.org</span></tt> certificate (<a class="reference external" href="http://certs.svasey.org/svasey_org.cer">svasey_org.cer</a>) are:</p>
+<pre class="literal-block">
+SHA1: CC:2F:2D:8A:59:88:66:87:35:31:1C:BB:D1:35:B0:B5:4B:5E:E7:5D
+MD5 : 57:21:E4:21:FB:85:5D:A0:B4:21:0C:93:CF:95:13:D7
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<!-- End of the content div -->
+</div>
+
+<div id="footer">
+  <div id="site-tree">
+    <p>
+      <span class="you-are-here">You are here : </span>
+      <span class="site-tree-text"><a href="index_en.html" class="site-tree-link">home</a> / <span class="site-tree-nolink" >tls-user</span></span>
+    </p>
+  </div>
+  <div id="footer-contact">
+    <p>
+      <a href="./about_en.html#contact-information">
+	Contact
+      </a>
+    </p>
+  </div>
+  <div id="footer-img">
+    <p>
+      <a href="http://validator.w3.org/check?uri=referer">
+	<img src="./img/valid-xhtml10.png" alt="Valid XHTML 1.0
+					       Transitional"
+	     id="valid-xhtml-img" />
+      </a>
+      <a href="http://www.anybrowser.org/campaign/">
+	<img src="./img/any-browser.png" alt="Viewable with any
+							   browser"
+	     id="any-browser-img" />
+      </a>
+    </p>
+  </div>
+  <div id="footer-notes">
+    <p>
+      Unless otherwise noted, the content of this page is in the
+      <a href="./copyright_en.html">public domain</a>.
+    </p>
+  </div>
+</div>
+</body>
+</html>

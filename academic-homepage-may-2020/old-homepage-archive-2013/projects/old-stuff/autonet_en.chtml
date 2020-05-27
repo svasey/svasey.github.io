@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Autonet</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="autonet">
+<h2>Autonet</h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Note:</th><td class="field-body">This is just a bunch of ugly bash scripts that more or less work on my
+laptop. As mentionned below, this is just a &quot;quick and dirty&quot; approach, a
+better design is definitely needed. I am not interested in this
+particular project anymore. Try to avoid using it if possible.</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="description">
+<h3>Description</h3>
+<p>Autonet is a quick and dirty alternative to the <a class="reference external" href="http://projects.gnome.org/NetworkManager/">GNOME Network Manager</a>. It
+automates the process of connecting to your favorite wired or wireless networks,
+while trying to stay robust and customizable.</p>
+</div>
+<div class="section" id="features">
+<h3>Features</h3>
+<ul class="simple">
+<li>Supports both wired and wireless networks</li>
+<li>Configurable via simple plain text files</li>
+<li>No interaction required: works in the background</li>
+<li>Constantly monitors the network connection and tries to reconnect when it
+fails</li>
+<li>Customizable: can be given post/pre connect script as well as
+connection-testing scripts...</li>
+<li>Released in the Public Domain</li>
+</ul>
+</div>
+<div class="section" id="news">
+<h3>News</h3>
+<div class="section" id="february-4th-2010-version-2010204">
+<h4>February 4th 2010: version 2010204</h4>
+<p>Initial release.</p>
+</div>
+</div>
+<div class="section" id="download">
+<h3>Download</h3>
+<p>Autonet is available both as a <a class="reference external" href="http://www.archlinux.org/pacman/">Pacman</a> package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+<a class="reference external" href="../download-install-doc_en.html">Generic download and install instructions</a>.</p>
+<ul class="simple">
+<li><a class="reference external" href="../../public-repo.svasey.org/src/autonet.tar.gz">Latest source tarball</a></li>
+<li><a class="reference external" href="../../public-repo.svasey.org/src/autonet.tar.gz.sig">PGP signature</a></li>
+</ul>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation</h3>
+<p>See the <a class="reference external" href="autonet-doc_en.html">autonet documentation page</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

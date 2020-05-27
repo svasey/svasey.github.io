@@ -1,0 +1,67 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 11]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 11}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, October 22 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Assume that $(G, \ast_G)$ and $(H, \ast_H)$ are groups, with identity elements $e_G$ and $e_H$ respectively. Assume $f: G \to H$ is a homomorphism, and assume $a \in G$. Prove that $f (a^{-1}) = (f (a))^{-1}$.
+\item Assume that $(G, \ast_G)$ and $(H, \ast_H)$ are groups, with identity elements $e_G$ and $e_H$ respectively. Assume $f: G \to H$ is a homomorphism. Recall the following two definitions:
+  \begin{itemize}
+  \item The \emph{kernel} of $f$, written $\ker (f)$, is the set $\{a \in G \mid f (a) = e_H\}$.
+  \item The \emph{image} of $f$, written $\im (f)$,  is the set $\{b \in H \mid \text{there exists } a \in G \text{ such that } f (a) = b\}$.
+  \end{itemize}
+
+  \begin{enumerate}
+  \item Prove that $\ker (f)$ is a subgroup of $G$ and $\im (f)$ is a subgroup of $H$.
+  \item Prove that $f$ is injective if and only if $\ker (f) = \{e_G\}$.
+  \end{enumerate}
+\item Write the multiplication tables of $\mathbb{Z}_2 \times \mathbb{Z}_2$ (see problem 4 on assignment 10) and of $\mathbb{Z}_4$ (each time, the operation on the $\mathbb{Z}_n$'s is addition modulo $n$). Use the tables to figure out whether or not these two groups are isomorphic. \emph{Hint: compare the diagonals of the tables.}
+\item Prove that the group $\mathbb{Z}$ of integers is isomorphic to the group $E$ of even integers (with addition as the binary operation in both groups).
+\item (Extra credit) Prove that:
+  \begin{enumerate}
+  \item When $n \le 3$, any group of order $n$ is isomorphic to $\mathbb{Z}_n$.
+  \item Any group of order $4$ is isomorphic to either $\mathbb{Z}_4$ or $\mathbb{Z}_2 \times \mathbb{Z}_2$.
+  \end{enumerate}
+\end{enumerate}
+
+
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

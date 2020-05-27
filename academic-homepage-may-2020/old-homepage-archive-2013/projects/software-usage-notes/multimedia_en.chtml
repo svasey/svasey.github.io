@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Multimedia documentation</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="multimedia-documentation">
+<h2>Multimedia documentation</h2>
+<p>Documents how to do some multimedia tasks</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#convert-wma-to-ogg" id="id1">Convert wma to ogg</a></li>
+<li><a class="reference internal" href="#convert-ogg-to-mp3" id="id2">Convert ogg to mp3</a></li>
+<li><a class="reference internal" href="#ripping-a-dvd" id="id4">Ripping a DVD</a></li>
+<li><a class="reference internal" href="#ripping-an-audio-cd" id="id5">Ripping an audio CD</a></li>
+<li><a class="reference internal" href="#merging-two-avi-files" id="id6">Merging two avi files</a></li>
+<li><a class="reference internal" href="#merging-two-mkv-files" id="id7">Merging two mkv files</a></li>
+<li><a class="reference internal" href="#playing-with-subtitles" id="id8">Playing with subtitles</a></li>
+<li><a class="reference internal" href="#sound-settings-in-mplayer" id="id9">Sound settings in mplayer</a></li>
+<li><a class="reference internal" href="#extract-the-audio-content-of-a-video-file" id="id10">Extract the audio content of a video file</a></li>
+<li><a class="reference internal" href="#extract-images-from-a-video-file" id="id11">Extract images from a video file</a></li>
+<li><a class="reference internal" href="#renaming-an-audio-file-based-on-id3-tags" id="id12">Renaming an audio file based on ID3 tags</a><ul>
+<li><a class="reference internal" href="#references" id="id13">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="convert-wma-to-ogg">
+<h3>Convert wma to ogg</h3>
+<p>You need to dump the <tt class="docutils literal"><span class="pre">wma</span></tt> file into an uncompressed format (<tt class="docutils literal"><span class="pre">wav</span></tt>):</p>
+<pre class="literal-block">
+$ mplayer -ao pcm:file=/tmp/out.wav $wma_file
+</pre>
+<p>Then encode it into <tt class="docutils literal"><span class="pre">ogg</span></tt>:</p>
+<pre class="literal-block">
+$ oggenc -o ${wma_file%.wma}.ogg /tmp/out.wav
+</pre>
+</div>
+<div class="section" id="convert-ogg-to-mp3">
+<h3>Convert ogg to mp3</h3>
+<p>Same as previous section for the dumping part, but use:</p>
+<pre class="literal-block">
+$ lame /tmp/out.wav ${ogg_file%.ogg}.mp3
+</pre>
+<p>for the encoding part.</p>
+</div>
+<div class="section" id="ripping-a-dvd">
+<h3>Ripping a DVD</h3>
+<p>Download <a class="reference external" href="http://handbrake.fr/">Handbrake</a> (command line tool should be enough), and <a class="reference external" href="http://dvdbackup.sourceforge.net/usage.html">dvdbackup</a></p>
+<p>Rip the dvd into a temporary directory (here the current directory):</p>
+<pre class="literal-block">
+dvdbackup -i /dev/dvd -o . -M
+</pre>
+<p>Then list the titles:</p>
+<pre class="literal-block">
+handbrake -i ~/tmp/where_was_ripped -t 0
+</pre>
+<p>Do the rip:</p>
+<pre class="literal-block">
+handbrake -i ~/tmp/where_was_ripped -t 1 -o $outfile.mkv  \
+    --size 700 --two-pass --audio 1
+</pre>
+</div>
+<div class="section" id="ripping-an-audio-cd">
+<h3>Ripping an audio CD</h3>
+<p>There is a script called <a class="reference external" href="http://code.google.com/p/abcde/">abcde</a> that will do this very well. Download and
+install it and insert the CD you want to rip. The configuration is made using a
+configuration file: <tt class="docutils literal"><span class="pre">$HOME/.abcde.conf</span></tt>. Mine just contains:</p>
+<pre class="literal-block">
+OUTPUTTYPE=&quot;flac&quot;
+</pre>
+<p>Since I wanted to use <a class="reference external" href="http://flac.sourceforge.net/">FLAC</a> instead of the default, <a class="reference external" href="http://www.vorbis.com/">Ogg Vorbis</a>. The manpage
+documents all the configuration file options.</p>
+<p>Once you are done configuring <tt class="docutils literal"><span class="pre">abcde</span></tt>, just cd to the directory where you want
+to rip and run:</p>
+<pre class="literal-block">
+$ abcde
+</pre>
+<p>The script will automatically download the disc's metadata (artist, album and
+song names, genre...), ask you to confirm them and then rip and encode the
+music.</p>
+</div>
+<div class="section" id="merging-two-avi-files">
+<h3>Merging two avi files</h3>
+<p>To merge two avi file <em>that have the same format</em> (because e.g they are
+splitted into two CDs):</p>
+<pre class="literal-block">
+mencoder -oac copy -ovc copy file1.avi file2.avi -o output.avi
+</pre>
+<p>If <tt class="docutils literal"><span class="pre">mencoder</span></tt> tells you the two files do not have the same format, then the
+simplest method I have seen is to use <tt class="docutils literal"><span class="pre">avimerge</span></tt>, from <a class="reference external" href="http://www.transcoding.org/transcode">transcode</a>:</p>
+<pre class="literal-block">
+avimerge -o output.avi -i file1.avi file2.avi
+</pre>
+<p>If you see messages like:</p>
+<pre class="literal-block">
+No audiodata left for track 0-&gt;0 (6078000.00=6078000.00)
+</pre>
+<p>And you see that audio is out of sync, you could use the <tt class="docutils literal"><span class="pre">-c</span></tt> flag. See the
+manpage for more information.</p>
+</div>
+<div class="section" id="merging-two-mkv-files">
+<h3>Merging two mkv files</h3>
+<p>To merge two mkv files, you should use mkvmerge from <a class="reference external" href="http://www.bunkus.org/videotools/mkvtoolnix/">MKVToolnix</a>:</p>
+<pre class="literal-block">
+$ mkvmerge --append-mode track -o full.mkv file1.mkv '+file2.mkv'
+</pre>
+</div>
+<div class="section" id="playing-with-subtitles">
+<h3>Playing with subtitles</h3>
+<p>If you want to edit the subtitles or re-time them, the one utility I found
+useful is <a class="reference external" href="http://karasik.eu.org/software/">Subtitles</a>, and its associated command line utility <tt class="docutils literal"><span class="pre">subs</span></tt> . As an
+example, to shift the times in a <tt class="docutils literal"><span class="pre">.srt</span></tt> file 60 seconds later, one can just do:</p>
+<pre class="literal-block">
+$ subs -b 60 file.srt
+</pre>
+</div>
+<div class="section" id="sound-settings-in-mplayer">
+<h3>Sound settings in mplayer</h3>
+<p>Use 0 and 9 to respectively increase or decrease the volume while mplayer is
+playing. You can use <tt class="docutils literal"><span class="pre">-softvol-max</span></tt> to adjust the maximum volume. The
+argument that is taken is the maximum amplification level (in percent). For
+example:</p>
+<pre class="literal-block">
+$ mplayer -softvol-max 2000 somefile.avi
+</pre>
+<p>will allow an amplification of 20 times, at the cost of some lost quality and
+granularity.</p>
+</div>
+<div class="section" id="extract-the-audio-content-of-a-video-file">
+<h3>Extract the audio content of a video file</h3>
+<p>To get only the audio track of a video file, use mplayer's <tt class="docutils literal"><span class="pre">-dumpaudio</span></tt>:</p>
+<pre class="literal-block">
+$ mplayer -dumpaudio $videofile -dumpfile $audiofile
+</pre>
+<p>Since this is not always very stable, here is an alternative method using
+<a class="reference external" href="http://ffmpeg.org">ffmpeg</a>:</p>
+<pre class="literal-block">
+$ ffmpeg -i $videofile $audiofile
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">$audiofile</span></tt> should have the extension you want, e.g mp3.</p>
+</div>
+<div class="section" id="extract-images-from-a-video-file">
+<h3>Extract images from a video file</h3>
+<p>To extract images from a video file, use mplayer's <tt class="docutils literal"><span class="pre">-vo</span></tt> option:</p>
+<pre class="literal-block">
+$ mplayer -ss $interval -vo $format -frames $nframes -nosound $file
+</pre>
+<p>Where:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">$interval</span></tt> is the number of seconds to wait between two frames. Can be a
+decimal number, like 0.01.</li>
+<li><tt class="docutils literal"><span class="pre">$format</span></tt> is the picture format to use. Can be for example <tt class="docutils literal"><span class="pre">jpeg</span></tt>, <tt class="docutils literal"><span class="pre">png</span></tt>,
+<tt class="docutils literal"><span class="pre">gif</span></tt>...</li>
+<li><tt class="docutils literal"><span class="pre">$nframes</span></tt> is the number of frames to take</li>
+<li><tt class="docutils literal"><span class="pre">$file</span></tt> is the path to your file.</li>
+</ul>
+<p>Example:</p>
+<pre class="literal-block">
+$mplayer -ss 0.01 -vo jpeg -frames 5 -nosound mvi_1234.avi
+</pre>
+<p>will dump the first five frames of the movie <tt class="docutils literal"><span class="pre">mvi_1234.avi</span></tt> encoding them in the
+<a class="reference external" href="http://en.wikipedia.org/wiki/JPEG">JPEG</a> format, waiting 0.01 seconds between each frame.</p>
+</div>
+<div class="section" id="renaming-an-audio-file-based-on-id3-tags">
+<h3>Renaming an audio file based on ID3 tags</h3>
+<p>You can use the <a class="reference external" href="http://home.wanadoo.nl/squell/id3.html">id3</a> tool to edit / read and rename file according to their ID3
+tags. One command I often use to rename all files to a <tt class="docutils literal"><span class="pre">$track-$title.mp3</span></tt>
+format is:</p>
+<pre class="literal-block">
+$ id3 -f '%#n-%t.mp3' *.mp3
+</pre>
+<div class="section" id="references">
+<h4>References</h4>
+<ul class="simple">
+<li>The <a class="reference external" href="http://lists.mplayerhq.hu/pipermail/mplayer-users/2004-August/047452.html">extracting image from a movie</a> post on mplayer's mailing list.</li>
+</ul>
+<!-- Disappeared... -->
+<!-- * The `Subtitle manipulation tools`_ article on `Linux.com`. -->
+<!-- .. _Subtitle manipulation tools: http://www.linux.com/archive/feature/125978 -->
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

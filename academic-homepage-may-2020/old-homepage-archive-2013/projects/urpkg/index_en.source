@@ -1,0 +1,90 @@
+.. default-role:: literal
+
+
+Urpkg
+=====
+
+Description
+-----------
+
+Urpkg lets you install programs in a safe and undoable way. It is especially
+useful to install programs from source when no packages from your distribution
+is available. It is then very easy to uninstall the programs you don't want
+anymore. Urpkg was originally inspired by the `LFS Package user hint`_.
+
+Urpkg works by creating a new user for each package it has to install. The
+package is then installed with the privilege of the new user. This prevents a
+new package from overwriting files from another package for example.
+
+.. _LFS Package user hint: http://www.linuxfromscratch.org/hints/downloads/files/more_control_and_pkg_man.txt
+
+Features
+--------
+
+* Can be used with any installation methods, i.e not only a Makefile.
+* Avoids a dangerous root installation by restricting privileges to what is
+  effectively needed.
+* Lets you decide where you want to allow packages to have write access
+* Lets you uninstall any program.
+* Could also be useful to create binary packages in an automated way. The manual
+  describes `how to create Slackware packages`_, for examples.
+* Tested on LFS, Arch Linux and Slackware 12.1, but should work on other
+  GNU/Linux distributions as well.
+* Released in the Public Domain
+
+.. _how to create Slackware packages: manual/index-nochunk.html#slackpkg
+
+News
+----
+
+February 4th 2010: version 20100204
+###################################
+
+Released into the public domain.
+
+March 28th 2009: version 1.9
+############################
+
+Fixed a bug that would remove directories even though they were not empty. 
+
+March 21st 2009: version 1.8
+############################
+
+Fixed infinite looping bug which appeared in Arch Linux. 
+
+March 21st 2009: version 1.7
+############################
+
+* Added arch linux PKGBUILD
+* Added DESTDIR option to CMakeLists
+* Documented documentation build dependencies
+* Fixed some bugs in the installation scripts
+
+Download
+--------
+
+Urpkg is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+* `Old releases`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/urpkg.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/urpkg.tar.gz.sig
+.. _Old releases: ../../download.svasey.org/urpkg/
+
+Documentation
+-------------
+
+Urpkg has a user manual. You can read the online version with `one page for each
+node`_ or with `everything on one page`_
+
+You should always refer to *that* online manual first before asking a question
+or reporting a bug.
+
+.. _one page for each node: manual/index.html
+.. _everything on one page: manual/index-nochunk.html

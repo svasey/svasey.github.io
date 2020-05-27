@@ -1,0 +1,74 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 10]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 10}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, October 19 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item List all the subgroups of $D_3$, the group of symmetries of an equilateral triangle.
+\item Assume that $G$ is a group. Recall (see p.~36 in Judson) that for $n \in \mathbb{N}$ and $a \in G$, $a^n$ is defined to be the product (using the group operation) of $a$ with itself $n$ times. For example, $a^1 = a$, $a^2 = a a$, $a^3 = a a a$, etc.
+  \begin{enumerate}
+  \item Assume that $G$ is \emph{abelian} and $a, b \in G$. Prove carefully that for any natural number $n$, $(ab)^n = a^n b^n$. \emph{Hint: induction.}
+  \item Give an example showing that the previous result is not true for all groups.
+  \item Assume that $G$ is abelian. Prove that $\{a \in G \mid a^2 = e\}$ is a subgroup of $G$.
+  \end{enumerate}
+
+\item Assume $G$ is a group. Is the intersection of two subgroups of $G$ a subgroup of $G$? What about the union of two subgroups of $G$?
+\item Assume that $(G, \ast_G)$ and $(H, \ast_H)$ are groups. We define a binary operation $\ast$ on $G \times H$ (the cartesian product of $G$ and $H$) as follows: $(g_1, h_1) \ast (g_2, h_2) = (g_1 \ast_G g_2, h_1 \ast_H h_2)$.
+  \begin{enumerate}
+  \item Prove that $(G \times H, \ast)$ is a group (it is called the \emph{direct product} of $G$ and $H$, and is usually just written $G \times H$)).
+  \item If $G$ has order $n$ and $H$ has order $m$ (for $m, n \in \mathbb{N}$), what is the order of $G \times H$ (recall that the order of a group is the number of elements in the group)?
+  \end{enumerate}
+\item For this problem, fix a natural number $n$. It may be beneficial to read the first part of section 3.1 in Judson regarding the integers mod $n$. Recall: for $a, b$ integers, we say that (by definition) $a$ is \emph{congruent to $b$ modulo $n$}, written $a \equiv b \text{ mod } n$ if $n$ divides $a - b$. We will also write $a \equiv_n b$ to mean that $a$ is congruent to $b$ modulo $n$. Recall (Example 11.8 in Hammack) that $\equiv_n$ is an equivalence relation on $\mathbb{Z}$. We define the set $\mathbb{Z}_n$ to be the set of equivalence classes of the integers modulo $n$. That is, $\mathbb{Z}_n = \{[0], [1], [2], \ldots, [n - 1]\}$. 
+
+  \begin{enumerate}
+  \item Assume that $a, b, c, d$ are integers and $n$ is a natural number. Assume that $a \equiv_n c$ and $b \equiv_n d$. Prove (using the definition of congruence modulo $n$) that $a + b \equiv_n c + d$.
+  \item We define a relation $R$ from $\mathbb{Z}_n \times \mathbb{Z}_n$ to $\mathbb{Z}_n$ by $(x, y) R z$ if and only if there exists integers $a, b, c$ so that $x = [a]$, $y = [b]$, $z = [c]$, and $a + b \equiv_n c$. Use the previous part to prove that $R$ is a function from $\mathbb{Z}_n \times \mathbb{Z}_n$ to $\mathbb{Z}_n$. What is the output of $([a], [b])$ under this function?
+  \item The previous exercise showed that $R$ defines a binary operation, which is just ``addition modulo $n$''. We will write $+$ for this operation. Show that $(\mathbb{Z}_n, +)$ is a group.
+  \item Convince yourself that one can similarly define a $\cdot$ operation on $\mathbb{Z}_n$ (multiplication modulo $n$) such that $[a] \cdot [b] = [a \cdot b]$ (you do not need to write anything). Answer the following:
+    \begin{enumerate}
+    \item Is $(\mathbb{Z}_n, \cdot)$ a group?
+    \item Prove the following general result: assume $\ast$ is a binary operation on a set $G$ that satisfies the first two axioms of groups (associativity and existence of an identity $e$). Show that the set $H = \{a \in G \mid a \text{ has an inverse in } G\}$ is a group under the operation $\ast$. Deduce that the set of elements $[x]$ in $\mathbb{Z}_n$ such that there is $[y] \in \mathbb{Z}_n$ with $[x] \cdot [y] = [1]$ is a group under multiplication modulo $n$. This group is called the group of \emph{units} modulo $n$, and written $U (n)$.
+    \item List all the elements of $U (9)$.
+    \end{enumerate}
+  \end{enumerate}
+\item (Extra credit) Assume $G$ is a group such that for all $a \in G$, $a^2 = e$. Prove that $G$ is abelian.
+\end{enumerate}
+
+
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

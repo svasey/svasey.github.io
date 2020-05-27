@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>CD / DVD: reading, ripping, burning</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="cd-dvd-reading-ripping-burning">
+<h2>CD / DVD: reading, ripping, burning</h2>
+<div class="section" id="burning-a-file-to-a-cd-r-basic">
+<h3>Burning a file to a CD-R (basic)</h3>
+<p>This documents how to do this from the command line. I assume your CD burner is
+mapped to the device file <tt class="docutils literal"><span class="pre">/dev/sr1</span></tt>.</p>
+<p>First, make an iso of the directory you want to burn:</p>
+<pre class="literal-block">
+mkisofs -r -R -J -l your-directory &gt; your-iso.iso
+</pre>
+<p>Then burn the iso (check that root has write access to <tt class="docutils literal"><span class="pre">/dev/sr1</span></tt>):</p>
+<pre class="literal-block">
+sudo cdrecord -v dev=/dev/sr1 your-iso.iso
+</pre>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<p>I basically copied-down the instructions from <a class="reference external" href="http://www.yolinux.com/TUTORIALS/LinuxTutorialCDBurn.html">a YoLinux tutorial</a></p>
+</div>
+</div>
+</div>
+</body>
+</html>

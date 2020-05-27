@@ -1,0 +1,87 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Ls}{\mathcal{L}}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+\newcommand{\Cc}{\mathbb{C}}
+
+
+\newcommand{\Ff}{\mathbb{F}}
+\newcommand{\Tor}{\operatorname{Tor}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\Ann}{\operatorname{Ann}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\Mult}{\operatorname{Mult}}
+
+\title[Math 123, Spring 2020: assignment 10]{Math 123 - Algebra II - Spring 2020 \\ Assignment 10}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, April 14, 11h59pm.} (please submit your assignment as a PDF on Canvas). Unless otherwise noted, references are to Dummit and Foote, \emph{Algebra}, 3rd edition, Wiley, 2004.
+
+\section*{Practice problems} (\emph{Not} for credit. No need to submit your solutions. Try to do them while minimally looking at the textbook)
+
+\begin{enumerate}
+\item State and prove the fundamental theorem of Galois theory.
+\item Prove that an extension $K / F$ is Galois if and only if $K$ is the splitting field of a separable polynomial in $F[x]$.
+\item Let $K / F$ be an extension. True or false?
+  \begin{enumerate}
+  \item The fixed field of $\Aut (K / F)$ always contains $F$.
+  \item The fixed field of $\Aut (K / F)$ is always contained in $F$.
+  \item If $K / F$ is a Galois extension and $E$ is an intermediate field, then $K / E$ is Galois.
+  \item If $K / F$ is a Galois extension and $E$ is an intermediate field, then $E / F$ is Galois.
+  \end{enumerate}
+\end{enumerate}
+\section*{Problems for credit}
+\begin{enumerate}
+\item You should have the assignment from another student available for review in your Canvas todo list. Review problem 2 from that assignment (submit your comment on Canvas, \emph{not} with this assignment). Refer to the peer review instructions on the course website for more details. \emph{You are encouraged not to look at the official solution before submitting your review!}
+
+\item (DF, 14.2.1) Determine the minimal polynomial over $\Qq$ for $\sqrt{2} + \sqrt{5}$.
+\item (DF, 14.2.3)
+  \begin{enumerate}
+  \item Determine the Galois group of the polynomial $f(x) = (x^2 - 2)(x^2 - 3)(x^2 - 5) \in \Qq[x]$.
+  \item Describe \emph{all} the subfields of the splitting field of $f (x)$.
+  \end{enumerate}
+\item (DF, 14.2.5) Prove that the Galois group of $x^p - 2 \in \Qq[x]$, for $p$ a prime, is isomorphic to the group of matrices $\begin{pmatrix}
+a & b \\ 0 & 1 \end{pmatrix}$, where $a, b \in \Ff_p$, $a \neq 0$.
+
+\item Prove that $n$ divides $\phi (p^n - 1)$ for any prime $p$ and any integer $n \ge 1$. \emph{Hint: study the automorphisms of the multiplicative group of $\Ff_{p^n}$}.
+
+\end{enumerate}
+\end{document}

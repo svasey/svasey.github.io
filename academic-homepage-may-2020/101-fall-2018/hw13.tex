@@ -1,0 +1,59 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+%\newcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{im}}
+
+\title[Math 101, Fall 2018: assignment 13]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 13}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, October 29 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the course textbooks, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+
+
+\item First, a definition: we say $H$ is a \emph{normal subgroup} of a group $G$ if $H$ is a subgroup of $G$ and $gH = Hg$ for all $g \in H$. That is, the left and the right cosets coincide.
+
+  \begin{enumerate}
+  \item Prove that any subgroup of an abelian group is normal.
+  \item List the normal subgroups of $D_3$, the group of symmetries of an equilateral triangle. \emph{(Recall that you already listed all the subgroups of $D_3$ in problem 1 of assignment 10)}
+  \end{enumerate}
+\item Assume $G$ is a group of order $9$ and there exists $a \in G$ such that $a^3 \neq e$. Prove that $G$ is cyclic.
+  
+\item Submit your project proposal (as a PDF file) by email to Grace (\url{g_whitney@college.harvard.edu}), Michele (\url{micheletienni@college.harvard.edu}, and me (\url{sebv@math.harvard.edu})). Please send a single email per group. 
+\item (Extra credit) Assume $p$ is a prime, $n$ is a natural number, and $G$ is a group of order $p^n$. Show that $G$ has a subgroup of order $p$.
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

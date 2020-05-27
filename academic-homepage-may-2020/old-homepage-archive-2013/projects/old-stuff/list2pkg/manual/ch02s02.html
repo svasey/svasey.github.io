@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Creating your first package</title><meta name="generator" content="DocBook XSL Stylesheets V1.76.1" /><link rel="home" href="index.html" title="list2pkg User Manual" /><link rel="up" href="ch02.html" title="Chapter 2. Getting started" /><link rel="prev" href="ch02.html" title="Chapter 2. Getting started" /><link rel="next" href="ch03.html" title="Chapter 3. Using list2pkg" /></head><body><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Creating your first package</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch02.html">Prev</a> </td><th width="60%" align="center">Chapter 2. Getting started</th><td width="20%" align="right"> <a accesskey="n" href="ch03.html">Next</a></td></tr></table><hr /></div><div class="sect1" title="Creating your first package"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="first-package"></a>Creating your first package</h2></div></div></div><p>
+  In order to test what list2pkg can do, we are going to create a test
+  package. A <code class="filename">testing</code> directory is included with list2pkg .
+  Among other things, it contains some dummy files that can be used to create a
+  package. First, cd to it.
+</p><pre class="screen">
+  <code class="prompt">$ </code>cd testing
+</pre><div class="sect2" title="The file list"><div class="titlepage"><div><div><h3 class="title"><a id="id396048"></a>The file list</h3></div></div></div><p>
+    list2pkg takes two arguments: a list of the files that will belong to the
+    package, and the package file we will create. List2pkg can also read a
+    file list from standard input.
+  </p><p>
+    The format of a list is very simple: each line must contains the path to a
+    file. This path can either be absolute (recommended) or relative to the
+    directory from which list2pkg is invoked.
+  </p><p>
+    For this first example, we are going to use the list of files
+    in <code class="filename">filelist</code>, which contains files
+    in <code class="filename">src</code>. Feel free to look around.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>cat filelist
+    <code class="prompt">$ </code>ls -lR src
+  </pre><p>
+    Note an important detail: if directories are given in the file
+    list, <span class="emphasis"><em>they will not be copied recursively</em></span>. This means that if
+    the file <code class="filename">/home</code> is in your list, the package will not
+    contain all files from all home directories, but only an
+    empty <code class="filename">/home</code> directory.
+  </p></div><div class="sect2" title="The package tree"><div class="titlepage"><div><div><h3 class="title"><a id="id396682"></a>The package tree</h3></div></div></div><p>
+    list2pkg does not create the slackware package directly using the files that
+    are given in the list. Instead, it copies those files to a temporary
+    directory, do some adjustments there, and then
+    call <span class="command"><strong>makepkg</strong></span>, which is Slackware's standard tool for
+    package creation. This temporary directory is called the <span class="emphasis"><em>package tree
+    directory</em></span> by list2pkg .
+  </p><p>
+    If the user does not specify one, list2pkg creates a temporary directory in
+    e.g <code class="filename">/var/tmp</code>, do its stuff and then remove the
+    directory. If a package tree directory is given on the command line, the
+    package structure is created inside instead, and it is <span class="emphasis"><em>not</em></span>
+    deleted at the end of the process.
+  </p><p>
+    Since you want to have a clue what is going on, we are going to use our own
+    package tree directory.
+  </p><pre class="screen">
+    <code class="prompt">$ </code>mkdir treedir
+  </pre></div><div class="sect2" title="The package file"><div class="titlepage"><div><div><h3 class="title"><a id="id396731"></a>The package file</h3></div></div></div><p>
+    Following Slackware package's convention, the file name must have several
+    information in it: the program's name, the version, the machine it was
+    compiled for, and the creator's name along with the build version. Each of
+    these fields must be separated by a dash. After this, the file extension,
+    .tgz must follow. For more information on Slackware package naming, see
+    <a class="ulink" href="http://www.linuxpackages.net/howto.php?page=perfect-package" target="_top">
+      The Perfect Package</a>
+  </p><p>
+    As an example, we will use <code class="filename">test-0.1-noarch-2usr.tgz</code> as
+    a package name.
+  </p></div><div class="sect2" title="Putting it all together"><div class="titlepage"><div><div><h3 class="title"><a id="id396758"></a>Putting it all together</h3></div></div></div><p>
+    It's now time to run the package-creating command
+  </p><pre class="screen">
+    <code class="prompt">$ </code>sudo list2pkg --treedir=treedir --verbose filelist \
+    test-0.1-noarch-2usr.tgz
+  </pre><p>
+    The command should finish without errors, and
+    a <code class="filename">test-0.1-noarch-2usr.tgz</code> file should have been
+    created. Note that you need root privilege, because otherwise some owner and
+    groups information might not be saved correctly. You can check that all
+    files in the file list have been packed correctly (there are subtleties
+    related to symlinks that are explained in <a class="xref" href="ch03s03.html" title="Tricky cases">the section called “Tricky cases”</a>)
+  </p><pre class="screen">
+    <code class="prompt">$ </code>tar --list --verbose -f test-0.1-noarch-2usr.tgz
+    <code class="prompt">$ </code>ls -lR treedir
+  </pre></div><div class="sect2" title="The package's content"><div class="titlepage"><div><div><h3 class="title"><a id="id396914"></a>The package's content</h3></div></div></div><p>
+    Notice that an <code class="filename">install/</code> directory with the necessary
+    files has been created automatically. A
+    minimalist <code class="filename">install/slack-desc</code> file was created, along
+    with a <code class="filename">doinst.sh</code> script. This file deserves special
+    attention. You should see some special commands between the <code class="code">#BEGIN:
+    AUTO_LIST2PKG</code> and <code class="code">#END: AUTO_LIST2PKG</code> comments. Here is
+    what mine looks like.
+  </p><pre class="screen">
+    #BEGIN: AUTO_LIST2PKG
+    groupadd john || (if test $? -ne 9; then exit 1; fi)
+    useradd john || (if test $? -ne 9; then exit 1; fi)
+    chown -v john home/john || exit 1
+    chgrp -v john home/john || exit 1
+    chmod -v 755 home/john || exit 1
+    chown -v john home/john/rep || exit 1
+    chgrp -v john home/john/rep || exit 1
+    chmod -v 775 home/john/rep || exit 1
+    chown -v john home/john/rep/list2pkg || exit 1
+    chgrp -v john home/john/rep/list2pkg || exit 1
+    chmod -v 775 home/john/rep/list2pkg || exit 1
+    chown -v john home/john/rep/list2pkg/testing || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir2 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir2 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir2 || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir1 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir1 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir1 || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir3 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir3 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir3 || exit 1
+    chown -v john home/john/rep/list2pkg/testing/src/dir3/dir4 || exit 1
+    chgrp -v john home/john/rep/list2pkg/testing/src/dir3/dir4 || exit 1
+    chmod -v 775 home/john/rep/list2pkg/testing/src/dir3/dir4 || exit 1
+    #END: AUTO_LIST2PKG
+  </pre><p>
+    (yes, my username is john). This script actually tries to recreate the
+    owners and groups of the package's file, in case they do not exist on the
+    target system. If you don't like this, you can use
+    the <code class="filename">list2pkg.conf</code> file. See 
+    <a class="xref" href="ch03.html#users-groups-handling" title="Users and groups handling">the section called “Users and groups handling”</a> for more information.
+  </p></div></div><div class="navfooter"><hr /><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch02.html">Prev</a> </td><td width="20%" align="center"><a accesskey="u" href="ch02.html">Up</a></td><td width="40%" align="right"> <a accesskey="n" href="ch03.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter 2. Getting started </td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top"> Chapter 3. Using list2pkg</td></tr></table></div></body></html>

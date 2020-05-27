@@ -1,0 +1,76 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 5]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 5}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Tuesday, October 8 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item (MN, 5.1.1) Draw all pairwise nonisomorphic trees on 6 vertices.
+
+  Make sure you list all of them, and that no two of your drawings are isomorphic. There is no need to justify. It may help to start drawing the trees with fewer vertices.
+\item (MN, 5.1.7) King Uxamhwiashurh had 4 sons, 10 of his male descendants had 3 sons each, 15 had 2 sons, and all others died childless. How many male descendants did King Uxamhwiashurh have?  
+\item Prove or disprove:
+  \begin{enumerate}
+  \item Every 1-connected graph which is not 2-connected is a tree.
+  \item No tree is 2-connected.
+  \item No $k$-connected graph can contain a vertex of degree $k - 1$.
+  \item Every graph with minimal vertex degree $k$ is $k$-connected.
+  \end{enumerate}
+  \item (Cactus decomposition)
+    Let $G$ be a connected graph. A \emph{cut vertex} of $G$ is a vertex $v$ so that $G - v$ is disconnected. A \emph{block} of $G$ is an induced subgraph $B$ of $G$ that is connected, contains no cut vertex (that is, $B$ remains connected after removing any vertex from $B$), and is maximal with that property (adding any edge to $B$ no longer keeps it connected or adds a cut vertex). 
+
+    \begin{enumerate}
+    \item What are the blocks of the graph below\footnote{Source: \url{https://commons.wikimedia.org/wiki/File:Block_graph.svg}}? No need to justify.
+
+      \includegraphics[height=4cm]{block-graph.png}
+      
+    \item Prove that any two blocks of $G$ have at most one vertex in common.
+    \item We form a graph $T$ as follows: The vertex set of $T$ is $\mathcal{B} \cup \mathcal{C}$, where $\mathcal{B}$ is the set of all blocks of $G$ and $\mathcal{C}$ is the set of all cut vertices of $G$. We put an edge between a cut vertex $x$ and a block $B$ if $x$ is a vertex of $B$. Prove that $T$ is a tree.
+    \end{enumerate}
+
+
+  \item (MN, 4.6.6) Let $d \ge 3$ be a natural number and let $G$ be a $d$-regular graph (this is a graph where every vertex has degree $d$). Assume that $G$ is $d$-edge-connected (that is, $G$ remains connected after removing any $d - 1$ edges). Prove that, for all natural numbers $k$, removing any $k$ vertices disconnects $G$ into at most $k$ connected components. \emph{Hint: Suppose not. Fix a set $A$ of $k$ vertices disconnecting $A$ into more than $k$ components. Count in two ways the edges coming out of $A$.}
+
+  \item (Extra credit -- hard!) Prove Menger's theorem: if $G$ is a $k$-connected graph and $a, b$ are vertices, then there exists $k$ disjoint paths from $a$ to $b$. Here, \emph{disjoint} means that the paths share no common vertices (except for the endpoints).
+\end{enumerate}
+
+
+
+\end{document}

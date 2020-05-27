@@ -1,0 +1,79 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 4]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 4}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Friday, September 20 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results covered in class or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Show that for any non-negative integer $n$, $n < 2^n$.
+\item Prove using induction that for any real number $r \neq 1$ and any non-negative integer $n$, $\sum_{i = 0}^n r^i = \frac{1 - r^{n + 1}}{1 - r}$.
+\item For $n$ a non-negative integer, the $n$th \emph{Fibonacci number}, $F_n$, is defined recursively by $F_0 = 0$, $F_1 = 1$, and $F_n = F_{n - 1} + F_{n - 2}$ for $n \ge 2$ (you can read more about the Fibonacci numbers in Section 10.3 of Hammack). Prove that for any non-negative integer $n \ge 0$, $\sum_{i = 0}^n F_i^2 = F_n F_{n + 1}$.
+
+\item 
+  \begin{enumerate}
+  \item What is wrong with the following proof that all books have the same title?
+
+    We prove by induction on $n \ge 1$ the statement $S_n$: in any collection $b_1, b_2, \ldots, b_n$ of $n$ books, all books have the same title.
+
+    \begin{itemize}
+    \item For the base case, consider $S_1$: any one book has the same title. This is clearly true since there is only one possible title.
+    \item For the inductive step, assume $n$ is an integer, $n \ge 1$, and that $S_n$ is true. We want to see that $S_{n + 1}$ is true. So assume $b_1, b_2, \ldots, b_n, b_{n + 1}$ are $n + 1$ books. By the induction hypothesis, $S_n$ is true, so $b_1, b_2, \ldots, b_n$ all have the same title (call this title $x$). Since $S_n$ is true (it works for any list of $n$ books), $b_2, b_3, \ldots, b_{n + 1}$ also have the same title (call this title $y$). Since $x$ and $y$ are the title of the same book $b_2$, $x = y$. Thus $b_1, b_2, \ldots, b_n, b_{n + 1}$ all have the same title.
+    \end{itemize}
+
+    By the principle of mathematical induction, we deduce that all books have the same title.
+    
+  \item What is wrong with the following proof that the $n$th Fibonacci number is zero for all $n \ge 0$?
+
+    We prove by strong induction on the non-negative integer $n$, $n \ge 0$, the statement $S_n$: $F_n = 0$.
+
+    \begin{itemize}
+    \item For the base case, consider $S_0$: it says that $F_0 = 0$, and this holds by definition of $F_0$.
+    \item For the inductive step, assume $n \ge 1$ is a natural number and that $S_m$ is true for all $m < n$. By definition, $F_n = F_{n - 1} + F_{n - 2}$. Since we are assuming $S_m$ for all $m < n$, $F_{n - 1} = 0$ and $F_{n - 2} = 0$. Therefore $F_n = 0 + 0 = 0$. Thus $S_n$ holds.
+    \end{itemize}
+
+    By the principle of mathematical induction, we deduce that $F_n = 0$ for all non-negative integers $n \ge 0$.
+  \end{enumerate}
+
+\item The federal government issues two new bills, worth \textdollar 3 and \textdollar 7 respectively. Figure out all the amounts than can be paid using these bills. For example, one can pay \textdollar 10, since $10 = 7 + 3$, but one cannot pay \textdollar 8. \emph{Hint: use strong induction}.
+\item Fix a natural number $n \ge 1$ and consider a $2^n \times 2^n$ chessboard with a corner removed. Prove that the board can be completely covered by non-overlapping trominoes ($L$-shaped pieces made out of three of the four squares of a $2 \times 2$ board).
+\item (Extra credit) Prove the following explicit formula for the $n$th Fibonacci number: $F_n = \frac{\phi^n - \psi^n}{\sqrt{5}}$, where $\phi = \frac{1 + \sqrt{5}}{2}$ and $\psi = \frac{1 - \sqrt{5}}{2}$. \emph{Hint: First show that $\phi^2 = \phi + 1$ and $\psi^2 = \psi + 1$.}
+
+\end{enumerate}
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

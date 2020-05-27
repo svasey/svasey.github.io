@@ -1,0 +1,120 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Set}{\operatorname{SET}}
+\newcommand{\SET}{\Set}
+\newcommand{\Or}{\operatorname{OR}}
+\newcommand{\OR}{\Or}
+
+\newcommand{\cf}[1]{\operatorname{cf}(#1)}
+
+\newcommand{\seq}[2]{\left(#1\right)_{#2}}
+\newcommand{\fct}[2]{{}^{#1} {#2}}
+\newcommand{\Ps}{\mathcal{P}}
+\newcommand{\Ss}{\operatorname{S}}
+\newcommand{\Nn}{\mathbb{N}}
+\newcommand{\Zz}{\mathbb{Z}}
+\newcommand{\Qq}{\mathbb{Q}}
+\newcommand{\Rr}{\mathbb{R}}
+
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\cod}{\operatorname{cod}}
+\newcommand{\ran}{\operatorname{ran}}
+\newcommand{\pred}{\operatorname{pred}}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\rest}{\upharpoonright}
+\newcommand{\corest}{\upharpoonleft}
+
+
+\title[Math 145a, Fall 2019: assignment 5]{Math 145a - Set Theory I, Fall 2019 \\ Assignment 5}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+
+\maketitle
+
+\textbf{Due Tuesday, October 8 at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item Let $\seq{\lambda_i}{i \in I}$ be a sequence of infinite cardinals. Show that:
+
+  $$
+  \sum_{i \in I} \lambda_i = \max (|I|, \sup_{i \in I} \lambda_i)
+  $$
+
+\item
+  \begin{enumerate}
+
+  \item Let $I = (A, \le)$ be any linear order and let $\theta$ be the cofinality of $I$.
+    \begin{enumerate}
+    \item Prove that there exists a sequence $\seq{x_i}{i < \theta}$ of elements of $A$ such that $i < j < \theta$ implies $x_i < x_j$, and $\{x_i \mid i < \theta\}$ is cofinal in $I$. Such a sequence is called a \emph{cofinal sequence} in $I$.
+    \item Deduce that $\theta$ is a regular cardinal.
+    \end{enumerate}
+  \item Let $\delta$ be a limit ordinal. Show that $\cf{\aleph_{\delta}} = \cf{\delta}$.      
+  \item Let $\lambda$ be a limit cardinal of cofinality $\theta$. Prove that there exists a cofinal sequence $\seq{\lambda_i}{i < \theta}$, where each $\lambda_i$ is a \emph{cardinal} for each $i < \theta$.
+  \end{enumerate}
+\item Give the cardinality of each of the sets below (and justify). Your answer can only involve cardinals of the form $\aleph_\alpha$, for $\alpha$ an ordinal, and the function $\lambda \mapsto 2^\lambda$. For example, $|\Rr| = 2^{\aleph_0}$ is an acceptable answer, but $|\Rr| = \aleph_0^{\aleph_0}$ is not.
+
+  \begin{enumerate}
+  \item The cube $[0,1] \times [0,1] \times [0,1]$.
+  \item The Hilbert cube $\prod_{n \in \Nn - \{0\}} [0, \frac{1}{n}]$.
+  \item The long line $\omega_1 \times \Rr$.
+  \item The very high-dimensional cube $\fct{\omega_1 \times \Rr}{[0,1]}$.
+  \item The set of all continuous functions from $\Rr$ to $\Rr$.
+  \item The set of all functions from $\Rr$ to $\Rr$.
+  \item The set of all subsets of $\Rr$.    
+  \item The set of all Borel subsets of $\Rr$. \emph{Hint: first count the number of open subsets of $\Rr$.}
+  \end{enumerate}
+\item Prove \emph{Hausdorff's formula}: for any infinite cardinals $\lambda$ and $\mu$:
+
+  $$
+  \left(\lambda^+\right)^\mu = \lambda^+ \cdot \lambda^\mu
+  $$
+\item Let $F: \Or \to \Or$ be a class function. We say that $F$ is \emph{continuous} if for any limit ordinal $\delta$, $F (\delta) = \sup_{\alpha < \delta} F (\alpha)$. $F$ is \emph{strictly increasing} if $\alpha < \beta$ implies $F (\alpha) < F (\beta)$. A \emph{fixed point} for $F$ is an ordinal $\alpha$ such that $F (\alpha) = \alpha$.
+
+  \begin{enumerate}
+  \item Prove that if $F$ is strictly increasing, then $\alpha \le F (\alpha)$ for any ordinal $\alpha$.
+  \item Prove that if $F$ is continuous and strictly increasing, then it has a fixed point. \emph{Hint: keep applying $F$ to itself until you get to the fixed point.}
+  \item Deduce that there exists a cardinal $\lambda$ such that $\lambda = \aleph_\lambda$.
+  \item What is the cofinality of the $\lambda$ you found in the previous part?
+  \end{enumerate}
+\item (Extra credit) Prove that for all $\alpha < \omega_1$, there is an order embedding of $\alpha$ into $\Rr$ (with the usual orderings). Prove on the other hand that there is no order embedding of $\omega_1$ into $\Rr$.
+\end{enumerate}
+
+
+
+
+\end{document}

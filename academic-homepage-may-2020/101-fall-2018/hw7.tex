@@ -1,0 +1,79 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 7]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 7}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, October 1 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results from the book, results covered in class, or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item \begin{enumerate}
+\item Give an example of a relation on $\mathbb{N}$ which is reflexive and symmetric but not transitive.
+\item Give an example of a relation on $\mathbb{N}$ which is reflexive but not symmetric and not transitive.
+\end{enumerate}
+\item What is wrong with the ``proof'' below? \\
+  \textbf{``Theorem''.} Assume $R$ is a relation on a set $A$. If $R$ is symmetric and transitive, then $R$ is reflexive. 
+
+  \textbf{``Proof''.} Assume $R$ is symmetric and transitive, and assume $x \in A$. Since $R$ is symmetric, $xRy$ and $y R x$. Since $R$ is transitive, it follows (applying the definition of transitivity with $z = x$) that $x R x$. Therefore $R$ is reflexive.
+\item For each of the relations below, say whether or not it is an equivalence relation. If it is an equivalence relation, prove it. If it is not, identify one property that fails and explain why that property fails by giving an explicit counterexample.
+
+  \begin{enumerate}
+  \item The relation $R$ on the set $\mathbb{R}$ defined by $x R y$ if $(x - y)^2 = 9$.
+  \item The relation $R$ on the set $\mathbb{R}$ defined by $x R y$ if $|x - y| \le 1$.
+  \item The relation $R$ on the set $\mathbb{R}$ defined by $x R y$ if $x - y$ is rational.
+  \item The relation $R$ on the set $\mathbb{R}$ defined by $x R y$ if $x = y$ or $x - y$ is irrational.
+  \end{enumerate}
+  \item (Extra credit)
+  Assume $R$ is a relation on a set $A$. Define the \emph{inverse} of $R$ (denoted $R^{-1}$) by:
+
+  $$
+  R^{-1} = \{(y, x) \mid (x, y) \in R\}
+  $$
+
+  We define $R^{-1}$ similarly when $R$ is a relation from $A$ to another set $B$.
+
+  \begin{enumerate}
+  \item Explain (in words) how the graphical representation of $R^{-1}$ relates to the graphical representation of $R$ (see p.~177 of Hammack for what is meant here by ``graphical representation'').
+  \item Complete the right hand side of the following statement with an equation involving $R$ and $R^{-1}$ (no need to prove your answer). \\
+
+    $R$ is symmetric if and only if ...
+  \item Assume now that $R$ is a \emph{function} from $A$ to $B$. Is $R^{-1}$ always a function from $B$ to $A$? If not, what additional condition(s) must $R$ satisfy in order for $R^{-1}$ to be a function?
+  \end{enumerate}
+\item (Extra credit) Suppose $P$ is a partition of a set $A$. Show that there exists an equivalence relation $R$ on $A$ whose set of equivalence classes is equal to $P$. \emph{Hint: define two elements of $A$ to be related if they are in the same set of the partition. You then have to prove that this gives an equivalence relation and that its equivalence classes induce the right partition.}
+
+
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}

@@ -1,0 +1,87 @@
+\documentclass{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{subfigure}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\newcommand{\Bb}{\mathcal{B}}
+\newcommand{\Ps}{\mathcal{P}}
+
+\title[Math 155r, Fall 2019: assignment 7]{Math 155r - Combinatorics, Fall 2019 \\ Assignment 7}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\vspace*{-10em}
+\maketitle
+
+\textbf{Due Thursday, October 24, at the beginning of class} (please submit your assignment as a PDF on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. You may also freely look at the hints at the end of MN\footnote{Matoušek and Nešetřil, \emph{Invitation to discrete mathematics}, 2nd edition, Oxford University Press, 2008.}. Please refer to the syllabus for details.
+
+As a general rule, imagine that you are writing your solution to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. It is not sufficient to simply state a number or formula without providing the steps and reasoning that you used to produce the answer.
+
+\begin{enumerate}
+\item (MN, 6.2.2) The \emph{Petersen graph} (left) and the \emph{Fano plane} (right) are depicted below.\footnote{Sources: \url{https://commons.wikimedia.org/wiki/File:Petersen1_tiny.svg}; \url{https://commons.wikimedia.org/wiki/File:Fano_plane.svg}.}
+
+  \begin{figure}[ht]
+\hfill
+\subfigure{\includegraphics[scale=0.1]{petersen.png}}
+\hfill
+\subfigure{\includegraphics[scale=0.1]{fano.png}}
+\hfill
+
+\end{figure}
+  
+  \begin{enumerate}
+  \item Is the Petersen graph planar? If you think it is, give a planar drawing. If not, prove it by finding a subgraph isomorphic to a subdividision of $K_{3, 3}$ or a subdivision of $K_5$.
+  \item Same question for the Fano plane. \emph{[We will soon talk more about the Fano plane in class!]}
+  \end{enumerate}
+
+\item (MN, 6.3.1) For each natural number $n \ge 2$, construct a triangle-free planar graph with $n$ vertices and $2n - 4$ edges.
+
+\item A graph $G$ is \emph{critical} if $\chi (G - e) < \chi (G)$ for any edge $e$ of $G$. Show that if $G$ is critical, then any cut set of $G$ contains two non-adjacent vertices. (A \emph{cut set} is a set $S$ of vertices such that $G - S$ is disconnected).
+\item
+  \begin{enumerate}
+  \item Let $G$ be a connected graph and assume $k$ is a natural number such that any block of $G$ has chromatic number at most $k$ (see problem 4 on assignment 5 for the definition of a block). Prove that $G$ has chromatic number at most $k$.
+  \item A graph is called \emph{outerplanar} if it has a planar drawing where all vertices lie on the outer face.
+  \begin{enumerate}
+  \item Are the two graphs from the first problem outerplanar?
+  \item Give the best possible upper bound on the chromatic number of an outerplanar graph. You should both prove your bound and establish that it is optimal by giving an example of an outerplanar graph with that chromatic number.
+  \end{enumerate}
+  \end{enumerate}
+\item (MN, 7.1.5a)  Consider a  tetrahedron $T = A_1 A_2 A_3 A_4$ in three-dimensional space, and some subdivision of $T$ into small tetrahedra so that each face of each small tetrahedron either lies on a face of the big tetrahedron, or is also a face of another small tetrahedron. Label the vertices of the small tetrahedra by $1, 2, 3, 4$, in such a way that $A_i$ gets label $i$, the edge $A_i A_j$ contains only vertices labeled $i$ and $j$, and the face $A_i A_j A_k$ has only labels $i$, $j$, and $k$. Prove that there exists a small tetrahedron labeled $1, 2, 3, 4$.  \emph{[As an optional additional exercise, you may want to try to state and prove a general $n$-dimensional version of Sperner's lemma.]}
+
+
+\item \emph{(Extra credit)} Show that any graph with chromatic number at least 4 contains a subgraph isomorphic to a subdivision of $K_4$.
+
+  \emph{Hint: can you show this if the graph is 3-connected?}
+
+  \emph{[One of the major open problems of graph theory, Hadwiger's conjecture, generalizes this result. It says that any graph with chromatic number at least $t$ must have $K_t$ as a minor -- a minor of a graph $G$ is a graph that can be obtained from $G$ by removing vertices and contracting and deleting edges]}.
+
+\end{enumerate}
+
+
+
+\end{document}

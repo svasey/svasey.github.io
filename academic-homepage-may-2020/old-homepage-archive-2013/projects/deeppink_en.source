@@ -1,0 +1,68 @@
+.. default-role:: literal
+
+
+Deep Pink
+=========
+
+Description
+-----------
+
+Deep Pink is a `connect 5 (Gomoku)`_ program, written in C++. Deep Pink was
+originally written for playing a connect 5 tournament, which it won.
+
+Deep Pink finds its moves by calculating simple heuristics, and does not do any
+kind of backtracking. It generally runs very quickly (e.g it takes it less than
+0.1 seconds to finish a game against itself on my computer).
+
+Deep Pink reads its moves from standard input, and outputs them to standard
+output. It is therefore very easy to make it play against another engine or a
+human. There is no graphical interface, though.
+
+Deep Pink should work on any UNIX-like system, and is free software distributed
+under the MIT License.
+
+.. _connect 5 (Gomoku): http://en.wikipedia.org/wiki/Gomoku
+
+Rules
+-----
+
+Deep Pink plays a variant of the classical connect 5 rules described on
+Wikipedia. The game is played on a board of 20 by 20 squares. If the board
+ends-up full with no five stones aligned, the player with the highest number of
+four stones lines wins. If they are still equal, check the lines of three
+stones, etc... If by any chance there is a total equality, the win is awarded to
+the second player.
+
+Authors
+-------
+
+Deep Pink was written by `Sebastien Vasey`_ and Yann Schoenenberger (``yann dot
+sch at gmail dot com``).
+
+.. _Sebastien Vasey: ../about_en.html
+
+Download
+--------
+
+Deep Pink is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+* Old release: `Deep Pink 1.1`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: download-install-doc_en.html
+.. _Latest source tarball: ../public-repo.svasey.org/src/deeppink.tar.gz
+.. _PGP signature: ../public-repo.svasey.org/src/deeppink.tar.gz.sig
+.. _Deep Pink 1.1: ../download.svasey.org/deeppink/deeppink-1_1.tar.gz
+
+Notes
+-----
+
+The source tarball contains some documentation on how the program works, but it
+is really hard to read: do not even try ! This may get fixed some day...
+
+
+

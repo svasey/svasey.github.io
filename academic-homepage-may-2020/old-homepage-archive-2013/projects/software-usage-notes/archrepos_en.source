@@ -1,0 +1,18 @@
+.. default-role:: literal
+
+
+Arch Linux repository tips
+==========================
+
+This gives some hints/tips on how to manage `Arch Linux`_ package repositories.
+
+.. _Arch Linux: http://www.archlinux.org/
+
+Creating a local repository
+---------------------------
+
+To push packages to a repository, use::
+
+   $ repo-add $repo.db.tar.gz my.pkg.tar.gz
+
+To remove a package, use ``repo-remove``.

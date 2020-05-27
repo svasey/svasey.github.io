@@ -1,0 +1,88 @@
+.. default-role:: literal
+
+
+SVBluetooth
+===========
+
+What is svbluetooth ?
+---------------------
+
+``svbluetooth`` is a python_ library with some helper scripts to do some common
+bluetooth task in an easy way. There is not much in it (yet). It mainly contains
+code to transfer files to my mobile phone.
+
+.. _python: http://python.org/
+
+
+Download
+--------
+
+svbluetooth is available both as a Pacman_ package (x86_64 only), or in source
+form. For source or Pacman installation, please refer to the
+`Generic download and install instructions`_.
+
+* `Latest source tarball`_
+* `PGP signature`_
+
+.. _Pacman: http://www.archlinux.org/pacman/
+.. _Generic download and install instructions: ../download-install-doc_en.html
+.. _Latest source tarball: ../../public-repo.svasey.org/src/svbluetooth.tar.gz
+.. _PGP signature: ../../public-repo.svasey.org/src/svbluetooth.tar.gz.sig
+
+
+Setting the adapter discoverable/hidden
+---------------------------------------
+
+This can be done using the ``bt-discoverable`` script::
+
+    bt-discoverable [discoverable|hidden]
+
+Calling the script without argument shows you what the current status is.
+    
+Sending/receiving file to a mobile phone
+----------------------------------------
+
+You can use scripts from ``svbluetooth``. I have only tested them on a nokia
+6600, but they should work with a lot of other phones as well. When receiving
+file, some phones might not work if you are not discoverable.
+
+To send files, do::
+
+    nokia6600-send file1 [file2 ...]
+
+The file is sent to the bluetooth MAC address given in the
+``$HOME/.nokia6600-addr`` file.
+
+To receive files, do::
+
+    nokia6600-receive [nfiles] [directory]
+
+This waits until :math:`n` files are received in ``directory`` (or the current
+directory if this is not specified), and then quits. This does not work well
+when some transactions are aborted. Remember that you can always use ctrl-c to
+abort the program.
+
+Synchronizing contacts
+----------------------
+
+I am too lazy to setup a serious system: here is how I do it using my nokia 6600
+that cannot send more than one contact in a single vcard. I have a repository
+named ``phonebook`` in which I collect all my vcards. 
+
+There is one vcard for each contact, the vcards are named after the name of the
+contact in the file, e.g if I have a vcard describing the "John" contact, then
+the file will be named ``John.vcf``
+
+When I have a new contact on the phone, I send it to the computer and
+vice-versa. Sending a vcard from the phone to the computer can be eased up using
+the script which is in the phonebook repository::
+
+    ./receive-vcards.py
+
+And in another terminal::
+
+    nokia6600-receive 6000 .
+
+Then just send the vcards with your mobile phone, they will be automatically
+renamed according to the format defined above. When done, Ctrl-c
+`receive-vcards.py` .

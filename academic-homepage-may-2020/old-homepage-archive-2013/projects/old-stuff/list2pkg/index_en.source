@@ -1,0 +1,77 @@
+.. default-role:: literal
+
+
+List2pkg
+========
+
+Description
+-----------
+
+List2pkg is a program to create Slackware_ packages in a simple way. More
+precisely, given a list of files, it will create a Slackware package containing
+these files. A user trying to install that package will see the same files
+installed at the same locations they were on your system.
+
+List2pkg is especially useful if you have installed a program from source and,
+knowing where all its files are, you want to create a slackware package to ease
+another installation.
+
+List2pkg was originally created to create Slackware package using urpkg_.
+
+Features
+--------
+
+* Let you create Slackware packages in a very simple way
+* Pays special attention to file permission and ownership
+* Can be used with urpkg_ to create Slackware packages from source tarballs.
+* Fully documented.
+* Released in the public domain.
+
+News
+----
+
+February 4th 2010: version 1.3
+##############################
+
+* First version released into the public domain.
+
+July 27th 2008: version 1.2
+###########################
+
+* Fixed a bug in the ``doinst.sh`` creation
+* Correctly handle the permission of the file system root (``/``)
+
+July 8th 2008: version 1.1
+##########################
+
+Fixed a formatting bug in the manpage. 
+
+July 6th 2008: version 1.0
+##########################
+
+First public release.
+
+Download
+--------
+
+The latest version is 1.3: `tarball for version 1.3`_
+
+You can still download `the other versions`_
+
+.. _tarball for version 1.3: ../../../download.svasey.org/list2pkg/list2pkg-1_3.tar.gz
+.. _the other versions: ../../../download.svasey.org/list2pkg/
+
+Documentation
+-------------
+
+List2pkg has a user manual. You can read the online version with `one page for
+each node`_ or with `everything on one page`_
+
+You should always refer to *that* online manual first before asking a question
+or reporting a bug.
+
+.. _Slackware: http://www.slackware.com
+.. _urpkg: ../../urpkg/index_en.html
+
+.. _one page for each node: manual/index.html
+.. _everything on one page: manual/index-nochunk.html

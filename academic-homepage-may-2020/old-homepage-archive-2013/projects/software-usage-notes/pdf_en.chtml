@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>PDF tips and tricks</title>
+<link rel="stylesheet" href="../../css/print.css" type="text/css" />
+</head>
+<body>
+<div class="document">
+
+
+<div class="section" id="pdf-tips-and-tricks">
+<h2>PDF tips and tricks</h2>
+<p>Tips and tricks when working with the <a class="reference external" href="http://en.wikipedia.org/wiki/PDF">PDF</a> file format</p>
+<div class="section" id="decrypting-a-file">
+<h3>Decrypting a file</h3>
+<p>When your PDF file is password-protected, you can use <a class="reference external" href="http://www.foolabs.com/xpdf/">xpdf</a> to open it. Still it
+will not save it without the password which is annoying.</p>
+<p>To do this, the solution I have found is to convert the file to <a class="reference external" href="http://en.wikipedia.org/wiki/PostScript">postscript</a> and
+then back to pdf. Note however that you may loose some information in the
+process.</p>
+<p>You will need <a class="reference external" href="http://poppler.freedesktop.org/">poppler</a> (for <tt class="docutils literal"><span class="pre">pdftops</span></tt>) and <a class="reference external" href="http://pages.cs.wisc.edu/~ghost/">ghostscript</a> (<tt class="docutils literal"><span class="pre">ps2pdf</span></tt>) for this to
+work. Assume you want to decrypt the file <tt class="docutils literal"><span class="pre">secret.pdf</span></tt> which has the password
+<tt class="docutils literal"><span class="pre">foobar</span></tt>, then run:</p>
+<pre class="literal-block">
+$ pdftops -opw foobar secret.pdf
+$ ps2pdf secret.ps &amp;&amp; rm secret.ps
+</pre>
+</div>
+<div class="section" id="merging-several-files">
+<h3>Merging several files</h3>
+<p>To concatenate several files into just one, just run:</p>
+<pre class="literal-block">
+$ gs -dNOPAUSE -sDEVICE=pdfwrite -sOUTPUTFILE=out.pdf -dBATCH $file1 $file2 ...
+</pre>
+<p>Where <tt class="docutils literal"><span class="pre">gs</span></tt> is provided by <a class="reference external" href="http://pages.cs.wisc.edu/~ghost/">ghostscript</a>.</p>
+</div>
+<div class="section" id="extracting-only-some-pages">
+<h3>Extracting only some pages</h3>
+<p>To extract only from page <tt class="docutils literal"><span class="pre">$start</span></tt> to page <tt class="docutils literal"><span class="pre">$end</span></tt>, of your document <tt class="docutils literal"><span class="pre">$input</span></tt>,
+and create a new pdf <tt class="docutils literal"><span class="pre">$output</span></tt> with those pages, run:</p>
+<pre class="literal-block">
+$ gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER \
+     -dFirstPage=$start -dLastPage=$end \
+ -sOutputFile=$output $input
+</pre>
+<p>My source for this trick is <a class="reference external" href="http://www.linuxjournal.com/content/tech-tip-extract-pages-pdf">this tech tip article from Linux Journal</a>.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

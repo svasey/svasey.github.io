@@ -1,0 +1,86 @@
+\documentclass{amsart}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\theoremstyle{definition}
+\newtheorem{mydef}{Definition}[section]
+\newtheorem{lem}[mydef]{Lemma}
+\newtheorem{thm}[mydef]{Theorem}
+\newtheorem{cor}[mydef]{Corollary}
+\newtheorem{claim}[mydef]{Claim}
+\newtheorem{question}[mydef]{Question}
+\newtheorem{hypothesis}[mydef]{Hypothesis}
+\newtheorem{prop}[mydef]{Proposition}
+\newtheorem{defin}[mydef]{Definition}
+\newtheorem{example}[mydef]{Example}
+\newtheorem{remark}[mydef]{Remark}
+\newtheorem{notation}[mydef]{Notation}
+\newtheorem{fact}[mydef]{Fact}
+
+\title[Math 101, Fall 2018: assignment 5]{Math 101 - Sets, groups, and topology, Fall 2018 \\ Assignment 5}
+
+%% Include only sections, not subsections, in the table of content.
+\setcounter{tocdepth}{1}
+
+%% \author{Sebastien Vasey}
+%% \email{sebv@cmu.edu}
+%% \address{Department of Mathematical Sciences, Carnegie Mellon University, Pittsburgh, Pennsylvania, USA}
+\date{\today}
+
+\begin{document}
+
+%% No indentation at the start of each paragraph
+%\parindent 0pt
+
+\maketitle
+
+\textbf{Due Monday, September 24 at the beginning of class} (please submit your assignment on Canvas). Make sure to include your full name \emph{and the list of your collaborators} (if any) with your assignment. You may discuss problems with others, but you may \emph{not} keep a written record of your discussions. Please refer to the syllabus for details.
+
+In your proofs, you may assume basic facts about real numbers and integers, such as those mentioned on p.~90-91 of Hammack. You also can use results covered in class or results you have proven already. As a general rule, you should imagine that you are writing your proof to convince somebody else in the class who is very skeptical about the particular statement. In particular, it should be completely understandable to another student: always justify your reasoning in plain English. 
+
+\begin{enumerate}
+\item Write each of the following sets using set-builder notation:
+
+    \begin{enumerate}
+    \item $\{3, 9, 27, 81, \ldots\}$.
+    \item $\{0, \pi, 2\pi, 3\pi, 4\pi, \ldots\}$.
+    \item $\{\sqrt{2}, \sqrt{3}, \sqrt{5}, \sqrt{6}, \sqrt{7}, \sqrt{8}, \sqrt{10}, \ldots\}$.
+    \item $\{-5, -3, -1, 1, 3, 5\}$.
+    \end{enumerate}
+    
+  \item The \emph{power set} of a set $A$ (written $\mathcal{P} (A)$) is defined to be the set of all subsets of $A$ (see section 1.4 in Hammack for more on the power set).
+
+    \begin{enumerate}
+    \item Write down the set $\mathcal{P} (\{4, 9, 13\})$ by listing its elements between braces.
+    \item Explain why $\emptyset \neq \mathcal{P}(\emptyset)$.
+    \item Write down the set $\mathcal{P} (\mathcal{P} (\mathcal{P} (\emptyset)))$ by listing all its elements between braces.
+    \item Assume $A$ and $B$ are sets. Show that $A \subseteq B$ if and only if $\mathcal{P} (A) \subseteq \mathcal{P} (B)$.
+    \end{enumerate}
+  \item Assume $A$, $B$, and $C$ are sets. Prove or disprove \emph{(Note: to disprove, it is enough to give explicit examples of sets $A$, $B$, and $C$ that fail to satisfy the statement)}:
+    \begin{enumerate}
+    \item $A - (B \cap C) = (A - B) \cup (A - C)$.
+    \item $A \cup (B - C) = (A \cup B) - (A \cup C)$.
+    \end{enumerate}
+  \item For $a$ and $b$ real numbers, we write $(a, b)$ for the set $\{x \in \mathbb{R} \mid a < x < b\}$  and $[a, b]$ for $\{x \in \mathbb{R} \mid a \le x \le b\}$. We similarly define $(a, b]$ and $[a, b)$. Note that if $a > b$, then $[a, b] = \emptyset$, and if $a \ge b$, then $(a, b) = \emptyset$.
+
+    \begin{enumerate}
+      \item Give a very explicit description of $\bigcap_{b > 0} (0, b)$, the intersection of all sets of the form $(0, b)$, for $b$ a positive real number. 
+      \item Give a very explicit description of $\bigcup_{a > 0} [a, 1]$, the union of all sets of the form $[a, 1]$, for $a$ a positive real number.
+    \end{enumerate}
+
+    Of course, you should in both cases \emph{prove} that your description is correct.
+
+  \item (Extra credit) In this problem, you will prove that the principle of mathematical induction is equivalent to the fact that any non-empty set of natural numbers has a minimal element. 
+
+    First, a definition: for $A$ a set of natural numbers, a number $x$ is defined to be a \emph{minimal element of $A$} if $x \in A$ and $x \le y$ for any $y \in A$.
+
+    \begin{enumerate}
+    \item Use induction to prove that any non-empty set of natural numbers has a minimal element. \emph{Hint: show by strong induction on $n$ that all sets of natural numbers containing $n$ have a minimal element.}
+    \item Conversely, prove that \emph{if} any non-empty subset of natural numbers has a minimal element, \emph{then} the principle of strong mathematical induction is true. \emph{Hint: consider the set of natural numbers $n$ for which $S_n$ is false.}
+    \end{enumerate}
+\end{enumerate}
+
+\bibliographystyle{amsalpha}
+\bibliography{notes}
+
+\end{document}
